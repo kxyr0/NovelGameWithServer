@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd3d2465919a9048bf3e223921155ed, type: 3}
+  m_Name: privychka_pritvoryatsya_GameData
+  m_EditorClassIdentifier: 
+  _gameIcon: {fileID: 21300000, guid: c7c96216c747f1c47b445302e271b19a, type: 3}
+  _gameIconVideo: {fileID: 0}
+  _gameIconGif: {fileID: 0}
+  _menuCardOverrides:
+    _overrideRootPositionOffset: 0
+    _rootPositionOffset: {x: 0, y: 0}
+    _overrideRootSize: 1
+    _rootSize: {x: 300, y: 1716.369}
+    _overrideRootRotationOffset: 0
+    _rootRotationOffsetZ: 0
+    _overrideRootScaleMultiplier: 0
+    _rootScaleMultiplier: {x: 0.3, y: 1, z: 1}
+    _overrideCoverSize: 0
+    _coverSize: {x: 1097, y: 1726}
+    _overrideCoverPositionOffset: 0
+    _coverPositionOffset: {x: 0, y: 0}
+    _overrideCoverScale: 0
+    _coverScale: {x: 1, y: 1, z: 1}
+    _overrideVideoSize: 1
+    _videoSize: {x: 1800, y: 991}
+    _overrideVideoPosition: 0
+    _videoPosition: {x: 0, y: 0}
+    _overrideVideoRotation: 0
+    _videoRotationZ: -90
+    _keepVideoBelowCardFrame: 0
+    _stretchVideoOnLoadingScreen: 0
+    _loadingVideoStretchScale: {x: 1.1, y: 1}
+    _loadingVideoRotationZ: 0
+  _loadingMedia:
+    _overrideLoadingMedia: 1
+    _fallbackToMenuMediaWhenEmpty: 1
+    _imageReference:
+      m_AssetGUID: 33123dfaeb5839c41bd326a0b28fd393
+      m_SubObjectName: IMG_1430
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 1
+    _videoReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _gifReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _imageFallback: {fileID: 21300000, guid: 33123dfaeb5839c41bd326a0b28fd393, type: 3}
+    _videoFallback: {fileID: 0}
+    _gifFallback: {fileID: 0}
+  _wardrobeSetup:
+    _overrideWardrobeAssets: 1
+    _targetCharacter: {fileID: 11400000, guid: a7a0c5dda978fd34bbab5fe624bbf553, type: 2}
+    _targetCharacterId: hero
+    _appearanceOptions:
+    - label: "\u0415\u0432\u0440\u043E\u043F\u0435\u0439\u0441\u043A\u0430\u044F"
+      type: 1
+      previewSprite: {fileID: 21300000, guid: 5fd3ba249803ddf46afe24da3358349c, type: 3}
+      enabled: 1
+    - label: "\u0410\u0444\u0440\u043E\u0430\u043C\u0435\u0440\u0438\u043A\u0430\u043D\u043A\u0430"
+      type: 2
+      previewSprite: {fileID: 21300000, guid: 22aba51e69f23cb4b91dd49849b4324e, type: 3}
+      enabled: 1
+    - label: "\u0410\u0437\u0438\u0430\u0442\u043A\u0430"
+      type: 3
+      previewSprite: {fileID: 21300000, guid: 0303b5e4b4430ac4ea2e60b67fad04eb, type: 3}
+      enabled: 1
+    _outfitItems:
+    - {fileID: 11400000, guid: d5c7bf4b561be1643bd11de69bad2296, type: 2}
+    - {fileID: 11400000, guid: b09475fe048fbe441922cc038bddbcb5, type: 2}
+    - {fileID: 11400000, guid: 4944d04d2b2ae9a43aef4ea677d92a64, type: 2}
+    - {fileID: 11400000, guid: eec3ac498048de645a6940d0fb1c3044, type: 2}
+    - {fileID: 11400000, guid: 7de1fa73e1009e4469ccc2252e681da4, type: 2}
+    - {fileID: 11400000, guid: 7a860cd70fed5c044a66ad21384522d2, type: 2}
+    - {fileID: 11400000, guid: 056a76bade5aed241b8742d2f291ceb8, type: 2}
+    _hairItems:
+    - {fileID: 11400000, guid: c5e7c22ba131d17469eee510100c1843, type: 2}
+    - {fileID: 11400000, guid: f0b7e125b1ba1474b9d0a82cb0466da0, type: 2}
+    - {fileID: 11400000, guid: 334a91fb89e4dd64ea51871bb85bcf67, type: 2}
+    - {fileID: 11400000, guid: d6f5b0467023c57418c36c650eae3c14, type: 2}
+    - {fileID: 11400000, guid: 2984fa04c9a4fba44bb5a32e901b0d27, type: 2}
+    - {fileID: 11400000, guid: 5c18fb8f3eefc3b43bd317bbee9763b9, type: 2}
+    - {fileID: 11400000, guid: 46f0da80f8de97b4fab810ab6b6470a0, type: 2}
+    - {fileID: 11400000, guid: a050ae15083a9b54da59cf4febb6d876, type: 2}
+    - {fileID: 11400000, guid: 23e6c069fc1c9004f9b6fcb76e1111d1, type: 2}
+    - {fileID: 11400000, guid: 8c5c54e361b8b1849a74b18996101552, type: 2}
+    - {fileID: 11400000, guid: 84a3ce9574366754e8bfd17c481ce766, type: 2}
+    - {fileID: 11400000, guid: 17d71d19471b0234cbec376a1283e6ec, type: 2}
+    - {fileID: 11400000, guid: de0c6885529ff14409c8431a224f6df5, type: 2}
+    _accessoryItems:
+    - {fileID: 11400000, guid: a100607242161374081a27294e08e489, type: 2}
+    _defaultOutfitItem: {fileID: 11400000, guid: b09475fe048fbe441922cc038bddbcb5, type: 2}
+    _defaultHairItem: {fileID: 11400000, guid: de0c6885529ff14409c8431a224f6df5, type: 2}
+    _defaultAccessoryItem: {fileID: 0}
+  _gameName: "\u041F\u0440\u0438\u0432\u044B\u0447\u043A\u0430 \u043F\u0440\u0438\u0442\u0432\u043E\u0440\u044F\u0442\u044C\u0441\u044F"
+  _genreText: "\u0414\u0440\u0430\u043C\u0430"
+  _description: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0433\u0435\u0440\u043E\u0438\u043D\u044F
+    \u0442\u043E\u043B\u044C\u043A\u043E \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442
+    \u043F\u0443\u0442\u044C \u0432 \u043A\u0440\u0438\u043C\u0438\u043D\u0430\u043B\u044C\u043D\u043E\u0439
+    \u043F\u0441\u0438\u0445\u043E\u043B\u043E\u0433\u0438\u0438 \u2014 \u043D\u043E
+    \u0440\u0430\u0437\u043E\u0431\u0440\u0430\u0442\u044C\u0441\u044F \u0441 \u0441\u0430\u043C\u043E\u0439
+    \u0441\u043E\u0431\u043E\u0439 \u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442\u0441\u044F
+    \u0441\u043B\u043E\u0436\u043D\u0435\u0435, \u0447\u0435\u043C \u043A\u043E\u043F\u0430\u0442\u044C\u0441\u044F
+    \u0432 \u0447\u0443\u0436\u0438\u0445 \u043C\u043E\u0442\u0438\u0432\u0430\u0445\u2026"
+  _currentEpisodeNumber: 1
+  _episodeCount: 2
+  _episodeLabelFormat: "\u0421\u0435\u0440\u0438\u044F {0}/{1}"
+  _forceComingSoon: 0
+  _startButtonText: "\u041D\u0430\u0447\u0430\u0442\u044C"
+  _comingSoonButtonText: "\u0421\u043A\u043E\u0440\u043E"
+  _storyStats:
+  - _label: 
+    _statId: principles
+    _value: 0
+    _icon: {fileID: 21300000, guid: cb9ee664ae9317e43be68facf397c704, type: 3}
+  - _label: 
+    _statId: feelings
+    _value: 0
+    _icon: {fileID: 21300000, guid: fe642b9a46caded4583d30048875522a, type: 3}
+  - _label: 
+    _statId: self_esteem
+    _value: 0
+    _icon: {fileID: 21300000, guid: 37c2ec2bb27b1ea44ae7e9df889a7ebc, type: 3}
+  _story: {fileID: 11400000, guid: 4c551b8e920be304aa816af1fa873947, type: 2}

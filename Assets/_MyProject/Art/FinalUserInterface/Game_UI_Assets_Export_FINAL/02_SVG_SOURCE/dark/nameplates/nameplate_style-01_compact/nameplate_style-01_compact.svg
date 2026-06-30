@@ -1,0 +1,33 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 513.8 117.8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="nameplate / style-01 / compact / vector-base">
+<g id="nameplate / shadow" filter="url(#filter0_f_0_4)">
+<path d="M64.0781 11.4H502.4L461.649 106.4H11.4L64.0781 11.4Z" fill="var(--fill-0, #02040A)" fill-opacity="0.58"/>
+</g>
+<g id="nameplate / fill-layer">
+<path id="nameplate / fill-shape" d="M70.4 4.4H486.4L454.4 89.4H20.4L70.4 4.4Z" fill="url(#paint0_linear_0_4)"/>
+</g>
+<g id="nameplate / stroke-layer">
+<path id="nameplate / outer-cool-stroke" d="M70.4 4.4H486.4L454.4 89.4H20.4L70.4 4.4Z" stroke="url(#paint1_linear_0_4)" stroke-width="3" stroke-linecap="square"/>
+<path id="nameplate / inner-hairline" d="M448.887 81.4L477.4 11.4H75.1689L32.4 81.4H448.887Z" stroke="url(#paint2_linear_0_4)" stroke-opacity="0.4" stroke-linecap="square"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_4" x="0" y="0" width="513.8" height="117.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5.7" result="effect1_foregroundBlur_0_4"/>
+</filter>
+<linearGradient id="paint0_linear_0_4" x1="247.4" y1="-32.1" x2="248.905" y2="89.4" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2C313D"/>
+<stop offset="1" stop-color="#191D27"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_4" x1="253.4" y1="4.4" x2="253.4" y2="89.4" gradientUnits="userSpaceOnUse">
+<stop stop-color="#817673"/>
+<stop offset="1" stop-color="#393D47"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_4" x1="32.4" y1="46.4" x2="477.4" y2="46.4" gradientUnits="userSpaceOnUse">
+<stop stop-color="#DED2BB"/>
+<stop offset="1" stop-color="#60595E"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,2480 @@
+{
+  "version": 2,
+  "storyId": "privychka_pritvoryatsya",
+  "chapterId": "pp_2",
+  "episodeId": "pp_2",
+  "title": "ГЛАВА 2: ПЕРВЫЕ ТРЕЩИНЫ",
+  "defaultPlayerName": "\u042D\u043B\u0438\u0441\u043E\u043D",
+  "characters": [
+    {
+      "id": "hero",
+      "name": "ИМЯ"
+    },
+    {
+      "id": "pp_vlad",
+      "name": "Влад"
+    },
+    {
+      "id": "pp_james",
+      "name": "Джеймс"
+    },
+    {
+      "id": "pp_kurt",
+      "name": "Курт"
+    },
+    {
+      "id": "pp_remi",
+      "name": "Реми"
+    },
+    {
+      "id": "pp_will",
+      "name": "Уилл"
+    },
+    {
+      "id": "pp_rob",
+      "name": "Роб"
+    },
+    {
+      "id": "pp_mag",
+      "name": "Мэг"
+    },
+    {
+      "id": "pp_gabriel",
+      "name": "Габриэл"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "next": "pp2_title_card_001"
+    },
+    {
+      "id": "pp2_title_card_001",
+      "type": "banner",
+      "systemMessage": "Несколько дней спустя",
+      "duration": 2,
+      "next": "pp2_scene_entrance_001"
+    },
+    {
+      "id": "pp2_scene_entrance_001",
+      "type": "scene",
+      "label": "Вход",
+      "background": "pp_bg_entrance",
+      "music": "pp_music_povsednevny",
+      "next": "pp2_dialogue_entrance_intro_001"
+    },
+    {
+      "id": "pp2_dialogue_entrance_intro_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_james",
+          "emotion": "улыбка",
+          "text": "Может под женским влиянием ты сделаешься мягче!"
+        },
+        {
+          "text": "Влад криво ухмыляется, отвечая начальству привычным молчанием."
+        },
+        {
+          "speaker": "pp_kurt",
+          "emotion": "улыбка",
+          "text": "Ты когда скалишься, на Ричи похож!"
+        },
+        {
+          "text": "Он смеётся."
+        },
+        {
+          "text": "Случайно выхватив краем ухом обрывки чужого диалога, ИМЯ прикладывает пропуск к валидатору и думает: а бывает ли тот вообще когда-нибудь серьёзным? За три дня работы здесь таковым она его ни разу не видела."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "улыбка",
+          "text": "Ты только что сравнил меня с псом?"
+        },
+        {
+          "text": "Он звучит наигранно обиженно, но совершенно таковым не выглядит. Напротив, в глазах у него пляшут смешинки."
+        },
+        {
+          "text": "ИМЯ усмехается про себя, не желая выдавать тот факт, что так нагло, исподтишка, подслушивает чужую беседу."
+        },
+        {
+          "text": "Останавливается лишь на минуту - и вовсе не чтобы продолжить слушать. Просто хочет поправить одежду и растрепавшуюся на ветру прическу - только и всего…"
+        }
+      ],
+      "next": "pp2_reset_outfit_free_001"
+    },
+    {
+      "id": "pp2_reset_outfit_free_001",
+      "type": "variableChange",
+      "variableKey": "pp2_outfit_free",
+      "deltaValue": 0,
+      "add": false,
+      "next": "pp2_reset_outfit_runway_001"
+    },
+    {
+      "id": "pp2_reset_outfit_runway_001",
+      "type": "variableChange",
+      "variableKey": "pp2_outfit_runway",
+      "deltaValue": 0,
+      "add": false,
+      "next": "pp2_dialogue_wardrobe_title_001"
+    },
+    {
+      "id": "pp2_dialogue_wardrobe_title_001",
+      "type": "dialogue",
+      "lines": [],
+      "next": "pp2_choice_outfit_001"
+    },
+    {
+      "id": "pp2_choice_outfit_001",
+      "type": "wardrobeChoice",
+      "characterId": "hero",
+      "clothes": [
+        "pp_outfit_pp2_toropilas",
+        "pp_outfit_pp2_delovoy_kostyum",
+        "pp_outfit_pp2_kak_na_podium"
+      ],
+      "exits": [
+        "pp2_set_outfit_free_001",
+        "pp2_choice_hair_001",
+        "pp2_set_outfit_runway_001"
+      ],
+      "optionRules": [
+        {
+          "premiumCost": 0,
+          "purchaseKey": "pp_2.outfit.toropilas"
+        },
+        {
+          "premiumCost": 20,
+          "purchaseKey": "pp_2.outfit.delovoy_kostyum"
+        },
+        {
+          "premiumCost": 35,
+          "purchaseKey": "pp_2.outfit.kak_na_podium"
+        }
+      ]
+    },
+    {
+      "id": "pp2_set_outfit_free_001",
+      "type": "variableChange",
+      "variableKey": "pp2_outfit_free",
+      "deltaValue": 1,
+      "add": false,
+      "next": "pp2_choice_hair_001"
+    },
+    {
+      "id": "pp2_set_outfit_runway_001",
+      "type": "variableChange",
+      "variableKey": "pp2_outfit_runway",
+      "deltaValue": 1,
+      "add": false,
+      "next": "pp2_choice_hair_001"
+    },
+    {
+      "id": "pp2_choice_hair_001",
+      "type": "wardrobeChoice",
+      "characterId": "hero",
+      "clothes": [
+        "pp_hair_pp2_leave_as_is",
+        "pp_hair_pp2_na_skoruyu_blond",
+        "pp_hair_pp2_na_skoruyu_dark_chestnut",
+        "pp_hair_pp2_na_skoruyu_coal",
+        "pp_hair_pp2_ukladka_blond",
+        "pp_hair_pp2_ukladka_dark_chestnut",
+        "pp_hair_pp2_ukladka_coal",
+        "pp_hair_pp2_hollywood_blond",
+        "pp_hair_pp2_hollywood_dark_chestnut",
+        "pp_hair_pp2_hollywood_coal"
+      ],
+      "exits": [
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001",
+        "pp2_condition_outfit_free_001"
+      ],
+      "optionRules": [
+        {
+          "premiumCost": 0,
+          "purchaseKey": "pp_2.hair.leave_as_is"
+        },
+        {
+          "premiumCost": 0,
+          "purchaseKey": "pp_2.hair.na_skoruyu_blond"
+        },
+        {
+          "premiumCost": 0,
+          "purchaseKey": "pp_2.hair.na_skoruyu_dark_chestnut"
+        },
+        {
+          "premiumCost": 0,
+          "purchaseKey": "pp_2.hair.na_skoruyu_coal"
+        },
+        {
+          "premiumCost": 20,
+          "purchaseKey": "pp_2.hair.ukladka_blond"
+        },
+        {
+          "premiumCost": 20,
+          "purchaseKey": "pp_2.hair.ukladka_dark_chestnut"
+        },
+        {
+          "premiumCost": 20,
+          "purchaseKey": "pp_2.hair.ukladka_coal"
+        },
+        {
+          "premiumCost": 30,
+          "purchaseKey": "pp_2.hair.hollywood_blond"
+        },
+        {
+          "premiumCost": 30,
+          "purchaseKey": "pp_2.hair.hollywood_dark_chestnut"
+        },
+        {
+          "premiumCost": 30,
+          "purchaseKey": "pp_2.hair.hollywood_coal"
+        }
+      ]
+    },
+    {
+      "id": "pp2_condition_outfit_free_001",
+      "type": "condition",
+      "variableKey": "pp2_outfit_free",
+      "requiredValue": 1,
+      "trueNext": "pp2_dialogue_outfit_free_001",
+      "falseNext": "pp2_dialogue_after_wardrobe_001"
+    },
+    {
+      "id": "pp2_dialogue_outfit_free_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "На всякий случай она оглядывает себя в зеркале."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«Вот черт. Заляпала…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«И дёрнул же чёрт надеть белые джинсы в такую погоду!»"
+        }
+      ],
+      "next": "pp2_dialogue_after_wardrobe_001"
+    },
+    {
+      "id": "pp2_dialogue_after_wardrobe_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_james",
+          "emotion": "сердитый",
+          "text": "Ещё одна такая выходка - получишь новую блестящую звёздочку из академии…"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражённо",
+          "text": "«Сексисты…»"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "А вот это уже страшно."
+        },
+        {
+          "text": "Он хмыкает."
+        },
+        {
+          "text": "ИМЯ обиженно поджимает губы."
+        },
+        {
+          "speaker": "pp_kurt",
+          "emotion": "задумчивость",
+          "text": "Страшно - это то, что тебя вот так замыкает"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "…"
+        },
+        {
+          "speaker": "pp_kurt",
+          "emotion": "задумчивость",
+          "text": "Тебе бы напряжение сбросить… Понимаешь, о чем я?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "Пустышки на одну ночь? Осточертело."
+        },
+        {
+          "text": "Он отпивает из бумажного стаканчика кофе и морщится от его горечи."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«И зачем пить такую бурду?»"
+        },
+        {
+          "speaker": "pp_kurt",
+          "emotion": "улыбка",
+          "text": "Ну да, ну да, колотить грушу куда интереснее. Впрочем, это, все же, лучше, чем бить других или самого себя."
+        },
+        {
+          "text": "ИМЯ проскальзывает мимо них незамеченной и оставшуюся часть разговора уже не слышит. Да и едва ли её интересует чужая личная жизнь - ей бы для начала в своей разобраться."
+        }
+      ],
+      "next": "pp2_scene_corridor_001"
+    },
+    {
+      "id": "pp2_scene_corridor_001",
+      "type": "scene",
+      "label": "Коридор",
+      "background": "pp_bg_corridor",
+      "music": "pp_music_tension",
+      "next": "pp2_dialogue_corridor_001"
+    },
+    {
+      "id": "pp2_dialogue_corridor_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Личная жизнь… От неё одни только проблемы.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "«Уилл меня уже достал. Если бы не Роб, не знаю, что бы я делала…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«Я всё могу понять, но караулить меня возле дома - это уже перебор…»"
+        }
+      ],
+      "next": "pp2_scene_cabinet_001"
+    },
+    {
+      "id": "pp2_scene_cabinet_001",
+      "type": "scene",
+      "label": "Кабинет",
+      "background": "pp_bg_cabinet",
+      "music": "pp_music_tension",
+      "next": "pp2_dialogue_cabinet_intro_001"
+    },
+    {
+      "id": "pp2_dialogue_cabinet_intro_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она заходит в кабинет, сбрасывает пальто, ставит стаканчик из местной кофейни на свой стол. Там лежит её блокнот со стикерами на обложке, забытые ею вчера очки с золотыми дужками…"
+        },
+        {
+          "text": "ИМЯ постепенно здесь обживается, и кабинет потихоньку становится все более уютным, хотя в нём все ещё и пахнет старой бумагой и - резко, химически - моющим средством."
+        },
+        {
+          "text": "Она садится за стол, чтобы вновь взяться за изучение того самого дела, которое вот уже несколько дней не даёт ей спокойно спать."
+        }
+      ],
+      "next": "pp2_choice_case_motivation_001"
+    },
+    {
+      "id": "pp2_choice_case_motivation_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "«Это уже дело принципа…»",
+          "next": "pp2_branch_case_principles_001"
+        },
+        {
+          "text": "«Я чувствую, что там что-то неладно…»",
+          "next": "pp2_branch_case_feelings_001"
+        }
+      ]
+    },
+    {
+      "id": "pp2_branch_case_principles_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "text": "«Я не могу просто так взять и закрыть глаза на то, что где-то происходит нечто ужасное! Как минимум потому что я уже об этом знаю и в теории могу предотвратить.»"
+        }
+      ],
+      "next": "pp2_case_principles_stat_principles"
+    },
+    {
+      "id": "pp2_case_principles_stat_principles",
+      "type": "statChange",
+      "statId": "principles",
+      "statDelta": 1,
+      "statDisplayName": "Принципы",
+      "next": "pp2_after_case_choice_001"
+    },
+    {
+      "id": "pp2_branch_case_feelings_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "text": "«И это уже не желание кому-то что-то доказать. Это банальный человеческий интерес. Дурацкое женское любопытство… Но что, если я ошибаюсь? Не буду ли потом выглядеть глупо?»"
+        }
+      ],
+      "next": "pp2_case_feelings_stat_feelings"
+    },
+    {
+      "id": "pp2_case_feelings_stat_feelings",
+      "type": "statChange",
+      "statId": "feelings",
+      "statDelta": 1,
+      "statDisplayName": "Чувства",
+      "next": "pp2_after_case_choice_001"
+    },
+    {
+      "id": "pp2_after_case_choice_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Ладно, буду решать проблемы по мере их поступления.»"
+        },
+        {
+          "text": "Она так увлеченно вчитывается в уже заученные практически наизусть строки, что не замечает появления в кабинете Влада."
+        }
+      ],
+      "next": "pp2_condition_outfit_runway_001"
+    },
+    {
+      "id": "pp2_condition_outfit_runway_001",
+      "type": "condition",
+      "variableKey": "pp2_outfit_runway",
+      "requiredValue": 1,
+      "trueNext": "pp2_stat_outfit_runway_self_esteem_001",
+      "falseNext": "pp2_dialogue_case_report_001"
+    },
+    {
+      "id": "pp2_stat_outfit_runway_self_esteem_001",
+      "type": "statChange",
+      "statId": "self_esteem",
+      "statDelta": 1,
+      "statDisplayName": "Самооценка",
+      "next": "pp2_dialogue_outfit_runway_001",
+      "systemMessage": "Твой образ не остаётся незамеченным"
+    },
+    {
+      "id": "pp2_dialogue_outfit_runway_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Здесь не конкурс красоты."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "выгнутая бровь",
+          "text": "Ты только что назвал меня красивой?"
+        },
+        {
+          "text": "Она поднимает взгляд и кокетливо улыбается. Подпирает голову рукой - подвески на браслете негромко звякают."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "Я пошутил."
+        },
+        {
+          "text": "Он натягивает излюбленный покер-фэйс, скидывает с плеч куртку. Но уголки его губ чуть подрагивают в полуулыбке, и это не остается для ИМЯ незамеченным."
+        },
+        {
+          "text": "Она засчитывает это как +1 в свою пользу."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "ухмылка",
+          "text": "Я оценила."
+        },
+        {
+          "text": "ИМЯ сдержанно кивает, но её самодовольство чувствуется за версту."
+        }
+      ],
+      "next": "pp2_dialogue_case_report_001"
+    },
+    {
+      "id": "pp2_dialogue_case_report_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "То дело… Я много о нём думала."
+        },
+        {
+          "text": "Сообщает она и тянется к своему блокноту."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Мне удалось найти нечто похожее. Случилось годом ранее. Там нет дневников, но есть записка, очень близкая по смыслу…"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "А ещё я искала в соцсетях страничку Николь - пыталась за что-то зацепиться. Из интересного: нашла у неё в друзьях психотерапевта."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Что, если она ходила к нему, и это его имя не указали в материалах дела? Я пыталась нарыть на него информацию…"
+        },
+        {
+          "text": "Влад морщится и жестом просит ИМЯ остановиться:"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Не так быстро, Шерлок."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Так вот."
+        },
+        {
+          "text": "Несмотря на то, что её прервали, она не сбивается. Звучит уверенно - горит своей идеей."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "глаза в сторону",
+          "text": "Этот психотерапевт практикует и сейчас. Основная часть клиенток - женщины до тридцати с тревожностью и расстройствами пищевого поведения…"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "И риторика у него специфическая: «я работаю только с теми, кто готов к переменам». Фраза вроде общая, но я бы к нему присмотрелась."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "Это всё ещё не повод его подозревать. Тем более - допрашивать. Ты не можешь нарушать протокол."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "А ты можешь?"
+        }
+      ],
+      "next": "pp2_condition_principles_vs_feelings_001"
+    },
+    {
+      "id": "pp2_condition_principles_vs_feelings_001",
+      "type": "condition",
+      "variableKey": "principles",
+      "trueNext": "pp2_dialogue_protocol_principles_001",
+      "falseNext": "pp2_dialogue_protocol_feelings_001",
+      "comparison": "greaterThan",
+      "compareVariableKey": "feelings"
+    },
+    {
+      "id": "pp2_dialogue_protocol_principles_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Фыркает ИМЯ, неожиданно осмелев. Его скептицизм начинает раздражать, и вообще-то из них двоих не ему ссылаться на протокол: это не её двадцатью минутами ранее отчитывали за превышение служебных полномочий."
+        }
+      ],
+      "next": "pp2_dialogue_after_protocol_branch_001"
+    },
+    {
+      "id": "pp2_dialogue_protocol_feelings_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "ИМЯ бросает это слишком резко, руководствуясь импульсивным порывом."
+        },
+        {
+          "text": "Он говорит про нарушение протокола - серьёзно?"
+        },
+        {
+          "text": "О, она слышала, как Джеймс отчитывал его за то, что тот при задержании применил грубую силу - и тут не нужно было даже подслушивать, потому что слышала это не только она, но и весь отдел."
+        }
+      ],
+      "next": "pp2_dialogue_after_protocol_branch_001"
+    },
+    {
+      "id": "pp2_dialogue_after_protocol_branch_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "Или махать кулаками - по протоколу? Двойные стандарты, выходит."
+        },
+        {
+          "text": "Он бросает на неё взгляд - жёсткий, как наждачная бумага, - но слов, чтобы осадить, не находит. Признаёт своё поражение молча."
+        },
+        {
+          "text": "Она продолжает - уже мягче."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "У меня есть голова на плечах. Я не дура. Не в моих интересах нарушать правила."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Но мне что, нельзя искать информацию о враче? Нельзя просматривать открытый профиль в соцсетях? Если дело всё-таки откроют, будет здорово уже иметь зацепки."
+        },
+        {
+          "text": "Наверное «если» звучит слишком абстрактно для их сферы деятельности, и скептически настроенный Влад качает головой."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Продолжай. Но аккуратно. Никакого самовольства. Всё понятно? И подготовь мне всю информацию, которая у тебя есть."
+        },
+        {
+          "text": "Она кивает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Спасибо."
+        },
+        {
+          "text": "Она не уточняет, за что. Влад не считает нужным спрашивать."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Ну хотя бы не ставит мне палки в колёса - и то хорошо…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Но мог бы и посодействовать… Хотя с чего бы?»"
+        },
+        {
+          "text": "Телефон в кармане настойчиво вибрирует, призывая обратить на себя внимание."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«Просила же Роба не отвлекать меня от работы… Неужели что-то срочное?»"
+        },
+        {
+          "text": "Но это не Роб. В телефоне - несколько сообщений от человека из прошлого, который всё никак не может её отпустить."
+        }
+      ],
+      "next": "pp2_phone_will_001"
+    },
+    {
+      "id": "pp2_phone_will_001",
+      "type": "phoneDialogue",
+      "contactName": "Уилл",
+      "typingDelay": 0.15,
+      "messages": [
+        {
+          "side": "Incoming",
+          "text": "ИМЯ, давай поговорим"
+        },
+        {
+          "side": "Incoming",
+          "text": "Я был не прав, но это не повод меня игнорировать"
+        },
+        {
+          "side": "Incoming",
+          "text": "ИМЯ"
+        },
+        {
+          "side": "Incoming",
+          "text": "Я не отступлю, пока ты не дашь мне ещё один шанс."
+        }
+      ],
+      "next": "pp2_dialogue_after_will_messages_001",
+      "contactAvatar": "pp_will_avatar"
+    },
+    {
+      "id": "pp2_dialogue_after_will_messages_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Внутри все холодеет. ИМЯ сглатывает, сжимая металлический корпус смартфона в пальцах. Ладони становятся мокрыми - эта мелочь всегда так легко выдает её нервозность."
+        },
+        {
+          "text": "Она ненавидит это чувство, когда чужое имя на экране способно за секунду выбить почву из-под ног."
+        },
+        {
+          "text": "Ненавидит, что тело всё ещё помнит страх лучше, чем голова."
+        },
+        {
+          "text": "Мозг сам собой возвращает её к тому дню - дню, когда она решила уйти."
+        },
+        {
+          "text": "Он тогда впервые её ударил."
+        },
+        {
+          "text": "Она рассеянно касается щеки и замирает. Кожа под пальцами будто вспыхивает снова от фантомного ощущения тяжелой и хлесткой пощечины."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "..."
+        },
+        {
+          "text": "ИМЯ невольно вспоминает, как тем же вечером, после всего, она беззвучно плакала в ванной, стараясь не потревожить Роба, и корила себя за то, что из раза в раз позволяла обращаться с собой так…"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "«Нужно было уйти, когда он в первый раз на меня замахнулся, а потом оправдывал это как мог… Влюблённая дура!»"
+        }
+      ],
+      "next": "pp2_choice_will_reply_001"
+    },
+    {
+      "id": "pp2_choice_will_reply_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "Ничего не отвечать",
+          "next": "pp2_branch_will_ignore_001"
+        },
+        {
+          "text": "«Отстань от меня»",
+          "next": "pp2_branch_will_go_away_001"
+        },
+        {
+          "text": "«Я не собираюсь наступать дважды на одни и те же грабли»",
+          "next": "pp2_branch_will_self_esteem_001"
+        }
+      ]
+    },
+    {
+      "id": "pp2_branch_will_ignore_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "text": "«Если игнорировать проблему, она как-нибудь рассосётся. Ну или как минимум затеряется на втором плане. Это же так работает?»"
+        }
+      ],
+      "next": "pp2_will_ignore_stat_principles"
+    },
+    {
+      "id": "pp2_will_ignore_stat_principles",
+      "type": "statChange",
+      "statId": "principles",
+      "statDelta": 1,
+      "statDisplayName": "Принципы",
+      "next": "pp2_after_will_reply_001"
+    },
+    {
+      "id": "pp2_branch_will_go_away_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "ИМЯ печатает это торопливо, раздражённо хмурясь. Настойчивость Уилла злит как минимум потому, что она уже не единожды все ему объясняла. Но он попросту не принимает её «нет»."
+        }
+      ],
+      "next": "pp2_will_go_away_stat_feelings"
+    },
+    {
+      "id": "pp2_will_go_away_stat_feelings",
+      "type": "statChange",
+      "statId": "feelings",
+      "statDelta": 1,
+      "statDisplayName": "Чувства",
+      "next": "pp2_after_will_reply_001"
+    },
+    {
+      "id": "pp2_branch_will_self_esteem_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она с полминуты думает над сообщением и решительно щелкает кнопку «отправить». Ей не хочется ему ничего объяснять и, тем более, давать вторые шансы."
+        },
+        {
+          "speaker": "hero",
+          "text": "«Не для него мама ягодку растила…»"
+        }
+      ],
+      "next": "pp2_stat_will_self_esteem_001"
+    },
+    {
+      "id": "pp2_stat_will_self_esteem_001",
+      "type": "statChange",
+      "statId": "self_esteem",
+      "statDelta": 1,
+      "statDisplayName": "Самооценка",
+      "next": "pp2_after_will_reply_001"
+    },
+    {
+      "id": "pp2_after_will_reply_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Отключив уведомления, ИМЯ берётся за работу - той у нее сегодня немало. Обещанные материалы она подготавливает только ближе к полудню. Влад откладывает папку на видное место, сказав, что ознакомится с ними чуть позже - у него впереди целая ночь дежурства."
+        },
+        {
+          "text": "В полдень она уходит на обед."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Живот урчит, как стая китов. Ужасно неловко…»"
+        }
+      ],
+      "next": "pp2_scene_cafeteria_001"
+    },
+    {
+      "id": "pp2_scene_cafeteria_001",
+      "type": "scene",
+      "label": "Столовая",
+      "background": "pp_bg_cafeteria",
+      "music": "pp_music_povsednevny",
+      "next": "pp2_dialogue_cafeteria_intro_001"
+    },
+    {
+      "id": "pp2_dialogue_cafeteria_intro_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Уже по привычке ИМЯ занимает столик с «прекрасным» видом на стену и дожидается, когда к ней подсядет Реми. За эти дни им удалось неплохо сдружиться на почве обоюдной отчужденности от остальных. Реми кажется хорошим парнем. По крайней мере, он не смотрит на неё свысока, не зовёт «девчонкой с королевскими амбициями» и не пытается во всём поучать. Уже за этот минимальный набор ИМЯ готова его уважать и называть своим добрым приятелем."
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Ну что, какие первые впечатления от совместной работы?"
+        },
+        {
+          "text": "Он отпивает из стаканчика свой излюбленный растворимый кофе. Смотрит на неё с интересом, будто бы она может выдать ему какую-то горячую сплетню."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "«Он тот ещё любитель перемыть всем косточки…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "Ну, что могу сказать…"
+        }
+      ],
+      "next": "pp2_choice_vlad_impression_001"
+    },
+    {
+      "id": "pp2_choice_vlad_impression_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "Он не такой уж и зверь, каким ты мне его описывал…",
+          "next": "pp2_branch_vlad_good_impression_001",
+          "isPremium": true,
+          "premiumCost": 5
+        },
+        {
+          "text": "Ну да, он мудак, как ты и говорил. Но терпеть можно.",
+          "next": "pp2_stat_vlad_bad_impression_001"
+        }
+      ]
+    },
+    {
+      "id": "pp2_branch_vlad_good_impression_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Да ладно? Теряет хватку."
+        }
+      ],
+      "next": "pp2_stat_vlad_good_impression_001"
+    },
+    {
+      "id": "pp2_stat_vlad_good_impression_001",
+      "type": "statChange",
+      "statId": "vlad_relationship",
+      "statDelta": 1,
+      "statDisplayName": "Отношения с Владом",
+      "next": "pp2_after_vlad_impression_choice_001",
+      "systemMessage": "Влад был бы польщён"
+    },
+    {
+      "id": "pp2_stat_vlad_bad_impression_001",
+      "type": "statChange",
+      "statId": "vlad_relationship",
+      "statDelta": -1,
+      "statDisplayName": "Отношения с Владом",
+      "next": "pp2_after_vlad_impression_choice_001",
+      "systemMessage": "Отношения с Владом ухудшились."
+    },
+    {
+      "id": "pp2_after_vlad_impression_choice_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она лишь пожимает плечами, отпивая из стаканчика уже успевший остыть жасминовый чай."
+        },
+        {
+          "text": "Их разговор течёт удивительно легко, как если бы она болтала с Мэг или Робом. Они говорят ни о чем и обо всем сразу - о дрянной осенней погоде, о фильмах и о том, как в стенах этого здания несправедливо относятся к новичкам. В моменте ИМЯ ловит себя на мысли, что Реми - редкий мужской экземпляр."
+        },
+        {
+          "text": "Таких не держат при себе в статусе хорошего друга. Таких знакомят с подругами - или прибирают к рукам."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Второй вариант явно не для меня…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«А вот Мэг давно жаловалась, что не может найти себе никого адекватного.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Возможно, я могла бы стать их личным купидоном…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Пожалуй это…»"
+        }
+      ],
+      "next": "pp2_choice_matchmaker_001"
+    },
+    {
+      "id": "pp2_choice_matchmaker_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "«Хорошая идея»",
+          "next": "pp2_branch_matchmaker_good_001",
+          "isPremium": true,
+          "premiumCost": 30
+        },
+        {
+          "text": "«Плохая идея»",
+          "next": "pp2_branch_matchmaker_bad_001"
+        }
+      ]
+    },
+    {
+      "id": "pp2_branch_matchmaker_good_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Слушай… Я вот думаю, может, тебя с познакомить с моей подругой? Она умная, красивая… Ну, если, конечно, ты еще не успел найти своё счастье на сайте знакомств. В конце концов, за один вечер многое могло измениться…"
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Это ты так мягко намекаешь, что я тебе не подхожу?"
+        },
+        {
+          "text": "Он склоняет голову набок и смотрит игриво."
+        },
+        {
+          "text": "ИМЯ на секунду теряется."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "растерянно",
+          "text": "Нет, в смысле, я… Ты хороший и…"
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Расслабься, я пошутил."
+        },
+        {
+          "text": "Он смеётся, а ИМЯ облегченно выдыхает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "растерянно",
+          "text": "«Я и правда не хотела его обидеть…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "растерянно",
+          "text": "«Ещё не хватало лишиться единственного человека, с которым здесь можно нормально поговорить»"
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "А вот от знакомства с красивой девушкой никогда не откажусь."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Замолвлю за тебя словечко."
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Ловлю на слове."
+        }
+      ],
+      "next": "pp2_matchmaker_feelings_stat_feelings"
+    },
+    {
+      "id": "pp2_matchmaker_feelings_stat_feelings",
+      "type": "statChange",
+      "statId": "feelings",
+      "statDelta": 1,
+      "statDisplayName": "Чувства",
+      "next": "pp2_matchmaker_principles_stat_principles"
+    },
+    {
+      "id": "pp2_matchmaker_principles_stat_principles",
+      "type": "statChange",
+      "statId": "principles",
+      "statDelta": 1,
+      "statDisplayName": "Принципы",
+      "next": "pp2_stat_matchmaker_self_esteem_001"
+    },
+    {
+      "id": "pp2_stat_matchmaker_self_esteem_001",
+      "type": "statChange",
+      "statId": "self_esteem",
+      "statDelta": 1,
+      "statDisplayName": "Самооценка",
+      "next": "pp2_after_matchmaker_choice_001"
+    },
+    {
+      "id": "pp2_branch_matchmaker_bad_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«И Реми, и Мэг взрослые люди. Они способны сами разобраться в своей личной жизни, а я не хочу быть сводницей и, в случае чего, оказаться виноватой, что чьё-то сердце разбито…»"
+        }
+      ],
+      "next": "pp2_after_matchmaker_choice_001"
+    },
+    {
+      "id": "pp2_after_matchmaker_choice_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_remi",
+          "emotion": "нейтраль",
+          "text": "Кстати, как продвигается твоё дело? Влад тебя с ним не развернул?"
+        },
+        {
+          "text": "ИМЯ пожимает плечами."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "глаза в сторону",
+          "text": "Да никак. Я пытаюсь найти что-то на психолога, которого посещали те девушки, но пока что все без толку - ничего, за что можно было бы всерьёз зацепиться."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "Я уже сама начинаю думать, что раздуваю из мухи слона"
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "улыбка",
+          "text": "Пока что похоже на то."
+        },
+        {
+          "text": "Он беззаботно пожимает плечами."
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "нейтраль",
+          "text": "Но, если хочешь, я могу сам покопаться. Может, и найдется что… Но не хочу обнадеживать. Вполне вероятно, это просто совпадение."
+        }
+      ],
+      "next": "pp2_condition_principles_vs_feelings_002"
+    },
+    {
+      "id": "pp2_condition_principles_vs_feelings_002",
+      "type": "condition",
+      "variableKey": "principles",
+      "trueNext": "pp2_dialogue_remi_principles_001",
+      "falseNext": "pp2_dialogue_remi_feelings_001",
+      "comparison": "greaterThan",
+      "compareVariableKey": "feelings"
+    },
+    {
+      "id": "pp2_dialogue_remi_principles_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "А если нет?"
+        },
+        {
+          "speaker": "pp_remi",
+          "emotion": "нейтраль",
+          "text": "Мы не можем спасти всех. К этому просто нужно привыкнуть."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "«Привыкнуть, как же…»"
+        }
+      ],
+      "next": "pp2_scene_cabinet_evening_001"
+    },
+    {
+      "id": "pp2_dialogue_remi_feelings_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "Пусть так, зато моя совесть будет чиста."
+        }
+      ],
+      "next": "pp2_scene_cabinet_evening_001"
+    },
+    {
+      "id": "pp2_scene_cabinet_evening_001",
+      "type": "scene",
+      "label": "Кабинет Вечер",
+      "background": "pp_bg_cabinet_evening",
+      "music": "pp_music_tension",
+      "next": "pp2_dialogue_evening_request_001"
+    },
+    {
+      "id": "pp2_dialogue_evening_request_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "День постепенно близится к концу, а она все мечется между мыслями об этом странном деле и сообщениями от Уилла."
+        },
+        {
+          "text": "Они не дают ей покоя - он не даёт ей покоя."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "«Прицепился, как репей к собачьему хвосту…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Но он от меня так просто не отстанет…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "«Я не могу постоянно прятаться за спину Роба. В конце концов, это я, как старшая сестра, должна быть ему опорой.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "«А у меня как всегда все наперекосяк. Ну конечно.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«А что если…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "«Да нет, бред какой-то… Он наверняка мне откажет.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Но ведь если не попробуешь… не попробуешь?»"
+        },
+        {
+          "text": "Она мнётся, потому что это неловко - просить кого-то о чем-то. Тем более, просить о чем-то Влада."
+        },
+        {
+          "text": "ИМЯ в принципе не умеет просить - привыкла справляться со всем сама, быстро свыкнувшись с тем, что лучше для неё всё равно никто ничего не сделает."
+        },
+        {
+          "text": "Решившись, она поднимается с места и, беззвучно ступая подошвами кроссовок по полу, подходит к его столу."
+        },
+        {
+          "text": "Влад не поднимает взгляда от документов, но ощутимо напрягается - это видно в его позе, мимике, жестах. ИМЯ легко это считывает, и от этого становится ещё более неловко."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "«Если моё присутствие ему так неприятно, стоит ли вообще его лишний раз дёргать?»"
+        },
+        {
+          "text": "Она выдыхает. Влад наконец удосуживается поднять на неё взгляд - как всегда холодный и равнодушный."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "хмуро",
+          "text": "Говори уже."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "Есть минутка?"
+        },
+        {
+          "text": "Она мнется на месте, теребя влажными от волнения пальцами нитку на рукаве."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Ближе к делу. Рабочий день окончен."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "Можешь научить меня паре приёмов?"
+        },
+        {
+          "text": "Влад в ответ вопросительно выгибает бровь."
+        },
+        {
+          "text": "Видимо, он не ожидал, что она попросит о таком, а потому посмотрел на неё, будто она сейчас закричит: «Ха! Купился!»."
+        },
+        {
+          "text": "Но ИМЯ вряд ли выглядит как человек, решивший пошутить. По крайней мере, на на это надеется."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "Зачем тебе это?"
+        },
+        {
+          "text": "ИМЯ нервно прикусывает щеку. Разглядывает собственные руки, бумаги на столе, сам стол. На Влада старается не смотреть, боясь себя выдать."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "Самооборона, знаешь..."
+        },
+        {
+          "text": "Она пожимает плечами, как будто бы это ничего не значит. Говорить прямо не хочет - зачем ему подробности её личной жизни?"
+        },
+        {
+          "text": "Ему ни к чему знать о больных отношениях, о том, что она однажды допустила, чтобы на неё подняли руку, о том, что доверилась мудаку."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "Повторяю. Зачем?"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "«Пустая затея, как знала. Не надо было даже надеяться…»"
+        },
+        {
+          "text": "ИМЯ вздыхает, переминаясь с ноги на ногу. Спорит с собой - говорить или нет. Стыд перевешивает, и она решает озвучить самую очевидную причину."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Ну, я в отделе, где ловят преступников. Не помешает знать, как дать сдачи, если что."
+        },
+        {
+          "text": "ИМЯ усмехается про себя. Может в ближнем бою она и не сильна, но складно врать точно научилась."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "хмуро",
+          "text": "Ты психолог. Не опер."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "взгляд в сторону",
+          "text": "А если что-то пойдёт не так?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "Ты кино пересмотрела?"
+        },
+        {
+          "text": "ИМЯ вздыхает, смотрит оленьими глазами. Мужчины всегда ведутся на этот взгляд - проверено на самых строгих преподах в колледже."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Но Влад - ледяная глыба. Едва ли с ним это пройдёт. Не ему вестись на красивые глазки. Хотя, может, прокатит?»"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Купи перцовку, не знаю. Или бей в пах и беги."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "Ну пожалуйста? У меня и одежда спортивная с собой есть - на пилатес утром брала."
+        },
+        {
+          "text": "Влад хмыкает, явно зацепившись за слово «пилатес» - такое оно чужое в этом пыльном, прокуренном кабинете. Как из другого мира. Да и сама она не отсюда. В эти реалии совсем не вписывается."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "растерянность",
+          "text": "Мне очень нужно. Может, кого-то ещё можно попросить?"
+        },
+        {
+          "text": "Она не привыкла канючить, и оттого чувствует себя некомфортно. Но вариантов у неё попросту нет - нужно научиться себя защищать."
+        }
+      ],
+      "next": "pp2_condition_self_esteem_4_request_001"
+    },
+    {
+      "id": "pp2_condition_self_esteem_4_request_001",
+      "type": "condition",
+      "variableKey": "self_esteem",
+      "requiredValue": 4,
+      "trueNext": "pp2_dialogue_self_esteem_request_001",
+      "falseNext": "pp2_dialogue_vlad_agrees_001"
+    },
+    {
+      "id": "pp2_dialogue_self_esteem_request_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Слова и уверенность в себе не должны быть единственным её оружием. В конце концов, даже на работе действительно может случиться… разное."
+        }
+      ],
+      "next": "pp2_dialogue_vlad_agrees_001"
+    },
+    {
+      "id": "pp2_dialogue_vlad_agrees_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Влад подозрительно щурится, внимательно вглядываясь в ее лицо. Она терпеливо ждет его вердикта. Крутит золотое кольцо на пальце, покусывает внутреннюю сторону щеки."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Слова о самообороне с натяжкой походят на правду - у него наверняка профессиональная чуйка на такие вещи.»"
+        },
+        {
+          "text": "Верит Влад ей или нет, ИМЯ не знает. Но в душу он лезть не пытается и лишнего не спрашивает - наверное, потому что сам не любит, когда в душу лезут ему."
+        },
+        {
+          "text": "Бросает сухо:"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "хмуро",
+          "text": "Ладно. Не пулемётом же просишь вооружить… Но один раз. Потом - оставишь меня в покое."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Спасибо!"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "«Ничего себе. Согласился!»"
+        },
+        {
+          "text": "Она радостно улыбается и убегает переодеваться, пока он нехотя встаёт из-за стола и складывает бумаги в стопку."
+        }
+      ],
+      "next": "pp2_scene_corridor_evening_001"
+    },
+    {
+      "id": "pp2_scene_corridor_evening_001",
+      "type": "scene",
+      "label": "Коридор Вечер",
+      "background": "pp_bg_corridor_evening",
+      "music": "pp_music_vlad_theme",
+      "next": "pp2_add_sports_outfit_001"
+    },
+    {
+      "id": "pp2_add_sports_outfit_001",
+      "type": "addClothing",
+      "clothing": "pp_outfit_sportivny_kostyum",
+      "next": "pp2_dialogue_corridor_evening_001"
+    },
+    {
+      "id": "pp2_dialogue_corridor_evening_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Они идут по коридору молча."
+        },
+        {
+          "text": "Тишину нарушает только скрип её кроссовок и глухой, тяжёлый звук его шагов."
+        },
+        {
+          "text": "ИМЯ ловит себя на мысли, что рядом с Владом тишина ощущается иначе - как что-то, в чём легко сказать не то, сделать не то, вдохнуть не вовремя."
+        },
+        {
+          "text": "Она вздыхает и, оторвав взгляд от пола, впивается взглядом в его широкую спину."
+        },
+        {
+          "text": "Под холодным светом редких ламп их тени тянутся по стенам - длинные, чужие, ломаные."
+        },
+        {
+          "text": "Каждый из них думает о своём. ИМЯ - о том, что забыла сообщить Робу, что задержится на работе. А Влад… Она не знает, что в его голове"
+        }
+      ],
+      "next": "pp2_condition_vlad_relationship_3_corridor_001"
+    },
+    {
+      "id": "pp2_condition_vlad_relationship_3_corridor_001",
+      "type": "condition",
+      "variableKey": "vlad_relationship",
+      "requiredValue": 3,
+      "trueNext": "pp2_dialogue_vlad_relationship_corridor_001",
+      "falseNext": "pp2_dialogue_before_gym_001"
+    },
+    {
+      "id": "pp2_dialogue_vlad_relationship_corridor_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Хотя порой ИМЯ ловит себя на мысли, что ей очень хочется туда залезть и узнать, что он на самом деле о ней думает: раздражает ли она его на самом деле так, как он об этом говорит? Или же он абсолютно к ней равнодушен?"
+        },
+        {
+          "text": "ИМЯ не знает, что обидело бы её больше. Наверное равнодушие, потому что любая эмоция, будь то любовь или ненависть, лучше холодного безразличия."
+        },
+        {
+          "text": "На самом деле, она вообще не понимает, почему об этом думает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Нужно это прекращать…»"
+        }
+      ],
+      "next": "pp2_dialogue_before_gym_001"
+    },
+    {
+      "id": "pp2_dialogue_before_gym_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Ничего, что мы в разных весовых категориях?"
+        },
+        {
+          "text": "Она нарушает тишину неожиданно для себя, просто потому что та кажется ей слишком тяжелой и густой."
+        },
+        {
+          "text": "Влад насмешливо хмыкает."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "выгнутая бровь",
+          "text": "То же самое спросишь, когда на тебя нападут?"
+        },
+        {
+          "text": "ИМЯ цокает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "Не представляю, как ты ещё не порезался о свой острый язык!"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "В отличие от некоторых, я знаю, когда его прикусить,"
+        },
+        {
+          "text": "Её опять щелкнули по носу. Напомнили о дистанции и…"
+        },
+        {
+          "text": "Он толкает плечом дверь в спортивный зал."
+        }
+      ],
+      "next": "pp2_scene_gym_001"
+    },
+    {
+      "id": "pp2_scene_gym_001",
+      "type": "scene",
+      "label": "Спортивный зал",
+      "background": "pp_bg_gym",
+      "music": "pp_music_battle",
+      "next": "pp2_dialogue_gym_intro_001"
+    },
+    {
+      "id": "pp2_dialogue_gym_intro_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Пропускает её вперёд, а уже после проходит сам. Она косится на него удивленно."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "ухмылка",
+          "text": "«Ну посмотрите, каков джентльмен!»"
+        },
+        {
+          "text": "Как бы там ни было, вслух она ничего  не говорит - вместо этого уходит разминаться."
+        },
+        {
+          "text": "Спортивный зал небольшой и тёплый - прогрелся к вечеру так, что стало даже душно."
+        },
+        {
+          "text": "Пахнет пылью, потом и резиной. Приходится ненадолго поднять фрамугу окна - лицо сразу обдаёт свежестью, осенней сыростью, прогоняя, пусть и на время, серую печаль."
+        },
+        {
+          "text": "Накрапывает мелкий дождь, и в попытках оголить и без того безлистные деревья шелестит ветер."
+        },
+        {
+          "text": "Разминается ИМЯ по привычке тщательно, не пытаясь показать себя «красиво». Она сосредоточена - на лице ни намёка на улыбку."
+        },
+        {
+          "text": "Вдох - её грудь вздымается, когда лёгкие насыщаются кислородом."
+        },
+        {
+          "text": "Выдох - плавно опускается."
+        },
+        {
+          "text": "Стройные ноги напрягаются от движений, от чего на них проступают четко очерченные мышцы."
+        },
+        {
+          "text": "Непослушная прядка волос, выскользнувшая из хвоста, спадает на лоб - она сдувает её изящным жестом и принимается за растяжку."
+        }
+      ],
+      "next": "pp2_condition_self_esteem_4_gym_001"
+    },
+    {
+      "id": "pp2_condition_self_esteem_4_gym_001",
+      "type": "condition",
+      "variableKey": "self_esteem",
+      "requiredValue": 4,
+      "trueNext": "pp2_dialogue_self_esteem_gym_001",
+      "falseNext": "pp2_dialogue_training_start_001"
+    },
+    {
+      "id": "pp2_dialogue_self_esteem_gym_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Краем глаза она замечает, как Влад зависает, на секунду на неё засмотревшись."
+        },
+        {
+          "text": "Вероятно, это не значит ничего, потому что людям свойственно залипать на все красивое - будь то звёздное небо или просто симпатичная и уверенная в себе девушка."
+        }
+      ],
+      "next": "pp2_dialogue_training_start_001"
+    },
+    {
+      "id": "pp2_dialogue_training_start_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Готова?"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Да, капитан!"
+        },
+        {
+          "text": "Отвечает бодро, и все напряжение в ней тут же растворяется в улыбке, короткой, искренней."
+        },
+        {
+          "text": "Он только кивает в ответ. Окинув её быстрым взглядом, делает шаг ближе."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Для начала - стойка."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Ты стоишь так, будто сейчас на фото будешь позировать."
+        },
+        {
+          "text": "ИМЯ хмурится."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "А как надо?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Так, чтобы тебя не уронили с первого толчка."
+        },
+        {
+          "text": "Он чуть касается её локтя, разворачивая руку."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Расслабь плечи. Ты зажата."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "поджатые губы",
+          "text": "«Конечно зажата. Стою тут перед ним, как на экзамене…»"
+        },
+        {
+          "text": "Он отступает на шаг, оценивающе щурится."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Ноги шире. Центр тяжести ниже."
+        },
+        {
+          "text": "Она нехотя подчиняется. Под его цепким взглядом тело отчего-то ощущается едва ли не деревянным."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "Так?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Сойдет."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Теперь начнем с простого. Если кто-то хватает тебя за руку - как вывернуться или уйти от захвата."
+        },
+        {
+          "text": "Она слушает внимательно, напряженно."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Потом - если кто-то хватает сзади. Но позже. Сейчас попробуй уйти."
+        },
+        {
+          "text": "Влад вцепляется в её кисть - прикосновение его мозолистых пальцев к тонкой коже ощущается очень ярко. Кивает - мол, действуй."
+        },
+        {
+          "text": "ИМЯ дёргается в попытке высвободить руку."
+        },
+        {
+          "text": "Стремясь обрести уверенную опору в ногах, сильнее упирается ступнями в мат, подошвы кроссовок противно скрипят. Тянет, выкручивает - без толку."
+        },
+        {
+          "text": "Влад даже не напрягается. Наблюдает за её трепыханиями с демонстративной ленцой - не ослабляет хватки и, конечно, даже не думает её отпустить."
+        }
+      ],
+      "next": "pp2_choice_escape_attempt_001"
+    },
+    {
+      "id": "pp2_choice_escape_attempt_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "Пытаться вырваться.",
+          "next": "pp2_branch_escape_principles_001"
+        },
+        {
+          "text": "Сдаюсь!",
+          "next": "pp2_branch_escape_feelings_001"
+        }
+      ]
+    },
+    {
+      "id": "pp2_branch_escape_principles_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Несмотря на тщетность её попыток, она пыхтит, упорно пытаясь высвободиться, но в конце концов просит передышку."
+        },
+        {
+          "text": "Это бесит."
+        },
+        {
+          "text": "Нет, не то, что у неё не выходит - а то, что не выходит прямо у него на глазах."
+        }
+      ],
+      "next": "pp2_escape_principles_stat_principles"
+    },
+    {
+      "id": "pp2_escape_principles_stat_principles",
+      "type": "statChange",
+      "statId": "principles",
+      "statDelta": 1,
+      "statDisplayName": "Принципы",
+      "next": "pp2_after_escape_choice_001"
+    },
+    {
+      "id": "pp2_branch_escape_feelings_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Запыхавшись, фырчит ИМЯ нехотя, злясь, что не получилось с первого раза."
+        },
+        {
+          "text": "Перфекционизм порой здорово осложняет ей жизнь."
+        }
+      ],
+      "next": "pp2_escape_feelings_stat_feelings"
+    },
+    {
+      "id": "pp2_escape_feelings_stat_feelings",
+      "type": "statChange",
+      "statId": "feelings",
+      "statDelta": 1,
+      "statDisplayName": "Чувства",
+      "next": "pp2_after_escape_choice_001"
+    },
+    {
+      "id": "pp2_after_escape_choice_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "Ты смотри в подворотне такого не скажи. Ну или где ты там собираешься драться."
+        },
+        {
+          "text": "Влад улыбается неожиданно беззлобно."
+        }
+      ],
+      "next": "pp2_condition_vlad_relationship_3_smile_001"
+    },
+    {
+      "id": "pp2_condition_vlad_relationship_3_smile_001",
+      "type": "condition",
+      "variableKey": "vlad_relationship",
+      "requiredValue": 3,
+      "trueNext": "pp2_dialogue_vlad_relationship_smile_001",
+      "falseNext": "pp2_dialogue_training_core_001"
+    },
+    {
+      "id": "pp2_dialogue_vlad_relationship_smile_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "ИМЯ ловит себя на мысли, что это первый раз, когда он вообще улыбается ей так - с толикой теплоты и искренности."
+        }
+      ],
+      "next": "pp2_dialogue_training_core_001"
+    },
+    {
+      "id": "pp2_dialogue_training_core_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Ты слишком много дёргаешься. Это пустая трата сил. Руку - вот так."
+        },
+        {
+          "text": "Он показывает на себе."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Видишь? Сгиб - сюда. Толчок - в сторону."
+        },
+        {
+          "text": "Влад ловит её взгляд."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "хмуро",
+          "text": "На руки смотри, не на меня."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Давай ещё раз!"
+        },
+        {
+          "text": "Она повторяет движение снова - уже медленнее, внимательнее, без лишней суеты."
+        },
+        {
+          "text": "На этот раз кисть действительно чуть поддаётся."
+        },
+        {
+          "text": "ИМЯ замирает, почувствовав это первой."
+        },
+        {
+          "text": "Она дёргает резче - и почти выскальзывает из хватки."
+        },
+        {
+          "text": "Влад перехватывает её прежде, чем она успевает порадоваться первым успехам."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Уже лучше."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "ухмылка",
+          "text": "Хвалишь?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "взгляд в сторону",
+          "text": "Не привыкай."
+        },
+        {
+          "text": "Он хватает её за кисть вновь."
+        },
+        {
+          "text": "Она сосредоточено, как прилежная ученица, повторяет озвученный им ход действий - чуть подаётся вперёд, сгибает руку и дёргает вверх."
+        },
+        {
+          "text": "Влад не позволяет отвлечься. Крепко цепляется за другое её запястье - хватка теперь сильнее."
+        },
+        {
+          "text": "ИМЯ пытается действовать по той же схеме. Не выходит: она слабее."
+        },
+        {
+          "text": "Не рассчитав, по инерции заваливается вперёд - он ловит её, инстинктивно, свободной рукой."
+        },
+        {
+          "text": "Она дёргается в попытке пресечь его манёвр и высвободиться, и её волосы задевают его щеку, цепляясь за трехдневную щетину, а шелковистая прядь, случайно выбившаяся из хвоста, щекочет нос."
+        },
+        {
+          "text": "Влад отфыркивается, но не отпускает."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Это как раз о разнице в весе. Противник почти всегда будет крупнее тебя - смирись с этим."
+        },
+        {
+          "text": "Он кивком указывает на её вторую руку."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Поэтому используй вторую. И не геройствуй."
+        },
+        {
+          "text": "ИМЯ понятливо кивает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "Ты куришь?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "растерянно",
+          "text": "А?"
+        },
+        {
+          "text": "Она действует быстро: воспользовавшись его секундной растерянностью, подкладывает ладонь под своё запястье и резко тянет локоть вверх. Ухмыляется: ей удалось высвободиться с первого раза."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "ухмылка",
+          "text": "Табаком пахнешь."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "Дешёвый трюк."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "ухмылка",
+          "text": "Рабочий же."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "ухмылка",
+          "text": "Ты не так безнадежна, как мне казалось."
+        }
+      ],
+      "next": "pp2_reset_training_extended_001"
+    },
+    {
+      "id": "pp2_reset_training_extended_001",
+      "type": "variableChange",
+      "variableKey": "pp2_vlad_training_extended",
+      "deltaValue": 0,
+      "add": false,
+      "next": "pp2_choice_vlad_training_continue_001"
+    },
+    {
+      "id": "pp2_choice_vlad_training_continue_001",
+      "type": "choice",
+      "choicePrompt": "",
+      "choices": [
+        {
+          "text": "Закончим на этом? У тебя, кажется телефон звонит.",
+          "next": "pp2_dialogue_training_stop_001"
+        },
+        {
+          "text": "Продолжить",
+          "next": "pp2_stat_vlad_training_continue_001",
+          "isPremium": true,
+          "premiumCost": 75
+        }
+      ]
+    },
+    {
+      "id": "pp2_dialogue_training_stop_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Закончим на этом? У тебя, кажется телефон звонит."
+        }
+      ],
+      "next": "pp2_condition_training_extended_001"
+    },
+    {
+      "id": "pp2_stat_vlad_training_continue_001",
+      "type": "statChange",
+      "statId": "vlad_relationship",
+      "statDelta": 1,
+      "statDisplayName": "Отношения с Владом",
+      "next": "pp2_set_training_extended_001",
+      "systemMessage": "Отношения с Владом улучшились."
+    },
+    {
+      "id": "pp2_set_training_extended_001",
+      "type": "variableChange",
+      "variableKey": "pp2_vlad_training_extended",
+      "deltaValue": 1,
+      "add": false,
+      "next": "pp2_dialogue_training_extended_pre_cutscene_001"
+    },
+    {
+      "id": "pp2_dialogue_training_extended_pre_cutscene_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Влад опасно щурится."
+        },
+        {
+          "text": "ИМЯ смотрит на него с вызовом, внимательно - распалившись. Готовится к очередному захвату и хочет его избежать."
+        },
+        {
+          "text": "Её задор передается и ему."
+        },
+        {
+          "text": "Он не кажется ей человеком, который любит играть: наверняка привык, чтобы всё делалось чётко и по инструкции - но она не оставляет ему выбора."
+        },
+        {
+          "text": "Улучив момент, ловит её за руку, поднимает вверх и разворачивает к себе спиной, почти полностью обездвиживая."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "возмущение",
+          "text": "Эй!"
+        }
+      ],
+      "next": "pp2_image_vlad_training_cutscene_001"
+    },
+    {
+      "id": "pp2_image_vlad_training_cutscene_001",
+      "type": "image",
+      "image": "pp_cg_vlad_training",
+      "zoomable": false,
+      "next": "pp2_dialogue_training_extended_post_cutscene_001",
+      "caption": "Продолжить",
+      "heroBuildCutsceneOverrides": [
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - European blond",
+          "matchAppearance": true,
+          "appearance": "European",
+          "image": "pp_cg_vlad_training_european_blond",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_blond",
+            "pp_hair_pp2_na_skoruyu_blond",
+            "pp_hair_pp2_ukladka_blond"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - European dark chestnut",
+          "matchAppearance": true,
+          "appearance": "European",
+          "image": "pp_cg_vlad_training_european_dark_chestnut",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_dark_chestnut",
+            "pp_hair_pp2_na_skoruyu_dark_chestnut",
+            "pp_hair_pp2_ukladka_dark_chestnut"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - European coal",
+          "matchAppearance": true,
+          "appearance": "European",
+          "image": "pp_cg_vlad_training_european_coal",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_coal",
+            "pp_hair_pp2_na_skoruyu_coal",
+            "pp_hair_pp2_ukladka_coal"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - African blond",
+          "matchAppearance": true,
+          "appearance": "African",
+          "image": "pp_cg_vlad_training_african_blond",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_blond",
+            "pp_hair_pp2_na_skoruyu_blond",
+            "pp_hair_pp2_ukladka_blond"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - African dark chestnut",
+          "matchAppearance": true,
+          "appearance": "African",
+          "image": "pp_cg_vlad_training_african_dark_chestnut",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_dark_chestnut",
+            "pp_hair_pp2_na_skoruyu_dark_chestnut",
+            "pp_hair_pp2_ukladka_dark_chestnut"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - African coal",
+          "matchAppearance": true,
+          "appearance": "African",
+          "image": "pp_cg_vlad_training_african_coal",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_coal",
+            "pp_hair_pp2_na_skoruyu_coal",
+            "pp_hair_pp2_ukladka_coal"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - Asian blond",
+          "matchAppearance": true,
+          "appearance": "Asian",
+          "image": "pp_cg_vlad_training_asian_blond",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_blond",
+            "pp_hair_pp2_na_skoruyu_blond",
+            "pp_hair_pp2_ukladka_blond"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - Asian dark chestnut",
+          "matchAppearance": true,
+          "appearance": "Asian",
+          "image": "pp_cg_vlad_training_asian_dark_chestnut",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_dark_chestnut",
+            "pp_hair_pp2_na_skoruyu_dark_chestnut",
+            "pp_hair_pp2_ukladka_dark_chestnut"
+          ]
+        },
+        {
+          "enabled": true,
+          "ruleName": "Vlad training - Asian coal",
+          "matchAppearance": true,
+          "appearance": "Asian",
+          "image": "pp_cg_vlad_training_asian_coal",
+          "hairIds": [
+            "pp_hair_pp2_hollywood_coal",
+            "pp_hair_pp2_na_skoruyu_coal",
+            "pp_hair_pp2_ukladka_coal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pp2_dialogue_training_extended_post_cutscene_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "В голосе ИМЯ легко читается возмущение и, одновременно с этим, запал."
+        },
+        {
+          "text": "Она нелепо дёргает ногами, пытаясь пнуть Влада, и машинально прижимается к его груди, обдавая лёгким ароматом волос, кожи и парфюма."
+        },
+        {
+          "text": "Чтобы её удерживать, не нужно много усилий, но чужие попытки выбраться Влада только забавляют."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "улыбка",
+          "text": "Ты похожа на майского жука: завалился на спину и беспомощно болтает лапками, а толку - ноль."
+        },
+        {
+          "text": "ИМЯ откидывает голову назад, ему на грудь. В глазах у неё беснуются чертики - так живо они блестят. Попытки брыкаться не прекращает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "смущенно",
+          "text": "«Так близко…»"
+        },
+        {
+          "text": "Она чувствует загрубевшие подушечки его пальцев и то как сильно под его рукой бьется её пульс."
+        },
+        {
+          "text": "Воздух в зале словно становится гуще - от напряжения."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "Не люблю жуков…"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«Боже, просто невозможно было сморозить в такой момент что-то ещё более глупое!»"
+        },
+        {
+          "text": "Опасно близко."
+        },
+        {
+          "text": "И кто кого сейчас кладёт на лопатки?"
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "смущение",
+          "text": "А я таких в детстве в коробки от спичек ловил."
+        },
+        {
+          "text": "Эта маленькая откровенность порождает ещё большее напряжение"
+        }
+      ],
+      "next": "pp2_condition_training_extended_axis_001"
+    },
+    {
+      "id": "pp2_condition_training_extended_axis_001",
+      "type": "condition",
+      "variableKey": "principles",
+      "trueNext": "pp2_dialogue_training_extended_principles_001",
+      "falseNext": "pp2_dialogue_training_extended_feelings_001",
+      "comparison": "greaterThan",
+      "compareVariableKey": "feelings"
+    },
+    {
+      "id": "pp2_dialogue_training_extended_feelings_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«В фильмах после таких моментов обычно следует горячий секс где-нибудь в душевой…»"
+        },
+        {
+          "text": "В голове тут же вспыхивают образы, как он прижимает её к холодной плитке, пар поднимается к потолку, скрывая лица, а его ладони крепко держат её за талию…"
+        },
+        {
+          "text": "ИМЯ вспыхивает от злости на саму себя."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "«Ну да, случайный секс с собственным начальством. Великолепный план, ИМЯ. «Надежнее швейцарских часов!»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "нейтраль",
+          "text": "«Так, спокойно. Это просто глупая фантазия, которая не должна быть такой яркой…»"
+        },
+        {
+          "text": "Она внезапно смущается: щёки горят, но Влад , если и заметит, наверняка решит, что это от нагрузки."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Иногда я мечтаю, чтобы люди стали телепатами. Хорошо, что мои мечты остаются только мечтами…»"
+        }
+      ],
+      "next": "pp2_condition_training_extended_001"
+    },
+    {
+      "id": "pp2_dialogue_training_extended_principles_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«В фильмах такие моменты - яркая предпосылка к началу служебного романа. А они до добра не доводят…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Сначала это просто напряжение. Слишком долгие взгляды. Случайные прикосновения.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "смущение",
+          "text": "«А потом ты вдруг начинаешь думать о том, как он держит тебя за бёдра, вжимая всем телом в ближайшую стенку… и прочих вещах, о которых на работе думать точно не стоит.»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "смущение",
+          "text": "«Вот дура…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Мэг права, конечно, мне не помешает разрядка…»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "раздражение",
+          "text": "«Так, хватит об этом думать!»"
+        },
+        {
+          "text": "Она приказывает это себе так, будто действительно может контролировать физику собственного тела. Часто моргает, сбрасывая треклятое наваждение."
+        }
+      ],
+      "next": "pp2_condition_training_extended_001"
+    },
+    {
+      "id": "pp2_condition_training_extended_001",
+      "type": "condition",
+      "variableKey": "pp2_vlad_training_extended",
+      "requiredValue": 1,
+      "trueNext": "pp2_dialogue_phone_after_extended_001",
+      "falseNext": "pp2_dialogue_phone_without_extended_001"
+    },
+    {
+      "id": "pp2_dialogue_phone_after_extended_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Звонок телефона - сейчас совершенно не к месту. Но он удивительным образом разряжает накалившуюся атмосферу. Оттаскивает от самого края, возвращая в безопасную зону. Позволяет выдохнуть и отпустить сковавшее обоих напряжение."
+        },
+        {
+          "text": "Влад отпускает её - резко, как будто обжегся. Отступает назад на полшага, восстанавливая привычную дистанцию."
+        },
+        {
+          "text": "ИМЯ задумчиво потирает запястье, где только что были его пальцы. На телефонный звонок отвечает не сразу - только когда рингтон начинает проигрываться в третий раз."
+        },
+        {
+          "text": "Это Роб, наверняка переживающий из-за её задержки."
+        }
+      ],
+      "next": "pp2_dialogue_rob_call_001"
+    },
+    {
+      "id": "pp2_dialogue_phone_without_extended_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Звонок телефона - сейчас совершенно не к месту, но ИМЯ отвечает на него почти сразу, моментально отвлекаясь на разговор. Это звонит Роб, наверняка переживающий из-за её задержки."
+        }
+      ],
+      "next": "pp2_dialogue_rob_call_001"
+    },
+    {
+      "id": "pp2_dialogue_rob_call_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "ИМЯ прижимает телефон к уху."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Прости, я совсем забыла, что обещала тебе на ужин пасту!"
+        },
+        {
+          "text": "Как и многие, болтая по телефону, она наматывает по помещению круги."
+        },
+        {
+          "speaker": "pp_rob",
+          "emotion": "тёмный силуэт",
+          "text": "Ну да, ну да, кому нужен младший брат?"
+        },
+        {
+          "text": "ИМЯ не видит, но знает - он наверняка закатывает глаза. Тут даже думать не нужно: он подросток - это его любимое выражение лица."
+        },
+        {
+          "speaker": "pp_rob",
+          "emotion": "тёмный силуэт",
+          "text": "Как знал, что ты задержишься, поэтому разогрел для тебя наггетсы. Цени меня, я - единственный, кто о тебе заботится…"
+        },
+        {
+          "speaker": "pp_rob",
+          "emotion": "тёмный силуэт",
+          "text": "Правда, я уже всё съел. В холодильнике мышь повесилась."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Да ты у меня просто бриллиант, Роб, ага, а я просто не вижу, как мне повезло."
+        },
+        {
+          "text": "Она театрально закатывает глаза, совершенно без раздражения, а губы сами собой расплываются в улыбке."
+        }
+      ],
+      "next": "pp2_condition_vlad_relationship_3_callwatch_001"
+    },
+    {
+      "id": "pp2_condition_vlad_relationship_3_callwatch_001",
+      "type": "condition",
+      "variableKey": "vlad_relationship",
+      "requiredValue": 3,
+      "trueNext": "pp2_dialogue_vlad_relationship_callwatch_001",
+      "falseNext": "pp2_dialogue_after_rob_call_001"
+    },
+    {
+      "id": "pp2_dialogue_vlad_relationship_callwatch_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Влад облокачивается на стену, скрещивая на груди руки. Наблюдает за ней по привычке - просто потому что привык следить за территорией."
+        }
+      ],
+      "next": "pp2_dialogue_after_rob_call_001"
+    },
+    {
+      "id": "pp2_dialogue_after_rob_call_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_rob",
+          "text": "Гора посуды сегодня твоя."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "закатанные глаза",
+          "text": "Ну уж нет. Сегодня твоя очередь! Ты пропустил на прошлых выходных!"
+        },
+        {
+          "speaker": "pp_rob",
+          "text": "Ну блин, я думал, ты забудешь."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Ага, да, мечтай больше… Ладно, скоро буду, не бурчи."
+        },
+        {
+          "text": "Влад хмурится, ковыряя носком кроссовка мат на полу."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "хмуро",
+          "text": "Давно встречаетесь?"
+        },
+        {
+          "text": "Спрашивает он, когда она убирает телефон в карман сумки."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "выгнутая бровь",
+          "text": "С кем?"
+        },
+        {
+          "text": "Влад дёргает плечом."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "растерянно",
+          "text": "Ладно, неважно…"
+        },
+        {
+          "text": "ИМЯ растерянно моргает."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "растерянно",
+          "text": "«Это что… была ревность? К Робу? Или я неправильно его поняла?»"
+        },
+        {
+          "speaker": "hero",
+          "emotion": "задумчиво",
+          "text": "«Но я обещала себе не додумывать за других. И уж тем более не пытаться их анализировать»."
+        },
+        {
+          "text": "Осадив себя, она лишь пожимает плечами."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "улыбка",
+          "text": "Спасибо!"
+        },
+        {
+          "text": "ИМЯ легко трогает его за плечо."
+        },
+        {
+          "speaker": "hero",
+          "emotion": "смущение",
+          "text": "Мне бежать уже надо… Ну ты понимаешь."
+        }
+      ],
+      "next": "pp2_condition_vlad_relationship_3_goodbye_001"
+    },
+    {
+      "id": "pp2_condition_vlad_relationship_3_goodbye_001",
+      "type": "condition",
+      "variableKey": "vlad_relationship",
+      "requiredValue": 3,
+      "trueNext": "pp2_dialogue_vlad_relationship_goodbye_001",
+      "falseNext": "pp2_dialogue_final_001"
+    },
+    {
+      "id": "pp2_dialogue_vlad_relationship_goodbye_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Звучит так, как будто бы оправдывается перед ним, но ей действительно неловко уходить вот так после этой нелепой близости, что возникла между ними пару минут назад и так же быстро растворилась."
+        }
+      ],
+      "next": "pp2_dialogue_final_001"
+    },
+    {
+      "id": "pp2_dialogue_final_001",
+      "type": "dialogue",
+      "lines": [
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Понимаю."
+        },
+        {
+          "text": "Он говорит безо всякого упрёка, но губы сами кривятся в усталой и грустной улыбке."
+        },
+        {
+          "speaker": "pp_vlad",
+          "emotion": "нейтраль",
+          "text": "Беги, стажер."
+        },
+        {
+          "text": "ИМЯ в очередной раз благодарно улыбается ему и покидает зал. Дверь за ней закрывается с громким хлопком - виной тому сквозняк."
+        }
+      ]
+    }
+  ]
+}

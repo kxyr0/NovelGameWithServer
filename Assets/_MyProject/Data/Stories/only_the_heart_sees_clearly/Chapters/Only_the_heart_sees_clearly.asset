@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58b6a96a275f5c4c950784ecbaac86e, type: 3}
+  m_Name: Only_the_heart_sees_clearly
+  m_EditorClassIdentifier: 
+  _chapterId: Only_the_heart_sees_clearly
+  _chapterName: "\u0413\u041B\u0410\u0412\u0410 1: \u041F\u041E\u0414\u041B\u0415\u0421\u042C\u0415"
+  _graph: {fileID: 11400000, guid: 28ee563bc6e125a4fa87a890a17c8bf8, type: 2}
+  _isPremium: 0
+  _unlockCost: 0

@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 708 163" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="input-field / stroke-layer">
+<path id="input-field / outer-cool-stroke" d="M10.1731 1.5H698.446L706.5 17.5V145.5L697.827 161.5H10.1731L1.5 145.5V17.5L10.1731 1.5Z" stroke="url(#paint0_linear_0_4)" stroke-width="3" stroke-linecap="square"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="1.5" y1="81.5" x2="706.5" y2="81.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6B7588"/>
+<stop offset="0.5" stop-color="#313B4F"/>
+<stop offset="1" stop-color="#747B8C"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 573.399 95.0833" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="nameplate / stroke-layer">
+<path id="nameplate / outer-cool-stroke" d="M57.6431 1.5H515.243L570.743 93.5833H2.64312L57.6431 1.5Z" stroke="url(#paint0_linear_0_10)" stroke-width="3" stroke-linecap="square"/>
+<path id="nameplate / inner-hairline" d="M555.243 84.9167L508.643 9.08333H62.8891L15.8433 84.9167H555.243Z" fill="url(#paint1_linear_0_10)" stroke="url(#paint2_linear_0_10)" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="square"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_10" x1="258.943" y1="1.5" x2="258.943" y2="93.5833" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6F7C86"/>
+<stop offset="1" stop-color="#3A434F"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_10" x1="277.093" y1="9.08333" x2="277.093" y2="84.9167" gradientUnits="userSpaceOnUse">
+<stop stop-color="#202732"/>
+<stop offset="1" stop-color="#111319"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_10" x1="260.593" y1="-194.042" x2="250.991" y2="279.381" gradientUnits="userSpaceOnUse">
+<stop stop-color="#98A3AF"/>
+<stop offset="1" stop-color="#161D26"/>
+</linearGradient>
+</defs>
+</svg>

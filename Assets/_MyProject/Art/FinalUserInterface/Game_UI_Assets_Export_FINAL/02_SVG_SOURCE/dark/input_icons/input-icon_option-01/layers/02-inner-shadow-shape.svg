@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 91.4482 93.2587" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="icon / inner-shadow-shape" d="M24.3862 0L0 24.892V68.7118L24.8252 93.2587H67.7449L91.4482 68.7118V24.892L66.8182 0H24.3862Z" fill="url(#paint0_radial_0_12)"/>
+<defs>
+<radialGradient id="paint0_radial_0_12" cx="0" cy="0" r="1" gradientTransform="matrix(-0.0264889 53.2453 -52.2117 -0.0259207 45.7241 46.6294)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#141923"/>
+<stop offset="1" stop-color="#1B1722"/>
+</radialGradient>
+</defs>
+</svg>

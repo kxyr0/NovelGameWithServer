@@ -1,0 +1,1384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f33b16a0df468ba6a9890d100005e4, type: 3}
+  m_Name: StoryUiStyle
+  m_EditorClassIdentifier: 
+  _dialogueApplyOnlySprites: 0
+  _backgroundSprite: {fileID: 21300000, guid: 08983a414cebcdf46b19de19fb5f2ba2, type: 3}
+  _backgroundSpriteSource: {fileID: 2800000, guid: 08983a414cebcdf46b19de19fb5f2ba2, type: 3}
+  _overrideDialogueBackgroundAnchors: 1
+  _dialogueBackgroundAnchorMin: {x: 0, y: 0}
+  _dialogueBackgroundAnchorMax: {x: 1, y: 1}
+  _overrideDialogueBackgroundPivot: 1
+  _dialogueBackgroundPivot: {x: 0.5, y: 1}
+  _overrideDialogueBackgroundRect: 1
+  _dialogueBackgroundAnchoredPosition: {x: -34.4, y: 1094.4}
+  _dialogueBackgroundSizeDelta: {x: -60.7, y: -115.7}
+  _overrideDialogueBackgroundStretchOffsets: 0
+  _dialogueBackgroundStretchOffsets: {x: 0, y: 0, z: 0, w: 0}
+  _overrideDialoguePanelRect: 0
+  _dialoguePanelAnchoredPosition: {x: -3.5, y: 579.09}
+  _dialoguePanelSizeDelta: {x: 812, y: -535.9}
+  _overrideDialoguePanelAutoHeight: 0
+  _dialoguePanelAutoHeight: 1
+  _dialoguePanelAutoHeightPadding: 220
+  _dialoguePanelAutoMinHeight: 300
+  _dialoguePanelAutoMaxHeight: 0
+  _dialoguePanelAutoHeightKeepTop: 1
+  _dialoguePanelAutoHeightGrowthUpFactor: 0
+  _overrideDialoguePanelVerticalLayout: 0
+  _dialoguePanelVerticalLayoutPadding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  _dialoguePanelVerticalLayoutSpacing: 0
+  _dialoguePanelVerticalLayoutChildAlignment: 0
+  _dialoguePanelVerticalLayoutReverseArrangement: 0
+  _dialoguePanelVerticalLayoutControlChildWidth: 1
+  _dialoguePanelVerticalLayoutControlChildHeight: 1
+  _dialoguePanelVerticalLayoutUseChildScaleWidth: 0
+  _dialoguePanelVerticalLayoutUseChildScaleHeight: 0
+  _dialoguePanelVerticalLayoutChildForceExpandWidth: 0
+  _dialoguePanelVerticalLayoutChildForceExpandHeight: 1
+  _overrideDialoguePanelContentSizeFitter: 0
+  _dialoguePanelContentSizeFitterHorizontalFit: 0
+  _dialoguePanelContentSizeFitterVerticalFit: 2
+  _overrideBodyTextOffsetY: 0
+  _bodyTextOffsetY: 0
+  _overrideBodyTextTopOffsetY: 0
+  _bodyTextTopOffsetY: 167.1
+  _overrideBodyTextGrowDownOffsetX: 0
+  _bodyTextGrowDownOffsetX: 0
+  _overrideBodyTextResizeHeightToPreferredText: 0
+  _bodyTextResizeHeightToPreferredText: 1
+  _overrideBodyTextExtraHeight: 0
+  _bodyTextExtraHeight: 0
+  _overrideBodyTextMinHeight: 0
+  _bodyTextMinHeight: 0
+  _overrideBodyTextMaxHeight: 0
+  _bodyTextMaxHeight: 0
+  _overrideBodyTextMaxFontSize: 0
+  _bodyTextMaxFontSize: 0
+  _overrideBodyTextFont: 1
+  _bodyTextFont: {fileID: 11400000, guid: 2d5c47d7c66e62f428735a9085557ad5, type: 2}
+  _overrideBodyTextShrinkTextToFitRect: 0
+  _bodyTextShrinkTextToFitRect: 1
+  _overrideBodyTextMinAutoFontSize: 0
+  _bodyTextMinAutoFontSize: 18
+  _overrideBodyTextOverflowModeWhenStillTooLarge: 0
+  _bodyTextOverflowModeWhenStillTooLarge: 1
+  _overrideBodyTextHorizontalClamp: 0
+  _bodyTextHorizontalClamp: 1
+  _bodyTextHorizontalInset: 80
+  _bodyTextMaxWidth: 850
+  _dialogueExtraLayers: []
+  _overrideCharacterNameOffset: 1
+  _characterNameOffset: {x: 0, y: -21.3}
+  _overrideCharacterNameFont: 1
+  _characterNameFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+  _overrideCharacterNameFontSize: 1
+  _characterNameFontSize: 41.8
+  _namePlateSprite: {fileID: 21300000, guid: f2bdffbfd8fdd1347b0cd22cb83b8324, type: 3}
+  _namePlateSpriteSource: {fileID: 21300000, guid: f2bdffbfd8fdd1347b0cd22cb83b8324, type: 3}
+  _overrideNamePlateColor: 1
+  _namePlateColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNamePlateImageType: 1
+  _namePlateImageType: 1
+  _overrideNamePlatePreserveAspect: 1
+  _namePlatePreserveAspect: 0
+  _overrideNamePlatePixelsPerUnitMultiplier: 1
+  _namePlatePixelsPerUnitMultiplier: 1
+  _overrideNamePlateMaterial: 1
+  _namePlateMaterial: {fileID: 0}
+  _overrideNamePlateRaycastTarget: 1
+  _namePlateRaycastTarget: 0
+  _overrideNamePlateAnchors: 1
+  _namePlateAnchorMin: {x: 1, y: 1}
+  _namePlateAnchorMax: {x: 1, y: 1}
+  _overrideNamePlatePivot: 1
+  _namePlatePivot: {x: 0.5, y: 0.5}
+  _overrideNamePlateRect: 1
+  _namePlateAnchoredPosition: {x: -518.7, y: -57.2}
+  _namePlateSizeDelta: {x: 439, y: 136}
+  _nameInputApplyOnlySprites: 0
+  _nameScreenBackgroundSprite: {fileID: 0}
+  _nameScreenBackgroundSpriteSource: {fileID: 0}
+  _overrideNameScreenBackgroundColor: 0
+  _nameScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameScreenBackgroundImageType: 0
+  _nameScreenBackgroundImageType: 0
+  _namePanelBackgroundSprite: {fileID: 21300000, guid: 3b5aec1fb7938ef4ab918a4fd82bf759, type: 3}
+  _namePanelBackgroundSpriteSource: {fileID: 2800000, guid: 3b5aec1fb7938ef4ab918a4fd82bf759, type: 3}
+  _overrideNamePanelBackgroundColor: 0
+  _namePanelBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNamePanelBackgroundImageType: 0
+  _namePanelBackgroundImageType: 0
+  _overrideNamePanelBackgroundRect: 0
+  _namePanelBackgroundAnchoredPosition: {x: 0, y: 252.03}
+  _namePanelBackgroundSizeDelta: {x: 906.4, y: 535.7}
+  _nameInputFieldSprite: {fileID: 3286163911610860551, guid: b68da938d85b77e409c32be133cd58f4, type: 3}
+  _nameInputFieldSpriteSource: {fileID: -3888481672020999207, guid: b68da938d85b77e409c32be133cd58f4, type: 3}
+  _overrideNameInputFieldColor: 1
+  _nameInputFieldColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameInputFieldImageType: 1
+  _nameInputFieldImageType: 1
+  _overrideNameInputFieldRect: 1
+  _nameInputFieldAnchoredPosition: {x: 0, y: 0}
+  _nameInputFieldSizeDelta: {x: 900, y: 110}
+  _overrideNameInputTextRect: 1
+  _nameInputTextAnchoredPosition: {x: 436.2, y: 27.84}
+  _nameInputTextSizeDelta: {x: 900, y: 110}
+  _overrideNameInputTextColor: 0
+  _nameInputTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameInputTextFont: 1
+  _nameInputTextFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+  _overrideNameInputTextFontSize: 1
+  _nameInputTextFontSize: 54
+  _overrideNamePlaceholderTextRect: 1
+  _namePlaceholderTextAnchoredPosition: {x: 436.2, y: 27.84}
+  _namePlaceholderTextSizeDelta: {x: 900, y: 110}
+  _overrideNamePlaceholderTextColor: 0
+  _namePlaceholderTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNamePlaceholderTextFont: 1
+  _namePlaceholderTextFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+  _overrideNamePlaceholderTextFontSize: 1
+  _namePlaceholderTextFontSize: 54
+  _nameConfirmButtonPrefabOverride: {fileID: 2651123001121220992, guid: 2a7ed1b2c93fe624881712f33af27f20, type: 3}
+  _nameConfirmButtonSprite: {fileID: 21300000, guid: 3ff8d58e32849924a82c6c87cddeb326, type: 3}
+  _nameConfirmButtonSpriteSource: {fileID: 2800000, guid: 3ff8d58e32849924a82c6c87cddeb326, type: 3}
+  _overrideNameConfirmButtonColor: 0
+  _nameConfirmButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameConfirmButtonImageType: 0
+  _nameConfirmButtonImageType: 0
+  _overrideNameConfirmButtonRect: 1
+  _nameConfirmButtonAnchoredPosition: {x: -44.63, y: -165.1}
+  _nameConfirmButtonSizeDelta: {x: 1, y: 1}
+  _overrideNameConfirmButtonTextRect: 0
+  _nameConfirmButtonTextAnchoredPosition: {x: 432.45, y: -125.8}
+  _nameConfirmButtonTextSizeDelta: {x: 578, y: 177}
+  _overrideNameConfirmButtonTextColor: 0
+  _nameConfirmButtonTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameConfirmButtonTextFont: 0
+  _nameConfirmButtonTextFont: {fileID: 0}
+  _overrideNameConfirmButtonTextFontSize: 0
+  _nameConfirmButtonTextFontSize: 57.3
+  _useNameExtraTextOne: 1
+  _nameExtraTextOneText: 
+  _overrideNameExtraTextOneRect: 0
+  _nameExtraTextOneAnchoredPosition: {x: 0, y: 210}
+  _nameExtraTextOneSizeDelta: {x: 900, y: 90}
+  _overrideNameExtraTextOneColor: 0
+  _nameExtraTextOneColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameExtraTextOneFont: 0
+  _nameExtraTextOneFont: {fileID: 0}
+  _overrideNameExtraTextOneFontSize: 0
+  _nameExtraTextOneFontSize: 48
+  _useNameExtraTextTwo: 0
+  _nameExtraTextTwoText: 
+  _overrideNameExtraTextTwoRect: 0
+  _nameExtraTextTwoAnchoredPosition: {x: 0, y: -210}
+  _nameExtraTextTwoSizeDelta: {x: 900, y: 90}
+  _overrideNameExtraTextTwoColor: 0
+  _nameExtraTextTwoColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideNameExtraTextTwoFont: 0
+  _nameExtraTextTwoFont: {fileID: 0}
+  _overrideNameExtraTextTwoFontSize: 0
+  _nameExtraTextTwoFontSize: 48
+  _nameExtraTexts:
+  - _enabled: 1
+    _targetText: {fileID: 0}
+    _targetPath: Backgrund/Text (TMP)
+    _label: 
+    _text: "\u0414\u043E\u0441\u044C\u0435"
+    _overrideRect: 1
+    _anchoredPosition: {x: 49.7, y: -1.63}
+    _sizeDelta: {x: 256.2, y: 0}
+    _overrideHeightLimits: 0
+    _minHeight: 0
+    _maxHeight: 0
+    _overrideColor: 1
+    _color: {r: 1, g: 0.8641848, b: 0.6556604, a: 1}
+    _overrideFont: 1
+    _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    _overrideFontSize: 1
+    _fontSize: 57.58
+    _overrideAutoSize: 0
+    _autoSize: 0
+    _overrideAutoFontSizeRange: 0
+    _minAutoFontSize: 1
+    _maxAutoFontSize: 1
+    _overrideAlignment: 0
+    _alignment: 0
+    _overrideWordWrapping: 0
+    _wordWrapping: 0
+    _overrideOverflowMode: 0
+    _overflowMode: 0
+    _overrideLineSpacing: 0
+    _lineSpacing: 0
+    _overrideMargins: 0
+    _margins: {x: 0, y: 0, z: 0, w: 0}
+  - _enabled: 1
+    _targetText: {fileID: 0}
+    _targetPath: Backgrund/Text (TMP) (1)
+    _label: 
+    _text: "\u041A\u0430\u043A \u043A \u0432\u0430\u043C \u043E\u0431\u0440\u0430\u0449\u0430\u0442\u044C\u0441\u044F?"
+    _overrideRect: 1
+    _anchoredPosition: {x: 109.9, y: -134.53}
+    _sizeDelta: {x: 691.59, y: 0}
+    _overrideHeightLimits: 0
+    _minHeight: 0
+    _maxHeight: 0
+    _overrideColor: 0
+    _color: {r: 0, g: 0, b: 0, a: 0}
+    _overrideFont: 1
+    _font: {fileID: 11400000, guid: 2d5c47d7c66e62f428735a9085557ad5, type: 2}
+    _overrideFontSize: 1
+    _fontSize: 42.8
+    _overrideAutoSize: 0
+    _autoSize: 0
+    _overrideAutoFontSizeRange: 0
+    _minAutoFontSize: 1
+    _maxAutoFontSize: 1
+    _overrideAlignment: 0
+    _alignment: 0
+    _overrideWordWrapping: 0
+    _wordWrapping: 0
+    _overrideOverflowMode: 0
+    _overflowMode: 0
+    _overrideLineSpacing: 0
+    _lineSpacing: 0
+    _overrideMargins: 0
+    _margins: {x: 0, y: 0, z: 0, w: 0}
+  _choicesApplyOnlySprites: 0
+  _choiceButtonPrefabOverride: {fileID: 2651123001121220992, guid: 2a7ed1b2c93fe624881712f33af27f20, type: 3}
+  _premiumChoiceButtonPrefabOverride: {fileID: 2651123001121220992, guid: 74ee55f2d8d251045981851baa3159ec, type: 3}
+  _premiumChoiceBalancePanelPrefabOverride: {fileID: 4959372592956317405, guid: a5fe3a7903804a942b2ea28954b6dbd5, type: 3}
+  _premiumChoiceBalancePanelOffset: {x: 200, y: -250}
+  _choiceButtonSprite: {fileID: 21300000, guid: 3ff8d58e32849924a82c6c87cddeb326, type: 3}
+  _choiceButtonSpriteSource: {fileID: 21300000, guid: 3ff8d58e32849924a82c6c87cddeb326, type: 3}
+  _overrideChoiceButtonColor: 0
+  _choiceButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideChoiceButtonImageType: 0
+  _choiceButtonImageType: 1
+  _overrideChoiceButtonTextColor: 0
+  _choiceButtonTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideChoiceButtonFont: 1
+  _choiceButtonFont: {fileID: 11400000, guid: 2d5c47d7c66e62f428735a9085557ad5, type: 2}
+  _overrideChoiceButtonFontSize: 0
+  _choiceButtonFontSize: 52
+  _overrideChoiceButtonPadding: 0
+  _choiceButtonPadding: {x: 488.9, y: 104.25}
+  _overrideChoiceButtonTextPadding: 0
+  _choiceButtonTextPadding:
+    m_Left: 440
+    m_Right: 80
+    m_Top: 24
+    m_Bottom: 24
+  _overrideChoiceButtonTextOffset: 0
+  _choiceButtonTextOffset: {x: 0, y: 22.38}
+  _choicePanelSprite: {fileID: 0}
+  _choicePanelSpriteSource: {fileID: 0}
+  _overrideChoicePanelColor: 0
+  _choicePanelColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideChoicePanelImageType: 0
+  _choicePanelImageType: 1
+  _statsApplyOnlySprites: 0
+  _statPanelSprite: {fileID: 21300000, guid: 657d11cc5f58c7d448191ec38ea1d60a, type: 3}
+  _statPanelSpriteSource: {fileID: 2800000, guid: 657d11cc5f58c7d448191ec38ea1d60a, type: 3}
+  _overrideStatPanelColor: 0
+  _statPanelColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideStatPanelImageType: 0
+  _statPanelImageType: 1
+  _overrideStatPanelBackgroundAnchors: 1
+  _statPanelBackgroundAnchorMin: {x: 0, y: 0}
+  _statPanelBackgroundAnchorMax: {x: 1, y: 1}
+  _overrideStatPanelBackgroundPivot: 1
+  _statPanelBackgroundPivot: {x: 0.5, y: 1}
+  _overrideStatPanelBackgroundStretchOffsets: 1
+  _statPanelBackgroundStretchOffsets: {x: 97.6, y: 191.57999, z: 155.2, w: -411.8}
+  _overrideStatTextColor: 0
+  _statTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideStatTextFont: 1
+  _statTextFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+  _overrideStatTextFontSize: 0
+  _statTextFontSize: 42
+  _overrideStatPanelRect: 1
+  _statPanelAnchoredPosition: {x: 12.31, y: 94.7}
+  _statPanelSizeDelta: {x: 984.2, y: 1.7}
+  _statPanelSizeOverrides: []
+  _overrideStatTextRect: 1
+  _statTextAnchoredPosition: {x: 466.6, y: -209.455}
+  _statTextSizeDelta: {x: 739.2, y: 368.91}
+  _statTextRectOverrides: []
+  _overrideStatTextAutoSize: 0
+  _statTextAutoSize: 0
+  _overrideStatTextAutoFontSizeRange: 0
+  _statTextMinAutoFontSize: 28
+  _statTextMaxAutoFontSize: 54
+  _overrideStatTextAlignment: 0
+  _statTextAlignment: 514
+  _overrideStatTextWordWrapping: 0
+  _statTextWordWrapping: 0
+  _overrideStatTextOverflowMode: 0
+  _statTextOverflowMode: 0
+  _overrideStatTextLineSpacing: 0
+  _statTextLineSpacing: 0
+  _overrideStatTextMargins: 0
+  _statTextMargins: {x: 0, y: 0, z: 0, w: 0}
+  _replaceStatDefinitions: 1
+  _statOverlayDefinitions: []
+  _statDefinitionAssets:
+  - {fileID: 11400000, guid: 22aaafd7fbe440628d06dda085e03f10, type: 2}
+  - {fileID: 11400000, guid: 8c07715c2d4244a6b585a00750390590, type: 2}
+  - {fileID: 11400000, guid: 9510e3ccde474d98b8eda71c827ba3a1, type: 2}
+  _overrideStatPanelPadding: 0
+  _statPanelPadding: {x: 0, y: 0}
+  _overrideStatIconSize: 1
+  _statIconSize: {x: 456, y: 456}
+  _overrideStatIconOffset: 1
+  _statIconOffset: {x: 0, y: 0}
+  _overrideStatIconVisualScale: 0
+  _statIconVisualScale: {x: 1, y: 1}
+  _overrideStatIconMinSize: 0
+  _statIconMinSize: {x: 0, y: 0}
+  _overrideStatIconReserveSpaceWhenHidden: 1
+  _statIconReserveSpaceWhenHidden: 0
+  _overrideStatIconParentSpacing: 1
+  _statIconParentSpacing: 0
+  _overrideStatIconParentPadding: 0
+  _statIconParentPadding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  _statIconOffsetOverrides:
+  - statId: principles
+    overrideIconOffset: 1
+    iconOffset: {x: -213.9, y: 12.5}
+  - statId: feelings
+    overrideIconOffset: 1
+    iconOffset: {x: -213.9, y: 12.5}
+  - statId: self_esteem
+    overrideIconOffset: 1
+    iconOffset: {x: -213.9, y: 12.5}
+  _overrideStatPanelVerticalLayout: 1
+  _statPanelVerticalLayoutPadding:
+    m_Left: 299
+    m_Right: 143
+    m_Top: 7
+    m_Bottom: -320
+  _statPanelVerticalLayoutSpacing: 0
+  _statPanelVerticalLayoutChildAlignment: 0
+  _statPanelVerticalLayoutReverseArrangement: 0
+  _statPanelVerticalLayoutControlChildWidth: 1
+  _statPanelVerticalLayoutControlChildHeight: 1
+  _statPanelVerticalLayoutUseChildScaleWidth: 0
+  _statPanelVerticalLayoutUseChildScaleHeight: 0
+  _statPanelVerticalLayoutChildForceExpandWidth: 0
+  _statPanelVerticalLayoutChildForceExpandHeight: 1
+  _overrideStatPanelContentSizeFitter: 1
+  _statPanelContentSizeFitterHorizontalFit: 0
+  _statPanelContentSizeFitterVerticalFit: 2
+  _overrideRelationshipFrameSize: 1
+  _relationshipFrameAnchoredPosition: {x: 46.3, y: 214.1}
+  _relationshipFrameSize: {x: 0, y: 0}
+  _overrideRelationshipPanelBackgroundAnchors: 0
+  _relationshipPanelBackgroundAnchorMin: {x: 0, y: 0}
+  _relationshipPanelBackgroundAnchorMax: {x: 1, y: 1}
+  _overrideRelationshipPanelBackgroundPivot: 0
+  _relationshipPanelBackgroundPivot: {x: 0.5, y: 0.5}
+  _overrideRelationshipPanelBackgroundRect: 1
+  _relationshipPanelBackgroundAnchoredPosition: {x: -114.8, y: 0}
+  _relationshipPanelBackgroundSizeDelta: {x: 0, y: 0}
+  _overrideRelationshipPanelBackgroundStretchOffsets: 1
+  _relationshipPanelBackgroundStretchOffsets: {x: -410.4, y: -307.2, z: 182, w: -482}
+  _overrideRelationshipPanelVerticalLayout: 1
+  _relationshipPanelVerticalLayoutPadding:
+    m_Left: -329
+    m_Right: -248
+    m_Top: -799
+    m_Bottom: -1212
+  _relationshipPanelVerticalLayoutSpacing: 0
+  _relationshipPanelVerticalLayoutChildAlignment: 0
+  _relationshipPanelVerticalLayoutReverseArrangement: 0
+  _relationshipPanelVerticalLayoutControlChildWidth: 1
+  _relationshipPanelVerticalLayoutControlChildHeight: 1
+  _relationshipPanelVerticalLayoutUseChildScaleWidth: 0
+  _relationshipPanelVerticalLayoutUseChildScaleHeight: 0
+  _relationshipPanelVerticalLayoutChildForceExpandWidth: 0
+  _relationshipPanelVerticalLayoutChildForceExpandHeight: 1
+  _overrideRelationshipPanelContentSizeFitter: 1
+  _relationshipPanelContentSizeFitterHorizontalFit: 0
+  _relationshipPanelContentSizeFitterVerticalFit: 2
+  _overrideRelationshipFontSizeRange: 0
+  _relationshipFontSizeMin: 42
+  _relationshipFontSizeMax: 54
+  _overrideRelationshipMaxVisibleLines: 0
+  _relationshipMaxVisibleLines: 3
+  _relationshipMessageOverrides:
+  - statId: relationship:pp_kurt
+    overrideTargetText: 1
+    targetText: "\u0441 \u041A\u0443\u0440\u0442\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: 
+    overrideWorsenedText: 0
+    worsenedText: 
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 763.2, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 0, g: 0, b: 0, a: 0}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 1
+    overrideTextAutoSize: 0
+    textAutoSize: 0
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 1
+    maxAutoFontSize: 1
+    overrideTextAlignment: 0
+    textAlignment: 0
+    overrideTextWordWrapping: 0
+    textWordWrapping: 0
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_mag
+    overrideTargetText: 1
+    targetText: "\u0441 \u041C\u044D\u0433\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_remi
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u0435\u043C\u0438"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_will
+    overrideTargetText: 1
+    targetText: "\u0441 \u0423\u0438\u043B\u043B\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_vlad
+    overrideTargetText: 1
+    targetText: "\u0441 \u0412\u043B\u0430\u0434\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 1414.7, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_james
+    overrideTargetText: 1
+    targetText: "\u0441 \u0414\u0436\u0435\u0439\u043C\u0441\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_gabriel
+    overrideTargetText: 1
+    targetText: "\u0441 \u0413\u0430\u0431\u0440\u0438\u044D\u043B\u0435\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_black_silhouette
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u043E\u0431\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_black_silhouette_girl
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u043E\u0431\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_guy
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u043E\u0431\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_black_silhouette_girl
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u043E\u0431\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 0, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:hero
+    overrideTargetText: 1
+    targetText: "\u0441 \u0418\u041C\u042F"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:pp_rob
+    overrideTargetText: 1
+    targetText: "\u0441 \u0420\u043E\u0431\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 0, y: -129.69}
+    textSizeDelta: {x: 746.09, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 1
+    textFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: 
+    overrideTargetText: 0
+    targetText: 
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 1
+    textAnchoredPosition: {x: 391.63, y: -136.96}
+    textSizeDelta: {x: 704.2, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:vlad
+    overrideTargetText: 1
+    targetText: "\u0441 \u0412\u043B\u0430\u0434\u043E\u043C"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 0
+    textAnchoredPosition: {x: 0, y: 0}
+    textSizeDelta: {x: 0, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:alice
+    overrideTargetText: 1
+    targetText: "\u0441 \u0410\u043B\u0438\u0441\u0430"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 0
+    textAnchoredPosition: {x: 0, y: 0}
+    textSizeDelta: {x: 0, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  - statId: relationship:elison
+    overrideTargetText: 1
+    targetText: "\u0441 \u042D\u043B\u0438\u0441\u043E\u043D"
+    overrideImprovedText: 0
+    improvedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideWorsenedText: 0
+    worsenedText: "\u041E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u044F {target}
+      \u0443\u0445\u0443\u0434\u0448\u0438\u043B\u0438\u0441\u044C."
+    overrideTextRect: 0
+    textAnchoredPosition: {x: 0, y: 0}
+    textSizeDelta: {x: 0, y: 0}
+    overrideTextColor: 0
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+    overrideTextFont: 0
+    textFont: {fileID: 0}
+    overrideTextFontSize: 0
+    textFontSize: 54
+    overrideTextAutoSize: 0
+    textAutoSize: 1
+    overrideTextAutoFontSizeRange: 0
+    minAutoFontSize: 42
+    maxAutoFontSize: 54
+    overrideTextAlignment: 0
+    textAlignment: 514
+    overrideTextWordWrapping: 0
+    textWordWrapping: 1
+    overrideTextOverflowMode: 0
+    textOverflowMode: 0
+    overrideTextLineSpacing: 0
+    textLineSpacing: 0
+    overrideTextMargins: 0
+    textMargins: {x: 0, y: 0, z: 0, w: 0}
+  _chapterApplyOnlySprites: 0
+  _chapterTitlePanelSprite: {fileID: 21300000, guid: bdbfc0e4aa7e0614a9a82f48e755998a, type: 3}
+  _chapterTitlePanelSpriteSource: {fileID: 2800000, guid: bdbfc0e4aa7e0614a9a82f48e755998a, type: 3}
+  _overrideChapterTitlePanelColor: 0
+  _chapterTitlePanelColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideChapterTitlePanelImageType: 1
+  _chapterTitlePanelImageType: 1
+  _overrideChapterTitleTextColor: 0
+  _chapterTitleTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _overrideChapterTitleTextFont: 1
+  _chapterTitleTextFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+  _overrideChapterTitleTextFontSize: 0
+  _chapterTitleTextFontSize: 63.36
+  _overrideChapterTitleTextRect: 1
+  _chapterTitleTextAnchoredPosition: {x: 5.9, y: 11.1}
+  _chapterTitleTextSizeDelta: {x: 1279.7, y: 120}
+  _overrideChapterTitleTextHeightLimits: 0
+  _chapterTitleTextMinHeight: 0
+  _chapterTitleTextMaxHeight: 0
+  _overrideChapterTitleTextAutoSize: 0
+  _chapterTitleTextAutoSize: 0
+  _overrideChapterTitleTextAutoFontSizeRange: 0
+  _chapterTitleTextMinAutoFontSize: 36
+  _chapterTitleTextMaxAutoFontSize: 72
+  _overrideChapterTitleTextAlignment: 0
+  _chapterTitleTextAlignment: 514
+  _overrideChapterTitleTextWordWrapping: 0
+  _chapterTitleTextWordWrapping: 1
+  _overrideChapterTitleTextOverflowMode: 0
+  _chapterTitleTextOverflowMode: 0
+  _overrideChapterTitleTextLineSpacing: 0
+  _chapterTitleTextLineSpacing: 0
+  _overrideChapterTitleTextMargins: 0
+  _chapterTitleTextMargins: {x: 0, y: 0, z: 0, w: 0}
+  _overrideChapterTitleCenterOnShow: 0
+  _chapterTitleCenterOnShow: 1
+  _overrideChapterTitleBringToFrontOnShow: 0
+  _chapterTitleBringToFrontOnShow: 1
+  _overrideChapterTitleBackgroundDimSizeMode: 0
+  _chapterTitleBackgroundDimSizeMode: 0
+  _overrideChapterTitleBackgroundDimFixedSize: 0
+  _chapterTitleBackgroundDimFixedSize: {x: 5000, y: 5000}
+  _overrideChapterTitleBackgroundDimColor: 0
+  _chapterTitleBackgroundDimColor: {r: 0, g: 0, b: 0, a: 1}
+  _overrideChapterTitleBackgroundDimAlpha: 0
+  _chapterTitleBackgroundDimAlpha: 0.6
+  _overrideChapterTitleTextMode: 0
+  _chapterTitleTextMode: 0
+  _overrideChapterTitleTextFormat: 0
+  _chapterTitleTextFormat: '{1}'
+  _overrideChapterTitleNumberAndTitleFormat: 0
+  _chapterTitleNumberAndTitleFormat: "\u0413\u041B\u0410\u0412\u0410 {0}: {1}"
+  _overrideChapterTitleNumberOffset: 0
+  _chapterTitleNumberOffset: 1
+  _overrideChapterTitleEmptyTitleFallback: 0
+  _chapterTitleEmptyTitleFallback: "\u0413\u041B\u0410\u0412\u0410 {0}"
+  _overrideChapterTitleTrimTitle: 0
+  _chapterTitleTrimTitle: 1
+  _overrideChapterTitleUppercaseTitle: 0
+  _chapterTitleUppercaseTitle: 0
+  _overrideChapterTitleSpecificPaddingSettings: 1
+  _chapterTitleUseSpecificPadding: 1
+  _chapterTitleSpecificPaddingMarkers:
+  - "\u0422\u0410\u041C, \u0423 \u0412\u041E\u0414\u042B"
+  - 
+  _chapterTitleSpecificPadding: {x: 390, y: 72}
+  _overrideChapterTitleAnimationMode: 0
+  _chapterTitleAnimationMode: 0
+  _overrideChapterTitleShownPosition: 0
+  _chapterTitleShownPosition: {x: 0, y: 0}
+  _overrideChapterTitleCaptureShownPositionOnAwake: 0
+  _chapterTitleCaptureShownPositionOnAwake: 1
+  _overrideChapterTitleHiddenOffsetY: 0
+  _chapterTitleHiddenOffsetY: 360
+  _overrideChapterTitleEnterDuration: 0
+  _chapterTitleEnterDuration: 0.45
+  _overrideChapterTitleVisibleDuration: 0
+  _chapterTitleVisibleDuration: 1.35
+  _overrideChapterTitleExitDuration: 0
+  _chapterTitleExitDuration: 1.35
+  _overrideChapterTitleFadeWithMovement: 0
+  _chapterTitleFadeWithMovement: 1
+  _overrideChapterTitleAnimatePosition: 0
+  _chapterTitleAnimatePosition: 0
+  _overrideChapterTitleUseUnscaledTime: 0
+  _chapterTitleUseUnscaledTime: 1
+  _overrideChapterTitleDisableRootAfterExit: 0
+  _chapterTitleDisableRootAfterExit: 0
+  _overrideColor: 0
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _overrideImageType: 0
+  _imageType: 1
+  _overridePreserveAspect: 0
+  _preserveAspect: 1
+  _overridePixelsPerUnitMultiplier: 0
+  _pixelsPerUnitMultiplier: 1
+  _overrideMaterial: 0
+  _material: {fileID: 0}
+  _overrideRaycastTarget: 0
+  _raycastTarget: 0
+  _endScreenStyle:
+    _backgroundSprite: {fileID: 21300000, guid: 5d544075ee06ab34289984193b885465, type: 3}
+    _backgroundSpriteSource: {fileID: 2800000, guid: 5d544075ee06ab34289984193b885465, type: 3}
+    _statsBackgroundSprite: {fileID: 0}
+    _statsBackgroundSpriteSource: {fileID: 0}
+    _continueButtonPlateSprite: {fileID: 21300000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+    _continueButtonPlateSpriteSource: {fileID: 2800000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+    _titleTextStyle:
+      _overrideFont: 1
+      _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+      _overrideFontSize: 0
+      _fontSize: 48
+      _overrideTextRect: 0
+      _anchoredPosition: {x: 0, y: 0}
+      _sizeDelta: {x: 0, y: 0}
+    _storyTitleTextStyle:
+      _overrideFont: 0
+      _font: {fileID: 0}
+      _overrideFontSize: 0
+      _fontSize: 48
+      _overrideTextRect: 0
+      _anchoredPosition: {x: 0, y: 0}
+      _sizeDelta: {x: 0, y: 0}
+    _completedEpisodeTextStyle:
+      _overrideFont: 0
+      _font: {fileID: 0}
+      _overrideFontSize: 0
+      _fontSize: 48
+      _overrideTextRect: 0
+      _anchoredPosition: {x: 0, y: 0}
+      _sizeDelta: {x: 0, y: 0}
+    _nextEpisodeTextStyle:
+      _overrideFont: 0
+      _font: {fileID: 0}
+      _overrideFontSize: 0
+      _fontSize: 48
+      _overrideTextRect: 0
+      _anchoredPosition: {x: 0, y: 0}
+      _sizeDelta: {x: 0, y: 0}
+    _continueButtonTextStyle:
+      _overrideFont: 1
+      _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+      _overrideFontSize: 0
+      _fontSize: 48
+      _overrideTextRect: 1
+      _anchoredPosition: {x: 0, y: 11.88}
+      _sizeDelta: {x: 0, y: 0}
+    _statBindings:
+    - _enabled: 1
+      _label: "\u041F\u0440\u0438\u043D\u0446\u0438\u043F\u044B"
+      _statId: principles
+      _statAliases:
+      - principle
+      - princip
+      _valueMode: 0
+      _previewValue: 0
+      _hideWhenZero: 0
+      _format: '{0}'
+      _backgroundSprite: {fileID: 21300000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _backgroundSpriteSource: {fileID: 2800000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _plateSprite: {fileID: 21300000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _plateSpriteSource: {fileID: 2800000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _iconSprite: {fileID: 21300000, guid: 18f044525112e1b46ad51c0566320d5f, type: 3}
+      _iconSpriteSource: {fileID: 2800000, guid: 18f044525112e1b46ad51c0566320d5f, type: 3}
+      _hideBackground: 0
+      _hidePlate: 0
+      _hideIcon: 0
+      _overrideIconSize: 1
+      _iconSize: {x: 230, y: 230}
+      _overrideRowPosition: 0
+      _rowAnchoredPosition: {x: 0, y: 0}
+      _rowOffset: {x: 0, y: 0}
+      _backgroundOffset: {x: 0, y: 0}
+      _plateOffset: {x: 0, y: 0}
+      _iconOffset: {x: 0, y: 0}
+      _overrideBackgroundRect: 0
+      _backgroundAnchoredPosition: {x: 0, y: 0}
+      _backgroundSize: {x: 0, y: 0}
+      _overridePlateRect: 0
+      _plateAnchoredPosition: {x: 0, y: 0}
+      _plateSize: {x: 0, y: 0}
+      _overrideIconRect: 1
+      _iconAnchoredPosition: {x: -200.38, y: 8.67}
+      _overrideRowSize: 0
+      _rowSize: {x: 0, y: 0}
+      _ignoreParentLayoutWhenPositioned: 0
+      _lineTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 1
+        _anchoredPosition: {x: 53.3, y: 9.74}
+        _sizeDelta: {x: 0, y: 0}
+      _labelTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+      _valueTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+    - _enabled: 1
+      _label: "\u0427\u0443\u0432\u0441\u0442\u0432\u0430"
+      _statId: feelings
+      _statAliases:
+      - feel
+      - feels
+      - feeling
+      _valueMode: 0
+      _previewValue: 0
+      _hideWhenZero: 0
+      _format: '{0}'
+      _backgroundSprite: {fileID: 0}
+      _backgroundSpriteSource: {fileID: 0}
+      _plateSprite: {fileID: 21300000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _plateSpriteSource: {fileID: 2800000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _iconSprite: {fileID: 21300000, guid: fce75e699e0b1e04888b26a03e9ee816, type: 3}
+      _iconSpriteSource: {fileID: 2800000, guid: fce75e699e0b1e04888b26a03e9ee816, type: 3}
+      _hideBackground: 0
+      _hidePlate: 0
+      _hideIcon: 0
+      _overrideIconSize: 1
+      _iconSize: {x: 230, y: 230}
+      _overrideRowPosition: 0
+      _rowAnchoredPosition: {x: 0, y: 0}
+      _rowOffset: {x: 0, y: 0}
+      _backgroundOffset: {x: 0, y: 0}
+      _plateOffset: {x: 0, y: 0}
+      _iconOffset: {x: 0, y: 0}
+      _overrideBackgroundRect: 0
+      _backgroundAnchoredPosition: {x: 0, y: 0}
+      _backgroundSize: {x: 0, y: 0}
+      _overridePlateRect: 0
+      _plateAnchoredPosition: {x: 0, y: 0}
+      _plateSize: {x: 0, y: 0}
+      _overrideIconRect: 1
+      _iconAnchoredPosition: {x: -207.05, y: 9.05}
+      _overrideRowSize: 0
+      _rowSize: {x: 0, y: 0}
+      _ignoreParentLayoutWhenPositioned: 0
+      _lineTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 1
+        _anchoredPosition: {x: 52.74, y: 10}
+        _sizeDelta: {x: 0, y: 0}
+      _labelTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+      _valueTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+    - _enabled: 1
+      _label: "\u0421\u0430\u043C\u043E\u043E\u0446\u0435\u043D\u043A\u0430"
+      _statId: self_esteem
+      _statAliases:
+      - selfesteem
+      - self
+      - esteem
+      - samoocenka
+      _valueMode: 0
+      _previewValue: 0
+      _hideWhenZero: 0
+      _format: '{0}'
+      _backgroundSprite: {fileID: 21300000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _backgroundSpriteSource: {fileID: 2800000, guid: 434d02ad207f60e4a9ee6973429f530d, type: 3}
+      _plateSprite: {fileID: 0}
+      _plateSpriteSource: {fileID: 0}
+      _iconSprite: {fileID: 21300000, guid: 2e1b80dbf4323f04e8505839562b23fa, type: 3}
+      _iconSpriteSource: {fileID: 2800000, guid: 2e1b80dbf4323f04e8505839562b23fa, type: 3}
+      _hideBackground: 0
+      _hidePlate: 0
+      _hideIcon: 0
+      _overrideIconSize: 0
+      _iconSize: {x: 230, y: 230}
+      _overrideRowPosition: 0
+      _rowAnchoredPosition: {x: 0, y: 0}
+      _rowOffset: {x: 0, y: 0}
+      _backgroundOffset: {x: 0, y: 0}
+      _plateOffset: {x: 0, y: 0}
+      _iconOffset: {x: 0, y: 0}
+      _overrideBackgroundRect: 0
+      _backgroundAnchoredPosition: {x: 0, y: 0}
+      _backgroundSize: {x: 0, y: 0}
+      _overridePlateRect: 0
+      _plateAnchoredPosition: {x: 0, y: 0}
+      _plateSize: {x: 0, y: 0}
+      _overrideIconRect: 1
+      _iconAnchoredPosition: {x: -200.38, y: 8.67}
+      _overrideRowSize: 0
+      _rowSize: {x: 0, y: 0}
+      _ignoreParentLayoutWhenPositioned: 0
+      _lineTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 1
+        _anchoredPosition: {x: 53.3, y: 9.74}
+        _sizeDelta: {x: 0, y: 0}
+      _labelTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+      _valueTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+    - _enabled: 1
+      _label: "\u0418\u0441\u043A\u0440\u044B"
+      _statId: hearts
+      _statAliases: []
+      _valueMode: 0
+      _previewValue: 0
+      _hideWhenZero: 0
+      _format: '{0}'
+      _backgroundSprite: {fileID: 21300000, guid: 163064ede9364024c82d2efe777d48d1, type: 3}
+      _backgroundSpriteSource: {fileID: 2800000, guid: 163064ede9364024c82d2efe777d48d1, type: 3}
+      _plateSprite: {fileID: 21300000, guid: 163064ede9364024c82d2efe777d48d1, type: 3}
+      _plateSpriteSource: {fileID: 2800000, guid: 163064ede9364024c82d2efe777d48d1, type: 3}
+      _iconSprite: {fileID: 21300000, guid: 94dd5b91cb8996c469921944a28a23e9, type: 3}
+      _iconSpriteSource: {fileID: 2800000, guid: 94dd5b91cb8996c469921944a28a23e9, type: 3}
+      _hideBackground: 0
+      _hidePlate: 0
+      _hideIcon: 0
+      _overrideIconSize: 0
+      _iconSize: {x: 350, y: 350}
+      _overrideRowPosition: 0
+      _rowAnchoredPosition: {x: 0, y: 0}
+      _rowOffset: {x: 0, y: 0}
+      _backgroundOffset: {x: 0, y: 0}
+      _plateOffset: {x: 0, y: 0}
+      _iconOffset: {x: 0, y: 0}
+      _overrideBackgroundRect: 0
+      _backgroundAnchoredPosition: {x: 0, y: 0}
+      _backgroundSize: {x: 0, y: 0}
+      _overridePlateRect: 0
+      _plateAnchoredPosition: {x: 0, y: 0}
+      _plateSize: {x: 0, y: 0}
+      _overrideIconRect: 1
+      _iconAnchoredPosition: {x: -246.7, y: 6.2}
+      _overrideRowSize: 0
+      _rowSize: {x: 0, y: 0}
+      _ignoreParentLayoutWhenPositioned: 0
+      _lineTextStyle:
+        _overrideFont: 1
+        _font: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 1
+        _anchoredPosition: {x: 78.4, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+      _labelTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}
+      _valueTextStyle:
+        _overrideFont: 0
+        _font: {fileID: 0}
+        _overrideFontSize: 0
+        _fontSize: 1
+        _overrideTextRect: 0
+        _anchoredPosition: {x: 0, y: 0}
+        _sizeDelta: {x: 0, y: 0}

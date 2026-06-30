@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c2391e99375d14881b7a68ed23ea38, type: 3}
+  m_Name: ivan_unknown
+  m_EditorClassIdentifier: 
+  characterName: "\u041F\u0430\u0440\u0435\u043D\u044C"
+  defaultSprite: {fileID: 21300000, guid: f23e206c559ff624596e59cb631b6e9e, type: 3}
+  hairSprite: {fileID: 0}
+  emotions:
+  - emotion: 4
+    sprite: {fileID: 21300000, guid: ee35c80cee5e4544aae022c24e8df7c2, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  - emotion: 12
+    sprite: {fileID: 21300000, guid: 60bbb9232a00ed4409878ae9545d93e9, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  - emotion: 0
+    sprite: {fileID: 21300000, guid: f23e206c559ff624596e59cb631b6e9e, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  - emotion: 2
+    sprite: {fileID: 21300000, guid: 8c5037fd0834ec14e92abd195322c467, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  - emotion: 13
+    sprite: {fileID: 21300000, guid: b34b15b1c5c1e8b46926d5227572bec2, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  - emotion: 6
+    sprite: {fileID: 21300000, guid: d872519257f3eac48af3ca1653e5bf71, type: 3}
+    previewOffset: {x: 0, y: 0}
+    previewWidth: 0
+    previewHeight: 0
+    previewPreserveAspect: 1
+    storyLayout:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  useLayeredEmotions: 1
+  bodySprite: {fileID: 21300000, guid: 482ca4121b7b28547972056c81316f84, type: 3}
+  emotionLayers: []
+  inheritAppearanceFromPlayer: 0
+  appearanceVariants: []
+  storyLayerLayout:
+    body:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    emotion:
+      offset: {x: 2.9, y: 0.57}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    outfit:
+      offset: {x: -5.3, y: -4}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    hair:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  storyPositionLayout:
+    all:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    left:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    center:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    right:
+      offset: {x: -998.5, y: 0}
+      scale: {x: -1, y: 1, z: 1}
+  keepStorySlotPositionOnSpeakerFocus: 0
+  wardrobeLayerLayout:
+    body:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    outfit:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    hair:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  permanentOutfit: {fileID: 11400000, guid: 9e395d37dbe4cd6489eef7eb44abf7be, type: 2}
+  permanentHair: {fileID: 0}
+  permanentAccessory: {fileID: 0}
+  storyEquipmentLayouts: []
+  wardrobeEquipmentLayouts: []

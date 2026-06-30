@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937a036907079d547baee0f4509cbf56, type: 3}
+  m_Name: pp_stat_feelings
+  m_EditorClassIdentifier: 
+  statId: feelings
+  displayName: "\u0427\u0443\u0432\u0441\u0442\u0432\u0430"
+  order: 1
+  icon: {fileID: 21300000, guid: fe642b9a46caded4583d30048875522a, type: 3}

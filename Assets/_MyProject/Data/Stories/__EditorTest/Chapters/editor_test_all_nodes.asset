@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58b6a96a275f5c4c950784ecbaac86e, type: 3}
+  m_Name: editor_test_all_nodes
+  m_EditorClassIdentifier: 
+  _chapterId: editor_test_all_nodes
+  _chapterName: 'Editor Test: All Node Types'
+  _graph: {fileID: 11400000, guid: 67435dbeee188ba4f803dc5c023f17c5, type: 2}
+  _jsonGraph: {fileID: 0}
+  _jsonAssetLibrary: {fileID: 0}
+  _isPremium: 0
+  _unlockCost: 0

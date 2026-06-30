@@ -1,0 +1,525 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238e9ed851544604a4e31cb2a7fcfc5d, type: 3}
+  m_Name: privychka_pritvoryatsya_JsonAssetLibrary
+  m_EditorClassIdentifier: 
+  _storyUiStyle: {fileID: 11400000, guid: 29bb70a0e0adca146b3ad8d583237cc3, type: 2}
+  _dialogueBackgroundSprite: {fileID: 21300000, guid: 5111d6c114969714b9d20c9a96e02fa5, type: 3}
+  _useSeparateCutsceneStoryUiStyle: 0
+  _cutsceneStoryUiStyle: {fileID: 0}
+  _cutsceneDialogueBackgroundSprite: {fileID: 0}
+  _assets:
+  - _id: pp_cg_vlad_training
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: fb7dbf1542e48194bad10dd17b3971c6, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_european_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: fb7dbf1542e48194bad10dd17b3971c6, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_european_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 1501d11631410384fa2a598f0f5f331a, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_european_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 60487ce7927eb964088e5bad66c2d431, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_african_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 0e21042a8f112304b8d3847b40f64ea5, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_african_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 8161eb0b0b73cd24ea2c2f000e964efb, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_african_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 2ce708322ec6a8a4eab2beea4e9c67ce, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_asian_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 9eca5f539ae34eb47a4881cb4fd05c0c, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_asian_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 4e5f810c189f0984ab6f1f2e17841957, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad_training_asian_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: f84bc240ce702644ebaa45590f4b3c3a, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_bedroom_gg
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 184420a70a2af8c4dbfa73dac90977cc, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_cabinet
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 970787ed236f6a64b82f844b4a4a1f63, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_cabinet_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 5d544075ee06ab34289984193b885465, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_corridor
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 1fda6b78215d3ac4f8049e13265fba04, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_corridor_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 107d743353b824a408c93b8a75d2d101, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_cafeteria
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 5f319d56c95860540be02d281423b5bb, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_entrance
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: d209197381bf10a4d9e6de9a8cd4c45a, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_povsednevnost
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 44a60f195e1856e4ab500134b9606dc6, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_povsednevny
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 44a60f195e1856e4ab500134b9606dc6, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_gabriel
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 7fa71ff911b597342b8e7a2b2b50e91e, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_gym
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: b227edddbd3d0c34faa4a93282f7b139, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hero
+    _character: {fileID: 11400000, guid: a7a0c5dda978fd34bbab5fe624bbf553, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_mag_avatar
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 38023e57f19a8ba4a9328e20086c7b78, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_street_morning
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 9d91807a54a0ab44eafc807905bce276, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_gabriel
+    _character: {fileID: 11400000, guid: 667da1bc9d327ec4c853851321a86f3b, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_hollywood_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: c5e7c22ba131d17469eee510100c1843, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_hollywood_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: f0b7e125b1ba1474b9d0a82cb0466da0, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_hollywood_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 334a91fb89e4dd64ea51871bb85bcf67, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_leave_as_is
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: d6f5b0467023c57418c36c650eae3c14, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_na_skoruyu_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 2984fa04c9a4fba44bb5a32e901b0d27, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_na_skoruyu_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 5c18fb8f3eefc3b43bd317bbee9763b9, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_na_skoruyu_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 46f0da80f8de97b4fab810ab6b6470a0, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_ukladka_blond
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: a050ae15083a9b54da59cf4febb6d876, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_ukladka_coal
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 23e6c069fc1c9004f9b6fcb76e1111d1, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_pp2_ukladka_dark_chestnut
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 8c5c54e361b8b1849a74b18996101552, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_silk_black
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 84a3ce9574366754e8bfd17c481ce766, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_silk_blonde
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 17d71d19471b0234cbec376a1283e6ec, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_hair_silk_brown
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: de0c6885529ff14409c8431a224f6df5, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_james
+    _character: {fileID: 11400000, guid: cf6c9294272a0684ba26784225cd9bbb, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_kurt
+    _character: {fileID: 11400000, guid: fa16c1a4b90070c4284eaa47c97763f0, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_mag
+    _character: {fileID: 11400000, guid: 15849d699f44aa445bc6499c5c713adf, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_legkost
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: d5c7bf4b561be1643bd11de69bad2296, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_ocharovanie
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: b09475fe048fbe441922cc038bddbcb5, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_pp2_delovoy_kostyum
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 4944d04d2b2ae9a43aef4ea677d92a64, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_pp2_kak_na_podium
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: eec3ac498048de645a6940d0fb1c3044, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_pp2_toropilas
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 7de1fa73e1009e4469ccc2252e681da4, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_ritm_goroda
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 7a860cd70fed5c044a66ad21384522d2, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_outfit_sportivny_kostyum
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 056a76bade5aed241b8742d2f291ceb8, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_remi
+    _character: {fileID: 11400000, guid: c6da3c9ef9c7fe04e9de79dc6ed3c774, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_black_silhouette
+    _character: {fileID: 11400000, guid: 0134d31ffe795134da58a7dc3f8fbc02, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_black_silhouette_girl
+    _character: {fileID: 11400000, guid: 0134d31ffe795134da58a7dc3f8fbc02, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_guy
+    _character: {fileID: 11400000, guid: 0134d31ffe795134da58a7dc3f8fbc02, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_rob
+    _character: {fileID: 11400000, guid: 0134d31ffe795134da58a7dc3f8fbc02, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_vlad
+    _character: {fileID: 11400000, guid: 0d214cd18adc05a4aac632006f1bfb79, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_will
+    _character: {fileID: 11400000, guid: b97bd145113f3b540b5b6adc09996478, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_rob_avatar
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 049e84c56498687488dcd5117449c9c7, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_will_avatar
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 049e84c56498687488dcd5117449c9c7, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_battle
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: d2f374cb7df3f6e4a8021af2eed60ed9, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_tension
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: d2f374cb7df3f6e4a8021af2eed60ed9, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_bg_street_day
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: e28e75ac95ab6c44297914a90217a01e, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_cg_vlad
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 69fa5d0d3742fbb46bf70cf17f9a9b96, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_vlad_theme
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 496671e17b56b6b4db9bdd858ebadbab, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: pp_music_wardrobe
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 5bd80589c2ed24741bf2406da800dca0, type: 3}
+    _dialogueStyle: {fileID: 0}
+

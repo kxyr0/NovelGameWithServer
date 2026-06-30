@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1011 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="input-field / fill-layer">
+<path id="input-field / fill-shape" d="M12.4376 0H999.451L1011 16V144L998.562 160H12.4376L0 144V16L12.4376 0Z" fill="url(#paint0_linear_0_7)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_7" x1="0" y1="80" x2="1010.11" y2="80" gradientUnits="userSpaceOnUse">
+<stop stop-color="#15202B"/>
+<stop offset="0.53" stop-color="#101720"/>
+<stop offset="1" stop-color="#0D1219"/>
+</linearGradient>
+</defs>
+</svg>

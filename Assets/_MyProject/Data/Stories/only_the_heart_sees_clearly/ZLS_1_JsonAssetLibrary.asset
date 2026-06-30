@@ -1,0 +1,525 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238e9ed851544604a4e31cb2a7fcfc5d, type: 3}
+  m_Name: ZLS_1_JsonAssetLibrary
+  m_EditorClassIdentifier:
+  _storyUiStyle: {fileID: 11400000, guid: 25aaf8cbc5b14d7082a81a7bb85e31f1, type: 2}
+  _dialogueBackgroundSprite: {fileID: 0}
+  _useSeparateCutsceneStoryUiStyle: 0
+  _cutsceneStoryUiStyle: {fileID: 0}
+  _cutsceneDialogueBackgroundSprite: {fileID: 0}
+  _assets:
+  - _id: hero
+    _character: {fileID: 11400000, guid: d146811a8c0b49afbc98a3f67fd2d46e, type: 2}
+    _clothing: {fileID: 11400000, guid: b0ea27a0075fcd340aa5ac7a13375d29, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bab_nyura
+    _character: {fileID: 11400000, guid: 5146748805ce46f289363f19c8cebc9f, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: old_woman
+    _character: {fileID: 11400000, guid: dcfc619f088249ff9e2a46ecd1e81669, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: old_woman_distorted
+    _character: {fileID: 11400000, guid: e32ee068f1274940a85a12941690590e, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: ivan_unknown
+    _character: {fileID: 11400000, guid: 84b3167982060924db8ff8418c005cb0, type: 2}
+    _clothing: {fileID: 11400000, guid: 9e395d37dbe4cd6489eef7eb44abf7be, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: ivan
+    _character: {fileID: 11400000, guid: 6f61c44e0a134a16bf759933ce1fd8f6, type: 2}
+    _clothing: {fileID: 11400000, guid: 9e395d37dbe4cd6489eef7eb44abf7be, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: voice
+    _character: {fileID: 11400000, guid: f0422403a4dc45c68330c10d7251ddc1, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: oksana
+    _character: {fileID: 11400000, guid: e3e5431c37c54cd0acca84a5951f3db7, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: teta_galya
+    _character: {fileID: 11400000, guid: d39beffe2615479bb3fa69a643c5e1f7, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: girl_1
+    _character: {fileID: 11400000, guid: 986b87b8b26944e9b0390c6979bdb391, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: girl_2
+    _character: {fileID: 11400000, guid: b27ea0cd50da4d35ae5a312ad98d8ff5, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: leshy
+    _character: {fileID: 11400000, guid: b092cf2fff92485faa2bbfcb27d6c17d, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: kashchey
+    _character: {fileID: 11400000, guid: 9534537272154786bc2c439ab64e5733, type: 2}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: music_ivan_theme
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: de6bfcb3db6b858458113f88a0a7d966, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: music_neutral
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 531081f66f5de514b97f54cea036f8df, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: music_tension
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 5211a3aa1d4c4d440bc6971bd1d0c57e, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: music_village_day
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 0e49a0f0eeb77ba4492d13956210f19f, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: music_village_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 57db1722bf6add54d99f91ba9b319f61, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: sfx_floor_creak
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: c912a381816841a4489e025c42bae787, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: sfx_hoofbeats
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 6ac7d6d204a2a4d4094c0d85e6415e4c, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: sfx_page_turning
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 650937b33ecc86942b9335afdaa0ab3e, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: sfx_station_platform
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 352b2ea3382381b4b89f5b13796f4624, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: sfx_train_loop
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 8300000, guid: 372a3f92362712a40a6fdca5d1b4d802, type: 3}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_oak
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: b5dee3a5b02f9da44bf06d275119d277, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_train_carriage
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 81ab5a4c99ac80047a7422f7bf4d4131, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_city_station_platform
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 846ef77ca12206e40a7dbff52f0d1bf7, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_village_station_platform
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 8a3bfc8821efea94783a1bbbef519144, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_village_meadow_day
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: e8a00ca306fff8542ae3f19f3a0103e3, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_bab_nyura_house_exterior_day
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: f2ad989c6261457468fff072340558ad, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_bab_nyura_house_inside_day
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: f39b0fdf2c1e1fa42a1abca09da31853, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_bab_nyura_house_inside_night
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: adf4494b6d9618a4987c4c624fb6c584, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_village_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: af450570a2eb39c4fa1ba30fb67a1b2e, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_scarecrow_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 4934bf5699dbc9f4c9dfe640424c7c79, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_stable_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 243bb397d2e7c0e47b059c71bcbaccda, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_washstand_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: fba876ee99396a740bcdf11bc32bfd5e, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_bedroom_evening
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: b8c14acff2d84cc40a1945cb60412208, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_bedroom_night
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: c7c752f426a61f4488b87d3119f8e55a, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_magic_book_dark
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: a17f9a1c5bb209a48b7999a9611d6eca, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_dream_forest
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 33883f62705a7cf4283e079153cccd9a, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_dream_path
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: 1d554fb02bf2f1448ac3ff3e4a2385d5, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: bg_burning_book
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: a17f9a1c5bb209a48b7999a9611d6eca, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: preview_hero_european
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: e98a9a90ca6a59647b04794fd20e5bdc, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: preview_hero_latina
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: 624c6ce90735bf446a0fdd2558907541, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: preview_hero_asian
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: dc62aed4e18708948b0084add4140fd7, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: outfit_summer_bliss
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: b98ba911cc5da024383524a754153608, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: outfit_city
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: bef5b7b24c38cf84e844b81d1a672056, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: outfit_road_to_podlesie
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 2d9eb37d99655a3488385fdeb22e8d55, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_loose_blonde
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0001, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_loose_brown
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0002, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_loose_black
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0003, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_kare_blonde
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0010, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_kare_brown
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0011, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_kare_black
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0012, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_braid_blonde
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0004, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_braid_brown
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0005, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_braid_black
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0006, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_bun_blonde
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0007, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_bun_brown
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0008, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: hair_bun_black
+    _character: {fileID: 0}
+    _clothing: {fileID: 11400000, guid: 6b0f7b2a0d2441d88a2fd91e724b0009, type: 2}
+    _sprite: {fileID: 0}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: cg_ivan_on_horse
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: ad2a0092b5f688d4bb2db4c20541f151, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: cg_ivan_at_stable
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: ad2a0092b5f688d4bb2db4c20541f151, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: img_phone_no_signal_e
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 21300000, guid: cc8118634c3cdd04ba064ddd2a7e5ec5, type: 3}
+    _video: {fileID: 0}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+  - _id: cg_book_kashchey
+    _character: {fileID: 0}
+    _clothing: {fileID: 0}
+    _sprite: {fileID: 0}
+    _video: {fileID: 32900000, guid: a17f9a1c5bb209a48b7999a9611d6eca, type: 3}
+    _textAsset: {fileID: 0}
+    _audio: {fileID: 0}
+    _dialogueStyle: {fileID: 0}
+

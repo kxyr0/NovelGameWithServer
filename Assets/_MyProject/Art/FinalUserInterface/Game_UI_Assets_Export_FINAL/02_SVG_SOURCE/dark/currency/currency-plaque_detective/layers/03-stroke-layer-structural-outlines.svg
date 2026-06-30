@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 531.232 120.154" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="stroke-layer / structural outlines">
+<g id="panel / outer-cool-stroke">
+<path d="M1.25 33.9885L30.1227 1.25H501.109L529.982 33.9885V86.1654L501.109 118.904H30.1227L1.25 86.1654V33.9885Z" stroke="url(#paint0_linear_0_9)" stroke-width="2.5"/>
+<path d="M1.25 33.9885L30.1227 1.25H501.109L529.982 33.9885V86.1654L501.109 118.904H30.1227L1.25 86.1654V33.9885Z" stroke="url(#paint1_linear_0_9)" stroke-opacity="0.37" stroke-width="2.5"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_9" x1="1.25" y1="60.0769" x2="529.982" y2="60.0769" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6B7588"/>
+<stop offset="0.5" stop-color="#313B4F"/>
+<stop offset="1" stop-color="#747B8C"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_9" x1="262.116" y1="-5.67285" x2="259.391" y2="162.203" gradientUnits="userSpaceOnUse">
+<stop stop-color="#C8DCF5"/>
+<stop offset="0.24" stop-color="#667891"/>
+<stop offset="0.72" stop-color="#53667F"/>
+<stop offset="1" stop-color="#D5E8FF"/>
+</linearGradient>
+</defs>
+</svg>

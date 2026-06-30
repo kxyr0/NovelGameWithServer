@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1075.67 222.943" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="effects / shadow-layer">
+<g id="input-field / shadow" filter="url(#filter0_f_0_9)">
+<path d="M44.2261 22.9H1031.45L1052.77 50.2369V175.986L1033.22 200.043H43.3375L22.9 175.986V50.2369L44.2261 22.9Z" fill="var(--fill-0, #02050A)" fill-opacity="0.38"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_9" x="0" y="0" width="1075.67" height="222.943" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="11.45" result="effect1_foregroundBlur_0_9"/>
+</filter>
+</defs>
+</svg>

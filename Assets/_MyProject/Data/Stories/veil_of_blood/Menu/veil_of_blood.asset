@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd3d2465919a9048bf3e223921155ed, type: 3}
+  m_Name: veil_of_blood
+  m_EditorClassIdentifier: 
+  _gameIcon: {fileID: 0}
+  _gameIconVideo: {fileID: 32900000, guid: 81a8b59b169590d4181bc8e5c234d4d6, type: 3}
+  _gameIconGif: {fileID: 0}
+  _menuCardOverrides:
+    _overrideRootPositionOffset: 0
+    _rootPositionOffset: {x: 0, y: 0}
+    _overrideRootSize: 0
+    _rootSize: {x: 1076.663, y: 1716.369}
+    _overrideRootRotationOffset: 0
+    _rootRotationOffsetZ: 0
+    _overrideRootScaleMultiplier: 0
+    _rootScaleMultiplier: {x: 1, y: 1, z: 1}
+    _overrideCoverSize: 0
+    _coverSize: {x: 989.39, y: 1726}
+    _overrideCoverPositionOffset: 0
+    _coverPositionOffset: {x: 0, y: 0}
+    _overrideCoverScale: 0
+    _coverScale: {x: 1, y: 1, z: 1}
+    _overrideVideoSize: 1
+    _videoSize: {x: 977.9, y: 1534}
+    _overrideVideoPosition: 0
+    _videoPosition: {x: 0, y: 0}
+    _overrideVideoRotation: 0
+    _videoRotationZ: -90
+    _keepVideoBelowCardFrame: 1
+    _stretchVideoOnLoadingScreen: 0
+    _loadingVideoStretchScale: {x: 1, y: 1}
+    _loadingVideoRotationZ: 0
+  _loadingMedia:
+    _overrideLoadingMedia: 1
+    _fallbackToMenuMediaWhenEmpty: 1
+    _imageReference:
+      m_AssetGUID: 6b9fe3fa412e58c42aa5ea36d23d4e6a
+      m_SubObjectName: IMG_0562
+      m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      m_EditorAssetChanged: 1
+    _videoReference:
+      m_AssetGUID: 81a8b59b169590d4181bc8e5c234d4d6
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 1
+    _gifReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    _imageFallback: {fileID: 0}
+    _videoFallback: {fileID: 0}
+    _gifFallback: {fileID: 0}
+  _wardrobeSetup:
+    _overrideWardrobeAssets: 0
+    _targetCharacter: {fileID: 0}
+    _targetCharacterId: hero
+    _appearanceOptions: []
+    _outfitItems: []
+    _hairItems: []
+    _accessoryItems: []
+    _defaultOutfitItem: {fileID: 0}
+    _defaultHairItem: {fileID: 0}
+    _defaultAccessoryItem: {fileID: 0}
+  _gameName: "\u041A\u0440\u043E\u0432\u0430\u0432\u0430\u044F \u0432\u0443\u0430\u043B\u044C"
+  _genreText: "\u0414\u0440\u0430\u043C\u0430"
+  _description: 
+  _currentEpisodeNumber: 1
+  _episodeCount: 0
+  _episodeLabelFormat: "\u0421\u0435\u0440\u0438\u044F {0}/{1}"
+  _forceComingSoon: 0
+  _startButtonText: "\u041D\u0430\u0447\u0430\u0442\u044C"
+  _comingSoonButtonText: "\u0421\u043A\u043E\u0440\u043E"
+  _storyStats: []
+  _story: {fileID: 0}
