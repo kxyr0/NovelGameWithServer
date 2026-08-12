@@ -115,6 +115,11 @@ public static class StoryJsonConverter
         if (!TryParseDocumentInternal(json, out var document, out report))
             return false;
 
+        // Runtime builds cannot use AssetDatabase. Make the per-story Resources registry
+        // active before resolving any background, character, clothing, audio or cutscene asset.
+        if (!string.IsNullOrWhiteSpace(document.storyId))
+            StoryRuntimeAssetRegistryResolver.SetActiveStory(document.storyId);
+
         graph = ScriptableObject.CreateInstance<StoryGraph>();
         graph.hideFlags = HideFlags.DontSave;
         graph.name = "Json_" + FirstNonEmpty(document.episodeId, document.chapterId, fallbackEpisodeId, "Chapter");
@@ -619,6 +624,7 @@ public static class StoryJsonConverter
                 premiumCost = SaveDataSanitizer.ClampCurrencyValue(choice.premiumCost),
                 requiredVariable = choice.requiredVariable ?? "",
                 requiredValue = choice.requiredValue,
+                hideWhenRequirementNotMet = choice.hideWhenRequirementNotMet,
                 hideInRestrictedRegions = choice.hideInRestrictedRegions,
                 hiddenRegionCodes = choice.hiddenRegionCodes != null
                     ? new List<string>(choice.hiddenRegionCodes)
@@ -1802,6 +1808,7 @@ public static class StoryJsonConverter
                 premiumCost = SaveDataSanitizer.ClampCurrencyValue(option.premiumCost),
                 requiredVariable = option.requiredVariable ?? "",
                 requiredValue = option.requiredValue,
+                hideWhenRequirementNotMet = option.hideWhenRequirementNotMet,
                 hideInRestrictedRegions = option.hideInRestrictedRegions,
                 hiddenRegionCodes = option.hiddenRegionCodes != null
                     ? new List<string>(option.hiddenRegionCodes)
@@ -1919,6 +1926,8 @@ public static class StoryJsonConverter
             WardrobeChoiceOptionRule rule = node.GetOptionRule(i);
             var dto = new StoryJsonWardrobeOptionRule
             {
+                label = rule != null ? rule.label ?? "" : "",
+                clearSlot = rule != null ? rule.clearSlot ?? "" : "",
                 premiumCost = node.GetPremiumCost(i),
                 requiredVariable = rule != null ? rule.requiredVariable ?? "" : "",
                 requiredValue = rule != null ? rule.requiredValue : 0,
@@ -1950,6 +1959,8 @@ public static class StoryJsonConverter
 
         var rule = new WardrobeChoiceOptionRule
         {
+            label = source != null ? source.label ?? "" : "",
+            clearSlot = source != null ? source.clearSlot ?? "" : "",
             premiumCost = source != null
                 ? SaveDataSanitizer.ClampCurrencyValue(source.premiumCost)
                 : legacyCost,
@@ -1973,7 +1984,9 @@ public static class StoryJsonConverter
     private static bool HasWardrobeRule(StoryJsonWardrobeOptionRule rule)
     {
         return rule != null &&
-            (rule.premiumCost > 0 ||
+            (!string.IsNullOrWhiteSpace(rule.label) ||
+             !string.IsNullOrWhiteSpace(rule.clearSlot) ||
+             rule.premiumCost > 0 ||
              !string.IsNullOrWhiteSpace(rule.requiredVariable) ||
              !string.IsNullOrWhiteSpace(rule.requiredItemId) ||
              rule.hideInRestrictedRegions ||
@@ -2072,10 +2085,14 @@ public static class StoryJsonConverter
         if (string.IsNullOrWhiteSpace(id))
             return null;
 
-        T asset = resolver(id);
+        T asset = resolver != null ? resolver(id) : null;
+        if (asset == null)
+            asset = StoryRuntimeAssetRegistryResolver.Resolve<T>(id);
+
         if (asset == null)
         {
-            string message = "Node '" + nodeId + "' references missing asset in '" + fieldName + "': " + id;
+            string message = "Node '" + nodeId + "' references missing asset in '" + fieldName + "': " + id +
+                ". RuntimeRegistry=" + StoryRuntimeAssetRegistryResolver.DescribeActiveRegistry();
             report.AddWarning(message);
             Debug.LogWarning("[StoryJson] " + message);
         }
@@ -2087,10 +2104,11 @@ public static class StoryJsonConverter
         string id,
         Func<string, T> resolver) where T : UnityEngine.Object
     {
-        if (string.IsNullOrWhiteSpace(id) || resolver == null)
+        if (string.IsNullOrWhiteSpace(id))
             return null;
 
-        return resolver(id);
+        T asset = resolver != null ? resolver(id) : null;
+        return asset != null ? asset : StoryRuntimeAssetRegistryResolver.Resolve<T>(id);
     }
 
     private static T ParseEnum<T>(

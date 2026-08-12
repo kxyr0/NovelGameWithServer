@@ -35,6 +35,7 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
     private SerializedProperty _useSeparateCutsceneStoryUiStyle;
     private SerializedProperty _cutsceneStoryUiStyle;
     private SerializedProperty _cutsceneDialogueBackgroundSprite;
+    private SerializedProperty _resolutionMode;
     private SerializedProperty _assets;
     private string _searchText = "";
     private UnityEngine.Object _assetFilter;
@@ -52,6 +53,7 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
         _useSeparateCutsceneStoryUiStyle = serializedObject.FindProperty("_useSeparateCutsceneStoryUiStyle");
         _cutsceneStoryUiStyle = serializedObject.FindProperty("_cutsceneStoryUiStyle");
         _cutsceneDialogueBackgroundSprite = serializedObject.FindProperty("_cutsceneDialogueBackgroundSprite");
+        _resolutionMode = serializedObject.FindProperty("_resolutionMode");
         _assets = serializedObject.FindProperty("_assets");
     }
 
@@ -61,6 +63,7 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
 
         DrawScriptField();
         DrawStoryUiStyleFields();
+        DrawResolutionMode();
 
         if (_assets == null || !_assets.isArray)
         {
@@ -87,6 +90,23 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
 
         using (new EditorGUI.DisabledScope(true))
             EditorGUILayout.PropertyField(_script);
+    }
+
+    private void DrawResolutionMode()
+    {
+        if (_resolutionMode == null)
+            return;
+
+        EditorGUILayout.Space(6f);
+        EditorGUILayout.LabelField("Asset Resolution", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(_resolutionMode, new GUIContent("Resolution Mode"));
+
+        bool strict = _resolutionMode.enumValueIndex == (int)StoryJsonAssetResolutionMode.StrictLibrary;
+        EditorGUILayout.HelpBox(
+            strict
+                ? "Strict Library: JSON использует только явные bindings из этой библиотеки. Случайный одноимённый asset из другой истории не подхватится."
+                : "Editor Fallback: если ID отсутствует в библиотеке, importer может искать asset по всему проекту. Это legacy-поведение.",
+            strict ? MessageType.Info : MessageType.Warning);
     }
 
     private void DrawCatalogDrivenStoryUiStyleFields()
@@ -400,6 +420,7 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
         {
             EditorGUI.indentLevel++;
             DrawRelativeProperty(element, "_id", "Id");
+            DrawRelativeProperty(element, "_kindHint", "Expected Type");
             DrawRelativeProperty(element, "_character", "Character");
             DrawRelativeProperty(element, "_clothing", "Clothing");
             DrawRelativeProperty(element, "_sprite", "Sprite");
@@ -560,7 +581,18 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
             }
         }
 
-        string typeLabel = types.Count > 0 ? string.Join("+", types.ToArray()) : "Missing";
+        SerializedProperty kindHint = element.FindPropertyRelative("_kindHint");
+        string expectedType = "";
+        if (kindHint != null && kindHint.propertyType == SerializedPropertyType.Enum && kindHint.enumValueIndex > 0)
+        {
+            string[] displayNames = kindHint.enumDisplayNames;
+            if (displayNames != null && kindHint.enumValueIndex < displayNames.Length)
+                expectedType = displayNames[kindHint.enumValueIndex];
+        }
+
+        string typeLabel = types.Count > 0
+            ? string.Join("+", types.ToArray())
+            : string.IsNullOrWhiteSpace(expectedType) ? "Missing" : "Missing " + expectedType;
         string assetLabel = names.Count > 0 ? string.Join(", ", names.ToArray()) : "<none>";
         string searchText = string.Join(" ", new[]
         {
@@ -601,6 +633,10 @@ public sealed class StoryJsonAssetLibraryEditor : Editor
         SerializedProperty id = element.FindPropertyRelative("_id");
         if (id != null)
             id.stringValue = "";
+
+        SerializedProperty kindHint = element.FindPropertyRelative("_kindHint");
+        if (kindHint != null && kindHint.propertyType == SerializedPropertyType.Enum)
+            kindHint.enumValueIndex = 0;
 
         for (int i = 0; i < AssetFieldNames.Length; i++)
         {

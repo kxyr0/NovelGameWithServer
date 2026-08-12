@@ -16,42 +16,111 @@ public sealed class DivinationTutorialController : MonoBehaviour
     {
     }
 
-    [Header("Screen")]
-    [SerializeField] private string _screenId = DefaultScreenId;
+    [Header("Экран")]
+    [SerializeField]
+    [Tooltip("ID экрана, при совпадении с CurrentScreenId будет работать обучение Divination.")]
+    private string _screenId = DefaultScreenId;
 
-    [Header("Tutorial State")]
-    [SerializeField] private string _tutorialSeenPrefsKey = DefaultPrefsKey;
-    [SerializeField] private bool _persistSeenState = true;
-    [SerializeField] private bool _showEveryEntryInDebug = true;
+    [Header("Состояние обучения")]
+    [SerializeField]
+    [Tooltip("Ключ LocalSecurePrefs, где хранится флаг уже просмотренного обучения.")]
+    private string _tutorialSeenPrefsKey = DefaultPrefsKey;
 
-    [Header("Tutorial UI")]
-    [SerializeField] private GameObject _tutorialPanelRoot;
-    [SerializeField] private CanvasGroup _tutorialPanelCanvasGroup;
-    [SerializeField] private TMP_Text _tutorialMessageText;
-    [SerializeField] private string _tutorialMessage = "Нажмите на колоду, чтобы узнать предсказания на неделю.";
-    [SerializeField] private bool _applyMessageOnShow = true;
-    [SerializeField] private bool _togglePanelRootActive = true;
-    [SerializeField] private Button _understoodButton;
+    [SerializeField]
+    [Tooltip("Сохранять просмотр обучения между запусками через LocalSecurePrefs.")]
+    private bool _persistSeenState = true;
 
-    [Header("Deck")]
-    [SerializeField] private Button _deckButton;
-    [SerializeField] private Graphic _deckRaycastGraphic;
-    [SerializeField] private CanvasGroup _deckCanvasGroup;
-    [SerializeField] private bool _blockDeckUntilTutorialAcknowledged = true;
-    [SerializeField] private bool _disableDeckAfterClick = true;
-    [SerializeField] private bool _controlDeckGraphicRaycastTarget = true;
-    [SerializeField] private bool _controlDeckCanvasGroupRaycasts = true;
+    [SerializeField]
+    [Tooltip("В редакторе и Development Build показывать обучение при каждом входе на экран, игнорируя сохраненный флаг.")]
+    private bool _showEveryEntryInDebug = true;
 
-    [Header("Auto Wiring")]
-    [SerializeField] private bool _bindUnderstoodButton = true;
-    [SerializeField] private bool _bindDeckButton = true;
+    [Header("UI обучения")]
+    [SerializeField]
+    [Tooltip("Корневой GameObject панели обучения, который можно включать/выключать.")]
+    private GameObject _tutorialPanelRoot;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent _tutorialShown = new UnityEvent();
-    [SerializeField] private UnityEvent _tutorialHidden = new UnityEvent();
-    [SerializeField] private UnityEvent _tutorialAcknowledged = new UnityEvent();
-    [SerializeField] private UnityEvent _deckClicked = new UnityEvent();
-    [SerializeField] private BoolEvent _deckAvailabilityChanged = new BoolEvent();
+    [SerializeField]
+    [Tooltip("CanvasGroup панели обучения для управления видимостью, доступностью взаимодействия и блокировкой raycast.")]
+    private CanvasGroup _tutorialPanelCanvasGroup;
+
+    [SerializeField]
+    [Tooltip("TMP_Text, в который подставляется текст обучения при показе панели.")]
+    private TMP_Text _tutorialMessageText;
+
+    [SerializeField]
+    [Tooltip("Текст сообщения обучения, который показывается игроку.")]
+    private string _tutorialMessage = "Нажмите на колоду, чтобы узнать предсказания на неделю.";
+
+    [SerializeField]
+    [Tooltip("Подставлять текст обучения в TMP_Text каждый раз при показе панели.")]
+    private bool _applyMessageOnShow = true;
+
+    [SerializeField]
+    [Tooltip("Включать/выключать корневой объект панели вместе с видимостью обучения.")]
+    private bool _togglePanelRootActive = true;
+
+    [SerializeField]
+    [Tooltip("Кнопка 'Понятно', которая подтверждает обучение.")]
+    private Button _understoodButton;
+
+    [Header("Колода")]
+    [SerializeField]
+    [Tooltip("Кнопка колоды, клик по которой считается попыткой вытянуть карту.")]
+    private Button _deckButton;
+
+    [SerializeField]
+    [Tooltip("Graphic колоды, у которого можно блокировать raycastTarget до завершения обучения.")]
+    private Graphic _deckRaycastGraphic;
+
+    [SerializeField]
+    [Tooltip("CanvasGroup колоды, у которого можно блокировать blocksRaycasts до завершения обучения.")]
+    private CanvasGroup _deckCanvasGroup;
+
+    [SerializeField]
+    [Tooltip("Блокировать клики по колоде, пока игрок не подтвердил обучение.")]
+    private bool _blockDeckUntilTutorialAcknowledged = true;
+
+    [SerializeField]
+    [Tooltip("Отключать клики по колоде после первого нажатия в текущей сессии экрана.")]
+    private bool _disableDeckAfterClick = true;
+
+    [SerializeField]
+    [Tooltip("Управлять raycastTarget у графического компонента колоды при блокировке/разблокировке.")]
+    private bool _controlDeckGraphicRaycastTarget = true;
+
+    [SerializeField]
+    [Tooltip("Управлять blocksRaycasts у CanvasGroup колоды при блокировке/разблокировке.")]
+    private bool _controlDeckCanvasGroupRaycasts = true;
+
+    [Header("Автопривязка")]
+    [SerializeField]
+    [Tooltip("Автоматически подписывать кнопку 'Понятно' на AcknowledgeTutorial.")]
+    private bool _bindUnderstoodButton = true;
+
+    [SerializeField]
+    [Tooltip("Автоматически подписывать кнопку колоды на HandleDeckClicked.")]
+    private bool _bindDeckButton = true;
+
+    [Header("События")]
+    [SerializeField]
+    [Tooltip("UnityEvent вызывается при показе панели обучения.")]
+    private UnityEvent _tutorialShown = new UnityEvent();
+
+    [SerializeField]
+    [Tooltip("UnityEvent вызывается при скрытии панели обучения.")]
+    private UnityEvent _tutorialHidden = new UnityEvent();
+
+    [SerializeField]
+    [Tooltip("UnityEvent вызывается после подтверждения обучения игроком.")]
+    private UnityEvent _tutorialAcknowledged = new UnityEvent();
+
+    [SerializeField]
+    [Tooltip("UnityEvent вызывается после допустимого клика по колоде.")]
+    private UnityEvent _deckClicked = new UnityEvent();
+
+    [SerializeField]
+    [Tooltip("UnityEvent<bool> сообщает, доступна ли колода для клика.")]
+    private BoolEvent _deckAvailabilityChanged = new BoolEvent();
 
     private bool _tutorialVisible;
     private bool _tutorialAcknowledgedForEntry;

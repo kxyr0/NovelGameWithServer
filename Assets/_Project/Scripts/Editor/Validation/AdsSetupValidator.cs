@@ -149,6 +149,15 @@ public sealed class AdsBuildGuard : IPreprocessBuildWithReport
         if (report == null || report.summary.platform != BuildTarget.Android)
             return;
 
+        YandexAdsConfig yandex = Resources.Load<YandexAdsConfig>(YandexAdsConfig.DefaultResourcesPath);
+        if (yandex != null &&
+            yandex.AdsEnabled &&
+            yandex.AutoCreateRuntimeService &&
+            yandex.HasRewardedAdUnitId)
+        {
+            return;
+        }
+
         AdsSetupReport validation = AdsSetupValidator.Validate();
         if (validation.HasErrors)
             throw new BuildFailedException(validation.BuildFailureMessage());

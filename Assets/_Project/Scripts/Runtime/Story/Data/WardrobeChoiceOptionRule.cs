@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [Serializable]
 public sealed class WardrobeChoiceOptionRule
 {
+    public string label;
+    public string clearSlot;
     public int premiumCost;
     public string requiredVariable;
     public int requiredValue;
@@ -20,13 +22,36 @@ public sealed class WardrobeChoiceOptionRule
 
     public bool HasAnyRule()
     {
-        return GetPremiumCost() > 0 ||
+        return !string.IsNullOrWhiteSpace(label) ||
+            !string.IsNullOrWhiteSpace(clearSlot) ||
+            GetPremiumCost() > 0 ||
             !string.IsNullOrWhiteSpace(requiredVariable) ||
             !string.IsNullOrWhiteSpace(requiredItemId) ||
             hideInRestrictedRegions ||
             (hiddenRegionCodes != null && hiddenRegionCodes.Count > 0) ||
             !string.IsNullOrWhiteSpace(purchaseKey) ||
             !string.IsNullOrWhiteSpace(unavailableMessage);
+    }
+
+    public string GetLabel(string fallback = "")
+    {
+        return !string.IsNullOrWhiteSpace(label) ? label.Trim() : fallback;
+    }
+
+    public bool TryGetClearSlotType(out ClothingType type)
+    {
+        type = ClothingType.Outfit;
+        if (string.IsNullOrWhiteSpace(clearSlot))
+            return false;
+
+        string value = clearSlot.Trim();
+        if (string.Equals(value, "Accessories", StringComparison.OrdinalIgnoreCase))
+        {
+            type = ClothingType.Accessory;
+            return true;
+        }
+
+        return Enum.TryParse(value, true, out type);
     }
 
     public bool IsVisible()

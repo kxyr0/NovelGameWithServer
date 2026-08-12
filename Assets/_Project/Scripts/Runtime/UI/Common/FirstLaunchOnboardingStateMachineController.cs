@@ -1321,10 +1321,21 @@ public sealed class FirstLaunchOnboardingStateMachineController : MonoBehaviour
 
     private void MarkStepSeen(FirstLaunchOnboardingStep step)
     {
-        if (!_rememberCompletedSteps || step == null)
+        if (step == null)
             return;
 
-        LocalSecurePrefs.SetBool(step.SeenKey, step.SeenPurpose, true);
+        if (_rememberCompletedSteps)
+            LocalSecurePrefs.SetBool(step.SeenKey, step.SeenPurpose, true);
+
+        RequestMobilePermissionsAfterPrivacyStep(step);
+    }
+
+    private void RequestMobilePermissionsAfterPrivacyStep(FirstLaunchOnboardingStep step)
+    {
+        if (step == null || step.State != FirstLaunchOnboardingState.Terms)
+            return;
+
+        MobileDevicePermissionService.RequestAfterPrivacyConsent(this);
     }
 
     private void HandlePrimaryClicked()
@@ -1822,7 +1833,7 @@ public sealed class FirstLaunchOnboardingStateMachineController : MonoBehaviour
                 FirstLaunchOnboardingState.Terms,
                 "terms",
                 "Условия пользования",
-                "Нажимая “Принять”, вы подтверждаете согласие с Условиями пользования и Политикой конфиденциальности. Приложение содержит романтический контент. Возрастное ограничение 16+",
+                "Нажимая “Принять”, вы подтверждаете согласие с Условиями пользования и Политикой конфиденциальности. Приложение содержит романтический контент. Возрастное ограничение 16+\n\nПосле принятия приложение может попросить доступ к файлам и медиа на телефоне. Это нужно только для функций, где вы сами выбираете файл или отправляете диагностику.",
                 "Принять",
                 FirstLaunchOnboardingButtonAction.Next,
                 false,

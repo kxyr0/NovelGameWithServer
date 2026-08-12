@@ -1,0 +1,127 @@
+MPS AUTO IMPORT REPORT
+======================
+
+Что теперь создаётся автоматически:
+- StoryData в корне истории (generated-папка содержит только производные Graph/Chapter assets).
+- Stats/*.asset из VAR секции // Статы и те же Stat ID в Menu GameData / Story Stats.
+- Characters/*.asset для всех реальных speakers; Элементина и hero указывают на hero.asset.
+- WardrobeItems/*.asset для outfit/hair и явных Гардероб choices + списки в GameData/Wardrobe.
+- revenge_sicilian_style_JsonAssetLibrary.asset с явными ссылками и Missing slots для отсутствующих media.
+- JSON characters[] для всех speakers; Элементина нормализуется в hero.
+- Медиа привязываются только по безопасному exact-normalized совпадению имени.
+
+Как выбирается asset:
+1) Уже существующая ручная ссылка в StoryJsonAssetLibrary имеет высший приоритет и НЕ затирается.
+2) Затем ищется ровно одно совпадение внутри папки этой истории.
+3) Затем ровно одно совпадение по всему проекту.
+4) При 0 или >1 совпадений importer НЕ угадывает: создаёт Missing <Type> slot в AssetLibrary и пишет ASSET:UNRESOLVED/CONFLICT сюда.
+   Для сравнения имени игнорируются регистр, пробелы, '-', '_' и пунктуация.
+   Ручная ссылка в AssetLibrary после этого имеет приоритет и при повторном импорте не затирается.
+
+Рекомендуемые папки:
+  Backgrounds/  — фоны и image assets
+  Audio/        — music/sfx/ambience
+  Cutscenes/    — cutscene media
+  Characters/   — CharacterData (созданы placeholders)
+  WardrobeItems/— ClothingItem (созданы placeholders)
+  Stats/        — StatDefinition
+
+StoryData: Assets/_MyProject/Data/Stories/revenge_sicilian_style/revenge_sicilian_style_Story.asset
+AssetLibrary: Assets/_MyProject/Data/Stories/revenge_sicilian_style/revenge_sicilian_style_JsonAssetLibrary.asset
+GameData: Assets/_MyProject/Data/Stories/revenge_sicilian_style/Menu/revenge_sicilian_style.asset
+
+Detected story stats: Остроумие, Решительность, Состояние
+Detected relationships: Марко, Джулия, Лука, Тони
+Detected speakers: Агентство, Антонио, Девушка, Джузеппе, Джулия, Доктор, Дон, Кто-то, Курц, Лука, Мать, Мужчина, Мужчина с зонтом, Мужчина с усами, Муссолини, Нацист, Некто, Отец, Семи, Сервитриса, Тони, Фашист с площади, Элементина
+
+DETAILS
+-------
+[STRUCTURE] StoryData перенесён из generated-папки в корень: Assets/_MyProject/Data/Stories/revenge_sicilian_style/revenge_sicilian_style_Story.asset
+[LIBRARY] Assets/_MyProject/Data/Stories/revenge_sicilian_style/revenge_sicilian_style_JsonAssetLibrary.asset (created)
+[STAT] Остроумие -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Stats/mps_stat_ostroumie.asset (created)
+[STAT] Решительность -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Stats/mps_stat_reshitelьnostь.asset (created)
+[STAT] Состояние -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Stats/mps_stat_sostoyanie.asset (created)
+[CHARACTER] hero -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/hero.asset (created)
+[CHARACTER] Агентство -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_agentstvo.asset (placeholder created)
+[CHARACTER] Антонио -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_antonio.asset (placeholder created)
+[CHARACTER] Девушка -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_devushka.asset (placeholder created)
+[CHARACTER] Джузеппе -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_dzhuzeppe.asset (placeholder created)
+[CHARACTER] Джулия -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_dzhuliya.asset (placeholder created)
+[CHARACTER] Доктор -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_doktor.asset (placeholder created)
+[CHARACTER] Дон -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_don.asset (placeholder created)
+[CHARACTER] Кто-то -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_kto_to.asset (placeholder created)
+[CHARACTER] Курц -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_kurts.asset (placeholder created)
+[CHARACTER] Лука -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_luka.asset (placeholder created)
+[CHARACTER] Мать -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_matь.asset (placeholder created)
+[CHARACTER] Мужчина -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_muzhchina.asset (placeholder created)
+[CHARACTER] Мужчина с зонтом -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_muzhchina_s_zontom.asset (placeholder created)
+[CHARACTER] Мужчина с усами -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_muzhchina_s_usami.asset (placeholder created)
+[CHARACTER] Муссолини -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_mussolini.asset (placeholder created)
+[CHARACTER] Нацист -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_natsist.asset (placeholder created)
+[CHARACTER] Некто -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_nekto.asset (placeholder created)
+[CHARACTER] Отец -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_otets.asset (placeholder created)
+[CHARACTER] Семи -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_semi.asset (placeholder created)
+[CHARACTER] Сервитриса -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_servitrisa.asset (placeholder created)
+[CHARACTER] Тони -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_toni.asset (placeholder created)
+[CHARACTER] Фашист с площади -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/mps_fashist_s_ploschadi.asset (placeholder created)
+[WARDROBE] nostalgia -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_nostalgia.asset [Outfit] (placeholder created)
+[WARDROBE] red_sunset -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_red_sunset.asset [Outfit] (placeholder created)
+[WARDROBE] tradition_and_flowers -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_tradition_and_flowers.asset [Outfit] (placeholder created)
+[WARDROBE] classic_sicilian -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_classic_sicilian.asset [Hair] (placeholder created)
+[WARDROBE] fcitrus_flower -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_fcitrus_flower.asset [Hair] (placeholder created)
+[WARDROBE] mediterranean_charm -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_mediterranean_charm.asset [Hair] (placeholder created)
+[WARDROBE] Крестьянка -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_krestьyanka.asset [Outfit] (placeholder created)
+[WARDROBE] Любовница -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_lyubovnitsa.asset [Outfit] (placeholder created)
+[WARDROBE] Барышня -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_outfit_baryshnya.asset [Outfit] (placeholder created)
+[WARDROBE] Солнечные виноградники -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_solnechnye_vinogradniki.asset [Hair] (placeholder created)
+[WARDROBE] Танец Лимонов -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_tanets_limonov.asset [Hair] (placeholder created)
+[WARDROBE] Сицилийский бриз -> Assets/_MyProject/Data/Stories/revenge_sicilian_style/WardrobeItems/mps_hair_sitsiliyskiy_briz.asset [Hair] (placeholder created)
+[ASSET:AUTO] Sprite 'Lemon_Orchard' <- Assets/_MyProject/Art/Месть по-сицилийски/Визуал/Фоны/Lemon Orchard.png (exact normalized name)
+[ASSET:UNRESOLVED] Audio 'Wardrobe' (music) — ambiguous: 2 project-wide exact matches. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:AUTO] Sprite 'Chapter_Start' <- Assets/_MyProject/Art/Месть по-сицилийски/Визуал/Фоны/Chapter_Start.png (exact normalized name)
+[ASSET:UNRESOLVED] Sprite 'Название истории' (image/cutscene) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Название серии' (image/cutscene) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:AUTO] Sprite 'Piazza_Palermo_Rally' <- Assets/_MyProject/Art/Месть по-сицилийски/Визуал/Фоны/Piazza_Palermo_Rally.png (exact normalized name)
+[ASSET:AUTO] Audio 'Tension' <- Assets/_MyProject/Art/Месть по-сицилийски/Аудио/Музыка/✅Глава 1/Tension.wav (exact normalized name)
+[ASSET:UNRESOLVED] Audio 'the_hum_of_the_crowd' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Плавно убирается' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:AUTO] Audio 'Neutral' <- Assets/_MyProject/Art/Месть по-сицилийски/Аудио/Музыка/✅Глава 1/Neutral.wav (exact normalized name)
+[ASSET:UNRESOLVED] Audio 'a_closing_car_door' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:AUTO] Audio 'Drama' <- Assets/_MyProject/Art/Месть по-сицилийски/Аудио/Музыка/✅Глава 1/Drama.wav (exact normalized name)
+[ASSET:AUTO] Sprite 'Palermo_Hospital' <- Assets/_MyProject/Art/Месть по-сицилийски/Визуал/Фоны/Palermo Hospital.png (exact normalized name)
+[ASSET:AUTO] Sprite 'Father's_House_Hall' <- Assets/_MyProject/Art/Месть по-сицилийски/Визуал/Фоны/Fathers_House_Hall.png (exact normalized name)
+[ASSET:AUTO] Audio 'House_1' <- Assets/_MyProject/Art/Месть по-сицилийски/Аудио/Музыка/✅Глава 1/House 1.wav (exact normalized name)
+[ASSET:UNRESOLVED] Audio 'Тишина (резко обрывается)' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Father's_House_Night_Hall' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'A_gunshot_rings_out,_while_a_fireplace_softly_crackles_in_the_background' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'the_sound_of_a_gunshot' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'У Дома (Гибель)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:AUTO] Audio 'Tragic' <- Assets/_MyProject/Art/Месть по-сицилийски/Аудио/Музыка/✅Глава 1/Tragic.wav (exact normalized name)
+[ASSET:UNRESOLVED] Audio 'Легкий звук дождя' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Кладбище' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'ТРИ ЧЕЛОВЕКА СМОТРЯТ НА МОГИЛУ, У ВСЕХ В РУКАХ ЗОНТЫ. ГГ ПО ЦЕНТРУ.' (image/cutscene) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Название 2 серии' (image/cutscene) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Комната Элементины (Ночь)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Трагичная' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Берег моря (Ночь)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Лёгкий звук костра' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Спокойная' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Комната Элементины (Утро)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Нейтральная' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Стук в двери' (sfx/ambience) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Дом Отца (зал)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Напряженная 2' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Перед пабом (Остерия Луны) (Вечер)' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Паб 1 (приглушённая)' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Джулия_1' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Sprite 'Остерия Луны' (background) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Паб_1' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Паб_2' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[ASSET:UNRESOLVED] Audio 'Коза Ностра' (music) — not found. Name the asset exactly like the Ink id (spaces/_/- are ignored) and rerun integration. Missing slot добавлен в AssetLibrary для ручной привязки.
+[APPEARANCE:MANUAL] Ink values: palermo, katania, messina. Они не мапятся автоматически в AppearanceType: это авторские Palermo/Katania/Messina, а не гарантированные runtime enum values.
+[SUMMARY] Stats=3, Characters=24, Clothing=12, Library entries=78.
+[EPISODE] mps_s01e01 — 200 nodes, 672 lines, 20 warnings.
+[EPISODE] mps_s01e02 — 181 nodes, 636 lines, 19 warnings.
+[EPISODE] mps_s01e03 — 5 nodes, 0 lines, 0 warnings.
+[GAMEDATA:WARDROBE] hero=Assets/_MyProject/Data/Stories/revenge_sicilian_style/Characters/hero.asset, outfits=6, hair=6, accessories=0. Appearance options сохранены как есть.
+[GAMEDATA] StoryData + episode count + Story Stats + wardrobe bindings синхронизированы: Assets/_MyProject/Data/Stories/revenge_sicilian_style/Menu/revenge_sicilian_style.asset

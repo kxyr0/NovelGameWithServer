@@ -16,6 +16,10 @@ public partial class StoryManager
     private readonly Dictionary<string, int> lastCompletedEpisodeStatDeltas =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
+    private readonly Dictionary<string, int> currentEpisodeStartStats =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+    private bool hasCurrentEpisodeStartSnapshot;
     private int currentEpisodeStartCandles;
     private int currentEpisodeStartHearts;
     private int lastCompletedEpisodeCandleDelta;
@@ -39,6 +43,19 @@ public partial class StoryManager
                 return delta;
         }
 
+        // End panel is opened before the next chapter is started, so the currently
+        // tracked episode deltas are still a valid emergency source. This also
+        // protects rendering from completion-order mistakes.
+        for (int i = 0; i < statIds.Length; i++)
+        {
+            string statId = SaveDataSanitizer.SanitizeStatKey(statIds[i]);
+            if (string.IsNullOrEmpty(statId))
+                continue;
+
+            if (currentEpisodeStatDeltas.TryGetValue(statId, out int trackedDelta) && trackedDelta != 0)
+                return trackedDelta;
+        }
+
         return 0;
     }
 
@@ -60,7 +77,9 @@ public partial class StoryManager
     void ResetEpisodeSummaryState()
     {
         currentEpisodeStatDeltas.Clear();
+        currentEpisodeStartStats.Clear();
         lastCompletedEpisodeStatDeltas.Clear();
+        hasCurrentEpisodeStartSnapshot = false;
         currentEpisodeStartCandles = PlayerData.Candles;
         currentEpisodeStartHearts = PlayerData.Hearts;
         lastCompletedEpisodeCandleDelta = 0;
@@ -70,23 +89,216 @@ public partial class StoryManager
     void ResetCurrentEpisodeSummary()
     {
         currentEpisodeStatDeltas.Clear();
+        CaptureCurrentEpisodeStartSnapshot();
+    }
+
+    void CaptureCurrentEpisodeStartSnapshot()
+    {
+        currentEpisodeStartStats.Clear();
+
+        if (GameState.Instance != null && GameState.Instance.stats != null)
+        {
+            foreach (KeyValuePair<string, int> pair in GameState.Instance.stats)
+            {
+                string statId = SaveDataSanitizer.SanitizeStatKey(pair.Key);
+                if (!string.IsNullOrEmpty(statId))
+                    currentEpisodeStartStats[statId] = SaveDataSanitizer.ClampStatValue(pair.Value);
+            }
+        }
+
         currentEpisodeStartCandles = PlayerData.Candles;
         currentEpisodeStartHearts = PlayerData.Hearts;
+        hasCurrentEpisodeStartSnapshot = true;
+
+        if (Debug.isDebugBuild || Application.isEditor)
+        {
+            Debug.Log(
+                $"[END_STATS][BASELINE] storyId='{CurrentStoryId}' chapterId='{CurrentChapterId}' " +
+                $"stats={currentEpisodeStartStats.Count} hearts={currentEpisodeStartHearts} candles={currentEpisodeStartCandles}.",
+                this);
+        }
+
+        AppLogger.DebugLog(
+            AppLogCategory.EndScreen,
+            nameof(StoryManager),
+            nameof(CaptureCurrentEpisodeStartSnapshot),
+            "[END_STATS][BASELINE_CAPTURED] Chapter stat baseline captured.",
+            LogMetadata.Of(
+                "storyId", CurrentStoryId,
+                "chapterId", CurrentChapterId,
+                "statCount", currentEpisodeStartStats.Count,
+                "candles", currentEpisodeStartCandles,
+                "hearts", currentEpisodeStartHearts));
+    }
+
+    public void WriteCurrentEpisodeSummaryToSaveData(SaveData data)
+    {
+        if (data == null)
+            return;
+
+        if (!hasCurrentEpisodeStartSnapshot)
+            CaptureCurrentEpisodeStartSnapshot();
+
+        data.hasEpisodeStartSnapshot = hasCurrentEpisodeStartSnapshot;
+        data.episodeStartCandles = currentEpisodeStartCandles;
+        data.episodeStartHearts = currentEpisodeStartHearts;
+        if (data.episodeStartStatKeys == null)
+            data.episodeStartStatKeys = new List<string>();
+        if (data.episodeStartStatValues == null)
+            data.episodeStartStatValues = new List<int>();
+        data.episodeStartStatKeys.Clear();
+        data.episodeStartStatValues.Clear();
+
+        foreach (KeyValuePair<string, int> pair in currentEpisodeStartStats)
+        {
+            if (data.episodeStartStatKeys.Count >= SaveDataSanitizer.MaxStatEntries)
+                break;
+
+            data.episodeStartStatKeys.Add(pair.Key);
+            data.episodeStartStatValues.Add(pair.Value);
+        }
+    }
+
+    void RestoreCurrentEpisodeSummaryFromSaveData(SaveData data)
+    {
+        currentEpisodeStatDeltas.Clear();
+        currentEpisodeStartStats.Clear();
+        hasCurrentEpisodeStartSnapshot = false;
+
+        if (data != null && data.hasEpisodeStartSnapshot)
+        {
+            int count = Math.Min(
+                data.episodeStartStatKeys != null ? data.episodeStartStatKeys.Count : 0,
+                data.episodeStartStatValues != null ? data.episodeStartStatValues.Count : 0);
+
+            count = Math.Min(count, SaveDataSanitizer.MaxStatEntries);
+            for (int i = 0; i < count; i++)
+            {
+                string statId = SaveDataSanitizer.SanitizeStatKey(data.episodeStartStatKeys[i]);
+                if (!string.IsNullOrEmpty(statId))
+                    currentEpisodeStartStats[statId] = SaveDataSanitizer.ClampStatValue(data.episodeStartStatValues[i]);
+            }
+
+            currentEpisodeStartCandles = SaveDataSanitizer.ClampCurrencyValue(data.episodeStartCandles);
+            currentEpisodeStartHearts = SaveDataSanitizer.ClampCurrencyValue(data.episodeStartHearts);
+            hasCurrentEpisodeStartSnapshot = true;
+
+            AppLogger.DebugLog(
+                AppLogCategory.EndScreen,
+                nameof(StoryManager),
+                nameof(RestoreCurrentEpisodeSummaryFromSaveData),
+                "[END_STATS][BASELINE_RESTORED] Chapter stat baseline restored from save.",
+                LogMetadata.Of(
+                    "storyId", CurrentStoryId,
+                    "chapterId", CurrentChapterId,
+                    "statCount", currentEpisodeStartStats.Count,
+                    "candles", currentEpisodeStartCandles,
+                    "hearts", currentEpisodeStartHearts));
+            return;
+        }
+
+        // Old saves did not persist the chapter baseline. Starting from the
+        // restored state is the only safe fallback: showing cumulative story
+        // totals as a chapter reward would be actively wrong.
+        CaptureCurrentEpisodeStartSnapshot();
+        ThrottledAppLogger.Warn(
+            "EndStatsLegacySaveNoBaseline:" + CurrentStoryId + ":" + CurrentChapterId,
+            AppLogCategory.EndScreen,
+            nameof(StoryManager),
+            nameof(RestoreCurrentEpisodeSummaryFromSaveData),
+            "[END_STATS][LEGACY_SAVE_NO_BASELINE] Save has no chapter baseline; only changes made after this restore can be counted for this chapter.",
+            LogMetadata.Of(
+                "storyId", CurrentStoryId,
+                "chapterId", CurrentChapterId));
     }
 
     void CaptureCompletedEpisodeSummary()
     {
-        lastCompletedEpisodeStatDeltas.Clear();
+        PrepareEpisodeSummaryForEndScreen();
+    }
 
-        foreach (var pair in currentEpisodeStatDeltas)
+    public void PrepareEpisodeSummaryForEndScreen()
+    {
+        var computed = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        // First source: the persisted chapter-start baseline. This survives save/load
+        // and also catches stat changes performed outside the normal story node handlers.
+        if (hasCurrentEpisodeStartSnapshot && GameState.Instance != null)
         {
-            string statId = SaveDataSanitizer.SanitizeStatKey(pair.Key);
-            if (!string.IsNullOrEmpty(statId) && pair.Value != 0)
-                lastCompletedEpisodeStatDeltas[statId] = SaveDataSanitizer.ClampStatValue(pair.Value);
+            var statIds = new HashSet<string>(currentEpisodeStartStats.Keys, StringComparer.OrdinalIgnoreCase);
+            if (GameState.Instance.stats != null)
+            {
+                foreach (KeyValuePair<string, int> pair in GameState.Instance.stats)
+                {
+                    string statId = SaveDataSanitizer.SanitizeStatKey(pair.Key);
+                    if (!string.IsNullOrEmpty(statId))
+                        statIds.Add(statId);
+                }
+            }
+
+            foreach (string statId in statIds)
+            {
+                currentEpisodeStartStats.TryGetValue(statId, out int startValue);
+                int currentValue = GameState.Instance.GetStat(statId);
+                int delta = SaveDataSanitizer.ClampStatValue(currentValue - startValue);
+                if (delta != 0)
+                    computed[statId] = delta;
+            }
         }
 
-        lastCompletedEpisodeCandleDelta = PlayerData.Candles - currentEpisodeStartCandles;
-        lastCompletedEpisodeHeartDelta = PlayerData.Hearts - currentEpisodeStartHearts;
+        // Second source: deltas recorded exactly when story nodes apply a stat change.
+        // It is deliberately merged even when a baseline exists. This protects the
+        // end screen from lifecycle/order bugs where the baseline was captured too late.
+        foreach (KeyValuePair<string, int> pair in currentEpisodeStatDeltas)
+        {
+            string statId = SaveDataSanitizer.SanitizeStatKey(pair.Key);
+            int trackedDelta = SaveDataSanitizer.ClampStatValue(pair.Value);
+            if (!string.IsNullOrEmpty(statId) && trackedDelta != 0)
+                computed[statId] = trackedDelta;
+        }
+
+        lastCompletedEpisodeStatDeltas.Clear();
+        foreach (KeyValuePair<string, int> pair in computed)
+        {
+            if (pair.Value != 0)
+                lastCompletedEpisodeStatDeltas[pair.Key] = pair.Value;
+        }
+
+        if (hasCurrentEpisodeStartSnapshot)
+        {
+            lastCompletedEpisodeCandleDelta = SaveDataSanitizer.ClampStatValue(PlayerData.Candles - currentEpisodeStartCandles);
+            lastCompletedEpisodeHeartDelta = SaveDataSanitizer.ClampStatValue(PlayerData.Hearts - currentEpisodeStartHearts);
+        }
+
+        int city = GetLastCompletedEpisodeStatDelta("city", "town", "gorod");
+        int fairytale = GetLastCompletedEpisodeStatDelta("fairytale", "story", "tale", "skazka");
+        int reputation = GetLastCompletedEpisodeStatDelta("reputation", "respect", "rep");
+
+        string plainLog =
+            $"[END_STATS][PREPARE] platform={Application.platform} storyId='{CurrentStoryId}' chapterId='{CurrentChapterId}' " +
+            $"baseline={hasCurrentEpisodeStartSnapshot} baselineStats={currentEpisodeStartStats.Count} " +
+            $"trackedStats={currentEpisodeStatDeltas.Count} resultStats={lastCompletedEpisodeStatDeltas.Count} " +
+            $"city={city} fairytale={fairytale} reputation={reputation} " +
+            $"hearts={lastCompletedEpisodeHeartDelta} candles={lastCompletedEpisodeCandleDelta}.";
+        Debug.Log(plainLog, this);
+
+        AppLogger.Info(
+            AppLogCategory.EndScreen,
+            nameof(StoryManager),
+            nameof(PrepareEpisodeSummaryForEndScreen),
+            plainLog,
+            LogMetadata.Of(
+                "storyId", CurrentStoryId,
+                "chapterId", CurrentChapterId,
+                "baseline", hasCurrentEpisodeStartSnapshot,
+                "baselineStats", currentEpisodeStartStats.Count,
+                "trackedStats", currentEpisodeStatDeltas.Count,
+                "resultStats", lastCompletedEpisodeStatDeltas.Count,
+                "city", city,
+                "fairytale", fairytale,
+                "reputation", reputation,
+                "hearts", lastCompletedEpisodeHeartDelta,
+                "candles", lastCompletedEpisodeCandleDelta));
     }
 
     void RecordEpisodeStatDelta(string statId, int appliedDelta)
@@ -97,6 +309,14 @@ public partial class StoryManager
 
         currentEpisodeStatDeltas.TryGetValue(statId, out int currentDelta);
         currentEpisodeStatDeltas[statId] = SaveDataSanitizer.ClampStatDelta(currentDelta, appliedDelta);
+
+        if (Debug.isDebugBuild || Application.isEditor)
+        {
+            Debug.Log(
+                $"[END_STATS][TRACK] storyId='{CurrentStoryId}' chapterId='{CurrentChapterId}' " +
+                $"stat='{statId}' applied={appliedDelta} chapterTracked={currentEpisodeStatDeltas[statId]}.",
+                this);
+        }
     }
 
     void SaveLastCompletedEpisodeSummary(string prefsPrefix)

@@ -1,0 +1,19 @@
+{
+    "name": "YandexMobileAds.Editor",
+    "references": [
+        "YandexMobileAds"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR_OSX"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

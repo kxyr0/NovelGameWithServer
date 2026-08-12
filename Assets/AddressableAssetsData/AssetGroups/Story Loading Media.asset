@@ -52,13 +52,6 @@ MonoBehaviour:
     - story-loading-media
     - story-revenge_sicilian_style
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 81a8b59b169590d4181bc8e5c234d4d6
-    m_Address: stories/veil_of_blood/loading/video/img_6976
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - story-loading-media
-    - story-veil_of_blood
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76e438e76a7f676498ead6662b689090, type: 2}
   m_SchemaSet:

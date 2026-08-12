@@ -23,6 +23,12 @@ public sealed partial class WardrobeHeroSetupPage
         if (target == null && option.Step != WardrobeHeroSetupStep.Accessories)
             target = _previewImage;
 
+        if (option.ClearsClothingSlot)
+        {
+            SetPreviewLayer(target, null);
+            return;
+        }
+
         if (option.Step == WardrobeHeroSetupStep.Appearance)
         {
             AppearanceVariant variant = GetAppearanceVariant(option.AppearanceType);

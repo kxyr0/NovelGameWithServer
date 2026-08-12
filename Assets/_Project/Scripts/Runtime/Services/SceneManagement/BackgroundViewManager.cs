@@ -53,10 +53,16 @@ public class BackgroundViewManager : MonoBehaviour
     VideoClip currentVideo;
     RenderTexture _activeRenderTexture;
     bool _videoPreparedHandlerRegistered;
+    bool _videoFrameReadyHandlerRegistered;
+    bool _videoErrorHandlerRegistered;
+    bool _directVideoDisplayReady;
     VideoPlayer _registeredVideoPlayer;
     VideoBackgroundPlayer _videoBackgroundPlayer;
     CanvasGroup _videoCanvasGroup;
     bool _standaloneVideoHandlersRegistered;
+    AnimatedGifPlayer _registeredGifPlayer;
+    bool _gifFirstFrameHandlerRegistered;
+    TextAsset _currentGifAsset;
     bool _cutsceneHorizontalFramingActive;
     bool _cutsceneMediaLayoutActive;
     Coroutine _backgroundTransitionRoutine;
@@ -125,14 +131,18 @@ public class BackgroundViewManager : MonoBehaviour
         StopVideo();
         StopGif();
 
-        currentBackground = null;
         currentVideo = null;
 
         if (backgroundImage == null)
             return;
 
-        RuntimeTextureFallback.ApplyImagePlaceholder(backgroundImage);
-        backgroundImage.color = Color.black;
+        // Keep the last valid static frame during a layout switch. Replacing it with
+        // a black placeholder here exposed a grey/black frame before the next asset
+        // reached the GPU, especially on mobile devices.
+        RuntimeTextureFallback.EnsureImageVisible(backgroundImage, currentBackground);
+        backgroundImage.color = Color.white;
+        backgroundImage.enabled = true;
+        backgroundImage.gameObject.SetActive(true);
         ApplyBackgroundLayout();
     }
 
@@ -398,7 +408,6 @@ public class BackgroundViewManager : MonoBehaviour
             ReleaseActiveRenderTexture();
             ApplyStandaloneVideoPlayerLayout(_videoBackgroundPlayer);
             _videoBackgroundPlayer.SetClip(clip);
-            SetVideoLayerVisible(true);
             _videoBackgroundPlayer.enabled = true;
             _videoBackgroundPlayer.Play(clip);
             return;
@@ -440,9 +449,9 @@ public class BackgroundViewManager : MonoBehaviour
                 return false;
 
             AlignRawImageWithBackground(videoRawImage);
-            SetVideoLayerVisible(true);
+            SetVideoLayerVisible(_videoBackgroundPlayer.IsDisplayReady);
 
-            if (backgroundImage != null)
+            if (_videoBackgroundPlayer.IsDisplayReady && backgroundImage != null)
                 backgroundImage.gameObject.SetActive(false);
 
             if (!_videoBackgroundPlayer.IsPlaying && !_videoBackgroundPlayer.IsPreparing)
@@ -453,22 +462,23 @@ public class BackgroundViewManager : MonoBehaviour
 
         if (videoPlayer.clip != clip ||
             videoPlayer.targetTexture == null ||
-            videoRawImage.texture == null ||
-            !videoPlayer.isPrepared)
+            videoRawImage.texture == null)
         {
             return false;
         }
 
         videoRawImage.color = Color.white;
         AlignRawImageWithBackground(videoRawImage);
-        SetVideoLayerVisible(true);
+        SetVideoLayerVisible(_directVideoDisplayReady);
 
         if (backgroundImage != null)
-            backgroundImage.gameObject.SetActive(false);
+            backgroundImage.gameObject.SetActive(!_directVideoDisplayReady);
 
-        if (!videoPlayer.isPlaying)
+        if (videoPlayer.isPrepared && !videoPlayer.isPlaying)
             videoPlayer.Play();
 
+        // The matching player is either preparing or already rendering. In both
+        // cases this request is handled and must not restart preparation.
         return true;
     }
 
@@ -479,21 +489,45 @@ public class BackgroundViewManager : MonoBehaviour
 
         try
         {
-            if (videoRawImage != null)
-            {
-                videoRawImage.color = Color.white;
-                AlignRawImageWithBackground(videoRawImage);
-                SetVideoLayerVisible(true);
-            }
-
-            if (backgroundImage != null)
-                backgroundImage.gameObject.SetActive(false);
-
             vp.Play();
         }
         catch (System.Exception exception)
         {
             Debug.LogWarning($"BackgroundViewManager: failed to play video: {exception.Message}", this);
+        }
+    }
+
+    void OnVideoFrameReady(VideoPlayer vp, long frameIndex)
+    {
+        if (vp == null || vp != videoPlayer || !isActiveAndEnabled || currentVideo == null)
+            return;
+
+        _directVideoDisplayReady = true;
+
+        if (videoRawImage != null)
+        {
+            videoRawImage.color = Color.white;
+            AlignRawImageWithBackground(videoRawImage);
+            SetVideoLayerVisible(true);
+        }
+
+        if (backgroundImage != null)
+            backgroundImage.gameObject.SetActive(false);
+    }
+
+    void OnDirectVideoError(VideoPlayer vp, string message)
+    {
+        if (vp == null || vp != videoPlayer)
+            return;
+
+        Debug.LogWarning($"BackgroundViewManager: video playback failed: {message}", this);
+        StopVideo();
+
+        if (backgroundImage != null && backgroundImage.sprite != null)
+        {
+            backgroundImage.color = Color.white;
+            backgroundImage.enabled = true;
+            backgroundImage.gameObject.SetActive(true);
         }
     }
 
@@ -531,6 +565,7 @@ public class BackgroundViewManager : MonoBehaviour
 
         ReleaseActiveRenderTexture();
         currentVideo = null;
+        _directVideoDisplayReady = false;
     }
 
     internal void FadeOutVideoAudioAndStop(float duration)
@@ -653,15 +688,18 @@ public class BackgroundViewManager : MonoBehaviour
         }
 
         StopVideo();
+        StopGif();
 
         if (backgroundImage != null)
         {
             ApplyBackgroundLayout();
-            backgroundImage.gameObject.SetActive(false);
+            RuntimeTextureFallback.EnsureImageVisible(backgroundImage, currentBackground);
+            backgroundImage.color = Color.white;
         }
 
         currentBackground = null;
         currentVideo = null;
+        _currentGifAsset = gifAsset;
 
         if (!EnsureGifPlayer())
         {
@@ -669,8 +707,13 @@ public class BackgroundViewManager : MonoBehaviour
             return;
         }
 
+        RegisterGifFirstFrameHandler(gifPlayer);
+        SetGifLayerVisible(false);
         gifPlayer.gameObject.SetActive(true);
         gifPlayer.Play(gifAsset);
+
+        if (gifPlayer.HasVisibleFrame)
+            OnGifFirstFrameReady();
     }
 
     public void StopGif()
@@ -679,6 +722,8 @@ public class BackgroundViewManager : MonoBehaviour
             return;
 
         gifPlayer.Stop();
+        _currentGifAsset = null;
+        SetGifLayerVisible(false);
         gifPlayer.gameObject.SetActive(false);
     }
 
@@ -688,6 +733,7 @@ public class BackgroundViewManager : MonoBehaviour
         StopGif();
         UnregisterStandaloneVideoHandlers();
         UnregisterVideoPreparedHandler();
+        UnregisterGifFirstFrameHandler();
 
         ReleaseActiveRenderTexture();
     }
@@ -885,8 +931,7 @@ public class BackgroundViewManager : MonoBehaviour
         if (_videoBackgroundPlayer == null || _standaloneVideoHandlersRegistered)
             return;
 
-        _videoBackgroundPlayer.Prepared += OnStandaloneVideoReady;
-        _videoBackgroundPlayer.Started += OnStandaloneVideoReady;
+        _videoBackgroundPlayer.DisplayReady += OnStandaloneVideoReady;
         _videoBackgroundPlayer.Failed += OnStandaloneVideoFailed;
         _standaloneVideoHandlersRegistered = true;
     }
@@ -896,8 +941,7 @@ public class BackgroundViewManager : MonoBehaviour
         if (_videoBackgroundPlayer == null || !_standaloneVideoHandlersRegistered)
             return;
 
-        _videoBackgroundPlayer.Prepared -= OnStandaloneVideoReady;
-        _videoBackgroundPlayer.Started -= OnStandaloneVideoReady;
+        _videoBackgroundPlayer.DisplayReady -= OnStandaloneVideoReady;
         _videoBackgroundPlayer.Failed -= OnStandaloneVideoFailed;
         _standaloneVideoHandlersRegistered = false;
     }
@@ -914,6 +958,53 @@ public class BackgroundViewManager : MonoBehaviour
 
         if (backgroundImage != null)
             backgroundImage.gameObject.SetActive(false);
+    }
+
+    void RegisterGifFirstFrameHandler(AnimatedGifPlayer player)
+    {
+        if (_registeredGifPlayer == player && _gifFirstFrameHandlerRegistered)
+            return;
+
+        UnregisterGifFirstFrameHandler();
+        _registeredGifPlayer = player;
+        if (_registeredGifPlayer == null)
+            return;
+
+        _registeredGifPlayer.FirstFrameReady += OnGifFirstFrameReady;
+        _gifFirstFrameHandlerRegistered = true;
+    }
+
+    void UnregisterGifFirstFrameHandler()
+    {
+        if (_gifFirstFrameHandlerRegistered && _registeredGifPlayer != null)
+            _registeredGifPlayer.FirstFrameReady -= OnGifFirstFrameReady;
+
+        _registeredGifPlayer = null;
+        _gifFirstFrameHandlerRegistered = false;
+    }
+
+    void OnGifFirstFrameReady()
+    {
+        if (_currentGifAsset == null || gifPlayer == null || !gifPlayer.HasVisibleFrame)
+            return;
+
+        SetGifLayerVisible(true);
+        if (backgroundImage != null)
+            backgroundImage.gameObject.SetActive(false);
+    }
+
+    void SetGifLayerVisible(bool visible)
+    {
+        if (gifPlayer == null)
+            return;
+
+        CanvasGroup canvasGroup = gifPlayer.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gifPlayer.gameObject.AddComponent<CanvasGroup>();
+
+        canvasGroup.alpha = visible ? 1f : 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     void OnStandaloneVideoFailed(string message)
@@ -1106,7 +1197,14 @@ public class BackgroundViewManager : MonoBehaviour
     VideoBackgroundFitMode ResolveVideoBackgroundFitMode()
     {
         if (_cutsceneMediaLayoutActive)
-            return VideoBackgroundFitMode.FitInsideParent;
+        {
+            // A cutscene is a full-screen background. FitInsideParent keeps the whole
+            // frame visible, but produces letterboxing/pillarboxing whenever the
+            // video's aspect ratio differs from the device viewport (especially on
+            // portrait phones). FillParent preserves the source aspect ratio and
+            // crops only the overflow, so the viewport is always completely covered.
+            return VideoBackgroundFitMode.FillParent;
+        }
 
         return coverVideoBackground16By9
             ? VideoBackgroundFitMode.Cover16By9
@@ -1263,6 +1361,8 @@ public class BackgroundViewManager : MonoBehaviour
             UnregisterVideoPreparedHandler();
 
         videoPlayer.playOnAwake = false;
+        videoPlayer.waitForFirstFrame = true;
+        videoPlayer.sendFrameReadyEvents = true;
         videoPlayer.isLooping = true;
         videoPlayer.renderMode = VideoRenderMode.RenderTexture;
         videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
@@ -1271,17 +1371,27 @@ public class BackgroundViewManager : MonoBehaviour
             return;
 
         videoPlayer.prepareCompleted += OnVideoPrepared;
+        videoPlayer.frameReady += OnVideoFrameReady;
+        videoPlayer.errorReceived += OnDirectVideoError;
         _registeredVideoPlayer = videoPlayer;
         _videoPreparedHandlerRegistered = true;
+        _videoFrameReadyHandlerRegistered = true;
+        _videoErrorHandlerRegistered = true;
     }
 
     void UnregisterVideoPreparedHandler()
     {
         if (_videoPreparedHandlerRegistered && _registeredVideoPlayer != null)
             _registeredVideoPlayer.prepareCompleted -= OnVideoPrepared;
+        if (_videoFrameReadyHandlerRegistered && _registeredVideoPlayer != null)
+            _registeredVideoPlayer.frameReady -= OnVideoFrameReady;
+        if (_videoErrorHandlerRegistered && _registeredVideoPlayer != null)
+            _registeredVideoPlayer.errorReceived -= OnDirectVideoError;
 
         _registeredVideoPlayer = null;
         _videoPreparedHandlerRegistered = false;
+        _videoFrameReadyHandlerRegistered = false;
+        _videoErrorHandlerRegistered = false;
     }
 
     void ReleaseActiveRenderTexture()

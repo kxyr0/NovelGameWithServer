@@ -567,8 +567,34 @@ public sealed class FirstLaunchInfoFlowController : MonoBehaviour
         if (_config != null && _config.RememberAcceptance)
             LocalSecurePrefs.SetBool(_config.AcceptanceKey, _config.AcceptancePurpose, true);
 
+        if (ShouldRequestMobilePermissionsAfterAccept())
+            MobileDevicePermissionService.RequestAfterPrivacyConsent(this);
+
         InvokeSafe(_accepted, nameof(_accepted));
         Hide();
+    }
+
+    private bool ShouldRequestMobilePermissionsAfterAccept()
+    {
+        if (_config == null)
+            return false;
+
+        if (IsLegalPermissionPageId(_config.FlowId))
+            return true;
+
+        for (int i = 0; i < _runtimePages.Count; i++)
+            if (_runtimePages[i] != null && IsLegalPermissionPageId(_runtimePages[i].PageId))
+                return true;
+
+        return false;
+    }
+
+    private static bool IsLegalPermissionPageId(string id)
+    {
+        return string.Equals(id, "terms", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(id, "privacy", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(id, "legal", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(id, "consent", StringComparison.OrdinalIgnoreCase);
     }
 
     private void RenderCurrentPage()

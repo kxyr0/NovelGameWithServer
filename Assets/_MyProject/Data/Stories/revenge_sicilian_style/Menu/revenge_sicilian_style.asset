@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd3d2465919a9048bf3e223921155ed, type: 3}
   m_Name: revenge_sicilian_style
   m_EditorClassIdentifier: 
-  _gameIcon: {fileID: 21300000, guid: 7a2bc58fa48d49e48865689f58ae89c0, type: 3}
+  _gameIcon: {fileID: 21300000, guid: e793652f2d475a341bb071ebf08476d5, type: 3}
   _gameIconVideo: {fileID: 0}
   _gameIconGif: {fileID: 0}
   _menuCardOverrides:
@@ -63,17 +63,29 @@ MonoBehaviour:
     _videoFallback: {fileID: 0}
     _gifFallback: {fileID: 0}
   _wardrobeSetup:
-    _overrideWardrobeAssets: 0
-    _targetCharacter: {fileID: 0}
+    _overrideWardrobeAssets: 1
+    _targetCharacter: {fileID: 11400000, guid: eed10ce864a9890488ad8bfa0c24e544, type: 2}
     _targetCharacterId: hero
     _appearanceOptions: []
-    _outfitItems: []
-    _hairItems: []
+    _outfitItems:
+    - {fileID: 11400000, guid: 0cdd632f78bf0f34e97786c445c4c81d, type: 2}
+    - {fileID: 11400000, guid: 03a05543b3e9d884e9ba07f51fedaa0f, type: 2}
+    - {fileID: 11400000, guid: b1960605915404d40a193518f29dabdc, type: 2}
+    - {fileID: 11400000, guid: 91aca11c706b56f41bedc22d8445bab3, type: 2}
+    - {fileID: 11400000, guid: 499a05ba59e724c46861194baba6817d, type: 2}
+    - {fileID: 11400000, guid: 58ae5d2739bd8894caa4f516db9c176c, type: 2}
+    _hairItems:
+    - {fileID: 11400000, guid: 934d0cdc3fc824a49807a63ff59c784e, type: 2}
+    - {fileID: 11400000, guid: 7641b943a9dcacc41855f08bccabdb85, type: 2}
+    - {fileID: 11400000, guid: 35b7d196a2f362d4aac68da739d315e2, type: 2}
+    - {fileID: 11400000, guid: 95434c9f1bbf15344a6bc646344be0a6, type: 2}
+    - {fileID: 11400000, guid: 7d04f63b9b09f7a429d368bdb07622d6, type: 2}
+    - {fileID: 11400000, guid: 7de5756c2a17ab84f8a5deaf51dfe3a3, type: 2}
     _accessoryItems: []
-    _defaultOutfitItem: {fileID: 0}
-    _defaultHairItem: {fileID: 0}
+    _defaultOutfitItem: {fileID: 11400000, guid: 0cdd632f78bf0f34e97786c445c4c81d, type: 2}
+    _defaultHairItem: {fileID: 11400000, guid: 934d0cdc3fc824a49807a63ff59c784e, type: 2}
     _defaultAccessoryItem: {fileID: 0}
-  _gameName: "\u041C\u0435\u0441\u0442\u0438 \u043F\u043E-\u0441\u0438\u0446\u0438\u043B\u0438\u0439\u0441\u043A\u0438"
+  _gameName: "\u041C\u0435\u0441\u0442\u044C \u043F\u043E-\u0441\u0438\u0446\u0438\u043B\u0438\u0439\u0441\u043A\u0438"
   _genreText: "\u0414\u0440\u0430\u043C\u0430"
   _description: "\u0427\u0442\u043E\u0431\u044B \u043E\u0442\u043E\u043C\u0441\u0442\u0438\u0442\u044C
     \u0437\u0430 \u043E\u0442\u0446\u0430, \u0441\u0438\u0446\u0438\u043B\u0438\u0439\u0441\u043A\u0430\u044F
@@ -85,10 +97,22 @@ MonoBehaviour:
     \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C \u043C\u0430\u0444\u0438\u044E
     \u0438\u043B\u0438 \u0435\u0451 \u0432\u043E\u0437\u0433\u043B\u0430\u0432\u0438\u0442\u044C."
   _currentEpisodeNumber: 1
-  _episodeCount: 0
+  _episodeCount: 3
   _episodeLabelFormat: "\u0421\u0435\u0440\u0438\u044F {0}/{1}"
   _forceComingSoon: 1
   _startButtonText: "\u041D\u0430\u0447\u0430\u0442\u044C"
   _comingSoonButtonText: "\u0421\u043A\u043E\u0440\u043E"
-  _storyStats: []
-  _story: {fileID: 0}
+  _storyStats:
+  - _label: "\u041E\u0441\u0442\u0440\u043E\u0443\u043C\u0438\u0435"
+    _statId: "\u041E\u0441\u0442\u0440\u043E\u0443\u043C\u0438\u0435"
+    _value: 0
+    _icon: {fileID: 0}
+  - _label: "\u0420\u0435\u0448\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C"
+    _statId: "\u0420\u0435\u0448\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C"
+    _value: 0
+    _icon: {fileID: 0}
+  - _label: "\u0421\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0435"
+    _statId: "\u0421\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u0435"
+    _value: 0
+    _icon: {fileID: 0}
+  _story: {fileID: 11400000, guid: ed0bab9a46d24c9a99b19437273ea2ca, type: 2}

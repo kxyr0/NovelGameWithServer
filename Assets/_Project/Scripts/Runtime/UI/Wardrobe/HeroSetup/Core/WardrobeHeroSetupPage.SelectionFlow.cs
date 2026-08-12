@@ -165,6 +165,10 @@ public sealed partial class WardrobeHeroSetupPage
 
         GetActiveStoryContext(out string storyId, out string chapterId);
         ClothingItem item = option != null ? option.Clothing : null;
+        bool clearsSlot = option != null && option.ClearsClothingSlot;
+        string itemType = item != null
+            ? item.type.ToString()
+            : clearsSlot ? option.ClearClothingType.ToString() : "";
         int premiumCost = option != null ? SaveDataSanitizer.ClampCurrencyValue(option.PremiumCost) : 0;
         int visibleCost = option != null ? GetVisiblePremiumCost(option) : 0;
 
@@ -179,7 +183,8 @@ public sealed partial class WardrobeHeroSetupPage
             "sourceIndex", option != null ? option.SourceIndex : -1,
             "label", option != null ? option.Label : "",
             "itemId", item != null ? item.id : "",
-            "itemType", item != null ? item.type.ToString() : "",
+            "itemType", itemType,
+            "clearsSlot", clearsSlot,
             "premiumCost", premiumCost,
             "visibleCost", visibleCost,
             "owned", item != null && IsOwnedClothing(item),
@@ -219,6 +224,18 @@ public sealed partial class WardrobeHeroSetupPage
         {
             if (!_activeStoryWardrobeNode.IsOptionVisible(i))
                 continue;
+
+            if (_activeStoryWardrobeNode.TryGetClearSlotType(i, out ClothingType clearType))
+            {
+                RuntimeOption clearOption = CreateClearClothingOption(
+                    _activeStoryWardrobeNode.GetOptionLabel(i, "Ничего"),
+                    i,
+                    clearType);
+
+                LogStoryWardrobeSelection(eventName, clearOption, false);
+                _storyChoiceCallback.Invoke(i);
+                return true;
+            }
 
             ClothingItem item = _activeStoryWardrobeNode.availableClothes[i];
             if (item == null || !IsClothingAllowedForTarget(item))

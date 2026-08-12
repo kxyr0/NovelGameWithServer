@@ -12,7 +12,7 @@ using VContainer;
 using UnityEditor;
 #endif
 
-public class MenuController : MonoBehaviour
+public partial class MenuController : MonoBehaviour
 {
     private static readonly IReadOnlyList<GameData> EmptyGames = System.Array.Empty<GameData>();
 
@@ -284,6 +284,7 @@ public class MenuController : MonoBehaviour
             _exitButton.onClick.AddListener(QuitGame);
 
         BindStoryCarouselButtons();
+        SetupStoryCarouselSwipe();
 
         if (_settingsPanel != null)
             _settingsPanel.SetActive(false);
@@ -291,6 +292,7 @@ public class MenuController : MonoBehaviour
         FadeMenuIn(0.5f);
         _mainMenuMusicPlayer?.PlayMusic();
         BuildGameList();
+        StoryCatalogRuntimeDiagnostics.LogCatalog(_gameCatalog, "menu_start", this);
 
         if (NetworkManager.Instance != null)
             _refreshCatalogRoutine = StartCoroutine(RefreshCatalogAndRebuild());
@@ -312,6 +314,7 @@ public class MenuController : MonoBehaviour
             _exitButton.onClick.RemoveListener(QuitGame);
 
         UnbindStoryCarouselButtons();
+        ReleaseStoryCarouselSwipe();
 
         if (_refreshCatalogRoutine != null)
             StopCoroutine(_refreshCatalogRoutine);
@@ -677,6 +680,9 @@ public class MenuController : MonoBehaviour
         if (data == null)
             return;
 
+        if (TrySelectCarouselCard(data))
+            return;
+
         if (_openHistoryScreenOnStoryClick)
         {
             OpenHistoryScreenFor(data);
@@ -961,8 +967,12 @@ public class MenuController : MonoBehaviour
 
         if (!data.CanStartStory)
         {
+            string unavailableReason = StoryCatalogRuntimeDiagnostics.DescribeAvailability(data);
             ToastManager.Instance?.ShowSystemMessage(data.ComingSoonButtonText);
-            Debug.LogWarning($"[MenuController] GameData '{data.name}' is coming soon or has no playable chapters.", data);
+            Debug.LogWarning(
+                $"[MenuController][STORY_BLOCKED] GameData '{data.name}' cannot start. reason='{unavailableReason}' " +
+                $"story='{(data.Story != null ? data.Story.name : "<null>")}' platform={Application.platform}.",
+                data);
             return;
         }
 
@@ -1091,6 +1101,7 @@ public class MenuController : MonoBehaviour
             "canStart", data != null && data.CanStartStory,
             "forceComingSoon", data != null && data.ForceComingSoon,
             "hasPlayableStory", data != null && data.HasPlayableStory,
+            "availabilityReason", StoryCatalogRuntimeDiagnostics.DescribeAvailability(data),
             "episodeText", data != null ? data.EpisodeProgressText : "",
             "selectedIndex", _selectedGameIndex,
             "launchState", _storyLaunchState.ToString(),
@@ -1403,7 +1414,10 @@ public class MenuController : MonoBehaviour
         yield return RunRoutineSafely(network.SyncCatalog(ok => synced = ok), "catalog sync");
 
         if (synced)
+        {
             BuildGameList();
+            StoryCatalogRuntimeDiagnostics.LogCatalog(_gameCatalog, "after_catalog_sync", this);
+        }
 
         _refreshCatalogRoutine = null;
     }
@@ -1455,8 +1469,8 @@ public class MenuController : MonoBehaviour
         if (_blackScreen != null && _storyBlackScreenTransition != null)
             _storyBlackScreenTransition.AssignBlackScreen(_blackScreen);
 
-        if (_navigationRoot == null)
-            _navigationRoot = FindSceneObjectByName("Navigation");
+        if (_navigationRoot == null || IsWardrobeInternalNavigation(_navigationRoot))
+            _navigationRoot = FindMenuNavigationRoot();
     }
 
     private void ApplyMenuScreenTransitionProfile()
@@ -1789,7 +1803,7 @@ public class MenuController : MonoBehaviour
     private void HideMenuUiForStory()
     {
         _settingsFadeTween?.Kill();
-        HideObjectForStory(_navigationRoot);
+        HideNavigationForStory();
         HideObjectForStory(_settingsPanel);
         HideObjectForStory(_bugReportPanel != null ? _bugReportPanel.panel : null);
 
@@ -1821,6 +1835,67 @@ public class MenuController : MonoBehaviour
 
         if (target.activeSelf)
             target.SetActive(false);
+    }
+
+    private void HideNavigationForStory()
+    {
+        if (_navigationRoot == null || IsWardrobeInternalNavigation(_navigationRoot))
+            return;
+
+        // UIScreenNavigationVisibility already owns the global navigation visibility
+        // from UIScreenState. Do not run a second SetActive-based visibility system
+        // on the same object or it will fight screen navigation.
+        if (_navigationRoot.GetComponent<UIScreenNavigationVisibility>() != null)
+            return;
+
+        HideObjectForStory(_navigationRoot);
+    }
+
+    private GameObject FindMenuNavigationRoot()
+    {
+        UIScreenNavigationVisibility[] visibilityRules = FindObjectsOfType<UIScreenNavigationVisibility>(true);
+        for (int i = 0; i < visibilityRules.Length; i++)
+        {
+            UIScreenNavigationVisibility visibility = visibilityRules[i];
+            GameObject candidate = visibility != null ? visibility.gameObject : null;
+            if (candidate != null && !IsWardrobeInternalNavigation(candidate))
+                return candidate;
+        }
+
+        Scene scene = gameObject.scene;
+        if (!scene.IsValid())
+            return null;
+
+        GameObject[] roots = scene.GetRootGameObjects();
+        foreach (GameObject root in roots)
+        {
+            if (root == null)
+                continue;
+
+            Transform[] transforms = root.GetComponentsInChildren<Transform>(true);
+            foreach (Transform item in transforms)
+            {
+                if (item == null || item.name != "Navigation")
+                    continue;
+
+                GameObject candidate = item.gameObject;
+                if (!IsWardrobeInternalNavigation(candidate))
+                    return candidate;
+            }
+        }
+
+        return null;
+    }
+
+    private static bool IsWardrobeInternalNavigation(GameObject target)
+    {
+        if (target == null)
+            return false;
+
+        if (target.GetComponent<WardrobeCategoryTabs>() != null)
+            return true;
+
+        return target.GetComponentInParent<WardrobeHeroSetupPage>(true) != null;
     }
 
     private GameObject FindSceneObjectByName(string objectName)

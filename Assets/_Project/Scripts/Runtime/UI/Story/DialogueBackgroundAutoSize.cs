@@ -114,7 +114,7 @@ public sealed class DialogueBackgroundAutoSize : MonoBehaviour
         float backgroundTopY = _growDownFromTop ? GetTopY(_background) : 0f;
         float textTopY = _growDownFromTop ? GetTopY(textRect) : 0f;
 
-        if (_forceTextTopAlignment)
+        if (_forceTextTopAlignment && _dialogueText.verticalAlignment != VerticalAlignmentOptions.Top)
             _dialogueText.verticalAlignment = VerticalAlignmentOptions.Top;
 
         if (_growDownFromTop && _forceBackgroundTopPivot)
@@ -132,16 +132,18 @@ public sealed class DialogueBackgroundAutoSize : MonoBehaviour
 
         float targetHeight = ClampSize(preferredTextSize.y + _padding.y, _minHeight, _maxHeight);
 
-        if (_resizeWidth)
+        if (_resizeWidth && !Mathf.Approximately(_background.rect.width, targetWidth))
             _background.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, targetWidth);
 
-        _background.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
+        if (!Mathf.Approximately(_background.rect.height, targetHeight))
+            _background.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
         if (_growDownFromTop)
             SetTopY(_background, backgroundTopY);
 
         if (_resizeTextHeight)
         {
-            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, preferredTextSize.y);
+            if (!Mathf.Approximately(textRect.rect.height, preferredTextSize.y))
+                textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, preferredTextSize.y);
             if (_growDownFromTop)
                 SetTopY(textRect, textTopY);
         }
@@ -273,13 +275,15 @@ public sealed class DialogueBackgroundAutoSize : MonoBehaviour
 
         if (_resizeWidth)
         {
-            _layoutElement.preferredWidth = targetWidth;
-            if (_minWidth > 0f)
+            if (!Mathf.Approximately(_layoutElement.preferredWidth, targetWidth))
+                _layoutElement.preferredWidth = targetWidth;
+            if (_minWidth > 0f && !Mathf.Approximately(_layoutElement.minWidth, _minWidth))
                 _layoutElement.minWidth = _minWidth;
         }
 
-        _layoutElement.preferredHeight = targetHeight;
-        if (_minHeight > 0f)
+        if (!Mathf.Approximately(_layoutElement.preferredHeight, targetHeight))
+            _layoutElement.preferredHeight = targetHeight;
+        if (_minHeight > 0f && !Mathf.Approximately(_layoutElement.minHeight, _minHeight))
             _layoutElement.minHeight = _minHeight;
     }
 

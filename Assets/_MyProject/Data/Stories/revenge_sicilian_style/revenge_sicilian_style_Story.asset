@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70503cdb0ad10f4fb1ed8ee2a1973c6, type: 3}
+  m_Name: revenge_sicilian_style_Story
+  m_EditorClassIdentifier: 
+  _storyId: revenge_sicilian_style
+  _storyName: "\u041C\u0435\u0441\u0442\u044C \u043F\u043E-\u0441\u0438\u0446\u0438\u043B\u0438\u0439\u0441\u043A\u0438"
+  _chapters:
+  - {fileID: 11400000, guid: 901aa5c2b889424db7289e5463aec353, type: 2}
+  - {fileID: 11400000, guid: 0414185e4eb34eb49354ba3aeeccd84c, type: 2}
+  - {fileID: 11400000, guid: 0b6b91d6933d4282b2f6843c92d3c2bd, type: 2}
+  _storyUiStyle: {fileID: 0}
+  _dialogueBackgroundSprite: {fileID: 0}
+  _useSeparateCutsceneStoryUiStyle: 0
+  _cutsceneStoryUiStyle: {fileID: 0}
+  _cutsceneDialogueBackgroundSprite: {fileID: 0}
+  _preStorySetupLaunchMode: 0
+  _seasons: []

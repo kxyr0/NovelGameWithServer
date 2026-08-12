@@ -228,7 +228,16 @@ public class StoryScreenNavigator : MonoBehaviour
     public void PrepareInitialState()
     {
         EnsureReferences();
-        OpenScreenImmediate(_initialScreenId);
+        string initialScreenId = AccountLoginState.ResolveInitialScreen(_initialScreenId);
+        if (!_screenGroups.ContainsKey(initialScreenId))
+        {
+            Debug.LogWarning(
+                $"StoryScreenNavigator: startup screen '{initialScreenId}' is not assigned; " +
+                $"using '{_initialScreenId}'.",
+                this);
+            initialScreenId = _initialScreenId;
+        }
+        OpenScreenImmediate(initialScreenId);
     }
 
     public bool OpenScreen(string screenId)

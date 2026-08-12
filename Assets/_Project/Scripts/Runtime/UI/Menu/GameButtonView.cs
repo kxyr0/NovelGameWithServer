@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class GameButtonView : MonoBehaviour
+public partial class GameButtonView : MonoBehaviour
 {
     [Header("Ссылки")]
     [SerializeField]
@@ -107,6 +107,8 @@ public class GameButtonView : MonoBehaviour
     void OnEnable()
     {
         BindClickHandler();
+        BindProgressRefreshEvents();
+        RefreshStoryProgress();
     }
 
     void Start()
@@ -116,11 +118,14 @@ public class GameButtonView : MonoBehaviour
 
     void OnDisable()
     {
+        UnbindProgressRefreshEvents();
         StopAnimatedCover();
     }
 
     void OnDestroy()
     {
+        UnbindProgressRefreshEvents();
+
         if (button != null)
             button.onClick.RemoveListener(HandleClick);
 
@@ -142,6 +147,7 @@ public class GameButtonView : MonoBehaviour
         ApplyCover(data);
         ApplyMenuCardOverrides(data);
         ApplyTexts(data);
+        RefreshStoryProgress();
 
         bool locked = IsFirstChapterLocked(data);
         if (lockOverlay != null)
@@ -152,6 +158,8 @@ public class GameButtonView : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
+        RefreshStoryProgress();
+
         if (_isSelected == selected)
             return;
 
@@ -187,6 +195,8 @@ public class GameButtonView : MonoBehaviour
 
         if (coverVideoPlayer == null && coverVideoRawImage != null)
             coverVideoPlayer = coverVideoRawImage.GetComponent<VideoPlayer>();
+
+        AutoWireProgressReferences();
     }
 
     VideoPlayer FindChildVideoPlayer()

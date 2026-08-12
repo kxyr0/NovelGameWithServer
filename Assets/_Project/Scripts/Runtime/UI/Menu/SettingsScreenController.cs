@@ -119,15 +119,8 @@ public sealed class SettingsScreenController : MonoBehaviour
         NotificationsDisabledKey,
         LegacyNotificationsEnabledKey,
         false);
-    public static bool SoundsDisabled => SafeGetBool(
-        SoundsDisabledKey,
-        SafeGetInt(MusicMuteKey, 0) == 1 ||
-        SafeGetInt(SfxMuteKey, 0) == 1 ||
-        SafeGetDisabledPreference(SoundsDisabledKey, LegacySoundsEnabledKey, false));
-    public static bool VibrationDisabled => SafeGetDisabledPreference(
-        VibrationDisabledKey,
-        LegacyVibrationEnabledKey,
-        false);
+    public static bool SoundsDisabled => !AppSettingsState.IsEnabled(AppSettingType.SoundEffects);
+    public static bool VibrationDisabled => !AppSettingsState.IsEnabled(AppSettingType.Vibration);
     public static bool NotificationsEnabled => !NotificationsDisabled;
     public static bool SoundsEnabled => !SoundsDisabled;
     public static bool VibrationEnabled => !VibrationDisabled;
@@ -184,11 +177,7 @@ public sealed class SettingsScreenController : MonoBehaviour
 
     public void SetSoundsOff(bool off)
     {
-        SafeSetBool(SoundsDisabledKey, off);
-        SafeSetBool(LegacySoundsEnabledKey, !off);
-        SafeSetInt(MusicMuteKey, off ? 1 : 0);
-        SafeSetInt(SfxMuteKey, off ? 1 : 0);
-        ApplySoundDisabled(off);
+        AppSettingsState.SetEnabled(AppSettingType.SoundEffects, !off);
         SetToggleWithoutNotify(_soundsToggle, off);
     }
 
@@ -204,8 +193,7 @@ public sealed class SettingsScreenController : MonoBehaviour
 
     public void SetVibrationOff(bool off)
     {
-        SafeSetBool(VibrationDisabledKey, off);
-        SafeSetBool(LegacyVibrationEnabledKey, !off);
+        AppSettingsState.SetEnabled(AppSettingType.Vibration, !off);
         SetToggleWithoutNotify(_vibrationToggle, off);
     }
 
@@ -337,27 +325,15 @@ public sealed class SettingsScreenController : MonoBehaviour
 
     private void ApplySoundDisabled(bool disabled)
     {
-        if (_mainMenuMusicPlayer != null)
-            _mainMenuMusicPlayer.ApplyVolume(SafeGetFloat(MusicVolumeKey, 1f), disabled);
-
-        if (_storyManager != null)
-        {
-            if (_storyManager.musicSource != null)
-                _storyManager.musicSource.mute = disabled;
-
-            if (_storyManager.sfxSource != null)
-                _storyManager.sfxSource.mute = disabled;
-        }
-
-        if (_controlAudioListenerVolume)
-            AudioListener.volume = disabled ? 0f : 1f;
+        if (_storyManager != null && _storyManager.sfxSource != null)
+            _storyManager.sfxSource.mute = disabled;
 
         if (_audioSourcesToMute != null)
         {
             for (int i = 0; i < _audioSourcesToMute.Length; i++)
             {
                 AudioSource source = _audioSourcesToMute[i];
-                if (source != null)
+                if (source != null && (_storyManager == null || source != _storyManager.musicSource))
                     source.mute = disabled;
             }
         }

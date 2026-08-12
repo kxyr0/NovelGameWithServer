@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd3d2465919a9048bf3e223921155ed, type: 3}
   m_Name: veil_of_blood
   m_EditorClassIdentifier: 
-  _gameIcon: {fileID: 0}
-  _gameIconVideo: {fileID: 32900000, guid: 81a8b59b169590d4181bc8e5c234d4d6, type: 3}
+  _gameIcon: {fileID: 21300000, guid: 27231e37bd201704990349a142242510, type: 3}
+  _gameIconVideo: {fileID: 0}
   _gameIconGif: {fileID: 0}
   _menuCardOverrides:
     _overrideRootPositionOffset: 0

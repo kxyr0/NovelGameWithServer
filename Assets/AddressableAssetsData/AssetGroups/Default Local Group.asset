@@ -22,6 +22,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ca68512dc9314940a8455a99b54ada9
+    m_Address: "Assets/_MyProject/Art/_NewDesign_08_03_2026/NewFonsForStories/\u0417\u043E\u0440\u043A\u043E
+      \u043B\u0438\u0448\u044C \u0441\u0435\u0440\u0434\u0446\u0435.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64fb5da0018766f4b89a3b02541e37f2
+    m_Address: "Assets/_MyProject/Art/_NewDesign_08_03_2026/NewFonsForStories/\u041F\u0440\u0438\u0432\u044B\u0447\u043A\u0430
+      \u043F\u0440\u0438\u0442\u0432\u043E\u0440\u044F\u0442\u044C\u0441\u044F.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 76e438e76a7f676498ead6662b689090, type: 2}
   m_SchemaSet:

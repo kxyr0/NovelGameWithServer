@@ -34,7 +34,7 @@ public partial class StoryManager
 
         RegionAccessGate.EnsureIpLookupStarted();
 
-        if (ChoiceRegionFilter.CountVisibleOptions(node) == 0)
+        if (ChoiceOptionVisibility.CountVisibleOptions(node) == 0)
         {
             if (ChoiceRegionFilter.HasRegionSensitiveOptions(node) && RegionAccessGate.IsIpRegionLookupPending())
             {
@@ -46,6 +46,8 @@ public partial class StoryManager
             GoNext(node, "exit");
             return;
         }
+
+        CaptureSubscriptionChoiceCheckpoint(node);
 
         if (!dialogueUI.ShowChoice(node))
         {
@@ -181,6 +183,7 @@ public partial class StoryManager
         if (node == null || index < 0)
             return;
 
+        ConfirmSubscriptionChoice(node, index);
         RecordChoiceHistory(node, index);
 
         var port = node.GetOutputPort("choices " + index);

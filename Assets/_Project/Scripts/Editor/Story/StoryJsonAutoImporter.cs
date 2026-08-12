@@ -50,6 +50,42 @@ public sealed class StoryJsonAutoImporter : AssetPostprocessor
         LogImportResult(imported, message);
     }
 
+    public static int RepairGeneratedGraphHideFlags()
+    {
+        int repairedAssets = 0;
+        string[] graphGuids = AssetDatabase.FindAssets("t:StoryGraph");
+
+        foreach (string guid in graphGuids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            if (string.IsNullOrWhiteSpace(path) ||
+                path.IndexOf("/StoryJsonGenerated/", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                continue;
+            }
+
+            foreach (UnityEngine.Object asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (asset == null || (asset.hideFlags & HideFlags.DontSave) == 0)
+                    continue;
+
+                asset.hideFlags &= ~HideFlags.DontSave;
+                EditorUtility.SetDirty(asset);
+                repairedAssets++;
+            }
+        }
+
+        if (repairedAssets > 0)
+        {
+            AssetDatabase.SaveAssets();
+            Debug.Log(
+                LogPrefix + " Repaired DontSave flags on " + repairedAssets +
+                " persisted StoryJsonGenerated asset(s).");
+        }
+
+        return repairedAssets;
+    }
+
     private static void ProcessPendingJson()
     {
         _delayScheduled = false;
@@ -127,14 +163,22 @@ public sealed class StoryJsonAutoImporter : AssetPostprocessor
             "json='" + jsonPath + "', storyId='" + storyId + "', chapterId='" + chapterId + "', episodeId='" + episodeId + "'.");
 
         var assetLibrary = FindNearestAssetLibrary(jsonPath);
-        StoryJsonAssetResolver resolver = assetLibrary != null
-            ? new StoryJsonAssetLibraryResolver(assetLibrary, new StoryJsonEditorAssetResolver())
-            : new StoryJsonEditorAssetResolver();
-
-        if (assetLibrary != null)
-            Debug.Log(LogPrefix + " Using asset library: " + AssetDatabase.GetAssetPath(assetLibrary));
-        else
+        StoryJsonAssetResolver resolver;
+        if (assetLibrary == null)
+        {
+            resolver = new StoryJsonEditorAssetResolver();
             Debug.Log(LogPrefix + " No nearby StoryJsonAssetLibrary found for '" + jsonPath + "'. Editor fallback resolver will be used.");
+        }
+        else if (assetLibrary.AllowEditorFallback)
+        {
+            resolver = new StoryJsonAssetLibraryResolver(assetLibrary, new StoryJsonEditorAssetResolver());
+            Debug.Log(LogPrefix + " Using asset library with editor fallback: " + AssetDatabase.GetAssetPath(assetLibrary));
+        }
+        else
+        {
+            resolver = new StoryJsonStrictAssetLibraryResolver(assetLibrary);
+            Debug.Log(LogPrefix + " Using STRICT asset library (no project-wide fallback): " + AssetDatabase.GetAssetPath(assetLibrary));
+        }
 
         if (!StoryJsonConverter.TryBuildGraphWithReport(
                 jsonAsset.text,
@@ -175,6 +219,10 @@ public sealed class StoryJsonAutoImporter : AssetPostprocessor
             }
         }
 
+        // TryBuildGraph creates a transient runtime graph with DontSave. A persisted
+        // generated graph must not retain that flag or Unity refuses to serialize it
+        // into a player build.
+        graph.hideFlags = HideFlags.None;
         AssetDatabase.CreateAsset(graph, graphPath);
         if (AssetDatabase.LoadAssetAtPath<StoryGraph>(graphPath) == null)
         {

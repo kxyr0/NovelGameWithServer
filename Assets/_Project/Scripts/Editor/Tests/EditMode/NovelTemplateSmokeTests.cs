@@ -1119,10 +1119,17 @@ public class NovelTemplateSmokeTests
             "Local fallback",
             "local_dialogue",
             "Local intro");
+        var lena = CreateNonRenderableCharacter("Lena");
+        var library = ScriptableObject.CreateInstance<StoryJsonAssetLibrary>();
+        library.Configure(new[] { StoryJsonAssetReference.CreateCharacter("Lena", lena) });
+        var chapter = PlayModeStoryFactory.CreateChapter("playmode_remote_ep01", "Pilot", localGraph);
+        chapter.Configure("playmode_remote_ep01", "Pilot", localGraph, null, library, false, 0);
+        rig.TrackAsset(lena);
+        rig.TrackAsset(library);
         var story = PlayModeStoryFactory.CreateStory(
             "playmode_story",
             "playmode_story_s01",
-            PlayModeStoryFactory.CreateChapter("playmode_remote_ep01", "Pilot", localGraph));
+            chapter);
 
         const string remoteGraphJson =
             "{\"sceneDescription\":\"Pilot intro\",\"suggestedBackground\":\"cafe\",\"nodes\":[{\"guid\":\"remote_dialogue\",\"type\":\"dialogue\",\"lines\":[{\"speaker\":\"Lena\",\"text\":\"Remote intro\"},{\"speaker\":\"Lena\",\"text\":\"Remote follow-up\"}]}]}";
@@ -1142,7 +1149,6 @@ public class NovelTemplateSmokeTests
         rig.SeedRemoteGraph("playmode_remote_ep01", "1.0.0", remoteGraphJson);
         rig.SelectStory(story);
 
-        ExpectMissingCharacterLog("Lena");
         rig.StoryManager.StartStory();
         yield return WaitForCondition(
             () => rig.CurrentNode != null && rig.CurrentNode.guid == "remote_dialogue",
@@ -1588,7 +1594,7 @@ public class NovelTemplateSmokeTests
             GameState = gameState;
         }
 
-        void TrackAsset(UnityEngine.Object asset)
+        public void TrackAsset(UnityEngine.Object asset)
         {
             if (asset != null && !_assets.Contains(asset))
                 _assets.Add(asset);

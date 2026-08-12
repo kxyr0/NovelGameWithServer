@@ -92,6 +92,28 @@ public sealed partial class WardrobeHeroSetupPage
                 continue;
             }
 
+            if (node.TryGetClearSlotType(i, out ClothingType clearType))
+            {
+                if (clearType != type)
+                {
+                    wrongType++;
+                    continue;
+                }
+
+                int clearCost = node.GetPremiumCost(i);
+                if (clearCost > 0)
+                {
+                    blockedByContext++;
+                    continue;
+                }
+
+                result.Add(CreateClearClothingOption(
+                    node.GetOptionLabel(i, "Ничего"),
+                    i,
+                    clearType));
+                continue;
+            }
+
             ClothingItem item = node.availableClothes[i];
             if (item == null)
             {
@@ -119,7 +141,7 @@ public sealed partial class WardrobeHeroSetupPage
                     ownedPaidItems++;
             }
 
-            result.Add(CreateClothingOption(item, i, step, premiumCost));
+            result.Add(CreateClothingOption(item, i, step, premiumCost, node.GetOptionLabel(i, "")));
         }
 
         LogStoryWardrobeOptionsBuilt(
@@ -213,12 +235,17 @@ public sealed partial class WardrobeHeroSetupPage
         });
     }
 
-    RuntimeOption CreateClothingOption(ClothingItem item, int sourceIndex, WardrobeHeroSetupStep step, int premiumCost = 0)
+    RuntimeOption CreateClothingOption(
+        ClothingItem item,
+        int sourceIndex,
+        WardrobeHeroSetupStep step,
+        int premiumCost = 0,
+        string labelOverride = "")
     {
         premiumCost = SaveDataSanitizer.ClampCurrencyValue(premiumCost);
         return new RuntimeOption
         {
-            Label = FormatClothingOptionLabel(item, sourceIndex, premiumCost),
+            Label = FormatClothingOptionLabel(item, sourceIndex, premiumCost, labelOverride),
             Preview = item != null ? item.sprite : null,
             Clothing = item,
             PremiumCost = premiumCost,
@@ -227,9 +254,27 @@ public sealed partial class WardrobeHeroSetupPage
         };
     }
 
-    string FormatClothingOptionLabel(ClothingItem item, int sourceIndex, int premiumCost)
+    RuntimeOption CreateClearClothingOption(string label, int sourceIndex, ClothingType type)
+    {
+        return new RuntimeOption
+        {
+            Label = FirstNonEmpty(label, "Ничего"),
+            Preview = null,
+            Clothing = null,
+            ClearsClothingSlot = true,
+            ClearClothingType = type,
+            PremiumCost = 0,
+            SourceIndex = sourceIndex,
+            Step = GetSetupStepForClothingType(type)
+        };
+    }
+
+    string FormatClothingOptionLabel(ClothingItem item, int sourceIndex, int premiumCost, string labelOverride = "")
     {
         string fallbackLabel = "Вариант " + (sourceIndex + 1);
+        if (!string.IsNullOrWhiteSpace(labelOverride))
+            return labelOverride.Trim();
+
         return item != null ? FirstNonEmpty(item.GetDisplayName(), item.id, item.name, fallbackLabel) : fallbackLabel;
     }
 

@@ -1,24 +1,43 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class AutoSaveSystem : MonoBehaviour
 {
-    public float interval = 30f;
-    float timer;
+    [Min(1f)] public float interval = 30f;
+
+    Coroutine _routine;
 
     void OnValidate()
     {
         interval = Mathf.Max(1f, interval);
     }
 
-    void Update()
+    void OnEnable()
     {
-        if (interval <= 0f)
-            interval = 1f;
+        if (!Application.isPlaying || _routine != null)
+            return;
 
-        timer += Time.deltaTime;
-        if (timer >= interval)
+        _routine = StartCoroutine(AutoSaveLoop());
+    }
+
+    void OnDisable()
+    {
+        if (_routine == null)
+            return;
+
+        StopCoroutine(_routine);
+        _routine = null;
+    }
+
+    IEnumerator AutoSaveLoop()
+    {
+        var wait = new WaitForSecondsRealtime(Mathf.Max(1f, interval));
+
+        while (enabled)
         {
-            timer = 0;
+            wait.waitTime = Mathf.Max(1f, interval);
+            yield return wait;
             TryAutoSave();
         }
     }
@@ -28,30 +47,22 @@ public class AutoSaveSystem : MonoBehaviour
         long startedAt = AppDiagnostics.StartTimer();
         try
         {
-            if (SaveManager.Instance != null && StoryManager.Instance != null && StoryManager.Instance.HasSelectedStory)
-            {
-                AppLogger.Info(
-                    AppLogCategory.SaveSystem,
-                    nameof(AutoSaveSystem),
-                    nameof(TryAutoSave),
-                    "[SAVE][AUTOSAVE_START] Autosave timer fired.",
-                    LogMetadata.Of(
-                        "storyId", StoryManager.Instance.CurrentStoryId,
-                        "episodeId", StoryManager.Instance.CurrentEpisodeId,
-                        "nodeGuid", GameState.Instance != null && GameState.Instance.currentNode != null ? GameState.Instance.currentNode.guid : ""));
-                int saveSlot = StoryManager.Instance.ResolveProgressSaveSlot();
-                SaveManager.Instance.SaveCurrentData(saveSlot, StoryManager.Instance);
+            SaveManager saveManager = SaveManager.Instance;
+            StoryManager storyManager = StoryManager.Instance;
 
-                AppDiagnostics.LogOperationCompleted(
-                    AppLogCategory.SaveSystem,
-                    nameof(AutoSaveSystem),
-                    nameof(TryAutoSave),
-                    "[SAVE][AUTOSAVE_SUCCESS] Autosave request completed.",
-                    startedAt,
-                    LogMetadata.Of("storyId", StoryManager.Instance.CurrentStoryId));
-            }
+            if (saveManager == null || storyManager == null || !storyManager.HasSelectedStory)
+                return;
+
+            int saveSlot = storyManager.ResolveProgressSaveSlot();
+
+            // StoryManager already persists progress while the player advances.
+            // Do not serialize/write the same state every N seconds when nothing changed.
+            if (!saveManager.HasUnsavedRuntimeState(storyManager, saveSlot))
+                return;
+
+            saveManager.SaveCurrentDataLightweight(saveSlot, storyManager);
         }
-        catch (System.Exception exception)
+        catch (Exception exception)
         {
             AppDiagnostics.LogOperationFailed(
                 AppLogCategory.SaveSystem,
@@ -60,11 +71,8 @@ public class AutoSaveSystem : MonoBehaviour
                 "[SAVE][AUTOSAVE_FAILURE] Autosave failed.",
                 startedAt,
                 exception,
-                LogMetadata.Of(
-                    "storyId", StoryManager.Instance != null ? StoryManager.Instance.CurrentStoryId : "",
-                    "errorType", exception.GetType().Name),
+                LogMetadata.Of("errorType", exception.GetType().Name),
                 recoverable: true);
-            Debug.LogWarning($"AutoSaveSystem: autosave failed: {exception.Message}", this);
         }
     }
 }

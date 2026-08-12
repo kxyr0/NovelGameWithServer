@@ -8,6 +8,8 @@ public class NetworkEnvironmentEntry
     public string id = "";
     public string displayName = "";
     public string baseUrl = "";
+    public string contentChannel = "";
+    public string addressablesRemoteLoadPath = "";
 }
 
 [Serializable]
@@ -74,6 +76,26 @@ public class NetworkRuntimeConfigData
         var configuredUrl = environment != null ? environment.baseUrl : "";
         if (!string.IsNullOrWhiteSpace(configuredUrl))
             return configuredUrl.Trim();
+
+        return string.IsNullOrWhiteSpace(fallback) ? "" : fallback.Trim();
+    }
+
+    public string ResolveContentChannel(string fallback = "")
+    {
+        var environment = ResolveSelectedEnvironment();
+        var channel = environment != null ? environment.contentChannel : "";
+        if (!string.IsNullOrWhiteSpace(channel))
+            return channel.Trim();
+
+        return string.IsNullOrWhiteSpace(fallback) ? "" : fallback.Trim();
+    }
+
+    public string ResolveAddressablesRemoteLoadPath(string fallback = "")
+    {
+        var environment = ResolveSelectedEnvironment();
+        var loadPath = environment != null ? environment.addressablesRemoteLoadPath : "";
+        if (!string.IsNullOrWhiteSpace(loadPath))
+            return loadPath.Trim();
 
         return string.IsNullOrWhiteSpace(fallback) ? "" : fallback.Trim();
     }

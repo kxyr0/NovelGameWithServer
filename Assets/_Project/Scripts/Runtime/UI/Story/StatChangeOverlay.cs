@@ -1582,6 +1582,17 @@ public sealed class StatChangeOverlay : MonoBehaviour
             ? FindRelationshipMessageOverride(request.StatId)
             : null;
 
+        // Remove the previous request's temporary presentation before applying the
+        // next one. Otherwise a queued relationship message can leave normal stat
+        // text with a transient, layout-driven width of almost zero.
+        if (_messageText != null)
+        {
+            CaptureMessageTextPresentation();
+            RestoreRelationshipFrameLayout();
+            RestoreTextAutoSizeDrivers();
+            RestoreMessageTextPresentation();
+        }
+
         if (isRelationshipMessage)
             RestoreSharedPanelLayoutForRelationship();
         ApplyPanelLayoutStyleForContent(isRelationshipMessage);
@@ -1589,27 +1600,26 @@ public sealed class StatChangeOverlay : MonoBehaviour
             ApplyPanelSizeForStat(request.StatId);
         ApplyPanelBackgroundStyleForContent(isRelationshipMessage);
 
+        if (!isRelationshipMessage)
+            ApplyTextRectForStat(request.StatId);
+
         if (_messageText != null)
         {
-            CaptureMessageTextPresentation();
+            if (isRelationshipMessage)
+            {
+                ApplyRelationshipTextPresentation();
+                relationshipOverride?.ApplyTo(_messageText);
+            }
+
+            // Assign text only after its final RectTransform and TMP presentation are
+            // in place, so the first rendered mesh matches all following frames.
             _messageText.text = BuildMessage(
                 request.StatId,
                 displayName,
                 request.Delta,
                 request.Message,
                 relationshipOverride);
-
-            if (isRelationshipMessage)
-            {
-                ApplyRelationshipTextPresentation();
-                relationshipOverride?.ApplyTo(_messageText);
-            }
-            else
-            {
-                RestoreRelationshipFrameLayout();
-                RestoreTextAutoSizeDrivers();
-                RestoreMessageTextPresentation();
-            }
+            _messageText.SetAllDirty();
         }
 
         if (_iconImage != null)
@@ -1627,8 +1637,37 @@ public sealed class StatChangeOverlay : MonoBehaviour
             ApplyIconImageSettingsForStat(request.StatId, icon != null, true, true);
         }
 
-        if (!isRelationshipMessage)
-            ApplyTextRectForStat(request.StatId);
+        RebuildContentLayoutDeterministically(request.StatId, isRelationshipMessage);
+    }
+
+    private void RebuildContentLayoutDeterministically(string statId, bool isRelationshipMessage)
+    {
+        Canvas.ForceUpdateCanvases();
+
+        if (_panelRect != null)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_panelRect);
+
+        RectTransform textRect = _messageText != null ? _messageText.rectTransform : null;
+        if (textRect != null && textRect.parent is RectTransform parentRect && parentRect != _panelRect)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(parentRect);
+
+        // Layout groups can write child rects while rebuilding the panel. Reapply the
+        // authored rect once after that write has completed.
+        if (isRelationshipMessage)
+            ApplyRelationshipFrameLayout();
+        else
+            ApplyTextRectForStat(statId);
+
+        if (_messageText == null)
+            return;
+
+        if (textRect != null)
+        {
+            textRect.ForceUpdateRectTransforms();
+        }
+
+        _messageText.SetAllDirty();
+        _messageText.ForceMeshUpdate(true, true);
     }
 
     private string BuildMessage(

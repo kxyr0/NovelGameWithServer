@@ -5,6 +5,41 @@ public sealed class NovelTemplateLifetimeScope : LifetimeScope
 {
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterInstance(SubscriptionFeatureConfig.LoadOrDisabled());
+
+        builder.Register<SystemSubscriptionClock>(Lifetime.Singleton)
+            .As<ISubscriptionClock>();
+
+        builder.Register<SubscriptionSignedTokenVerifier>(Lifetime.Singleton)
+            .As<ISubscriptionSignatureVerifier>();
+
+        builder.Register<SubscriptionEntitlementSerializer>(Lifetime.Singleton);
+
+        builder.Register<FileSubscriptionEntitlementStore>(Lifetime.Singleton)
+            .As<ISubscriptionEntitlementStore>();
+
+        builder.Register<UnavailableSubscriptionEntitlementProvider>(Lifetime.Singleton)
+            .As<ISubscriptionEntitlementProvider>();
+
+        builder.Register<SubscriptionEntitlementEvaluator>(Lifetime.Singleton);
+
+        builder.Register<SubscriptionEntitlementService>(Lifetime.Singleton)
+            .As<ISubscriptionEntitlementService>();
+
+        builder.Register<SubscriptionEpisodeAccessPolicy>(Lifetime.Singleton)
+            .As<ISubscriptionEpisodeAccessPolicy>();
+
+        builder.Register<SubscriptionEpisodeAccessService>(Lifetime.Singleton)
+            .As<ISubscriptionEpisodeAccessService>();
+
+        builder.Register<StoryChoiceTimelineStore>(Lifetime.Singleton)
+            .As<IStoryChoiceTimelineStore>();
+
+        builder.Register<StoryChoiceTimelineService>(Lifetime.Singleton)
+            .As<IStoryChoiceTimelineService>();
+
+        builder.RegisterEntryPoint<SubscriptionBootstrapper>();
+
         builder.Register<StoryLoadingMediaPolicy>(Lifetime.Singleton)
             .As<IStoryLoadingMediaPolicy>();
 
@@ -36,5 +71,7 @@ public sealed class NovelTemplateLifetimeScope : LifetimeScope
             .As<IStoryStartLoadingScreen>();
 
         builder.RegisterComponentInHierarchy<MenuController>();
+
+        builder.RegisterComponentInHierarchy<StoryManager>();
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chapterId: zls_2
   _chapterName: "\u0413\u041B\u0410\u0412\u0410 2: \u0422\u0410\u041C, \u0423 \u0412\u041E\u0414\u042B"
-  _graph: {fileID: 11400000, guid: 53c605bb90dfa6a45a0f6a23b4a057c8, type: 2}
-  _jsonGraph: {fileID: 4900000, guid: 949b53ac69a80814cbe3a3df2a1f27ca, type: 3}
-  _jsonAssetLibrary: {fileID: 11400000, guid: 826e92b0ae0847f9ada48ecc462955de, type: 2}
+  _graph: {fileID: 11400000, guid: b08990ff3d5f49b41b327ed9034fad9a, type: 2}
+  _jsonGraph: {fileID: 4900000, guid: eb461354b527fbf42bb15baa6128e65e, type: 3}
+  _jsonAssetLibrary: {fileID: 0}
   _isPremium: 0
   _unlockCost: 0

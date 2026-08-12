@@ -130,6 +130,7 @@ public static class ApiRoutes
     public const string PlayerProgressSave = "/player/progress/save";
     public const string PlayerProgressUndoChoice = "/player/progress/undo-choice";
     public const string PlayerProgressRewind = "/player/progress/rewind";
+    public const string PlayerSubscriptionEntitlement = "/player/subscription/entitlement";
     public const string PlayerProfile = "/player/profile";
     public const string PlayerFeatures = "/player/features";
     public const string PlayerHeroName = "/player/hero-name";
@@ -268,6 +269,7 @@ public static class ApiContract
 
         Ep("PlayerProgress", "GET", ApiRoutes.PlayerProgress, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, false, true, true),
         Ep("PlayerProgressSave", "POST", ApiRoutes.PlayerProgressSave, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, false, true, true, new[] { "episodeId", "nodeId", "stats", "variables" }, new[] { "storyId", "currentEpisodeId", "currentNodeGuid", "flags", "snapshot", "unlockedEpisodes" }),
+        Ep("PlayerSubscriptionEntitlement", "GET", ApiRoutes.PlayerSubscriptionEntitlement, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, false, true, true),
         Ep("PlayerProgressUndoChoice", "POST", ApiRoutes.PlayerProgressUndoChoice, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, true, true, true),
         Ep("PlayerProgressRewind", "POST", ApiRoutes.PlayerProgressRewind, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, true, true, true, new[] { "episodeId", "nodeId" }),
         Ep("PlayerProfile", "GET", ApiRoutes.PlayerProfile, ApiAuthRequirement.BearerJwt, ApiEndpointKind.Player, ApiRateLimitGroup.Player, false, true, true),

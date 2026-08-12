@@ -10,7 +10,8 @@ public static class PrototypeFeatureFlags
     public static bool ShopCurrencyGrantsEnabled => GetDangerousPrototypeBool(KEY_SHOP_CURRENCY_GRANTS, DefaultPrototypeEnabled);
     public static bool LocalPremiumSpendEnabled => GetDangerousPrototypeBool(KEY_LOCAL_PREMIUM_SPEND, DefaultPrototypeEnabled);
     public static bool DevCurrencyToolsEnabled => GetDangerousPrototypeBool(KEY_DEV_CURRENCY_TOOLS, DefaultPrototypeEnabled);
-    public static bool RemoteEpisodeGraphsEnabled => GetBool(KEY_REMOTE_EPISODE_GRAPHS, DefaultPrototypeEnabled);
+    // Remote story graphs must be enabled explicitly. Development Build no longer enables them by default.
+    public static bool RemoteEpisodeGraphsEnabled => GetBool(KEY_REMOTE_EPISODE_GRAPHS, false);
 
     public static void SetShopCurrencyGrantsEnabled(bool enabled) => SetDangerousPrototypeBool(KEY_SHOP_CURRENCY_GRANTS, enabled);
     public static void SetLocalPremiumSpendEnabled(bool enabled) => SetDangerousPrototypeBool(KEY_LOCAL_PREMIUM_SPEND, enabled);

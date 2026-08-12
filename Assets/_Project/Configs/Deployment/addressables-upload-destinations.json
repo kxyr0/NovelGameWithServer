@@ -1,0 +1,18 @@
+{
+    "entries": [
+        {
+            "environmentId": "stage",
+            "publicLoadRootUrl": "https://cdn.nocturnedc.ru/stage/[BuildTarget]",
+            "uploadMode": "manual",
+            "uploadRootPath": "",
+            "notes": "CDN/R2 ещё не готов. Когда дадут тестовый бакет, публичный URL и путь загрузки, заполните uploadRootPath."
+        },
+        {
+            "environmentId": "prod",
+            "publicLoadRootUrl": "https://cdn.nocturnedc.ru/prod/[BuildTarget]",
+            "uploadMode": "manual",
+            "uploadRootPath": "",
+            "notes": "CDN/R2 ещё не готов. Когда дадут боевой бакет, публичный URL и путь загрузки, заполните uploadRootPath."
+        }
+    ]
+}

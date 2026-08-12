@@ -292,6 +292,7 @@ public partial class StoryManager
         else
             GameState.Instance?.InitForStory(CurrentStoryId);
 
+        RestoreCurrentEpisodeSummaryFromSaveData(snapshot);
         ApplyHeroCustomizationSnapshot(snapshot, graph);
         RestoreOrStartSeasonRewardRunForCurrentChapter(nameof(TryRestoreSnapshot));
 
@@ -325,9 +326,26 @@ public partial class StoryManager
 
     bool HasGameplaySnapshot(SaveData snapshot)
     {
-        return snapshot != null &&
-               snapshot.version >= SaveData.CurrentVersion &&
-               !string.IsNullOrEmpty(snapshot.savedAtIso);
+        if (snapshot == null || string.IsNullOrEmpty(snapshot.savedAtIso))
+            return false;
+
+        if (snapshot.version >= SaveData.CurrentVersion)
+            return true;
+
+        return HasLegacyGameplayPayload(snapshot);
+    }
+
+    static bool HasLegacyGameplayPayload(SaveData snapshot)
+    {
+        if (snapshot == null)
+            return false;
+
+        return (snapshot.statKeys != null && snapshot.statKeys.Count > 0) ||
+               (snapshot.history != null && snapshot.history.Count > 0) ||
+               (snapshot.wardrobe != null && snapshot.wardrobe.Count > 0) ||
+               (snapshot.equippedClothes != null && snapshot.equippedClothes.Count > 0) ||
+               snapshot.currency != 0 ||
+               snapshot.hearts != 0;
     }
 
     void ApplyHeroCustomizationSnapshot(SaveData snapshot, StoryGraph graph)
@@ -410,6 +428,10 @@ public partial class StoryManager
 
     string ResolveRestoredPlayerName(SaveData snapshot, StoryGraph graph, string fallbackName)
     {
+        string snapshotName = snapshot != null ? snapshot.playerName : "";
+        if (IsPersistablePlayerName(snapshotName, graph))
+            return HeroCustomizationState.NormalizePlayerName(snapshotName);
+
         if (TryResolveStoredStoryPlayerName(out string storyStoredName))
         {
             if (IsPersistablePlayerName(storyStoredName, graph))
@@ -417,10 +439,6 @@ public partial class StoryManager
 
             HeroCustomizationStore.DeletePlayerNameForStory(CurrentStoryId);
         }
-
-        string snapshotName = snapshot != null ? snapshot.playerName : "";
-        if (IsPersistablePlayerName(snapshotName, graph))
-            return HeroCustomizationState.NormalizePlayerName(snapshotName);
 
         string storyDefaultName = ResolveStoryDefaultPlayerName(graph);
         if (CharacterProfileService.TryResolveSavedOrActivePlayerName(
@@ -1060,7 +1078,7 @@ public partial class StoryManager
 
         int saveSlot = ResolveProgressSaveSlot();
         SaveData snapshot = SaveManager.Instance != null
-            ? SaveManager.Instance.SaveCurrentData(saveSlot, this)
+            ? SaveManager.Instance.SaveCurrentDataLightweight(saveSlot, this)
             : null;
 
         if (snapshot != null && StoryProgressResetUtility.ShouldForceFreshStart(CurrentStoryId))

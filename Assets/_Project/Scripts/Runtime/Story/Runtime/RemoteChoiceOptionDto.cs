@@ -9,6 +9,7 @@ public sealed class RemoteChoiceOptionDto
     public int premiumCost;
     public string requiredVariable;
     public int requiredValue;
+    public bool hideWhenRequirementNotMet;
     public bool hideInRestrictedRegions;
     public List<string> hiddenRegionCodes = new List<string>();
     public List<RemoteNodeDto> branch = new List<RemoteNodeDto>();

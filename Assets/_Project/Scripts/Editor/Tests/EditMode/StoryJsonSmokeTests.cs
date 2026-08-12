@@ -349,6 +349,9 @@ public class StoryJsonSmokeTests
         Assert.That(File.Exists(jsonPath), Is.True, $"PP_2 source json was not found: {jsonPath}");
 
         StoryGraph graph = null;
+        ChapterData chapter = null;
+        StoryData story = null;
+        GameData game = null;
         try
         {
             string json = File.ReadAllText(jsonPath);
@@ -358,6 +361,18 @@ public class StoryJsonSmokeTests
             var imageNode = graph.nodes.OfType<ImageNode>().FirstOrDefault(node => node.guid == cutsceneNodeId);
             Assert.That(imageNode, Is.Not.Null, $"Cutscene node was not found: {cutsceneNodeId}");
             Assert.That(imageNode.defaultImage, Is.Not.Null, "Fallback image must stay assigned.");
+
+            var trainingChoice = graph.nodes.OfType<ChoiceNode>()
+                .FirstOrDefault(node => node.guid == "pp2_choice_vlad_training_continue_001");
+            Assert.That(trainingChoice, Is.Not.Null);
+            Assert.That(trainingChoice.options, Has.Count.EqualTo(2));
+            Assert.That(trainingChoice.options[1].isPremium, Is.True);
+            Assert.That(trainingChoice.options[1].premiumCost, Is.EqualTo(75));
+
+            var preCutsceneDialogue = graph.nodes.OfType<DialogueNode>()
+                .FirstOrDefault(node => node.guid == "pp2_dialogue_training_extended_pre_cutscene_001");
+            Assert.That(preCutsceneDialogue, Is.Not.Null);
+            Assert.That(preCutsceneDialogue.GetOutputPort("exit").Connection.node, Is.SameAs(imageNode));
 
             var cases = new[]
             {
@@ -385,9 +400,32 @@ public class StoryJsonSmokeTests
                 "pp_hair_pp2_leave_as_is");
             TestContext.WriteLine($"European + pp_hair_pp2_leave_as_is -> {fallbackId}");
             Assert.That(fallbackId, Is.EqualTo("fallback"));
+
+            chapter = ScriptableObject.CreateInstance<ChapterData>();
+            chapter.Configure("pp_2", "PP 2", graph, false, 0);
+            story = ScriptableObject.CreateInstance<StoryData>();
+            story.Configure("privychka_pritvoryatsya", "PP", new[] { chapter });
+            game = ScriptableObject.CreateInstance<GameData>();
+            game.Configure("PP", story);
+
+            StoryStartPreloadAssetSet preloadAssets = new StoryStartPreloadAssetCollector()
+                .Collect(game, StoryStartLoadingAssetScope.SavedOrFirstChapter, null);
+
+            Assert.That(preloadAssets.Sprites, Has.Member(imageNode.defaultImage));
+            foreach (HeroBuildCutsceneOverride rule in imageNode.heroBuildCutsceneOverrides)
+            {
+                if (rule != null && rule.Enabled && rule.DefaultImage != null)
+                    Assert.That(preloadAssets.Sprites, Has.Member(rule.DefaultImage), rule.RuleName);
+            }
         }
         finally
         {
+            if (game != null)
+                Object.DestroyImmediate(game);
+            if (story != null)
+                Object.DestroyImmediate(story);
+            if (chapter != null)
+                Object.DestroyImmediate(chapter);
             if (graph != null)
                 Object.DestroyImmediate(graph);
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,7 @@ public class ImageOverlayUI : MonoBehaviour
     [SerializeField] private RawImage mediaRawImage;
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private AnimatedGifPlayer gifPlayer;
+    [SerializeField, Min(0.5f)] private float mediaReadyTimeout = 5f;
 
     [Header("Масштабирование")]
     [Tooltip("Минимальный масштаб картинки при жесте приближения на телефоне.")]
@@ -57,6 +59,13 @@ public class ImageOverlayUI : MonoBehaviour
     private CanvasGroup _panelCanvasGroup;
     private RenderTexture _activeRenderTexture;
     private bool _videoPreparedHandlerRegistered;
+    private bool _videoFrameReadyHandlerRegistered;
+    private bool _videoErrorHandlerRegistered;
+    private AnimatedGifPlayer _registeredGifPlayer;
+    private bool _gifFirstFrameHandlerRegistered;
+    private bool _awaitingMediaReady;
+    private bool _panelRevealStarted;
+    private Coroutine _mediaReadyTimeoutRoutine;
     private int _shownFrame = -1;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -212,6 +221,7 @@ public class ImageOverlayUI : MonoBehaviour
     {
         minZoom = Mathf.Max(0.1f, minZoom);
         maxZoom = Mathf.Max(minZoom, maxZoom);
+        mediaReadyTimeout = Mathf.Max(0.5f, mediaReadyTimeout);
     }
 
     private void OnDestroy()
@@ -226,6 +236,11 @@ public class ImageOverlayUI : MonoBehaviour
 
         if (videoPlayer != null && _videoPreparedHandlerRegistered)
             videoPlayer.prepareCompleted -= OnVideoPrepared;
+        if (videoPlayer != null && _videoFrameReadyHandlerRegistered)
+            videoPlayer.frameReady -= OnVideoFrameReady;
+        if (videoPlayer != null && _videoErrorHandlerRegistered)
+            videoPlayer.errorReceived -= OnVideoError;
+        UnregisterGifFirstFrameHandler();
 
         if (Instance == this)
             Instance = null;
@@ -289,7 +304,13 @@ public class ImageOverlayUI : MonoBehaviour
             return;
         }
 
+        if (_panelCanvasGroup != null)
+            _panelCanvasGroup.alpha = 0f;
+
         ShowMedia(node);
+
+        if (_awaitingMediaReady)
+            StartMediaReadyTimeout();
 
         if (descriptionText != null)
         {
@@ -307,11 +328,8 @@ public class ImageOverlayUI : MonoBehaviour
             _imageRect.localScale = Vector3.one;
 
         // Анимация появления
-        if (_panelCanvasGroup != null)
-        {
-            _panelCanvasGroup.alpha = 0f;
-            _panelCanvasGroup.DOFade(1f, 0.3f);
-        }
+        if (!_awaitingMediaReady)
+            RevealPanel();
     }
 
     public void HideImmediate()
@@ -363,10 +381,13 @@ public class ImageOverlayUI : MonoBehaviour
         _panelCanvasGroup ??= panel != null ? panel.GetComponent<CanvasGroup>() : null;
         _panelCanvasGroup?.DOKill();
 
+        StopMediaReadyTimeout();
         StopMedia();
 
         _zoomable = false;
         _isClosing = false;
+        _awaitingMediaReady = false;
+        _panelRevealStarted = false;
 
         if (_imageRect != null)
             _imageRect.localScale = Vector3.one;
@@ -432,9 +453,12 @@ public class ImageOverlayUI : MonoBehaviour
         if (imageDisplay != null)
             imageDisplay.enabled = false;
 
+        _awaitingMediaReady = true;
+
         if (!EnsureVideoPlayer())
         {
             Debug.LogWarning("[ImageOverlayUI] Cannot show video: VideoPlayer or RawImage is missing.", this);
+            _awaitingMediaReady = false;
             return;
         }
 
@@ -443,12 +467,14 @@ public class ImageOverlayUI : MonoBehaviour
         int width = Mathf.Max(16, (int)clip.width);
         int height = Mathf.Max(16, (int)clip.height);
         _activeRenderTexture = new RenderTexture(width, height, 0);
+        _activeRenderTexture.Create();
 
         try
         {
             ConfigureVideoPlayer();
             videoPlayer.targetTexture = _activeRenderTexture;
             mediaRawImage.texture = _activeRenderTexture;
+            mediaRawImage.color = Color.clear;
             videoPlayer.clip = clip;
             mediaRawImage.gameObject.SetActive(true);
             videoPlayer.gameObject.SetActive(true);
@@ -458,6 +484,7 @@ public class ImageOverlayUI : MonoBehaviour
         {
             Debug.LogWarning($"[ImageOverlayUI] Failed to prepare video '{clip.name}': {exception.Message}", this);
             StopMedia();
+            _awaitingMediaReady = false;
         }
     }
 
@@ -469,16 +496,24 @@ public class ImageOverlayUI : MonoBehaviour
         if (imageDisplay != null)
             imageDisplay.enabled = false;
 
+        _awaitingMediaReady = true;
+
         if (!EnsureGifPlayer())
         {
             Debug.LogWarning("[ImageOverlayUI] Cannot show GIF: AnimatedGifPlayer is missing.", this);
+            _awaitingMediaReady = false;
             return;
         }
 
         StopVideo();
+        RegisterGifFirstFrameHandler(gifPlayer);
+        mediaRawImage.color = Color.clear;
         mediaRawImage.gameObject.SetActive(true);
         gifPlayer.gameObject.SetActive(true);
         gifPlayer.Play(gifAsset);
+
+        if (gifPlayer.HasVisibleFrame)
+            OnGifFirstFrameReady();
     }
 
     private void OnVideoPrepared(VideoPlayer player)
@@ -494,6 +529,112 @@ public class ImageOverlayUI : MonoBehaviour
         {
             Debug.LogWarning($"[ImageOverlayUI] Failed to play video: {exception.Message}", this);
         }
+    }
+
+    private void OnVideoFrameReady(VideoPlayer player, long frameIndex)
+    {
+        if (player == null || player != videoPlayer || !_awaitingMediaReady || !isActiveAndEnabled)
+            return;
+
+        if (mediaRawImage != null)
+            mediaRawImage.color = Color.white;
+
+        RevealPanel();
+    }
+
+    private void OnVideoError(VideoPlayer player, string message)
+    {
+        if (player == null || player != videoPlayer || !_awaitingMediaReady)
+            return;
+
+        Debug.LogWarning($"[ImageOverlayUI] Video playback failed: {message}", this);
+        StopMedia();
+        RevealPanel();
+    }
+
+    private void RegisterGifFirstFrameHandler(AnimatedGifPlayer player)
+    {
+        if (_registeredGifPlayer == player && _gifFirstFrameHandlerRegistered)
+            return;
+
+        UnregisterGifFirstFrameHandler();
+        _registeredGifPlayer = player;
+        if (_registeredGifPlayer == null)
+            return;
+
+        _registeredGifPlayer.FirstFrameReady += OnGifFirstFrameReady;
+        _gifFirstFrameHandlerRegistered = true;
+    }
+
+    private void UnregisterGifFirstFrameHandler()
+    {
+        if (_gifFirstFrameHandlerRegistered && _registeredGifPlayer != null)
+            _registeredGifPlayer.FirstFrameReady -= OnGifFirstFrameReady;
+
+        _registeredGifPlayer = null;
+        _gifFirstFrameHandlerRegistered = false;
+    }
+
+    private void OnGifFirstFrameReady()
+    {
+        if (!_awaitingMediaReady || gifPlayer == null || !gifPlayer.HasVisibleFrame)
+            return;
+
+        if (mediaRawImage != null)
+            mediaRawImage.color = Color.white;
+
+        RevealPanel();
+    }
+
+    private void RevealPanel()
+    {
+        _awaitingMediaReady = false;
+        StopMediaReadyTimeout();
+        if (_panelRevealStarted || panel == null || !panel.activeInHierarchy)
+            return;
+
+        _panelRevealStarted = true;
+        if (_panelCanvasGroup == null)
+            return;
+
+        _panelCanvasGroup.DOKill();
+        _panelCanvasGroup.alpha = 0f;
+        _panelCanvasGroup.DOFade(1f, 0.3f).SetUpdate(true);
+    }
+
+    private void StartMediaReadyTimeout()
+    {
+        StopMediaReadyTimeout();
+        if (isActiveAndEnabled)
+            _mediaReadyTimeoutRoutine = StartCoroutine(MediaReadyTimeoutRoutine());
+    }
+
+    private void StopMediaReadyTimeout()
+    {
+        if (_mediaReadyTimeoutRoutine == null)
+            return;
+
+        StopCoroutine(_mediaReadyTimeoutRoutine);
+        _mediaReadyTimeoutRoutine = null;
+    }
+
+    private IEnumerator MediaReadyTimeoutRoutine()
+    {
+        float elapsed = 0f;
+        float timeout = Mathf.Max(0.5f, mediaReadyTimeout);
+        while (_awaitingMediaReady && elapsed < timeout)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        _mediaReadyTimeoutRoutine = null;
+        if (!_awaitingMediaReady)
+            yield break;
+
+        Debug.LogWarning($"[ImageOverlayUI] Media did not produce a frame within {timeout:0.##} seconds.", this);
+        StopMedia();
+        RevealPanel();
     }
 
     private bool EnsureVideoPlayer()
@@ -553,12 +694,26 @@ public class ImageOverlayUI : MonoBehaviour
         videoPlayer.playOnAwake = false;
         videoPlayer.isLooping = true;
         videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+        videoPlayer.waitForFirstFrame = true;
+        videoPlayer.sendFrameReadyEvents = true;
 
-        if (_videoPreparedHandlerRegistered)
-            return;
+        if (!_videoPreparedHandlerRegistered)
+        {
+            videoPlayer.prepareCompleted += OnVideoPrepared;
+            _videoPreparedHandlerRegistered = true;
+        }
 
-        videoPlayer.prepareCompleted += OnVideoPrepared;
-        _videoPreparedHandlerRegistered = true;
+        if (!_videoFrameReadyHandlerRegistered)
+        {
+            videoPlayer.frameReady += OnVideoFrameReady;
+            _videoFrameReadyHandlerRegistered = true;
+        }
+
+        if (!_videoErrorHandlerRegistered)
+        {
+            videoPlayer.errorReceived += OnVideoError;
+            _videoErrorHandlerRegistered = true;
+        }
     }
 
     private void StopMedia()
@@ -574,6 +729,7 @@ public class ImageOverlayUI : MonoBehaviour
         if (mediaRawImage != null)
         {
             mediaRawImage.texture = null;
+            mediaRawImage.color = Color.clear;
             mediaRawImage.gameObject.SetActive(false);
         }
 

@@ -1,0 +1,3471 @@
+{
+  "version": 1,
+  "storyId": "only_the_heart_sees_clearly",
+  "chapterId": "zls_2",
+  "episodeId": "zls_2",
+  "title": "ГЛАВА 2: ТАМ, У ВОДЫ",
+  "defaultName": "Алиса",
+  "characters": [
+    {
+      "id": "hero",
+      "name": "{playerName}"
+    },
+    {
+      "id": "bab_nyura",
+      "name": "Баб Нюра"
+    },
+    {
+      "id": "ivan",
+      "name": "Иван"
+    },
+    {
+      "id": "voice",
+      "name": "Голос"
+    },
+    {
+      "id": "oksana",
+      "name": "Незнакомка"
+    },
+    {
+      "id": "teta_galya",
+      "name": "Тётя Галя"
+    },
+    {
+      "id": "girl_1",
+      "name": "Девочка"
+    },
+    {
+      "id": "girl_2",
+      "name": "Другая девочка"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "zls2_start",
+      "type": "start",
+      "next": "zls2_scene_001_dark"
+    },
+    {
+      "id": "zls2_scene_001_dark",
+      "type": "scene",
+      "title": "Тёмный экран",
+      "label": "Тёмный экран",
+      "startSfx": "Assets/_MyProject/Art/Story 1/Hear/Звуки_Зорко/splash.wav",
+      "suggestedBackground": "Тёмный экран",
+      "suggestedMusic": "Всплеск",
+      "next": "zls2_dialogue_001_rhyme"
+    },
+    {
+      "id": "zls2_dialogue_001_rhyme",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Мавка моет берега,"
+        },
+        {
+          "text": "Вымывает имена."
+        },
+        {
+          "text": "На мосточке, у воды,"
+        },
+        {
+          "text": "Сидят мёртвые сады."
+        },
+        {
+          "text": "Чей это голос..?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        }
+      ],
+      "next": "zls2_scene_002_bedroom_day"
+    },
+    {
+      "id": "zls2_scene_002_bedroom_day",
+      "type": "scene",
+      "title": "Спальня_День",
+      "label": "Спальня_День",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/bedroom_day.JPG",
+      "music": "music_neutral",
+      "startSfx": "Assets/_MyProject/Art/Story 1/Hear/Звуки_Зорко/morning_in_the_village.wav",
+      "suggestedBackground": "Спальня_День",
+      "suggestedMusic": "Нейтральная / moring_in_the_village",
+      "next": "zls2_dialogue_002_wakeup"
+    },
+    {
+      "id": "zls2_dialogue_002_wakeup",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "{playerName} открывает глаза - слишком резко, будто выныривает из глубины на поверхность. Сердце громко бухает о рёбра."
+        },
+        {
+          "text": "В углу комнаты ей мерещится тёмный женский силуэт, качающий на руках… полено?"
+        },
+        {
+          "text": "{playerName} моргает несколько раз."
+        },
+        {
+          "text": "Почудилось спросонья…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "За окном кричит петух. Ему в ответ заливается пёс."
+        },
+        {
+          "text": "Мужик (силуэт): Да замолкни ты, окаянный!"
+        },
+        {
+          "text": "Невольно прислушиваясь к посторонним звукам, {playerName} садится на кровати, сгорбив спину и опустив плечи."
+        },
+        {
+          "text": "Одеяло соскальзывает на пол, но она не пытается его поднять. Вместо этого в попытках унять дрожь обнимает себя руками - детский и наивный жест."
+        },
+        {
+          "text": "В голове заевшей пластинкой навязчиво крутятся короткие, прилипчивые строки, от которых отчего-то становится не по себе."
+        },
+        {
+          "text": "…На мосточке у воды сидят мёртвые сады…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "В висках стучит от напряжения."
+        },
+        {
+          "text": "Эта считалочка… Откуда она взялась в моей голове? Наверняка я её где-то слышала.",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Может, в детстве?..",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_choice_001_dream"
+    },
+    {
+      "id": "zls2_choice_001_dream",
+      "type": "choice",
+      "choicePrompt": "Как отнестись к странному сну?",
+      "choices": [
+        {
+          "text": "Пытается вспомнить сон",
+          "next": "zls2_dream_remember_stat_fairytale"
+        },
+        {
+          "text": "Отмахивается от посторонних мыслей",
+          "next": "zls2_dream_dismiss_stat_city"
+        }
+      ]
+    },
+    {
+      "id": "zls2_dialogue_003_dream_remember",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Там точно был кто-то ещё, я помню голос и тень на другом берегу реки. Она звала меня или пыталась помочь?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Так странно… в городе мне снились только отчеты и счета за коммуналку, а здесь… здесь сны странные и как будто реальные.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_dialogue_005_morning_join"
+    },
+    {
+      "id": "zls2_dialogue_004_dream_dismiss",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Видимо, я очень впечатлительная. Наслушаешься чужих россказней - и не такое приснится.",
+          "speaker": "hero",
+          "emotion": "EyeRoll"
+        },
+        {
+          "text": "Нужно найти себе применение. Работа - лучшее лекарство от дурных мыслей.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_dialogue_005_morning_join"
+    },
+    {
+      "id": "zls2_dream_remember_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_dialogue_003_dream_remember"
+    },
+    {
+      "id": "zls2_dream_remember_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_dream_remember_world_fairytale"
+    },
+    {
+      "id": "zls2_dream_dismiss_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_dialogue_004_dream_dismiss"
+    },
+    {
+      "id": "zls2_dream_dismiss_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_dream_dismiss_world_city"
+    },
+    {
+      "id": "zls2_dialogue_005_morning_join",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Пахнет свежеиспеченным хлебом, и от этого аромата становится спокойнее - хотя сердце все ещё продолжает колотиться тревожно."
+        },
+        {
+          "text": "{playerName} жмурится, вдыхая приятный запах."
+        },
+        {
+          "text": "Мир для неё вновь становится обычным, деревенским и приветливым."
+        },
+        {
+          "text": "Из соседней комнаты доносятся шаркающие звуки: баб Нюра уже встала."
+        },
+        {
+          "text": "Вот бы мне столько энергии…",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Она лениво сползает с кровати, ступая босыми ногами на прохладный дощатый пол. Мельком ловит собственное отражение в зеркале и досадливо морщится."
+        },
+        {
+          "text": "Нужно привести себя в порядок, не то Баб Нюра решит, что я видела покойника…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Она наклоняется к сумке, чтобы достать одежду."
+        }
+      ],
+      "next": "zls2_wardrobe_001_outfit"
+    },
+    {
+      "id": "zls2_wardrobe_001_outfit",
+      "type": "wardrobeChoice",
+      "title": "Гардероб: одежда",
+      "characterId": "hero",
+      "clothes": [
+        "na skoruy_ruku",
+        "mestnaya)obolstitelnitsa",
+        "devitsa_krasa"
+      ],
+      "premiumCosts": [
+        0,
+        15,
+        25
+      ],
+      "optionRules": [
+        {
+          "premiumCost": 0,
+          "purchaseKey": "zls2_wardrobe_001_outfit.na_skoruy_ruku",
+          "label": "На скорую руку"
+        },
+        {
+          "premiumCost": 15,
+          "purchaseKey": "zls2_wardrobe_001_outfit.mestnaya_obolstitelnitsa",
+          "label": "Местная обольстительница"
+        },
+        {
+          "premiumCost": 25,
+          "purchaseKey": "zls2_wardrobe_001_outfit.devitsa_krasa",
+          "label": "Девица-краса"
+        }
+      ],
+      "next": "zls2_wardrobe_002_hair",
+      "authorComment": "На скорую руку - бесплатно; Местная обольстительница - 15♥; Девица-краса - 25♥. ГГ по дефолту одета в night_cloth."
+    },
+    {
+      "id": "zls2_wardrobe_002_hair",
+      "type": "wardrobeChoice",
+      "title": "Гардероб: прическа",
+      "characterId": "hero",
+      "clothes": [
+        "hair_kare_blonde",
+        "hair_kare_brown",
+        "hair_kare_black",
+        "hair_bun_blonde",
+        "hair_bun_brown",
+        "hair_bun_black",
+        "hair_braid_blonde",
+        "hair_braid_brown",
+        "hair_braid_black"
+      ],
+      "premiumCosts": [
+        0,
+        0,
+        0,
+        15,
+        15,
+        15,
+        25,
+        25,
+        25
+      ],
+      "optionRules": [
+        {
+          "premiumCost": 0,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_kare_blonde",
+          "label": "Каре — светлые"
+        },
+        {
+          "premiumCost": 0,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_kare_brown",
+          "label": "Каре — каштановые"
+        },
+        {
+          "premiumCost": 0,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_kare_black",
+          "label": "Каре — тёмные"
+        },
+        {
+          "premiumCost": 15,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_bun_blonde",
+          "label": "Пучок — светлые"
+        },
+        {
+          "premiumCost": 15,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_bun_brown",
+          "label": "Пучок — каштановые"
+        },
+        {
+          "premiumCost": 15,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_bun_black",
+          "label": "Пучок — тёмные"
+        },
+        {
+          "premiumCost": 25,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_braid_blonde",
+          "label": "Косы — светлые"
+        },
+        {
+          "premiumCost": 25,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_braid_brown",
+          "label": "Косы — каштановые"
+        },
+        {
+          "premiumCost": 25,
+          "purchaseKey": "zls2_wardrobe_002_hair.hair_braid_black",
+          "label": "Косы — тёмные"
+        }
+      ],
+      "next": "zls2_choice_002_look_confirm",
+      "authorComment": "Каре (Золотистая, Каштановая, Темноволосая) - бесплатно; Пучок (Золотистая, Каштановая, Темноволосая) - 15♥; Косы (Золотистая, Каштановая, Темноволосая) - 25♥."
+    },
+    {
+      "id": "zls2_choice_002_look_confirm",
+      "type": "choice",
+      "choicePrompt": "{playerName} довольна своим образом?",
+      "choices": [
+        {
+          "text": "Да",
+          "next": "zls2_scene_003_kitchen_day"
+        },
+        {
+          "text": "Нет",
+          "next": "zls2_wardrobe_001_outfit"
+        }
+      ]
+    },
+    {
+      "id": "zls2_scene_003_kitchen_day",
+      "type": "scene",
+      "title": "Дом внутри",
+      "label": "Дом внутри",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/inside_home_day.JPG",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Дом внутри",
+      "suggestedMusic": "Деревенская тема день",
+      "next": "zls2_dialogue_006_breakfast"
+    },
+    {
+      "id": "zls2_dialogue_006_breakfast",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Кухня обдаёт жаром и густым, уютным ароматом: на сковородке звучно шкворчит масло - жарятся пышные оладьи. Баб Нюра, в простом платке, ловко орудует вилкой, переворачивая их румяной стороной к себе."
+        },
+        {
+          "text": "Доброе утро, баб Нюр!",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Ох, проснулась, касаточка. Доброе, доброе!",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Баб Нюра отворачивается к плите, что-то бормоча себе под нос."
+        },
+        {
+          "text": "Первый блин - комам, чтобы дом хранили…",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} садится за тяжелый деревянный стол, и перед ней тут же оказывается тарелка с горой оладьев и банка густого тёмно-красного варенья."
+        },
+        {
+          "text": "Она смеётся, качая головой, но во рту уже скапливается слюна."
+        },
+        {
+          "text": "Я от вас уеду колобком! В городе я завтракала кофе - да и то на бегу…",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Баб Нюра сурово щурится."
+        },
+        {
+          "text": "То-то я и гляжу - прозрачная вся! Того и гляди - ветром сдует.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Тон её голоса смягчается."
+        },
+        {
+          "text": "Кушай, детонька, кушай! Тут все натуральное - где ты еще такое в своём городе найдешь?",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} послушно зачерпывает ложкой варенье и с аппетитом жуёт горячие оладьи. Вкус терпкий, лесной."
+        },
+        {
+          "text": "Очень вкусно! А это из чего?",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Из жимолости да лесных ягод. Сама собирала, когда луна ещё в рост шла. Оно для сердца хорошо и нервы успокаивает.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} кивает, поглядывая в окошко - по двору важно расхаживают курицы, клюя пшено."
+        },
+        {
+          "text": "Баб Нюра садится напротив, подпирая щеку рукой. Она смотрит на {playerName:acc} с такой нежностью и теплом, что у той на мгновение щемит в груди."
+        },
+        {
+          "text": "Ты на мать в этом свете больно похожа. Та тоже, бывало, сядет у окошка, глаза вытаращит и ждет чего-то… Не дождалась поди - уехала за лучшей жизнью. Думала, в городе от себя убежит.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} горько усмехается."
+        },
+        {
+          "text": "Ну, это у нас семейное…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра качает головой."
+        },
+        {
+          "text": "Бегать-то можно, да только круглая она, Земля-то. Рано или поздно все равно к началу придешь.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Решив воспользоваться подвернувшейся возможностью, {playerName} решает расспросить бабушку о…"
+        }
+      ],
+      "next": "zls2_choice_questions_start"
+    },
+    {
+      "id": "zls2_choice_questions_start",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "Маме…",
+          "next": "zls2_choice_questions_start_ask_mom"
+        },
+        {
+          "text": "О дедушке…",
+          "next": "zls2_choice_questions_start_ask_grandfather"
+        },
+        {
+          "text": "Об Иване…",
+          "next": "zls2_choice_questions_start_ask_ivan"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_mom",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "О дедушке…",
+          "next": "zls2_choice_questions_after_mom_ask_grandfather"
+        },
+        {
+          "text": "Об Иване…",
+          "next": "zls2_choice_questions_after_mom_ask_ivan"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "Маме…",
+          "next": "zls2_choice_questions_after_grandfather_ask_mom"
+        },
+        {
+          "text": "Об Иване…",
+          "next": "zls2_choice_questions_after_grandfather_ask_ivan"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_grandfather",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "Об Иване…",
+          "next": "zls2_choice_questions_after_mom_grandfather_ask_ivan"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "Маме…",
+          "next": "zls2_choice_questions_after_ivan_ask_mom"
+        },
+        {
+          "text": "О дедушке…",
+          "next": "zls2_choice_questions_after_ivan_ask_grandfather"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_ivan",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "О дедушке…",
+          "next": "zls2_choice_questions_after_mom_ivan_ask_grandfather"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan",
+      "type": "choice",
+      "title": "Завтрак: вопросы баб Нюре",
+      "choicePrompt": "О чём спросить баб Нюру?",
+      "choices": [
+        {
+          "text": "Маме…",
+          "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom"
+        },
+        {
+          "text": "завершить диалог",
+          "next": "zls2_dialogue_007_market_task"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Почему мама так не хочет сюда возвращаться? Каждый раз отнекивается - то дела, то мигрени…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра вздыхает, отставляя тарелку в сторону."
+        },
+        {
+          "text": "Побаивается она, деточка… Глупо, может, для взрослой-то женщины, да страх из сердца не вытравишь.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} удивленно вскидывает брови."
+        },
+        {
+          "text": "Чего побаивается? Здесь же тишина, покой.",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Воды местной боится… Она ведь как-то чуть не потонула на нашей реке на Купалу. Говорила потом - будто за ногу кто-то схватил и вниз потянул, в самую муть.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "За ногу? В детстве она рассказывала мне, что просто поскользнулась на мокром камне…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Вытащить-то её вытащили, да с тех пору на воду нашу она смотреть не может. Собрала вещи, как восемнадцать стукнуло, и упорхнула - учиться, мол, хочу, значит, а здесь - воздух тяжелый и дышать нечем.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        }
+      ],
+      "next": "zls2_choice_questions_start_ask_mom_choice"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_choice",
+      "type": "choice",
+      "choicePrompt": "Что подумать о страхе матери?",
+      "choices": [
+        {
+          "text": "У страха глаза велики",
+          "next": "zls2_choice_questions_start_ask_mom_city_stat_city"
+        },
+        {
+          "text": "Может, она права была, что сбежала?",
+          "next": "zls2_choice_questions_start_ask_mom_fairytale_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_fairytale_line",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Иногда мне кажется, что здесь даже деревья за тобой наблюдают. Так что я её страх понимаю…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        }
+      ],
+      "next": "zls2_choice_questions_start_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_common",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюра кивает, продолжая говорить, и крепко сжимая пальцами край скатерти, - так что белеют костяшки."
+        },
+        {
+          "text": "Так-то оно так, да только вот сны ей после того случая снились такие, что она по ночам кричала…",
+          "speaker": "bab_nyura"
+        },
+        {
+          "text": "{playerName} вздрагивает, вспоминая ту странную считалочку, но тут же гонит лишние мысли прочь."
+        },
+        {
+          "text": "Это просто совпадение…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "А сны они, детонька, не врут…",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_choice_questions_after_mom"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_city_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_choice_questions_start_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_city_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_choice_questions_start_ask_mom_city_world_city"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_fairytale_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_choice_questions_start_ask_mom_fairytale_line"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_mom_fairytale_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_choice_questions_start_ask_mom_fairytale_world_fairytale"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_grandfather",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "А дедушка? Он тоже не любил город, как и ты?",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Баб Нюра улыбается, глядя куда-то сквозь {playerName:acc}, предаваясь воспоминаниям."
+        },
+        {
+          "text": "Твой дед, Степан, горы мог свернуть, а в город как к дочке приезжал, чах. Говорил, мол, душа там не дышит. И лес он наш как свои пять пальцев знал - лешего не страшился, в ладах с ним был. Верил, что Подлесье - сердце мира. Что если оно биться перестанет, то и везде жизнь остановится.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "И ты… осталась здесь совсем одна после его ухода? Неужели не хотелось в цивилизацию, к людям?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Баб Нюра спокойно разглаживает скатерть морщинистыми ладонями."
+        },
+        {
+          "text": "А я и не одна. Здесь каждый друг друга знает, здоровается. Есть с кем словом обмолвиться. Да и одиночество, {playerName}, это наука тонкая. К нему привыкнуть нужно - так и слышать научишься: себя, других, природу нашу здешнюю…",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather"
+    },
+    {
+      "id": "zls2_choice_questions_start_ask_ivan",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюр, а расскажите об Иване.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Во взгляде Баб Нюры мелькает девичье озорство."
+        },
+        {
+          "text": "Понравился, небось?",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} смущенно отмахивается."
+        },
+        {
+          "text": "Действительно, зачем спросила? Сдался он мне…",
+          "speaker": "hero",
+          "emotion": "Embarrassed"
+        },
+        {
+          "text": "Да так, просто к слову пришлось. Любопытно стало…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра смеётся."
+        },
+        {
+          "text": "Любопытство - не порок, внученька, а источник информации… А Ванька у нас парень видный. Девки вокруг него так и вьются.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Часто меня проведывает, забор вон подправил, дров наколол. Хороший парень, хоть и молчаливый, как пень горелый… Ты присмотрись - может, суженым тебе будет.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_ivan"
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_ask_grandfather",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "А дедушка? Он тоже не любил город, как и ты?",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Баб Нюра улыбается, глядя куда-то сквозь {playerName:acc}, предаваясь воспоминаниям."
+        },
+        {
+          "text": "Твой дед, Степан, горы мог свернуть, а в город как к дочке приезжал, чах. Говорил, мол, душа там не дышит. И лес он наш как свои пять пальцев знал - лешего не страшился, в ладах с ним был. Верил, что Подлесье - сердце мира. Что если оно биться перестанет, то и везде жизнь остановится.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "И ты… осталась здесь совсем одна после его ухода? Неужели не хотелось в цивилизацию, к людям?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Баб Нюра спокойно разглаживает скатерть морщинистыми ладонями."
+        },
+        {
+          "text": "А я и не одна. Здесь каждый друг друга знает, здоровается. Есть с кем словом обмолвиться. Да и одиночество, {playerName}, это наука тонкая. К нему привыкнуть нужно - так и слышать научишься: себя, других, природу нашу здешнюю…",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_mom_grandfather"
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_ask_ivan",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюр, а расскажите об Иване.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Во взгляде Баб Нюры мелькает девичье озорство."
+        },
+        {
+          "text": "Понравился, небось?",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} смущенно отмахивается."
+        },
+        {
+          "text": "Действительно, зачем спросила? Сдался он мне…",
+          "speaker": "hero",
+          "emotion": "Embarrassed"
+        },
+        {
+          "text": "Да так, просто к слову пришлось. Любопытно стало…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра смеётся."
+        },
+        {
+          "text": "Любопытство - не порок, внученька, а источник информации… А Ванька у нас парень видный. Девки вокруг него так и вьются.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Часто меня проведывает, забор вон подправил, дров наколол. Хороший парень, хоть и молчаливый, как пень горелый… Ты присмотрись - может, суженым тебе будет.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_mom_ivan"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Почему мама так не хочет сюда возвращаться? Каждый раз отнекивается - то дела, то мигрени…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра вздыхает, отставляя тарелку в сторону."
+        },
+        {
+          "text": "Побаивается она, деточка… Глупо, может, для взрослой-то женщины, да страх из сердца не вытравишь.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} удивленно вскидывает брови."
+        },
+        {
+          "text": "Чего побаивается? Здесь же тишина, покой.",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Воды местной боится… Она ведь как-то чуть не потонула на нашей реке на Купалу. Говорила потом - будто за ногу кто-то схватил и вниз потянул, в самую муть.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "За ногу? В детстве она рассказывала мне, что просто поскользнулась на мокром камне…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Вытащить-то её вытащили, да с тех пору на воду нашу она смотреть не может. Собрала вещи, как восемнадцать стукнуло, и упорхнула - учиться, мол, хочу, значит, а здесь - воздух тяжелый и дышать нечем.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_choice"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_choice",
+      "type": "choice",
+      "choicePrompt": "Что подумать о страхе матери?",
+      "choices": [
+        {
+          "text": "У страха глаза велики",
+          "next": "zls2_choice_questions_after_grandfather_ask_mom_city_stat_city"
+        },
+        {
+          "text": "Может, она права была, что сбежала?",
+          "next": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_line",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Иногда мне кажется, что здесь даже деревья за тобой наблюдают. Так что я её страх понимаю…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_common",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюра кивает, продолжая говорить, и крепко сжимая пальцами край скатерти, - так что белеют костяшки."
+        },
+        {
+          "text": "Так-то оно так, да только вот сны ей после того случая снились такие, что она по ночам кричала…",
+          "speaker": "bab_nyura"
+        },
+        {
+          "text": "{playerName} вздрагивает, вспоминая ту странную считалочку, но тут же гонит лишние мысли прочь."
+        },
+        {
+          "text": "Это просто совпадение…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "А сны они, детонька, не врут…",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_choice_questions_after_mom_grandfather"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_city_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_city_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_city_world_city"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_line"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_choice_questions_after_grandfather_ask_mom_fairytale_world_fairytale"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ask_ivan",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюр, а расскажите об Иване.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Во взгляде Баб Нюры мелькает девичье озорство."
+        },
+        {
+          "text": "Понравился, небось?",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} смущенно отмахивается."
+        },
+        {
+          "text": "Действительно, зачем спросила? Сдался он мне…",
+          "speaker": "hero",
+          "emotion": "Embarrassed"
+        },
+        {
+          "text": "Да так, просто к слову пришлось. Любопытно стало…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра смеётся."
+        },
+        {
+          "text": "Любопытство - не порок, внученька, а источник информации… А Ванька у нас парень видный. Девки вокруг него так и вьются.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Часто меня проведывает, забор вон подправил, дров наколол. Хороший парень, хоть и молчаливый, как пень горелый… Ты присмотрись - может, суженым тебе будет.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ivan"
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_grandfather_ask_ivan",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюр, а расскажите об Иване.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Во взгляде Баб Нюры мелькает девичье озорство."
+        },
+        {
+          "text": "Понравился, небось?",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} смущенно отмахивается."
+        },
+        {
+          "text": "Действительно, зачем спросила? Сдался он мне…",
+          "speaker": "hero",
+          "emotion": "Embarrassed"
+        },
+        {
+          "text": "Да так, просто к слову пришлось. Любопытно стало…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра смеётся."
+        },
+        {
+          "text": "Любопытство - не порок, внученька, а источник информации… А Ванька у нас парень видный. Девки вокруг него так и вьются.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Часто меня проведывает, забор вон подправил, дров наколол. Хороший парень, хоть и молчаливый, как пень горелый… Ты присмотрись - может, суженым тебе будет.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_stat_questions_respect"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Почему мама так не хочет сюда возвращаться? Каждый раз отнекивается - то дела, то мигрени…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра вздыхает, отставляя тарелку в сторону."
+        },
+        {
+          "text": "Побаивается она, деточка… Глупо, может, для взрослой-то женщины, да страх из сердца не вытравишь.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} удивленно вскидывает брови."
+        },
+        {
+          "text": "Чего побаивается? Здесь же тишина, покой.",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Воды местной боится… Она ведь как-то чуть не потонула на нашей реке на Купалу. Говорила потом - будто за ногу кто-то схватил и вниз потянул, в самую муть.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "За ногу? В детстве она рассказывала мне, что просто поскользнулась на мокром камне…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Вытащить-то её вытащили, да с тех пору на воду нашу она смотреть не может. Собрала вещи, как восемнадцать стукнуло, и упорхнула - учиться, мол, хочу, значит, а здесь - воздух тяжелый и дышать нечем.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        }
+      ],
+      "next": "zls2_choice_questions_after_ivan_ask_mom_choice"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_choice",
+      "type": "choice",
+      "choicePrompt": "Что подумать о страхе матери?",
+      "choices": [
+        {
+          "text": "У страха глаза велики",
+          "next": "zls2_choice_questions_after_ivan_ask_mom_city_stat_city"
+        },
+        {
+          "text": "Может, она права была, что сбежала?",
+          "next": "zls2_choice_questions_after_ivan_ask_mom_fairytale_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_fairytale_line",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Иногда мне кажется, что здесь даже деревья за тобой наблюдают. Так что я её страх понимаю…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        }
+      ],
+      "next": "zls2_choice_questions_after_ivan_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_common",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюра кивает, продолжая говорить, и крепко сжимая пальцами край скатерти, - так что белеют костяшки."
+        },
+        {
+          "text": "Так-то оно так, да только вот сны ей после того случая снились такие, что она по ночам кричала…",
+          "speaker": "bab_nyura"
+        },
+        {
+          "text": "{playerName} вздрагивает, вспоминая ту странную считалочку, но тут же гонит лишние мысли прочь."
+        },
+        {
+          "text": "Это просто совпадение…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "А сны они, детонька, не врут…",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_choice_questions_after_mom_ivan"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_city_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_choice_questions_after_ivan_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_city_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_choice_questions_after_ivan_ask_mom_city_world_city"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_fairytale_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_choice_questions_after_ivan_ask_mom_fairytale_line"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_mom_fairytale_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_choice_questions_after_ivan_ask_mom_fairytale_world_fairytale"
+    },
+    {
+      "id": "zls2_choice_questions_after_ivan_ask_grandfather",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "А дедушка? Он тоже не любил город, как и ты?",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Баб Нюра улыбается, глядя куда-то сквозь {playerName:acc}, предаваясь воспоминаниям."
+        },
+        {
+          "text": "Твой дед, Степан, горы мог свернуть, а в город как к дочке приезжал, чах. Говорил, мол, душа там не дышит. И лес он наш как свои пять пальцев знал - лешего не страшился, в ладах с ним был. Верил, что Подлесье - сердце мира. Что если оно биться перестанет, то и везде жизнь остановится.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "И ты… осталась здесь совсем одна после его ухода? Неужели не хотелось в цивилизацию, к людям?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Баб Нюра спокойно разглаживает скатерть морщинистыми ладонями."
+        },
+        {
+          "text": "А я и не одна. Здесь каждый друг друга знает, здоровается. Есть с кем словом обмолвиться. Да и одиночество, {playerName}, это наука тонкая. К нему привыкнуть нужно - так и слышать научишься: себя, других, природу нашу здешнюю…",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ivan"
+    },
+    {
+      "id": "zls2_choice_questions_after_mom_ivan_ask_grandfather",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "А дедушка? Он тоже не любил город, как и ты?",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Баб Нюра улыбается, глядя куда-то сквозь {playerName:acc}, предаваясь воспоминаниям."
+        },
+        {
+          "text": "Твой дед, Степан, горы мог свернуть, а в город как к дочке приезжал, чах. Говорил, мол, душа там не дышит. И лес он наш как свои пять пальцев знал - лешего не страшился, в ладах с ним был. Верил, что Подлесье - сердце мира. Что если оно биться перестанет, то и везде жизнь остановится.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "И ты… осталась здесь совсем одна после его ухода? Неужели не хотелось в цивилизацию, к людям?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Баб Нюра спокойно разглаживает скатерть морщинистыми ладонями."
+        },
+        {
+          "text": "А я и не одна. Здесь каждый друг друга знает, здоровается. Есть с кем словом обмолвиться. Да и одиночество, {playerName}, это наука тонкая. К нему привыкнуть нужно - так и слышать научишься: себя, других, природу нашу здешнюю…",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_stat_questions_respect"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Почему мама так не хочет сюда возвращаться? Каждый раз отнекивается - то дела, то мигрени…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Баб Нюра вздыхает, отставляя тарелку в сторону."
+        },
+        {
+          "text": "Побаивается она, деточка… Глупо, может, для взрослой-то женщины, да страх из сердца не вытравишь.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} удивленно вскидывает брови."
+        },
+        {
+          "text": "Чего побаивается? Здесь же тишина, покой.",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Воды местной боится… Она ведь как-то чуть не потонула на нашей реке на Купалу. Говорила потом - будто за ногу кто-то схватил и вниз потянул, в самую муть.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "За ногу? В детстве она рассказывала мне, что просто поскользнулась на мокром камне…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Вытащить-то её вытащили, да с тех пору на воду нашу она смотреть не может. Собрала вещи, как восемнадцать стукнуло, и упорхнула - учиться, мол, хочу, значит, а здесь - воздух тяжелый и дышать нечем.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_choice"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_choice",
+      "type": "choice",
+      "choicePrompt": "Что подумать о страхе матери?",
+      "choices": [
+        {
+          "text": "У страха глаза велики",
+          "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_city_stat_city"
+        },
+        {
+          "text": "Может, она права была, что сбежала?",
+          "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_line",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Иногда мне кажется, что здесь даже деревья за тобой наблюдают. Так что я её страх понимаю…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        }
+      ],
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_common",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Баб Нюра кивает, продолжая говорить, и крепко сжимая пальцами край скатерти, - так что белеют костяшки."
+        },
+        {
+          "text": "Так-то оно так, да только вот сны ей после того случая снились такие, что она по ночам кричала…",
+          "speaker": "bab_nyura"
+        },
+        {
+          "text": "{playerName} вздрагивает, вспоминая ту странную считалочку, но тут же гонит лишние мысли прочь."
+        },
+        {
+          "text": "Это просто совпадение…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "А сны они, детонька, не врут…",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_stat_questions_respect"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_city_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_common"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_city_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_city_world_city"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_line"
+    },
+    {
+      "id": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_choice_questions_after_grandfather_ivan_ask_mom_fairytale_world_fairytale"
+    },
+    {
+      "id": "zls2_stat_questions_respect",
+      "type": "statChange",
+      "statId": "respect",
+      "statDelta": 1,
+      "statDisplayName": "Уважение",
+      "systemMessage": "Уважение +1",
+      "next": "zls2_dialogue_007_market_task"
+    },
+    {
+      "id": "zls2_dialogue_007_market_task",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Ох, внученька, опять заговорила ты меня. Пойду-ка яйца соберу…",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "А ты как поешь - сбегай на рынок, будь добра. Творожку там свежего возьми у тёти Гали, она у нас с фермы. Скажи - от Нюры, она поймёт.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "И сметанки прихвати - к вечеру блинцов нажарю.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} неспешно доедает оладьи. Солнце за окном заливает сад таким ярким светом, что зелень кажется флуоресцентной. Она встает, чувствуя непривычную сытость и легкость."
+        },
+        {
+          "text": "Странно. В офисе после такого завтрака я бы уже мечтала о второй чашке кофе, чтобы просто открыть глаза. А здесь... здесь энергия будто в самом воздухе.",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "{playerName} надевает сандалии и берет плетеную корзинку."
+        }
+      ],
+      "next": "zls2_scene_004_house_exterior_day"
+    },
+    {
+      "id": "zls2_scene_004_house_exterior_day",
+      "type": "scene",
+      "title": "Дом снаружи",
+      "label": "Дом снаружи",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Hme_Day.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Дом снаружи",
+      "suggestedMusic": "Деревенская тема",
+      "next": "zls2_dialogue_008_to_market"
+    },
+    {
+      "id": "zls2_dialogue_008_to_market",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она выходит на крыльцо и на секунду замирает, зажмурившись. Воздух густой, тёплый, пахнет пылью и чем-то сладким, прелым."
+        },
+        {
+          "text": "Запах пыли, разогретой крапивы и чего-то сладкого... Так пахнет лето, когда тебе десять, и впереди целая вечность.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Она подставляет лицо солнечным лучам, позволяя себе немного под ними понежиться - наверняка потом появятся веснушки."
+        },
+        {
+          "text": "Мимо проезжает мальчишка на велосипеде и сигналит звонком переходящей ему дорогу рыжей недавно окотившейся кошке."
+        },
+        {
+          "text": "Придерживая корзинку, {playerName} идёт по узкой улочке, разглядывая попадающие на глаза деревянные заборы, резные ставни и выцветшие адресные таблички."
+        },
+        {
+          "text": "По пути срывает ярко-красную вишню, сразу бросая в рот. Тут же морщится."
+        },
+        {
+          "text": "Ух, как кисло! Аж скулы свело… Зато бодрит лучше любого энергетика!",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "И сплевывает косточку на землю."
+        }
+      ],
+      "next": "zls2_scene_005_market"
+    },
+    {
+      "id": "zls2_scene_005_market",
+      "type": "scene",
+      "title": "Ярмарка",
+      "label": "Ярмарка",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Yarmarka.jpg",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Ярмарка",
+      "suggestedMusic": "Деревенская тема день",
+      "next": "zls2_dialogue_009_market"
+    },
+    {
+      "id": "zls2_dialogue_009_market",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Деревенская площадь гудит. {playerName} сразу понимает: это не стерильный супермаркет, это - живой организм."
+        },
+        {
+          "text": "Пахнет укропом, парным молоком и немного - старой кожей."
+        },
+        {
+          "text": "Эти запахи невольно возвращают её в детство - в ту пору, когда она вот так же прогуливалась по ярмарке с бабушкой, а та покупала ей большой красный леденец в виде петуха, который едва помещался во рту."
+        },
+        {
+          "text": "Прилавки пестрят товарами: продукты, изделия из дерева, странные амулеты, травы…"
+        },
+        {
+          "text": "Людно и шумно - как в торговом центре в выходной. Но - иначе. Кто-то спорит о цене, пытаясь выторговать скидку, кто-то просто болтает и смеётся."
+        },
+        {
+          "text": "Как будто я попала на фестиваль исторической реконструкции…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Солнце припекает макушку."
+        },
+        {
+          "text": "{playerName} проходит мимо прилавков."
+        },
+        {
+          "text": "Она останавливается у прилавка с творогом."
+        },
+        {
+          "text": "Красавица, ты чья будешь? Нюркина?",
+          "speaker": "teta_galya",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Да-да, я внучка её. {playerName}.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "А я сразу узнала - та же походка!",
+          "speaker": "teta_galya",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Ну как ты тут? Обживаешься?",
+          "speaker": "teta_galya",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Она достаёт ложку и накладывает творог в пакет. Руки у неё крепкие, мозолистые - как у всех, кто много работает."
+        },
+        {
+          "text": "Потихоньку…",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "И сметанки ещё. Бабушка сказала, что у вас всё самое свежее.",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Верно сказала. Сегодня хороший день, молоко удачное - само в ведро просилось.",
+          "speaker": "teta_galya",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} вежливо кивает, не зная, как поддержать разговор, но старушка продолжает его сама. Смотрит на неё так внимательно и серьёзно, что {playerName} на всякий случай выпрямляет спину, чувствуя себя ученицей, отвечающей у доски."
+        },
+        {
+          "text": "Слушай, деточка... Ты к речке пока не ходи. Слышишь? Не захаживай к воде, пока солнце в зените не постоит. Народ болтает, будто река злится в этом году...",
+          "speaker": "teta_galya",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} неловко дёргает плечом, подавляя усмешку."
+        }
+      ],
+      "next": "zls2_choice_003_river_warning"
+    },
+    {
+      "id": "zls2_choice_003_river_warning",
+      "type": "choice",
+      "choicePrompt": "Что ответить тёте Гале?",
+      "choices": [
+        {
+          "text": "Тёть Галь, это у вас тут, наверное, всегда так: то река злится, то ветер гневается.",
+          "next": "zls2_warning_city_stat_city"
+        },
+        {
+          "text": "А почему злится?",
+          "next": "zls2_warning_fairytale_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_dialogue_010_warning_city",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "А на деле - простая физика. Берег подмыло, течение усилилось… Обычное дело для июня.",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Да кто ж их поймет, деточька, законы эти. Только река - она живая, да своевольная очень. Помни об этом.",
+          "speaker": "teta_galya",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_dialogue_012_rhyme_market"
+    },
+    {
+      "id": "zls2_dialogue_011_warning_fairytale",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Да пустяки. Говорят, кто-то шумел у реки, пьянствовал там, где не должно - лето, шашлыки же… Вот и возмутилась, мол, покоя не дают.",
+          "speaker": "teta_galya",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Старушка качает головой. {playerName} лишь пожимает плечами."
+        }
+      ],
+      "next": "zls2_dialogue_012_rhyme_market"
+    },
+    {
+      "id": "zls2_warning_city_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_dialogue_010_warning_city"
+    },
+    {
+      "id": "zls2_warning_city_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_warning_city_world_city"
+    },
+    {
+      "id": "zls2_warning_fairytale_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_dialogue_011_warning_fairytale"
+    },
+    {
+      "id": "zls2_warning_fairytale_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_warning_fairytale_world_fairytale"
+    },
+    {
+      "id": "zls2_dialogue_012_rhyme_market",
+      "type": "dialogue",
+      "activeCharacters": [
+        {
+          "character": "hero",
+          "emotion": "EyeRoll",
+          "position": "Left"
+        },
+        {
+          "character": "girl_1",
+          "emotion": "Idle",
+          "position": "Center"
+        },
+        {
+          "character": "girl_2",
+          "emotion": "Idle",
+          "position": "Right"
+        }
+      ],
+      "lines": [
+        {
+          "text": "Чего только не придумают от скуки…",
+          "speaker": "hero",
+          "emotion": "EyeRoll"
+        },
+        {
+          "text": "Взяв пакеты, она не успевает сделать и шага, как её словно окатывает холодом."
+        },
+        {
+          "text": "Мавка моет берега, вымывает имена.",
+          "speaker": "girl_1",
+          "emotion": "Idle"
+        },
+        {
+          "text": "На мосточке, у воды, сидят мёртвые сады.",
+          "speaker": "girl_2",
+          "emotion": "Idle"
+        },
+        {
+          "text": "{playerName} моргает и резко оборачивается на звук - две девчушки лет пяти весело поют странную считалочку, прыгая через скакалку."
+        },
+        {
+          "text": "Кто посмотрит - не моргни. Кто услышит - не зови. У воды сидит она. Кто ответит - нет следа.",
+          "speaker": "girl_1",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} чувствует, как на затылке шевелятся мелкие волоски. Это не просто считалочка - это точный текст из её сегодняшнего пугающего сна."
+        },
+        {
+          "text": "Ну вот, ты водишь! Считай!",
+          "speaker": "girl_1",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Её подружка отворачивается, а она сама убегает прочь."
+        },
+        {
+          "text": "По шее {playerName} ползет липкий жар."
+        },
+        {
+          "text": "Ну вот, обычная детская считалочка.",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Убеждает себя она, пытаясь заземлиться и успокоиться."
+        },
+        {
+          "text": "Наверное, услышала где-нибудь, когда шла от станции, и мозг просто выдал это во сне… Да. Это логично. Бессознательное - штука сложная.",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Чур меня…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Говорит на всякий случай, почти шепотом, как будто стыдится. На самом деле стыдится."
+        }
+      ],
+      "next": "zls2_condition_worldview_eq_1"
+    },
+    {
+      "id": "zls2_condition_worldview_eq_1",
+      "type": "condition",
+      "variableKey": "zls2_worldview",
+      "requiredValue": 1,
+      "trueNext": "zls2_dialogue_013_market_fairytale_dominant",
+      "falseNext": "zls2_condition_worldview_eq_2"
+    },
+    {
+      "id": "zls2_condition_worldview_eq_2",
+      "type": "condition",
+      "variableKey": "zls2_worldview",
+      "requiredValue": 2,
+      "trueNext": "zls2_dialogue_013_market_fairytale_dominant",
+      "falseNext": "zls2_condition_worldview_eq_3"
+    },
+    {
+      "id": "zls2_condition_worldview_eq_3",
+      "type": "condition",
+      "variableKey": "zls2_worldview",
+      "requiredValue": 3,
+      "trueNext": "zls2_dialogue_013_market_fairytale_dominant",
+      "falseNext": "zls2_dialogue_014_market_city_dominant"
+    },
+    {
+      "id": "zls2_dialogue_013_market_fairytale_dominant",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она не сторонница мистицизма, хотя в детстве ей иногда чудилось… всякое и тогда она верила, что это взаправду."
+        }
+      ],
+      "next": "zls2_dialogue_015_market_after_condition"
+    },
+    {
+      "id": "zls2_dialogue_014_market_city_dominant",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она не верит в мистику, но странные сны и эта считалочка делают её мнительной."
+        }
+      ],
+      "next": "zls2_dialogue_015_market_after_condition"
+    },
+    {
+      "id": "zls2_dialogue_015_market_after_condition",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "{playerName} старается отмахнуться от детских голосов, но внутри остаётся слабое эхо - немудреные слова словно проникли под кожу."
+        },
+        {
+          "text": "Она беспокойно оглядывается по сторонам. Рынок тот же, люди те же, но на мгновение ей показалось, что всё - не такое, каким видится. Или не только такое."
+        },
+        {
+          "text": "Тётя Галя смеётся, болтая с очередной покупательницей, и {playerName} становится спокойнее."
+        },
+        {
+          "text": "Сама себя накрутила…",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} задерживается на рынке еще немного."
+        },
+        {
+          "text": "Прохаживаясь между торговыми рядами, она ловит на себе чужие взгляды."
+        },
+        {
+          "text": "В городе до тебя никому нет дела. Здесь же чувствуешь себя заморской зверюшкой, на которую каждому хочется поглазеть…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Она делает вид, что не обращает на это внимания, но внутренне раздражается, когда слышит, как две женщины перешептываются о ней, посмеиваясь."
+        },
+        {
+          "text": "Хочется осадить. Сказать «вам-то какое до меня дело?»"
+        },
+        {
+          "text": "Но она молчит, не желая давать им повод для пересудов"
+        },
+        {
+          "text": "Вскоре её внимание привлекает прилавок с украшениями."
+        },
+        {
+          "text": "Как хорошо, что я взяла с собой наличку…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Она решает купить…"
+        }
+      ],
+      "next": "zls2_choice_004_jewelry"
+    },
+    {
+      "id": "zls2_choice_004_jewelry",
+      "type": "wardrobeChoice",
+      "title": "Гардероб: украшения",
+      "characterId": "hero",
+      "clothes": [
+        "",
+        "earrings",
+        "necklace",
+        "bracelet"
+      ],
+      "premiumCosts": [
+        0,
+        5,
+        5,
+        5
+      ],
+      "optionRules": [
+        {
+          "label": "Ничего",
+          "clearSlot": "Accessory",
+          "premiumCost": 0,
+          "purchaseKey": "zls2_choice_004_jewelry.none"
+        },
+        {
+          "premiumCost": 5,
+          "purchaseKey": "zls2_choice_004_jewelry.earrings",
+          "label": "Серёжки"
+        },
+        {
+          "premiumCost": 5,
+          "purchaseKey": "zls2_choice_004_jewelry.necklace",
+          "label": "Бусы"
+        },
+        {
+          "premiumCost": 5,
+          "purchaseKey": "zls2_choice_004_jewelry.bracelet",
+          "label": "Браслет"
+        }
+      ],
+      "exits": [
+        "zls2_dialogue_017_market_leave",
+        "zls2_dialogue_016_jewelry_bought",
+        "zls2_dialogue_016_jewelry_bought",
+        "zls2_dialogue_016_jewelry_bought"
+      ],
+      "authorComment": "Украшения должны открываться на экране Wardrobe. Ничего очищает слот аксессуара; остальные варианты стоят 5♥."
+    },
+    {
+      "id": "zls2_dialogue_016_jewelry_bought",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Красивая вещица…",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        }
+      ],
+      "next": "zls2_dialogue_017_market_leave"
+    },
+    {
+      "id": "zls2_dialogue_017_market_leave",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Солнце уже клонится к западу, жара становится тягучей, ленивой."
+        },
+        {
+          "text": "Люди медленно расходятся: кто с корзинками, кто с детьми за руку."
+        },
+        {
+          "text": "Она идёт домой по знакомой улице."
+        }
+      ],
+      "next": "zls2_scene_006_street_day"
+    },
+    {
+      "id": "zls2_scene_006_street_day",
+      "type": "scene",
+      "title": "Улица",
+      "label": "Улица",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Evening.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Улица",
+      "suggestedMusic": "Деревенская тема день",
+      "next": "zls2_dialogue_018_street_day"
+    },
+    {
+      "id": "zls2_dialogue_018_street_day",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Тени вытягиваются, стрекот кузнечиков становится громче - словно деревня так дышит."
+        },
+        {
+          "text": "В руке тяжелеет корзинка, по щеке скользит прядь волос, липнет к коже."
+        }
+      ],
+      "next": "zls2_scene_007_house_exterior_return"
+    },
+    {
+      "id": "zls2_scene_007_house_exterior_return",
+      "type": "scene",
+      "title": "Дом снаружи",
+      "label": "Дом снаружи",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Hme_Day.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Дом снаружи",
+      "suggestedMusic": "Деревенская тема",
+      "next": "zls2_dialogue_019_chores"
+    },
+    {
+      "id": "zls2_dialogue_019_chores",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Подходя к калитке, она слышит знакомый голос."
+        },
+        {
+          "text": "О, вернулась? Хорошо. Поставь на стол. Вечером блинов нажарим.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} кивает, ставит корзинку, затем принимается за домашние хлопоты."
+        },
+        {
+          "text": "Но и тут, оказывается, находится место странным правилам."
+        },
+        {
+          "text": "Кто ж так подметает? Мести нужно от порога в угол.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Всё добро ведь из дома выметешь, да еще и без жениха останешься!",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} только качает головой, но бабушку слушает, сметая мусор к углу."
+        },
+        {
+          "text": "Ты мотай на ус, детонька. Оно в быту на пользу тебе пойдёт…",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        }
+      ],
+      "next": "zls2_scene_008_bedroom_evening"
+    },
+    {
+      "id": "zls2_scene_008_bedroom_evening",
+      "type": "scene",
+      "title": "Спальня",
+      "label": "Спальня",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/bedroom_day.JPG",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/village_day.wav",
+      "suggestedBackground": "Спальня",
+      "suggestedMusic": "Деревенская тема",
+      "next": "zls2_dialogue_020_phone_intro"
+    },
+    {
+      "id": "zls2_dialogue_020_phone_intro",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Закончив с уборкой, {playerName} уходит к себе, чтобы перевести дух."
+        },
+        {
+          "text": "Солнечные лучи льются сквозь пыльные стекла, окрашивая стены в цвет спелой облепихи. Пахнет нагретым деревом и сухой полынью, свисающей с балок."
+        },
+        {
+          "text": "{playerName} удовлетворенно улыбается этой незамысловатой картине. Ей хочется просто закрыть глаза и на мгновенье раствориться в окружающей тишине, но телефон в кармане внезапно глухо вибрирует, сообщая о новом уведомлении."
+        },
+        {
+          "text": "Этот звук кажется здесь инородным, как скрежет гвоздя по стеклу. Она вздрагивает от неожиданности, но достаёт смартфон."
+        },
+        {
+          "text": "Неужели появилась сеть?",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Экран вспыхивает. Она быстро пробегается по нему глазами."
+        },
+        {
+          "text": "«Артём добавил новое фото»"
+        },
+        {
+          "text": "…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Не смотри. Просто смахни и живи дальше.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Это тебе ничего не даст.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_choice_005_phone"
+    },
+    {
+      "id": "zls2_choice_005_phone",
+      "type": "choice",
+      "choicePrompt": "Что сделать с уведомлением?",
+      "choices": [
+        {
+          "text": "Открывает публикацию",
+          "next": "zls2_phone_open_stat_city"
+        },
+        {
+          "text": "Не глядя, откладывает телефон в сторону",
+          "next": "zls2_phone_ignore_stat_fairytale"
+        }
+      ]
+    },
+    {
+      "id": "zls2_dialogue_021_phone_open",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она замирает на секунду, но напряженно тыкает пальцем на уведомление и ждёт, нетерпеливо ёрзая на месте."
+        },
+        {
+          "text": "Связь в деревне капризная. Колесо загрузки никуда не торопится - оно крутится целую вечность и, кажется, норовит свести её с ума."
+        },
+        {
+          "text": "Кадр подгружается кусками."
+        },
+        {
+          "text": "Вот его улыбка - она знает эти ямочки и эту родинку на левой щеке."
+        },
+        {
+          "text": "Вот его рука - каждый шрам на этих пальцах ей знаком. Теперь эта рука лежит на талии другой девушки."
+        },
+        {
+          "text": "За их спинами сияет ночной город - холодный, дорогой, успешный, так легко её вытеснивший."
+        },
+        {
+          "text": "{playerName} крепко сжимает телефон в руке, сцепив зубы."
+        },
+        {
+          "text": "В горле встает вязкий ком."
+        },
+        {
+          "text": "Она злится - на него - за то, что так с ней поступил. И на себя - за то, что ей всё ещё не всё равно."
+        },
+        {
+          "text": "Так нечестно. Он живёт дальше. А я… как будто застряла на одном месте.",
+          "speaker": "hero",
+          "emotion": "Angry"
+        }
+      ],
+      "next": "zls2_dialogue_023_after_phone"
+    },
+    {
+      "id": "zls2_dialogue_022_phone_ignore",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Не глядя, откладывает телефон в сторону. {playerName} пересиливает себя и собственное болезненное любопытство."
+        },
+        {
+          "text": "Телефон летит на подушку экраном вниз, но воображение все равно подсовывает ей неприятные картинки."
+        },
+        {
+          "text": "Она представляет его смех, запах его парфюма, то, как он шепчет кому-то другому те же слова, что когда-то говорил ей."
+        },
+        {
+          "text": "Он даже не заметил моего отсутствия…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_dialogue_023_after_phone"
+    },
+    {
+      "id": "zls2_phone_open_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_dialogue_021_phone_open"
+    },
+    {
+      "id": "zls2_phone_open_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_phone_open_world_city"
+    },
+    {
+      "id": "zls2_phone_ignore_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_dialogue_022_phone_ignore"
+    },
+    {
+      "id": "zls2_phone_ignore_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_phone_ignore_world_fairytale"
+    },
+    {
+      "id": "zls2_dialogue_023_after_phone",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "{playerName} смотрит в окно. Там - безбрежное поле, над которым мигают огоньки. Воздух вечерний, липкий - предвестник грозы или тумана. Слышится жужжание комаров."
+        },
+        {
+          "text": "Так спокойно и умиротворённо, но ей хочется разрыдаться, как маленькой, прямо здесь, никому ничего не объясняя."
+        },
+        {
+          "text": "Хочется написать ему."
+        },
+        {
+          "text": "«Мне плохо.»"
+        },
+        {
+          "text": "Или «я тебя ненавижу»."
+        },
+        {
+          "text": "Или… Пальцы подрагивают от злости, сжимая мягкий край одеяла."
+        },
+        {
+          "text": "И вот, что бесит её больше всего: ненависть - это тоже своего рода форма привязанности."
+        },
+        {
+          "text": "Откинувшись на подушку, она всерьёз раздумывает над сообщением, которое выглядело правильно. Красиво."
+        },
+        {
+          "text": "Так, чтобы он пожалел."
+        },
+        {
+          "text": "Так, чтобы он понял."
+        },
+        {
+          "text": "Но нет на свете таких слов, которые способны заставить негодяя почувствовать, что он негодяй."
+        },
+        {
+          "text": "К черту. Пойду пройдусь. Немного воздуха - и спать...",
+          "speaker": "hero",
+          "emotion": "Angry"
+        },
+        {
+          "text": "Из дома она выскальзывает тихо, украдкой - её выдает только скрип старой двери. Но баб Нюра занята на кухне, бормочет что-то себе под нос, гремит посудой и вряд ли замечает её исчезновение."
+        }
+      ],
+      "next": "zls2_scene_009_evening"
+    },
+    {
+      "id": "zls2_scene_009_evening",
+      "type": "scene",
+      "title": "Вечер",
+      "label": "Вечер",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Evening.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Вечер",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_024_evening_walk"
+    },
+    {
+      "id": "zls2_dialogue_024_evening_walk",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "К вечеру деревня преображается. Тени становятся длинными, острыми. Силуэты изб теперь напоминают сгорбленных стариков."
+        },
+        {
+          "text": "Тишину нарушает только стрекот сверчков и редкий людской голос: кто-то зовёт кошку, кто-то ругает разлаявшегося пса."
+        },
+        {
+          "text": "Вечер кажется тёплым, вот только {playerName} все равно ежится, обнимая себя за плечи."
+        },
+        {
+          "text": "Она идёт без цели, как в сказке, куда глаза глядят. Сворачивает один раз, потом другой. Ноги словно сами несут её, и {playerName} совсем не боится случайно заплутать в высокой траве."
+        }
+      ],
+      "next": "zls2_scene_010_scarecrow"
+    },
+    {
+      "id": "zls2_scene_010_scarecrow",
+      "type": "scene",
+      "title": "Пугало",
+      "label": "Пугало",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/scarecrow.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Пугало",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_025_to_river_intro"
+    },
+    {
+      "id": "zls2_dialogue_025_to_river_intro",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Небо темнеет."
+        }
+      ],
+      "next": "zls2_scene_010b_river_path"
+    },
+    {
+      "id": "zls2_scene_010b_river_path",
+      "type": "scene",
+      "title": "К реке",
+      "label": "К реке",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/river_night.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Река",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_025_to_river"
+    },
+    {
+      "id": "zls2_dialogue_025_to_river",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Деревня остаётся позади, но погруженная в свои мысли {playerName} замечает это не сразу. Посторонние звуки постепенно стихают, будто размываясь."
+        },
+        {
+          "text": "Под ногами, сминаясь, шуршит трава."
+        },
+        {
+          "text": "Куда я иду? Надо бы возвращаться…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Пахнет сыростью и речной прохладой. На секунду становится абсолютно тихо, как будто мир замер. Только река утробно журчит, ударяясь о влажные камни, и бледнолицая луна, подрагивая, серебрится на ровной водной глади."
+        },
+        {
+          "text": "Громко хлопает крыльями птица."
+        },
+        {
+          "text": "{playerName} делает шаг вперед, затем второй."
+        },
+        {
+          "text": "В корнях прибрежной ивы она вдруг видит странную вещицу, похожую на гребень из костяной пластины - потемневшая, с неровными зубьями, она выглядит так, будто вырезана из крупного ребра."
+        },
+        {
+          "text": "{playerName} задумчиво крутит её в руках…"
+        },
+        {
+          "text": "Интересная вещица…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Огладив костяное основание холодного гребня большим пальцем, она беспечно кладёт его себе в карман. Затем делает вперёд."
+        },
+        {
+          "text": "Под ногой звучно хрустит ветка, заставляя вздрогнуть."
+        },
+        {
+          "text": "Из камышей доносится шорох."
+        },
+        {
+          "text": "Становится страшно даже дышать."
+        },
+        {
+          "text": "Над водой, склонившись, мерно покачиваются пышные ивы."
+        }
+      ],
+      "next": "zls2_scene_011_river"
+    },
+    {
+      "id": "zls2_scene_011_river",
+      "type": "scene",
+      "title": "Река",
+      "label": "Река",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/river_night.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/voltage.wav",
+      "suggestedBackground": "Река",
+      "suggestedMusic": "Напряжение",
+      "next": "zls2_dialogue_026_river_stranger"
+    },
+    {
+      "id": "zls2_dialogue_026_river_stranger",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "{playerName} рвано выдыхает."
+        },
+        {
+          "text": "Просто ветер. Или большая птица…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Она пытается подавить возникшую из ниоткуда тревогу, и почти достигает желаемого, но тут взгляд выхватывает силуэт, стоящий в гуще травы на другом берегу."
+        },
+        {
+          "text": "{playerName} присматривается получше."
+        },
+        {
+          "text": "Долго кажется, что это просто тень, но та начинает двигаться - медленно, плавно. Будто не идёт, а скользит вдоль воды."
+        },
+        {
+          "text": "Словно ощутив на себе чужой взгляд, силуэт медленно поднимает голову."
+        },
+        {
+          "text": "А я тебя ждала. Боялась, что не придешь…",
+          "speaker": "voice",
+          "emotion": "Idle"
+        },
+        {
+          "text": "Женский голос звучит мягко, певуче. По спине бегут мурашки от того, каким нездешним, потусторонним он кажется."
+        },
+        {
+          "text": "Кто здесь?",
+          "speaker": "hero",
+          "emotion": "Funk"
+        },
+        {
+          "text": "Вместо ответа из реки доносится лёгкий всплеск. {playerName} вздрагивает."
+        },
+        {
+          "text": "Страх окатывает ледяным потоком и сковывает мышцы, заставляя замереть на месте."
+        },
+        {
+          "text": "Ты ведь пришла ко мне сама…",
+          "speaker": "voice",
+          "emotion": "Idle"
+        },
+        {
+          "text": "{playerName} моргает несколько раз."
+        }
+      ],
+      "next": "zls2_image_001_oksana"
+    },
+    {
+      "id": "zls2_image_001_oksana",
+      "type": "image",
+      "title": "Кат-сцена у реки",
+      "image": "Assets/_MyProject/Art/Story 1/Hear/Кат-сцены/Oksana.PNG",
+      "caption": "Кат-сцена у реки",
+      "description": "Из темноты вырастает девичий силуэт. Бледный, будто сотканный из воды и лунного света. {playerName} готова поклясться, что не видела никого красивее.",
+      "zoomable": false,
+      "next": "zls2_scene_011b_river_after_oksana"
+    },
+    {
+      "id": "zls2_scene_011b_river_after_oksana",
+      "type": "scene",
+      "title": "Река",
+      "label": "Река",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/river_night.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/voltage.wav",
+      "suggestedBackground": "Река",
+      "suggestedMusic": "Напряжение",
+      "next": "zls2_choice_006_oksana_reaction"
+    },
+    {
+      "id": "zls2_choice_006_oksana_reaction",
+      "type": "choice",
+      "activeCharacters": [
+        {
+          "character": "hero",
+          "emotion": "Funk",
+          "position": "Left"
+        },
+        {
+          "character": "oksana",
+          "emotion": "Smile",
+          "position": "Right"
+        }
+      ],
+      "choicePrompt": "Что чувствует {playerName}?",
+      "lines": [
+        {
+          "text": "Незнакомка…",
+          "speaker": "hero"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Пугает",
+          "next": "zls2_dialogue_027_oksana_fear"
+        },
+        {
+          "text": "Привлекает",
+          "next": "zls2_stat_oksana_relation"
+        }
+      ]
+    },
+    {
+      "id": "zls2_dialogue_027_oksana_fear",
+      "type": "dialogue",
+      "activeCharacters": [
+        {
+          "character": "hero",
+          "emotion": "Funk",
+          "position": "Left"
+        },
+        {
+          "character": "oksana",
+          "emotion": "Smile",
+          "position": "Right"
+        }
+      ],
+      "lines": [
+        {
+          "text": "Незнакомка кажется ей неживой, а от того - пугающей."
+        },
+        {
+          "text": "Почему ты дрожишь? Я ведь вижу твои слёзы. Они пахнут солью и горечью. Позволь мне их смыть...",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} чувствует, как её воля слабеет, но ничего не может с этим поделать."
+        }
+      ],
+      "next": "zls2_dialogue_029_river_dialogue"
+    },
+    {
+      "id": "zls2_stat_oksana_relation",
+      "type": "statChange",
+      "statId": "oksana",
+      "statDelta": 1,
+      "statDisplayName": "Незнакомка",
+      "systemMessage": "Отношения с Незнакомкой улучшились.",
+      "next": "zls2_dialogue_028_oksana_attraction"
+    },
+    {
+      "id": "zls2_dialogue_028_oksana_attraction",
+      "type": "dialogue",
+      "activeCharacters": [
+        {
+          "character": "hero",
+          "emotion": "WideSmile",
+          "position": "Left"
+        },
+        {
+          "character": "oksana",
+          "emotion": "Smile",
+          "position": "Right"
+        }
+      ],
+      "lines": [
+        {
+          "text": "Какая красивая. Словно сон…",
+          "speaker": "hero",
+          "emotion": "WideSmile"
+        },
+        {
+          "text": "Подойди. Ты так долго искала покоя. Я дам его тебе…",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        }
+      ],
+      "next": "zls2_dialogue_029_river_dialogue"
+    },
+    {
+      "id": "zls2_dialogue_029_river_dialogue",
+      "type": "dialogue",
+      "activeCharacters": [
+        {
+          "character": "hero",
+          "emotion": "LookToSide",
+          "position": "Left"
+        },
+        {
+          "character": "oksana",
+          "emotion": "Smile",
+          "position": "Right"
+        }
+      ],
+      "lines": [
+        {
+          "text": "Я оказалась здесь случайно…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Её голос предательски дрожит."
+        },
+        {
+          "text": "Кто ты?",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "{playerName} клянёт на чем свет стоит собственное любопытство, потому что, по-хорошему, стоило бы бежать без оглядки."
+        },
+        {
+          "text": "Девушка смеётся - так мягко и звонко, что можно заслушаться."
+        },
+        {
+          "text": "Случайность и любопытство - какое изумительное сочетание…",
+          "speaker": "oksana",
+          "emotion": "Smirk"
+        },
+        {
+          "text": "Одежда липнет к её телу, как будто она только что вышла из воды."
+        },
+        {
+          "text": "Буду кем захочешь.",
+          "speaker": "oksana",
+          "emotion": "Smirk"
+        },
+        {
+          "text": "Ну же, подойди, смелее.",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} нерешительно ступает вперёд, чувствуя прохладу влажной земли."
+        },
+        {
+          "text": "Это сон, да?",
+          "speaker": "hero",
+          "emotion": "Funk"
+        },
+        {
+          "text": "Она больно щипает себя за предплечье. Боль настоящая."
+        },
+        {
+          "text": "Смогла бы я сделать так во сне?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Нет. Это ты… Твоя душа кричала так громко, звала…",
+          "speaker": "oksana",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Нет, здесь точно находится какой-то очаг безумия, которое передалось и мне неизвестным медицине способом…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Так кто ты такая?",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Та, кого позвали.",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Я никого не звала.",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Ей вдруг вспоминаются слова бабушки."
+        },
+        {
+          "text": "Нет ничего более личного, чем твоё имя, не называй его почём зря и держись подальше от тех, кто не хочет называть тебе своё.",
+          "speaker": "bab_nyura",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Она отмахнулась тогда, решив, что это всего лишь старушечьи суеверия. Но теперь все кажется таким пугающе реальным, что становится не по себе."
+        },
+        {
+          "text": "А слёзы - не зов?",
+          "speaker": "oksana",
+          "emotion": "Smirk"
+        },
+        {
+          "text": "Девушка очаровательно улыбается. {playerName} хочет, но не может отвести от нее взгляд."
+        },
+        {
+          "text": "Та медленно шагает к ней ближе, волоча за собой мокрый подол платья. Вода перед ней как будто расступается."
+        },
+        {
+          "text": "Ты красивая…",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} интуитивно делает шаг назад и едва не поскальзывается, но чудом умудряется удержать равновесие."
+        },
+        {
+          "text": "Мне пора.",
+          "speaker": "hero",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Ещё чуть-чуть, ты ведь только пришла…",
+          "speaker": "oksana",
+          "emotion": "Smirk"
+        },
+        {
+          "text": "Он так тебя обидел…",
+          "speaker": "oksana",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Её голос звучит как песня - убаюкивающий, в нем слышится журчание реки."
+        },
+        {
+          "text": "Она смотрит не мигая, и тянет к ней тонкую руку. Её пальцы кажутся слишком длинными."
+        },
+        {
+          "text": "Вода тёплая. Не бойся, заходи, забудь его, оставь здесь свою боль…",
+          "speaker": "oksana",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Хватит. Меня ждут дома…",
+          "speaker": "hero",
+          "emotion": "Angry"
+        },
+        {
+          "text": "Её голос срывается на шепот и чуть подрагивает. Сердце ударяется о рёбра с глухим стуком, к горлу подступает клокочущая тревога."
+        },
+        {
+          "text": "Она делает еще один шаг назад. Что-то внутри подсказывает: только так можно спастись."
+        },
+        {
+          "text": "Всплеск."
+        },
+        {
+          "text": "До щиколоток долетают ледяные капли."
+        },
+        {
+          "text": "Мысленно досчитав до трёх, {playerName} пулей срывается с места."
+        },
+        {
+          "text": "Мир вокруг неё качается и ходит ходуном, точно палуба корабля в шторм."
+        },
+        {
+          "text": "Незнакомка смеётся ей вслед - звонко, чисто. И этот смех звучит ей вслед ещё долго - или это звенит у неё в ушах."
+        },
+        {
+          "text": "Чур меня, чур…",
+          "speaker": "hero",
+          "emotion": "Funk"
+        }
+      ],
+      "next": "zls2_scene_012_forest_night"
+    },
+    {
+      "id": "zls2_scene_012_forest_night",
+      "type": "scene",
+      "title": "Лес_ночь",
+      "label": "Лес_ночь",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/forest_night.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/voltage.wav",
+      "suggestedBackground": "Лес_ночь",
+      "suggestedMusic": "Напряжение",
+      "next": "zls2_dialogue_030_forest_run"
+    },
+    {
+      "id": "zls2_dialogue_030_forest_run",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Воздуха не хватает. Она несётся прочь, чувствуя, как речная прохлада тянется за ней, будто тонкая нить. Под ноги попадаются мелкие ямки и бугры, хрустят ветки. Под ребром щемит от бега, дыхание сбивается."
+        },
+        {
+          "text": "Не надо было пропускать уроки физкультуры!",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Но она продолжает бежать, не чувствуя усталости - только ужас."
+        },
+        {
+          "text": "Падает, сбивая колени о корни."
+        },
+        {
+          "text": "Поднимается - и снова бежит, не разбирая дороги."
+        },
+        {
+          "text": "По лицу больно хлещет плеть плюща, оставляя саднящие полосы."
+        },
+        {
+          "text": "Ноги увязают в траве - репей цепляет её, как будто специально, норовя задержать."
+        },
+        {
+          "text": "Дыши! Просто дыши! Только не оборачивайся!",
+          "speaker": "hero",
+          "emotion": "Funk"
+        },
+        {
+          "text": "Тропинка петляет, пытаясь запутать. Или так только кажется - местность-то ей не знакома."
+        },
+        {
+          "text": "Наконец - деревня. Вот уже мелькают силуэты домов, освещенные окна. Но {playerName} останавливается только когда на полной скорости врезается в…"
+        }
+      ],
+      "next": "zls2_choice_007_collision"
+    },
+    {
+      "id": "zls2_choice_007_collision",
+      "type": "choice",
+      "choicePrompt": "В кого врезаться?",
+      "choices": [
+        {
+          "text": "Ивана",
+          "isPremium": true,
+          "premiumCost": 30,
+          "next": "zls2_stat_ivan_relation"
+        },
+        {
+          "text": "Баб Нюру",
+          "next": "zls2_scene_014_house_gate_bab"
+        }
+      ]
+    },
+    {
+      "id": "zls2_stat_ivan_relation",
+      "type": "statChange",
+      "statId": "ivan",
+      "statDelta": 1,
+      "statDisplayName": "Иван",
+      "systemMessage": "Отношения с Иваном улучшились.",
+      "next": "zls2_scene_013_ivan_romantic"
+    },
+    {
+      "id": "zls2_scene_013_ivan_romantic",
+      "type": "scene",
+      "title": "Деревня ночью",
+      "label": "Деревня ночью",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Evening.png",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Romantic.wav",
+      "suggestedBackground": "Деревня ночью",
+      "suggestedMusic": "Романтичная мелодия",
+      "next": "zls2_dialogue_031_ivan_collision"
+    },
+    {
+      "id": "zls2_dialogue_031_ivan_collision",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Не успев затормозить, она врезается носом в широкую мужскую грудь. Её, дрожащую от пережитого ужаса, тут же обдаёт жаром чужого тела. Шумно дыша, носом она улавливает запах кожи и конского пота. Лёгкие горят, в ушах стоит гул, а перед глазами всё ещё стоит бледное, прекрасное лицо незнакомки."
+        },
+        {
+          "text": "Крепкие руки ловят её за талию."
+        },
+        {
+          "text": "{playerName} вскрикивает от неожиданности и ужаса."
+        },
+        {
+          "text": "Пусти! Пусти меня!",
+          "speaker": "hero",
+          "emotion": "Funk"
+        },
+        {
+          "text": "Она пытается брыкаться, но затихает, стоит ей разглядеть в серебристом свете луны лицо Ивана."
+        },
+        {
+          "text": "Оп, поймал! Тише, тише. Ты чего?",
+          "speaker": "ivan",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Он смотрит на неё удивлённо и встревоженно. Хватку ослабляет, будто вспоминая, что держит не мешок с картошкой, а живую девушку."
+        },
+        {
+          "text": "{playerName} шумно дышит, жадно хватая ртом прохладный вечерний воздух."
+        },
+        {
+          "text": "Он теплый, настоящий, он свой…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "От чего бежишь, городская? Вид у тебя такой, как будто мертвеца увидела…",
+          "speaker": "ivan",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Он склоняет голову в бок, пытаясь поймать её взгляд."
+        },
+        {
+          "text": "{playerName} поджимает губы."
+        },
+        {
+          "text": "Как будто…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Она неловко отстраняется, чувствуя, как горят щёки. Мир постепенно обретает чёткость, потому что рядом - настоящий, живой человек."
+        },
+        {
+          "text": "Признаваться о том, что видела кого-то или что-то странное у реки не хочет - ещё примут за сумасшедшую."
+        },
+        {
+          "text": "Может, это игры разбушевавшегося воображения."
+        },
+        {
+          "text": "Чего только не привидится…",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "Может, это местная ребятня решила так глупо разыграть городскую девчонку."
+        },
+        {
+          "text": "Может, может, может…"
+        },
+        {
+          "text": "Ну глупо же. Но всё внутри сжимается."
+        },
+        {
+          "text": "От страха и от абсурдного чувства, что кто-то видит её насквозь."
+        }
+      ],
+      "next": "zls2_choice_008_ivan_truth"
+    },
+    {
+      "id": "zls2_choice_008_ivan_truth",
+      "type": "choice",
+      "choicePrompt": "Что сказать Ивану?",
+      "choices": [
+        {
+          "text": "Там кто-то был… у реки",
+          "next": "zls2_ivan_truth_stat_fairytale"
+        },
+        {
+          "text": "От самой себя",
+          "next": "zls2_ivan_self_stat_city"
+        }
+      ]
+    },
+    {
+      "id": "zls2_dialogue_032_ivan_truth",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "{playerName} говорит это дрожащим голосом."
+        },
+        {
+          "text": "Иван замирает. Улыбка мгновенно исчезает с его лица, сменяясь суровой сосредоточенностью. Он делает шаг вперёд - так, как будто бы хочет закрыть её собой. Он стоит слишком близко, но {playerName} не спешит ворчать, постепенно расслабляясь рядом с человеком, который пахнет надежностью и живым теплом."
+        },
+        {
+          "text": "Разве не говорили тебе, что одной на ночь глядя туда соваться нечего?",
+          "speaker": "ivan"
+        },
+        {
+          "text": "{playerName} несколько раз моргает."
+        },
+        {
+          "text": "Да я просто… гуляла…",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Голос звучит неуверенно - словно она школьница, оправдывающаяся за то, что не выучила какое-нибудь «Бородино»."
+        },
+        {
+          "text": "Повезло тебе, {playerName}. Очень повезло…",
+          "speaker": "ivan",
+          "emotion": "Annoyed"
+        },
+        {
+          "text": "Ты не считаешь меня сумасшедшей?",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Считаю.",
+          "speaker": "ivan",
+          "emotion": "Annoyed"
+        },
+        {
+          "text": "Он глядит на неё внимательно, без насмешки. И {playerName} вдруг чувствует себя маленьким ребёнком, что в ночи испугался теней, и прибежал прятаться к родителям в постель."
+        },
+        {
+          "text": "Кто это мог быть?",
+          "speaker": "hero",
+          "emotion": "Funk"
+        },
+        {
+          "text": "Тихо бормочет она, потупив взгляд."
+        },
+        {
+          "text": "Что хочет услышать - не знает."
+        },
+        {
+          "text": "Может, то, что это была просто чья-то глупая шутка…"
+        },
+        {
+          "text": "Может, мавка, может, кикимора… Черт разберёт, кого ты там видела.",
+          "speaker": "ivan",
+          "emotion": "Funk"
+        },
+        {
+          "text": "И ты в это веришь?",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "{playerName} нервно дергает плечом, натягивая улыбку."
+        },
+        {
+          "text": "Ну-ну.",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "Он прищуривается, словно пытаясь понять, шутит она или нет, затем бросает взгляд на её колени - в полумраке видно, что кожа содрана, а по ноге тянется тонкая полоса грязи."
+        }
+      ],
+      "next": "zls2_dialogue_034_ivan_common"
+    },
+    {
+      "id": "zls2_dialogue_033_ivan_self",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "От самой себя.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        }
+      ],
+      "next": "zls2_dialogue_034_ivan_common"
+    },
+    {
+      "id": "zls2_ivan_truth_world_fairytale",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": 1,
+      "add": true,
+      "next": "zls2_dialogue_032_ivan_truth"
+    },
+    {
+      "id": "zls2_ivan_truth_stat_fairytale",
+      "type": "statChange",
+      "statId": "fairytale",
+      "statDelta": 1,
+      "statDisplayName": "Сказка",
+      "systemMessage": "Сказка +1",
+      "next": "zls2_ivan_truth_world_fairytale"
+    },
+    {
+      "id": "zls2_ivan_self_world_city",
+      "type": "variableChange",
+      "variableKey": "zls2_worldview",
+      "deltaValue": -1,
+      "add": true,
+      "next": "zls2_dialogue_033_ivan_self"
+    },
+    {
+      "id": "zls2_ivan_self_stat_city",
+      "type": "statChange",
+      "statId": "city",
+      "statDelta": 1,
+      "statDisplayName": "Город",
+      "systemMessage": "Город +1",
+      "next": "zls2_ivan_self_world_city"
+    },
+    {
+      "id": "zls2_dialogue_034_ivan_common",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "И часто ты так? Бегаешь, пока лёгкие не лопнут?",
+          "speaker": "ivan"
+        },
+        {
+          "text": "Но ей не до смеха. Сердце всё ещё заполошно колотится о рёбра. Кажется, что оно норовит бежать дальше - уже без неё."
+        },
+        {
+          "text": "Не знаю… В последнее время кажется, что всегда.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Иван на секунду молчит, его лицо делается непроницаемым."
+        },
+        {
+          "text": "Потом он говорит тихо:"
+        },
+        {
+          "text": "Тогда ты неправильно бегаешь.",
+          "speaker": "ivan"
+        },
+        {
+          "text": "{playerName} фыркает, хоть и понимает, что её бравада выглядит жалко."
+        },
+        {
+          "text": "А правильно - это как?",
+          "speaker": "hero",
+          "emotion": "EyeRoll"
+        },
+        {
+          "text": "Хмыкнув, Иван пожимает плечами."
+        },
+        {
+          "text": "К чему-то надо бежать. А себя ты везде с собой носишь.",
+          "speaker": "ivan",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Да ты философ….",
+          "speaker": "hero",
+          "emotion": "EyeRoll"
+        },
+        {
+          "text": "Просто конюх.",
+          "speaker": "ivan",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Иван смотрит на её сбитые колени и подрагивающие пальцы. Его взгляд смягчается, в нём появляется что-то покровительственное."
+        },
+        {
+          "text": "Он качает головой."
+        },
+        {
+          "text": "Эх, городская…",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "Ладно уж. Давай провожу. А то в таком состоянии ты и до калитки не дойдешь - в придорожных лопухах заплутаешь.",
+          "speaker": "ivan",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Они идут плечом к плечу. Тишина деревни теперь не кажется {playerName} угрожающей. Рядом с Иваном она чувствует себя в безопасности, будто он - громоотвод для всей той чертовщины, что творится вокруг."
+        },
+        {
+          "text": "Не моё дело, конечно. Просто… если вдруг захочешь поговорить - я тут.",
+          "speaker": "ivan",
+          "emotion": "Annoyed"
+        },
+        {
+          "text": "{playerName} хочет огрызнуться, мол, и вправду дело не твоё, но осекается. Рядом с ним она ощущает себя до странного спокойно. Он возвращает ей чувство реальности, а мысли об увиденном теперь кажутся нелепицей."
+        },
+        {
+          "text": "Иррационально, но Иван, почти что ей незнакомый, начинает ассоциироваться у неё с чувством безопасности, как будто интуиция шепчет ей, что он - надёжный."
+        },
+        {
+          "text": "Да там и говорить-то не о чем.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Ну, это тебе решать.",
+          "speaker": "ivan",
+          "emotion": "Neutral"
+        },
+        {
+          "text": "Они стоят рядом в полумраке, не касаясь друг друга, и {playerName} сама не замечает, как рассказывает ему, почему оказалась здесь."
+        },
+        {
+          "text": "Мой жених... бывший жених. Он мне изменил. Прямо перед свадьбой.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Иван молчит, не перебивает. Только замедляет шаг, подстраиваясь под её рваный темп."
+        },
+        {
+          "text": "Я видела их сообщения. Видела, как он оправдывался, как пытался сделать виноватой меня. Мол, я слишком много работала, слишком мало улыбалась... А сегодня я увидела его фото. У него всё хорошо. А я... я здесь.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Откровенничать с незнакомцами отчего-то легко. Можно чуть приоткрыть душу, высказать то, что болит, а потом, образно выражаясь, «выйти на своей остановке»."
+        },
+        {
+          "text": "{playerName} не думает, что Иван задержится в её жизни надолго. Может, поэтому она и позволяет себе впервые за долгое время быть такой - настоящей."
+        },
+        {
+          "text": "Напряжение понемногу отпускает, уступая место жуткой усталости."
+        },
+        {
+          "text": "Дурак он.",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "Его голос звучит глухо."
+        },
+        {
+          "text": "В конях не смыслит, и в женщинах, видать, тоже.",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "От хороших не гуляют,",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "{playerName}. От хороших только с ума сходят.",
+          "speaker": "ivan",
+          "emotion": "LookToInside"
+        },
+        {
+          "text": "{playerName} молчит."
+        },
+        {
+          "text": "Так и доходят до дома, не проронив больше ни слова. Доведя её до ворот, Иван уходит, пожелав доброй ночи."
+        }
+      ],
+      "next": "zls2_scene_014_house_gate_after_ivan"
+    },
+    {
+      "id": "zls2_scene_014_house_gate_after_ivan",
+      "type": "scene",
+      "title": "Дом снаружи",
+      "label": "Дом снаружи",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Home_Night.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Дом снаружи",
+      "suggestedMusic": "Деревенская тема_вечер",
+      "next": "zls2_dialogue_035_bab_gate"
+    },
+    {
+      "id": "zls2_scene_014_house_gate_bab",
+      "type": "scene",
+      "title": "Дом снаружи",
+      "label": "Дом снаружи",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Home_Night.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Дом снаружи",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_035_bab_gate"
+    },
+    {
+      "id": "zls2_dialogue_035_bab_gate",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "У калитки её встречает баб Нюра."
+        },
+        {
+          "text": "{playerName} тихо ойкает, пытаясь отдышаться. Лёгкие горят, в ушах стоит гул, а перед глазами всё ещё стоит бледное, прекрасное лицо незнакомки."
+        },
+        {
+          "text": "Ты чего, касаточка?",
+          "speaker": "bab_nyura",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Только что терзавший её страх уползает, притаившись где-то в животе. Она пытается успокоиться."
+        },
+        {
+          "text": "А я… Решила бегать начать.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Кто ж в такое-то время бегает, внучка?",
+          "speaker": "bab_nyura",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "{playerName} неловко улыбается, пожав плечами и притворяясь дурочкой."
+        },
+        {
+          "text": "Признаваться о том, что видела кого-то или что-то странное у реки не хочет - ещё примут за сумасшедшую."
+        },
+        {
+          "text": "Может, это игры разбушевавшегося воображения."
+        },
+        {
+          "text": "Может, это местная ребятня решила так глупо разыграть городскую девчонку."
+        },
+        {
+          "text": "Может, может, может…"
+        },
+        {
+          "text": "Ну глупо же. Но всё внутри сжимается."
+        },
+        {
+          "text": "От страха и от абсурдного чувства, что кто-то видит её насквозь."
+        }
+      ],
+      "next": "zls2_scene_015_house_outside_night"
+    },
+    {
+      "id": "zls2_scene_015_house_outside_night",
+      "type": "scene",
+      "title": "Дом снаружи",
+      "label": "Дом снаружи",
+      "backgroundVideo": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/Home_Night.mp4",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Дом снаружи",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_036_knees"
+    },
+    {
+      "id": "zls2_dialogue_036_knees",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Батюшки, а чего колени кровят!?",
+          "speaker": "bab_nyura",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Она всплескивает руками."
+        },
+        {
+          "text": "{playerName} отмахивается: Ничего страшного, просто споткнулась."
+        },
+        {
+          "text": "Баб Нюра ворчит себе под нос: Конечно. Молодёжь теперь всё «ничего страшного». А потом с гангреной в больницу."
+        }
+      ],
+      "next": "zls2_scene_016_inside_night"
+    },
+    {
+      "id": "zls2_scene_016_inside_night",
+      "type": "scene",
+      "title": "Дом внутри",
+      "label": "Дом внутри",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/inside_home_night.JPG",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Дом внутри",
+      "suggestedMusic": "Деревенская тема вечер",
+      "next": "zls2_dialogue_037_inside_night"
+    },
+    {
+      "id": "zls2_dialogue_037_inside_night",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "Она заводит её в дом, берёт миску, приносит воду, вытаскивает из шкафа старую аптечку. {playerName} послушно садится на табурет, вяло наблюдая за суетой."
+        },
+        {
+          "text": "Сиди смирно, сейчас йод найду.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Я не ребёнок.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "А ведёшь себя как дитя малое. Вся дрожишь.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Сухая ладонь бабушки ложится ей на лоб, как будто проверяет, нет ли жара. {playerName} вздрагивает, но не отодвигается."
+        },
+        {
+          "text": "{playerName} опускает глаза. Больно не от йода. Больно от того, что в голове всё ещё звенит тот хрустальный смех."
+        },
+        {
+          "text": "Просто устала. И вправду, споткнулась. Всё хорошо.",
+          "speaker": "hero",
+          "emotion": "LookToSide"
+        },
+        {
+          "text": "Ну и хорошо. До свадьбы, значит, заживёт.",
+          "speaker": "bab_nyura",
+          "emotion": "Serious"
+        },
+        {
+          "text": "Баб Нюр, а что за считалочка про мавку?",
+          "speaker": "hero",
+          "emotion": "Thinking"
+        },
+        {
+          "text": "{playerName} не может выбросить из головы странные простенькие слова. Те цепляют что-то внутри, тянут, беспокоят."
+        },
+        {
+          "text": "Так ты сама ее в детстве куклам пела.",
+          "speaker": "bab_nyura",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "...",
+          "speaker": "hero",
+          "emotion": "Surprised"
+        },
+        {
+          "text": "Видно, город память всю и выветрил…",
+          "speaker": "bab_nyura"
+        },
+        {
+          "text": "Она приносит {playerName:dat} стакан тёплого молока с мёдом, объясняя этот жест незамысловато:"
+        },
+        {
+          "text": "Ты пей, пей. Говорят, дурные сны отгоняет.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Она осторожно вытирает {playerName:dat} щёку уголком фартука."
+        },
+        {
+          "text": "Ты у меня одна такая. Смешная да умная. Не бойся ничего.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "Идём, внучка. Спать тебе пора. Завтра день большой будет - праздник.",
+          "speaker": "bab_nyura",
+          "emotion": "Smile"
+        },
+        {
+          "text": "{playerName} не находит в себе сил спорить. И вправду устала за этот день - хотя, казалось бы, дел-то у неё совсем не было…"
+        }
+      ],
+      "next": "zls2_scene_017_bedroom_night"
+    },
+    {
+      "id": "zls2_scene_017_bedroom_night",
+      "type": "scene",
+      "title": "Спальня Ночь",
+      "label": "Спальня Ночь",
+      "background": "Assets/_MyProject/Art/Story 1/Hear/Фоны (1)/bedroom_night.JPG",
+      "music": "Assets/_MyProject/Art/Story 1/Hear/Музыка/Village_evening.wav",
+      "suggestedBackground": "Спальня Ночь",
+      "next": "zls2_dialogue_038_final"
+    },
+    {
+      "id": "zls2_dialogue_038_final",
+      "type": "dialogue",
+      "lines": [
+        {
+          "text": "В доме тепло и пахнет сухими травами. {playerName} задерживается у окна, смотрит в темноту. Но ничего - и никого - там больше нет."
+        },
+        {
+          "text": "Она закрывает занавеску и медленно идёт в свою комнату."
+        },
+        {
+          "text": "Свет на ночь не гасит: ей кажется, что если тот померкнет, из темноты соткется сияющая серебром девичья фигура, а тонкие руки обхватят её и увлекут туда, откуда не возвращаются…"
+        }
+      ]
+    }
+  ],
+  "authorNotes": {
+    "source": "c:/Users/fr06tyy/Downloads/Зорко лишь сердце_редактура.docx, paragraphs 0748-1264",
+    "conversion": "Ported to Story JSON v1. Breakfast questions preserve all three choices with selectable order; respect is granted only after all three. Early finish skips the respect stat. The market 'more City/Fairytale' check uses local zls2_worldview because ConditionNode checks exact variable values.",
+    "assets": "ZLS_2-specific backgrounds/music are referenced by direct Assets/ paths. Secondary speakers without CharacterData are preserved as text to avoid transient-character import errors."
+  }
+}

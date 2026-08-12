@@ -16,6 +16,13 @@ public sealed partial class WardrobeHeroSetupPage
         if (option == null)
             return;
 
+        if (option.ClearsClothingSlot)
+        {
+            ClearEquippedClothing(option.ClearClothingType);
+            _lastAppliedOption = option;
+            return;
+        }
+
         switch (option.Step)
         {
             case WardrobeHeroSetupStep.Appearance:
@@ -38,6 +45,15 @@ public sealed partial class WardrobeHeroSetupPage
         }
 
         _lastAppliedOption = option;
+    }
+
+    void ClearEquippedClothing(ClothingType type)
+    {
+        string slotSuffix = GetSlotSuffix(type);
+        if (GameState.Instance != null)
+            GameState.Instance.UnequipClothing(GetEquipKey(slotSuffix));
+
+        PlayerAppearance.SetEquippedClothing(type, "", null, null);
     }
 
     void EquipClothing(ClothingItem item, string slotSuffix)
@@ -126,6 +142,15 @@ public sealed partial class WardrobeHeroSetupPage
                 SyncClothingState(savedItem, slotSuffix);
                 return;
             }
+
+            // A story wardrobe choice may not be present in the global GameData
+            // catalogue. Keep the already equipped story item instead of replacing
+            // it with the default when the next wardrobe step opens.
+            ClothingItem appearanceItem = GetPlayerAppearanceClothingItem(type);
+            if (MatchesClothing(appearanceItem, savedId, type))
+                SyncClothingState(appearanceItem, slotSuffix);
+
+            return;
         }
 
         if (IsClothingUsable(defaultItem, type, requireId: true) && IsClothingAllowedForTarget(defaultItem))
@@ -198,6 +223,12 @@ public sealed partial class WardrobeHeroSetupPage
         if (option.Step == WardrobeHeroSetupStep.Appearance)
             return option.AppearanceType == PlayerAppearance.CurrentAppearance;
 
+        if (option.ClearsClothingSlot)
+        {
+            string clearSlotSuffix = GetSlotSuffix(option.ClearClothingType);
+            return string.IsNullOrWhiteSpace(GetSavedClothingId(option.ClearClothingType, clearSlotSuffix));
+        }
+
         if (option.Clothing == null)
             return false;
 
@@ -218,6 +249,13 @@ public sealed partial class WardrobeHeroSetupPage
 
         if (first.Step == WardrobeHeroSetupStep.Appearance)
             return first.AppearanceType == second.AppearanceType;
+
+        if (first.ClearsClothingSlot || second.ClearsClothingSlot)
+        {
+            return first.ClearsClothingSlot &&
+                   second.ClearsClothingSlot &&
+                   first.ClearClothingType == second.ClearClothingType;
+        }
 
         if (first.Clothing == null || second.Clothing == null)
             return false;

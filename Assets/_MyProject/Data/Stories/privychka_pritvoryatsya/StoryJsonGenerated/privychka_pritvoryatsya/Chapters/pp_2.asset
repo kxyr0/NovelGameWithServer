@@ -16,7 +16,7 @@ MonoBehaviour:
   _chapterName: "\u0413\u041B\u0410\u0412\u0410 2: \u041F\u0415\u0420\u0412\u042B\u0415
     \u0422\u0420\u0415\u0429\u0418\u041D\u042B"
   _graph: {fileID: 11400000, guid: 34c578e7184f0954abe99208e251e310, type: 2}
-  _jsonGraph: {fileID: 4900000, guid: 968cff9683fb6ac48a8c7cbcf5322b15, type: 3}
+  _jsonGraph: {fileID: 4900000, guid: 830122581fb00c94cbaf639808df7396, type: 3}
   _jsonAssetLibrary: {fileID: 11400000, guid: 8c05fe5bd3ec48742aa3ff35623c4bb9, type: 2}
   _isPremium: 0
   _unlockCost: 0

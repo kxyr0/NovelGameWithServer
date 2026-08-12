@@ -150,11 +150,14 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
     private RenderTexture _renderTexture;
     private bool _preparedHandlerRegistered;
     private bool _errorHandlerRegistered;
+    private bool _frameReadyHandlerRegistered;
     private bool _isPreparing;
     private bool _shouldPlayAfterPrepare;
+    private bool _displayReady;
     private Coroutine _prepareWatchdogRoutine;
 
     public event Action Prepared;
+    public event Action DisplayReady;
     public event Action Started;
     public event Action Stopped;
     public event Action<string> Failed;
@@ -164,6 +167,7 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
     public bool IsPrepared => _videoPlayer != null && _videoPlayer.isPrepared;
     public bool IsPlaying => _videoPlayer != null && _videoPlayer.isPlaying;
     public bool IsPreparing => _isPreparing;
+    public bool IsDisplayReady => _displayReady;
     public VideoBackgroundSourceType SourceType => _sourceType;
     public RawImage RawImage => _rawImage;
     public RectTransform RectTransform => _rectTransform;
@@ -376,6 +380,7 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
         if (_videoPlayer.isPrepared)
         {
             _videoPlayer.Play();
+            SetLayerVisible(_displayReady || !_waitForFirstFrame);
             InvokeStarted();
             return;
         }
@@ -542,6 +547,7 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
 
         _isPreparing = false;
         _shouldPlayAfterPrepare = false;
+        _displayReady = false;
         StopPrepareWatchdog();
 
         if (_videoPlayer != null)
@@ -601,6 +607,11 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
             _canvasGroup = GetComponent<CanvasGroup>();
         }
 
+        if (_canvasGroup == null)
+        {
+            _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+
         return _rawImage != null && _videoPlayer != null;
     }
 
@@ -613,7 +624,7 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
 
         if (_canvasGroup == null)
         {
-            return;
+            _canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
 
         _canvasGroup.alpha = visible ? 1f : 0f;
@@ -630,6 +641,7 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
 
         _videoPlayer.playOnAwake = false;
         _videoPlayer.waitForFirstFrame = _waitForFirstFrame;
+        _videoPlayer.sendFrameReadyEvents = _waitForFirstFrame;
         _videoPlayer.isLooping = _loop;
         _videoPlayer.renderMode = VideoRenderMode.RenderTexture;
         _videoPlayer.aspectRatio = VideoAspectRatio.Stretch;
@@ -728,8 +740,10 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
         {
             _videoPlayer.Play();
             _shouldPlayAfterPrepare = false;
-            SetLayerVisible(true);
             InvokeStarted();
+
+            if (!_waitForFirstFrame)
+                MarkDisplayReady();
         }
         catch (Exception exception)
         {
@@ -748,6 +762,32 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
         StopPrepareWatchdog();
         Stop();
         InvokeFailed(message);
+    }
+
+    private void OnVideoFrameReady(VideoPlayer player, long frameIndex)
+    {
+        if (player != _videoPlayer || !isActiveAndEnabled || !_waitForFirstFrame)
+            return;
+
+        MarkDisplayReady();
+    }
+
+    private void MarkDisplayReady()
+    {
+        if (_displayReady)
+            return;
+
+        _displayReady = true;
+        SetLayerVisible(true);
+
+        try
+        {
+            DisplayReady?.Invoke();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning($"VideoBackgroundPlayer: display-ready callback failed: {exception.Message}", this);
+        }
     }
 
     private bool HasValidSource()
@@ -1337,6 +1377,12 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
             _videoPlayer.errorReceived += OnVideoError;
             _errorHandlerRegistered = true;
         }
+
+        if (!_frameReadyHandlerRegistered)
+        {
+            _videoPlayer.frameReady += OnVideoFrameReady;
+            _frameReadyHandlerRegistered = true;
+        }
     }
 
     private void UnregisterVideoPlayerHandlers()
@@ -1356,6 +1402,12 @@ public sealed class VideoBackgroundPlayer : MonoBehaviour, ICanvasRaycastFilter
         {
             _videoPlayer.errorReceived -= OnVideoError;
             _errorHandlerRegistered = false;
+        }
+
+        if (_frameReadyHandlerRegistered)
+        {
+            _videoPlayer.frameReady -= OnVideoFrameReady;
+            _frameReadyHandlerRegistered = false;
         }
     }
 

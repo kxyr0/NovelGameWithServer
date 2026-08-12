@@ -122,7 +122,7 @@ public sealed class StoryCardCarouselSlot
 
 [DisallowMultipleComponent]
 [AddComponentMenu("Nocturne/UI/Story Card Carousel Layout")]
-public sealed class StoryCardCarouselLayout : MonoBehaviour
+public sealed partial class StoryCardCarouselLayout : MonoBehaviour
 {
     [Header("Карусель")]
     [SerializeField]
@@ -204,6 +204,7 @@ public sealed class StoryCardCarouselLayout : MonoBehaviour
 
     private void OnValidate()
     {
+        ValidateCenteredStackPresentation();
         _duration = Mathf.Max(0f, _duration);
         _fallbackHorizontalSpacing = Mathf.Max(0f, _fallbackHorizontalSpacing);
         _fallbackRotationStep = Mathf.Max(0f, _fallbackRotationStep);
@@ -342,6 +343,9 @@ public sealed class StoryCardCarouselLayout : MonoBehaviour
                 hasSize = true;
             }
         }
+
+        ApplyCenteredStackPresentation(
+            slotOffset, selected, ref anchoredPosition, ref rotationZ, ref scale);
 
         if (selected && _forceSelectedRotationToZero)
             rotationZ = 0f;

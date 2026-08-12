@@ -144,6 +144,33 @@ public sealed partial class WardrobeHeroSetupPage
                 continue;
             }
 
+            if (node.TryGetClearSlotType(i, out ClothingType clearType))
+            {
+                int clearCost = node.GetPremiumCost(i);
+                if (clearCost > 0)
+                {
+                    blockedByContext++;
+                    AppLogger.Warn(
+                        AppLogCategory.Wardrobe,
+                        nameof(WardrobeHeroSetupPage),
+                        nameof(OpenStoryWardrobeChoice),
+                        "[WARDROBE][OPEN] Clear-slot wardrobe option cannot have a premium cost.",
+                        LogMetadata.Of(
+                            "nodeGuid", node.guid,
+                            "index", i,
+                            "clearSlotType", clearType.ToString(),
+                            "premiumCost", clearCost),
+                        recoverable: true);
+                    continue;
+                }
+
+                _currentOptions.Add(CreateClearClothingOption(
+                    node.GetOptionLabel(i, "Ничего"),
+                    i,
+                    clearType));
+                continue;
+            }
+
             ClothingItem item = node.availableClothes[i];
             if (item == null)
             {
@@ -165,7 +192,7 @@ public sealed partial class WardrobeHeroSetupPage
                     ownedPaidItems++;
             }
 
-            _currentOptions.Add(CreateClothingOption(item, i, GetSetupStepForClothingType(item.type), premiumCost));
+            _currentOptions.Add(CreateClothingOption(item, i, GetSetupStepForClothingType(item.type), premiumCost, node.GetOptionLabel(i, "")));
         }
 
         LogStoryWardrobeChoiceOpen(

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 [ExecuteAlways]
 [AddComponentMenu("Nocturne/UI/Remote UI Text Binder")]
-public sealed class RemoteUiTextBinder : MonoBehaviour
+public sealed partial class RemoteUiTextBinder : MonoBehaviour
 {
     [Header("Remote text")]
     [SerializeField] private string _textId = "";
@@ -66,6 +66,7 @@ public sealed class RemoteUiTextBinder : MonoBehaviour
         _screenId = SaveDataSanitizer.SanitizeIdentifier(_screenId);
         _storyId = SaveDataSanitizer.SanitizeIdentifier(_storyId);
         _localeOverride = SaveDataSanitizer.SanitizeIdentifier(_localeOverride);
+        ValidateAdditionalVisibilityGroups();
         ResolveReferences(false);
     }
 
@@ -208,7 +209,10 @@ public sealed class RemoteUiTextBinder : MonoBehaviour
     {
         ResolveReferences(_autoAddVisibilityComponents);
         if (_targetText == null)
+        {
+            ApplyAdditionalVisibility(false);
             return;
+        }
 
         bool hasSeparateRoot = _visibilityRoot != null && _visibilityRoot != gameObject;
         if (hasSeparateRoot)
@@ -228,6 +232,7 @@ public sealed class RemoteUiTextBinder : MonoBehaviour
         }
 
         ApplyLayoutCollapse(!visible);
+        ApplyAdditionalVisibility(visible);
     }
 
     private void ApplyLayoutCollapse(bool hidden)

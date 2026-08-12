@@ -255,6 +255,7 @@ public static class RemoteStoryGraphImporter
                 premiumCost = SaveDataSanitizer.ClampCurrencyValue(ParseInt(rawChoice, "premiumCost")),
                 requiredVariable = SaveDataSanitizer.SanitizeStatKey(NetworkJson.GetString(rawChoice, "requiredVariable")),
                 requiredValue = SaveDataSanitizer.ClampStatValue(ParseInt(rawChoice, "requiredValue")),
+                hideWhenRequirementNotMet = ParseBool(rawChoice, "hideWhenRequirementNotMet"),
                 hideInRestrictedRegions = ParseBool(rawChoice, "hideInRestrictedRegions"),
                 hiddenRegionCodes = ParseHiddenRegionCodes(rawChoice),
                 branch = depth < MaxRemoteBranchDepth
@@ -509,6 +510,7 @@ public static class RemoteStoryGraphImporter
                     premiumCost = SaveDataSanitizer.ClampCurrencyValue(optionData.premiumCost),
                     requiredVariable = optionData.requiredVariable ?? "",
                     requiredValue = SaveDataSanitizer.ClampStatValue(optionData.requiredValue),
+                    hideWhenRequirementNotMet = optionData.hideWhenRequirementNotMet,
                     hideInRestrictedRegions = optionData.hideInRestrictedRegions,
                     hiddenRegionCodes = optionData.hiddenRegionCodes != null
                         ? new List<string>(optionData.hiddenRegionCodes)

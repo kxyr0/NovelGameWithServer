@@ -82,8 +82,8 @@ MonoBehaviour:
   _bodyTextHorizontalInset: 80
   _bodyTextMaxWidth: 850
   _dialogueExtraLayers: []
-  _overrideCharacterNameOffset: 1
-  _characterNameOffset: {x: 0, y: -21.3}
+  _overrideCharacterNameOffset: 0
+  _characterNameOffset: {x: 0, y: 0}
   _overrideCharacterNameFont: 1
   _characterNameFont: {fileID: 11400000, guid: 646366dfccfcc0c4681223cef4bf5417, type: 2}
   _overrideCharacterNameFontSize: 1
@@ -313,7 +313,7 @@ MonoBehaviour:
   _overrideStatTextFontSize: 0
   _statTextFontSize: 42
   _overrideStatPanelRect: 1
-  _statPanelAnchoredPosition: {x: 12.31, y: 94.7}
+  _statPanelAnchoredPosition: {x: 12.31, y: -200}
   _statPanelSizeDelta: {x: 984.2, y: 1.7}
   _statPanelSizeOverrides: []
   _overrideStatTextRect: 1
@@ -1323,7 +1323,7 @@ MonoBehaviour:
         _anchoredPosition: {x: 0, y: 0}
         _sizeDelta: {x: 0, y: 0}
     - _enabled: 1
-      _label: "\u0418\u0441\u043A\u0440\u044B"
+      _label: "\u0420\u0443\u0431\u0438\u043D\u043E\u0432"
       _statId: hearts
       _statAliases: []
       _valueMode: 0

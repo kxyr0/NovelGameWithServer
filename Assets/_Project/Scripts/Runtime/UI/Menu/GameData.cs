@@ -27,10 +27,16 @@ public sealed class GameStoryStatData
     [Tooltip("Sprite стата для detail-экрана истории. У каждой GameData можно поставить свою иконку.")]
     private Sprite _icon;
 
+    [SerializeField, TextArea(2, 5)]
+    [InspectorName("Описание")]
+    [Tooltip("Ручное описание того, на что влияет стат. Показывается на экране Info.")]
+    private string _description;
+
     public string Label => _label;
     public string StatId => _statId;
     public int Value => _value;
     public Sprite Icon => _icon;
+    public string Description => _description ?? "";
 }
 
 [Serializable]

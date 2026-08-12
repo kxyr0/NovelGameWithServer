@@ -1,0 +1,342 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7168393889921548600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cb212564fa4e8428472b21f0332db8, type: 3}
+  m_Name: Ink internal consume
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - enter
+    - exit
+    values:
+    - _fieldName: enter
+      _node: {fileID: -7168393889921548600}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: choices 0
+        node: {fileID: 6175316282279593793}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -7168393889921548600}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: enter
+        node: {fileID: 7844735689738985878}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  enter: {fileID: 0}
+  exit: {fileID: 0}
+  guid: mps_s01e03_l0006_internal_consume_03
+  variableKey: __ink_once_l0006
+  deltaValue: 0
+  Add: 0
+--- !u!114 &-2728804587224220039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cb212564fa4e8428472b21f0332db8, type: 3}
+  m_Name: Ink internal init
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - enter
+    - exit
+    values:
+    - _fieldName: enter
+      _node: {fileID: -2728804587224220039}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 8622827562076135963}
+        reroutePoints: []
+      - fieldName: next
+        node: {fileID: 8622827562076135963}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -2728804587224220039}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: enter
+        node: {fileID: 6175316282279593793}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  enter: {fileID: 0}
+  exit: {fileID: 0}
+  guid: mps_s01e03_l0006_internal_init_01
+  variableKey: __ink_once_l0006
+  deltaValue: 1
+  Add: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d604a26d3c61a16419ecc416d9135b01, type: 3}
+  m_Name: mps_s01e03_JsonGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 8622827562076135963}
+  - {fileID: -2728804587224220039}
+  - {fileID: 6175316282279593793}
+  - {fileID: -7168393889921548600}
+  - {fileID: 7844735689738985878}
+  allowNameChange: 1
+  defaultPlayerName: "\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u0438\u043D\u0430"
+  defaultPlayerNameCases:
+    nom: 
+    gen: 
+    dat: 
+    acc: 
+    ins: 
+    prep: 
+  episodeId: mps_s01e03
+--- !u!114 &782603930286104774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d253de5e0de0cb14d8c3d1196b996cb8, type: 3}
+  m_Name: JsonScene_mps_s01e03_lend_end_01
+  m_EditorClassIdentifier: 
+  backgroundId: 
+  backgroundVideoId: 
+  backgroundGifId: 
+  backgroundOverlayId: 
+  musicId: 
+  startSfxId: 
+  background: {fileID: 0}
+  backgroundVideo: {fileID: 0}
+  backgroundGif: {fileID: 0}
+  backgroundOverlay: {fileID: 0}
+  music: {fileID: 0}
+  stopMusic: 0
+  stopSfx: 0
+  startSfx: {fileID: 0}
+--- !u!114 &6175316282279593793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95386679407f705429a46ef08a02e74e, type: 3}
+  m_Name: "\u0412\u044B\u0431\u043E\u0440"
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - choices
+    - enter
+    - exit
+    - choices 0
+    values:
+    - _fieldName: choices
+      _node: {fileID: 6175316282279593793}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseStoryNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: enter
+      _node: {fileID: 6175316282279593793}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -2728804587224220039}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 6175316282279593793}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: choices 0
+      _node: {fileID: 6175316282279593793}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: enter
+        node: {fileID: -7168393889921548600}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  enter: {fileID: 0}
+  exit: {fileID: 0}
+  guid: mps_s01e03_l0006_choice_02
+  nodeTitle: "\u0412\u044B\u0431\u043E\u0440"
+  activeCharacters: []
+  lines: []
+  options:
+  - text: "\u0418\u0433\u0440\u0430\u0442\u044C"
+    isPremium: 0
+    premiumCost: 0
+    requiredVariable: __ink_once_l0006
+    requiredValue: 1
+    hideWhenRequirementNotMet: 1
+    hideInRestrictedRegions: 0
+    hiddenRegionCodes: []
+  choices:
+  - {fileID: 0}
+--- !u!114 &7844735689738985878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed6d0f1d4398274284e1d42c576ca57, type: 3}
+  m_Name: "\u041A\u043E\u043D\u0435\u0446 \u0441\u0435\u0440\u0438\u0438"
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - enter
+    - exit
+    values:
+    - _fieldName: enter
+      _node: {fileID: 7844735689738985878}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -7168393889921548600}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7844735689738985878}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  enter: {fileID: 0}
+  exit: {fileID: 0}
+  guid: mps_s01e03_lend_end_01
+  sceneLabel: __episode_end
+  sceneData: {fileID: 782603930286104774}
+  suggestedBackground: 
+  suggestedMusic: 
+--- !u!114 &8622827562076135963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfc07429a2c8d348aae737f611626c3, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - next
+    - enter
+    - exit
+    values:
+    - _fieldName: next
+      _node: {fileID: 8622827562076135963}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: enter
+        node: {fileID: -2728804587224220039}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: enter
+      _node: {fileID: 8622827562076135963}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8622827562076135963}
+      _typeQualifiedName: BaseStoryNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: enter
+        node: {fileID: -2728804587224220039}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  enter: {fileID: 0}
+  exit: {fileID: 0}
+  guid: start
+  next: {fileID: 0}

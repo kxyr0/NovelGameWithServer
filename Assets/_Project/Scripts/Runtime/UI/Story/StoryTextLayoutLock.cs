@@ -249,6 +249,16 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
     private float _lockedTextAnchoredY;
     private RectTransform _capturedLockRoot;
     private bool _capturedContainerMode;
+    private bool _layoutDirty = true;
+    private bool _hasLastPreferredTextSize;
+    private string _lastPreferredTextValue = "";
+    private float _lastPreferredTextWidth = -1f;
+    private Vector2 _lastPreferredTextSize;
+    private string _lastAppliedText = "";
+    private string _lastAppliedStoryId = "";
+    private Vector2 _lastAppliedParentSize;
+    private float _lastAppliedLockRootTopY;
+    private float _lastAppliedLockRootX;
 
     private struct ResolvedTextLayoutSettings
     {
@@ -298,6 +308,20 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
     public bool ShrinkTextToFitRect => _shrinkTextToFitRect;
     public float MinAutoFontSize => _minAutoFontSize;
     public TextOverflowModes OverflowModeWhenStillTooLarge => _overflowModeWhenStillTooLarge;
+
+    public bool TryGetLastPreferredTextSize(string text, float width, out Vector2 preferredSize)
+    {
+        if (_hasLastPreferredTextSize &&
+            Mathf.Abs(_lastPreferredTextWidth - width) < 0.01f &&
+            string.Equals(_lastPreferredTextValue, text ?? "", System.StringComparison.Ordinal))
+        {
+            preferredSize = _lastPreferredTextSize;
+            return true;
+        }
+
+        preferredSize = Vector2.zero;
+        return false;
+    }
 
     private void Reset()
     {
@@ -380,16 +404,31 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!Application.isPlaying)
+        if (!Application.isPlaying || !_lockTopEveryFrame || !isActiveAndEnabled)
             return;
 
-        if (_lockTopEveryFrame)
+        if (HasObservedLayoutInputChanged() || HasLockedRectDrifted())
             ApplyNow();
     }
 
     private void OnRectTransformDimensionsChange()
     {
-        if (Application.isPlaying && !_applying && _lockTopEveryFrame)
+        if (Application.isPlaying && !_applying)
+        {
+            _layoutDirty = true;
+            _hasLastPreferredTextSize = false;
+        }
+    }
+
+    public void MarkDirty()
+    {
+        _layoutDirty = true;
+        _hasLastPreferredTextSize = false;
+    }
+
+    public void ApplyIfDirtyNow()
+    {
+        if (_layoutDirty || HasObservedLayoutInputChanged())
             ApplyNow();
     }
 
@@ -500,24 +539,55 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
         bool overrideOverflowModeWhenStillTooLarge,
         TextOverflowModes overflowModeWhenStillTooLarge)
     {
-        if (overrideResizeHeightToPreferredText)
+        bool changed = false;
+
+        if (overrideResizeHeightToPreferredText && _resizeHeightToPreferredText != resizeHeightToPreferredText)
+        {
             _resizeHeightToPreferredText = resizeHeightToPreferredText;
-        if (overrideExtraHeight)
+            changed = true;
+        }
+        if (overrideExtraHeight && !Mathf.Approximately(_extraHeight, extraHeight))
+        {
             _extraHeight = extraHeight;
-        if (overrideMinHeight)
+            changed = true;
+        }
+        if (overrideMinHeight && !Mathf.Approximately(_minHeight, minHeight))
+        {
             _minHeight = minHeight;
-        if (overrideMaxHeight)
+            changed = true;
+        }
+        if (overrideMaxHeight && !Mathf.Approximately(_maxHeight, maxHeight))
+        {
             _maxHeight = maxHeight;
-        if (overrideMaxFontSize)
+            changed = true;
+        }
+        if (overrideMaxFontSize && !Mathf.Approximately(_maxFontSize, maxFontSize))
+        {
             _maxFontSize = maxFontSize;
-        if (overrideShrinkTextToFitRect)
+            changed = true;
+        }
+        if (overrideShrinkTextToFitRect && _shrinkTextToFitRect != shrinkTextToFitRect)
+        {
             _shrinkTextToFitRect = shrinkTextToFitRect;
-        if (overrideMinAutoFontSize)
+            changed = true;
+        }
+        if (overrideMinAutoFontSize && !Mathf.Approximately(_minAutoFontSize, minAutoFontSize))
+        {
             _minAutoFontSize = minAutoFontSize;
-        if (overrideOverflowModeWhenStillTooLarge)
+            changed = true;
+        }
+        if (overrideOverflowModeWhenStillTooLarge && _overflowModeWhenStillTooLarge != overflowModeWhenStillTooLarge)
+        {
             _overflowModeWhenStillTooLarge = overflowModeWhenStillTooLarge;
+            changed = true;
+        }
+
+        if (!changed)
+            return;
 
         ValidateLayoutValues();
+        _layoutDirty = true;
+        _hasLastPreferredTextSize = false;
         ApplyNow();
     }
 
@@ -547,6 +617,8 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
         finally
         {
             _applying = false;
+            RememberAppliedLayoutState();
+            _layoutDirty = false;
         }
     }
 
@@ -555,10 +627,13 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
         AutoWire();
         if (_text != null)
         {
-            _text.text = value ?? "";
-            _text.ForceMeshUpdate(true, true);
+            string safeValue = value ?? "";
+            if (_text.text != safeValue)
+                _text.SetText(safeValue);
         }
 
+        _layoutDirty = true;
+        _hasLastPreferredTextSize = false;
         ApplyNow();
     }
 
@@ -578,12 +653,6 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
 
         TextLayoutMetrics metrics = CalculateTextLayoutMetrics(layoutSettings);
         ApplyTextRect(metrics, topY, anchoredX);
-
-        if (_text != null)
-        {
-            ApplyTextSizeLimits(layoutSettings);
-            _text.ForceMeshUpdate(true, true);
-        }
 
         if (_lockTopEveryFrame)
             SetTopY(_target, topY);
@@ -624,12 +693,6 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
         SetTopY(background, backgroundTopY);
 
         ApplyTextRectInsideBackground(metrics, layoutSettings);
-
-        if (_text != null)
-        {
-            ApplyTextSizeLimits(layoutSettings);
-            _text.ForceMeshUpdate(true, true);
-        }
     }
 
     private void ApplyTextRectInsideBackground(TextLayoutMetrics metrics, ResolvedTextLayoutSettings layoutSettings)
@@ -654,15 +717,34 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
         float maxTextHeight = ResolveMaxTextHeight(layoutSettings);
         string value = _text != null ? _text.text ?? "" : "";
 
-        Vector2 naturalPreferred = GetPreferredTextSize(value, Mathf.Infinity, Mathf.Infinity);
-        float textWidth = ResolveTextWidth(layoutSettings, naturalPreferred.x, maxTextWidth);
+        float textWidth;
+        Vector2 preferred;
 
-        Vector2 preferred = GetPreferredTextSize(value, textWidth, Mathf.Infinity);
-        if (preferred.x > 0f && preferred.x < textWidth)
+        if (layoutSettings.OverrideTextWidth && layoutSettings.TextWidth > 0f)
         {
-            textWidth = Mathf.Clamp(preferred.x, 1f, maxTextWidth);
+            textWidth = Mathf.Max(1f, layoutSettings.TextWidth);
+            if (maxTextWidth > 0f)
+                textWidth = Mathf.Min(textWidth, maxTextWidth);
+
             preferred = GetPreferredTextSize(value, textWidth, Mathf.Infinity);
         }
+        else
+        {
+            Vector2 naturalPreferred = GetPreferredTextSize(value, Mathf.Infinity, Mathf.Infinity);
+            textWidth = ResolveTextWidth(layoutSettings, naturalPreferred.x, maxTextWidth);
+            preferred = GetPreferredTextSize(value, textWidth, Mathf.Infinity);
+
+            if (preferred.x > 0f && preferred.x < textWidth)
+            {
+                textWidth = Mathf.Clamp(preferred.x, 1f, maxTextWidth);
+                preferred = GetPreferredTextSize(value, textWidth, Mathf.Infinity);
+            }
+        }
+
+        _lastPreferredTextValue = value;
+        _lastPreferredTextWidth = textWidth;
+        _lastPreferredTextSize = preferred;
+        _hasLastPreferredTextSize = true;
 
         float textHeight = layoutSettings.ResizeHeightToPreferredText
             ? Mathf.Max(1f, preferred.y) + layoutSettings.ExtraHeight
@@ -757,6 +839,58 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
             preferred.y = Mathf.Max(1f, _text.fontSize);
 
         return preferred;
+    }
+
+    private bool HasObservedLayoutInputChanged()
+    {
+        if (_layoutDirty)
+            return true;
+
+        string text = _text != null ? _text.text ?? "" : "";
+        if (!string.Equals(text, _lastAppliedText, StringComparison.Ordinal))
+            return true;
+
+        string storyId = _useStoryOverrides ? ResolveActiveStoryId() : "";
+        if (!string.Equals(storyId, _lastAppliedStoryId, StringComparison.Ordinal))
+            return true;
+
+        RectTransform parent = _target != null ? _target.parent as RectTransform : null;
+        Vector2 parentSize = parent != null ? parent.rect.size : Vector2.zero;
+        return !Approximately(parentSize, _lastAppliedParentSize);
+    }
+
+    private bool HasLockedRectDrifted()
+    {
+        if (!_hasLockedTop)
+            return false;
+
+        RectTransform lockRoot = GetLockRoot();
+        if (lockRoot == null)
+            return false;
+
+        return Mathf.Abs(GetTopY(lockRoot) - _lastAppliedLockRootTopY) > 0.05f ||
+               Mathf.Abs(lockRoot.anchoredPosition.x - _lastAppliedLockRootX) > 0.05f;
+    }
+
+    private void RememberAppliedLayoutState()
+    {
+        _lastAppliedText = _text != null ? _text.text ?? "" : "";
+        _lastAppliedStoryId = _useStoryOverrides ? ResolveActiveStoryId() : "";
+
+        RectTransform parent = _target != null ? _target.parent as RectTransform : null;
+        _lastAppliedParentSize = parent != null ? parent.rect.size : Vector2.zero;
+
+        RectTransform lockRoot = GetLockRoot();
+        if (lockRoot != null)
+        {
+            _lastAppliedLockRootTopY = GetTopY(lockRoot);
+            _lastAppliedLockRootX = lockRoot.anchoredPosition.x;
+        }
+    }
+
+    private static bool Approximately(Vector2 a, Vector2 b)
+    {
+        return Mathf.Abs(a.x - b.x) <= 0.05f && Mathf.Abs(a.y - b.y) <= 0.05f;
     }
 
     private float GetTargetTopY()
@@ -1260,44 +1394,66 @@ public sealed class StoryTextLayoutLock : MonoBehaviour
             return;
 
         CaptureInitialTextSettings();
-        _text.enableWordWrapping = true;
+
+        if (!_text.enableWordWrapping)
+            _text.enableWordWrapping = true;
 
         float maxFontSize = ResolveMaxFontSize(layoutSettings);
         if (maxFontSize > 0f)
         {
-            _text.fontSizeMax = maxFontSize;
-            _text.fontSize = maxFontSize;
+            if (Mathf.Abs(_text.fontSizeMax - maxFontSize) >= 0.01f)
+                _text.fontSizeMax = maxFontSize;
+            if (Mathf.Abs(_text.fontSize - maxFontSize) >= 0.01f)
+                _text.fontSize = maxFontSize;
         }
         else if (_hasInitialTextSettings)
         {
-            _text.fontSize = Mathf.Max(1f, _initialFontSize);
-            _text.fontSizeMax = Mathf.Max(1f, _initialFontSizeMax);
+            float initialFontSize = Mathf.Max(1f, _initialFontSize);
+            float initialFontSizeMax = Mathf.Max(1f, _initialFontSizeMax);
+            if (Mathf.Abs(_text.fontSize - initialFontSize) >= 0.01f)
+                _text.fontSize = initialFontSize;
+            if (Mathf.Abs(_text.fontSizeMax - initialFontSizeMax) >= 0.01f)
+                _text.fontSizeMax = initialFontSizeMax;
         }
 
         if (!layoutSettings.ShrinkTextToFitRect)
         {
-            _text.enableAutoSizing = false;
-            if (maxFontSize > 0f)
-                _text.fontSizeMin = Mathf.Min(Mathf.Max(1f, _text.fontSizeMin), maxFontSize);
-            else if (_hasInitialTextSettings)
-                _text.fontSizeMin = Mathf.Max(1f, _initialFontSizeMin);
-            _text.overflowMode = _initialOverflowMode;
+            if (_text.enableAutoSizing)
+                _text.enableAutoSizing = false;
 
-            _text.ForceMeshUpdate(true, true);
+            float minFontSize = maxFontSize > 0f
+                ? Mathf.Min(Mathf.Max(1f, _text.fontSizeMin), maxFontSize)
+                : _hasInitialTextSettings
+                    ? Mathf.Max(1f, _initialFontSizeMin)
+                    : _text.fontSizeMin;
+
+            if (Mathf.Abs(_text.fontSizeMin - minFontSize) >= 0.01f)
+                _text.fontSizeMin = minFontSize;
+
+            if (_text.overflowMode != _initialOverflowMode)
+                _text.overflowMode = _initialOverflowMode;
+
             return;
         }
 
         float autoMax = maxFontSize > 0f ? maxFontSize : ResolveInitialFontSizeMax();
         autoMax = Mathf.Max(1f, autoMax);
-
-        _text.enableAutoSizing = true;
-        _text.fontSizeMax = autoMax;
-        _text.fontSizeMin = Mathf.Min(Mathf.Max(1f, layoutSettings.MinAutoFontSize), autoMax);
-        // Overflow не даём: иначе TMP рисует за пределами BodyText и визуально выходит из плашки.
-        _text.overflowMode = layoutSettings.OverflowModeWhenStillTooLarge == TextOverflowModes.Overflow
+        float autoMin = Mathf.Min(Mathf.Max(1f, layoutSettings.MinAutoFontSize), autoMax);
+        TextOverflowModes overflowMode = layoutSettings.OverflowModeWhenStillTooLarge == TextOverflowModes.Overflow
             ? TextOverflowModes.Ellipsis
             : layoutSettings.OverflowModeWhenStillTooLarge;
-        _text.ForceMeshUpdate(true, true);
+
+        if (!_text.enableAutoSizing)
+            _text.enableAutoSizing = true;
+
+        if (Mathf.Abs(_text.fontSizeMax - autoMax) >= 0.01f)
+            _text.fontSizeMax = autoMax;
+        if (Mathf.Abs(_text.fontSizeMin - autoMin) >= 0.01f)
+            _text.fontSizeMin = autoMin;
+
+        // Overflow не даём: иначе TMP рисует за пределами BodyText и визуально выходит из плашки.
+        if (_text.overflowMode != overflowMode)
+            _text.overflowMode = overflowMode;
     }
 
     private float ResolveMaxFontSize(ResolvedTextLayoutSettings layoutSettings)

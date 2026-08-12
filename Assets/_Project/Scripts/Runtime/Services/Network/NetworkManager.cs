@@ -131,6 +131,7 @@ public sealed partial class NetworkManager : MonoBehaviour
         _authToken = null;
         _refreshToken = null;
         _playerId = null;
+        OnProfileUpdated = null;
         ResetProfileState();
         ResetBalanceState();
         _serverBookmarkLocked = false;
@@ -212,6 +213,8 @@ public sealed partial class NetworkManager : MonoBehaviour
         _authToken = null;
         _refreshToken = SanitizeCredential(NetworkCredentialStore.LoadRefreshToken(deviceId));
         _playerId = SanitizeCredential(PlayerPrefs.GetString(KEY_PLAYER_ID, null), SaveDataSanitizer.MaxIdChars);
+        _currentProfile.playerId = _playerId ?? "";
+        NotifyProfileUpdated();
         DeleteLegacyAccessToken();
         LoadPendingSyncFromPrefs();
 
@@ -461,6 +464,7 @@ public sealed partial class NetworkManager : MonoBehaviour
         IsAuthenticated = true;
         UpdateConnectivityState(true, null);
         _currentProfile.playerId = _playerId ?? "";
+        NotifyProfileUpdated();
 
         try
         {
@@ -513,8 +517,10 @@ public sealed partial class NetworkManager : MonoBehaviour
                 r.playerId,
                 NetworkJson.GetString(json, "playerId"),
                 _playerId), SaveDataSanitizer.MaxIdChars);
-            if (string.IsNullOrEmpty(_authToken) || string.IsNullOrEmpty(_playerId))
-                throw new Exception("Auth response has no token or playerId");
+            if (string.IsNullOrEmpty(_playerId))
+                _playerId = DefaultProfilePlayerId;
+            if (string.IsNullOrEmpty(_authToken))
+                throw new Exception("Auth response has no token");
 
             IsAuthenticated = true;
             UpdateConnectivityState(true, null);
@@ -2563,6 +2569,8 @@ public sealed partial class NetworkManager : MonoBehaviour
         _currentProfile.platform = "";
         _currentProfile.createdAt = "";
         _currentProfile.heroName = "";
+        _currentProfile.displayName = LoadLocalProfileDisplayName();
+        NotifyProfileUpdated();
     }
 
     private static void ResetBalanceState()
@@ -2584,7 +2592,6 @@ public sealed partial class NetworkManager : MonoBehaviour
 
     private void ApplyProfileFromAuth(AuthResponse response, string rawJson)
     {
-        _currentProfile.playerId = SaveDataSanitizer.SanitizeIdentifier(_playerId);
         _currentProfile.isNew = response != null && (response.isNew || response.isNewLink);
 
         if (response != null && response.profile != null)
@@ -2598,6 +2605,9 @@ public sealed partial class NetworkManager : MonoBehaviour
             _currentProfile.locale = SaveDataSanitizer.SanitizeIdentifier(NetworkJson.GetString(rawJson, "locale"));
             _currentProfile.platform = SaveDataSanitizer.SanitizeIdentifier(NetworkJson.GetString(rawJson, "platform"));
         }
+
+        ApplyProfileIdentity(response, rawJson);
+        NotifyProfileUpdated();
     }
 
     private void ApplyBalance(BalanceResponse balance)
@@ -3602,7 +3612,7 @@ internal sealed class DailyStreakResponse
 }
 
 [Serializable]
-internal sealed class AuthProfile
+internal sealed partial class AuthProfile
 {
     public string locale;
     public string platform;
@@ -3845,7 +3855,7 @@ public enum NetworkErrorKind
 }
 
 [Serializable]
-public class PlayerProfileState
+public partial class PlayerProfileState
 {
     public string playerId;
     public bool isNew;

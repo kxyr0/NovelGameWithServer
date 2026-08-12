@@ -123,6 +123,24 @@ public sealed partial class NetworkManager
         return false;
     }
 
+    public static bool ApplyPushedUiTexts(
+        string screenId,
+        string storyId,
+        string locale,
+        string json,
+        out string error)
+    {
+        string safeLocale = ResolveUiTextLocale(locale);
+        string safeScreenId = NormalizeUiTextContextValue(screenId);
+        string safeStoryId = NormalizeUiTextContextValue(storyId);
+
+        if (!TryApplyUiTextResponse(safeScreenId, safeStoryId, safeLocale, json, out error))
+            return false;
+
+        OnUiTextsUpdated?.Invoke();
+        return true;
+    }
+
     private static bool TryGetUiTextFromCache(
         string contextKey,
         string targetId,

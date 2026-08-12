@@ -221,6 +221,8 @@ public partial class StoryManager
                 yield break;
             }
 
+            yield return PrepareRemoteGraphCacheForEpisodeIfPossible(localSnapshot.episodeId);
+
             if (TryRestoreSnapshot(localSnapshot, "selected save slot"))
             {
                 LogLoadAndStartCompleted("Restored from selected save slot.", startedAt, "selectedSaveSlot");

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,18 @@ public class AnimatedGifPlayer : MonoBehaviour
     Coroutine _playCoroutine;
     IList<Texture2D> _activeFrames;
     IList<float> _activeDelays;
+    bool _firstFrameReady;
+
+    public event Action FirstFrameReady;
+
+    public bool HasVisibleFrame => _firstFrameReady &&
+                                   _rawImage != null &&
+                                   _rawImage.texture != null;
+
+    public static bool Preload(TextAsset asset)
+    {
+        return TryGetDecodedGif(asset, null, out _);
+    }
 
     void OnValidate()
     {
@@ -113,12 +126,15 @@ public class AnimatedGifPlayer : MonoBehaviour
 
     public void Stop()
     {
-        if (_playCoroutine == null) return;
+        if (_playCoroutine != null)
+        {
+            StopCoroutine(_playCoroutine);
+            _playCoroutine = null;
+        }
 
-        StopCoroutine(_playCoroutine);
-        _playCoroutine = null;
         _activeFrames = null;
         _activeDelays = null;
+        _firstFrameReady = false;
     }
 
     void StartPlayback(IList<Texture2D> playbackFrames, IList<float> playbackDelays)
@@ -153,6 +169,11 @@ public class AnimatedGifPlayer : MonoBehaviour
             if (frame != null)
             {
                 _rawImage.texture = frame;
+                if (!_firstFrameReady)
+                {
+                    _firstFrameReady = true;
+                    FirstFrameReady?.Invoke();
+                }
             }
 
             float delay = GetFrameDelay(index);
@@ -191,7 +212,7 @@ public class AnimatedGifPlayer : MonoBehaviour
         return false;
     }
 
-    bool TryGetDecodedGif(TextAsset asset, out DecodedAnimatedGif decodedGif)
+    static bool TryGetDecodedGif(TextAsset asset, UnityEngine.Object logContext, out DecodedAnimatedGif decodedGif)
     {
         decodedGif = null;
         if (asset == null || asset.bytes == null || asset.bytes.Length == 0)
@@ -218,10 +239,15 @@ public class AnimatedGifPlayer : MonoBehaviour
         catch (System.Exception exception)
         {
             loadScope?.Complete(false, exception.GetType().Name);
-            Debug.LogWarning($"AnimatedGifPlayer: failed to decode GIF '{asset.name}': {exception.Message}", this);
+            Debug.LogWarning($"AnimatedGifPlayer: failed to decode GIF '{asset.name}': {exception.Message}", logContext);
         }
 
         return false;
+    }
+
+    bool TryGetDecodedGif(TextAsset asset, out DecodedAnimatedGif decodedGif)
+    {
+        return TryGetDecodedGif(asset, this, out decodedGif);
     }
 
     bool HasPlayableFrames(IList<Texture2D> playbackFrames)

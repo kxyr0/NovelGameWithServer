@@ -256,7 +256,10 @@ public class CharacterViewManager : MonoBehaviour
 
     void OnClothingItemChanged(ClothingItem item)
     {
-        if (item == null || item != PlayerAppearance.OutfitItem && item != PlayerAppearance.HairItem)
+        if (item == null ||
+            item != PlayerAppearance.OutfitItem &&
+            item != PlayerAppearance.HairItem &&
+            item != PlayerAppearance.AccessoryItem)
             return;
 
         RefreshCurrentSlots();
@@ -273,6 +276,7 @@ public class CharacterViewManager : MonoBehaviour
         return item != null &&
                (item == PlayerAppearance.OutfitItem ||
                 item == PlayerAppearance.HairItem ||
+                item == PlayerAppearance.AccessoryItem ||
                 UsesPermanentItem(_currentLeft, item) ||
                 UsesPermanentItem(_currentCenter, item) ||
                 UsesPermanentItem(_currentRight, item));

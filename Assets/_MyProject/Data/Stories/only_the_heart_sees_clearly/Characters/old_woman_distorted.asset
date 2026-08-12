@@ -63,7 +63,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       scale: {x: 1, y: 1, z: 1}
     right:
-      offset: {x: 0, y: 0}
+      offset: {x: -468.12, y: 0}
       scale: {x: 1, y: 1, z: 1}
   keepStorySlotPositionOnSpeakerFocus: 0
   wardrobeLayerLayout:

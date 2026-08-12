@@ -406,6 +406,29 @@ public class GameState : MonoBehaviour
                 "equipped", CompactEquipped(equippedClothes)));
     }
 
+    public void UnequipClothing(string characterId)
+    {
+        characterId = SaveDataSanitizer.SanitizeIdentifier(characterId);
+        if (string.IsNullOrEmpty(characterId))
+            return;
+
+        EnsureCollections();
+        if (!equippedClothes.Remove(characterId))
+            return;
+
+        SaveClothes();
+
+        AppLogger.Info(
+            AppLogCategory.Wardrobe,
+            nameof(GameState),
+            nameof(UnequipClothing),
+            "[GAMESTATE][WARDROBE] Clothing slot cleared.",
+            LogMetadata.Of(
+                "storyId", _storyId,
+                "equipKey", characterId,
+                "equipped", CompactEquipped(equippedClothes)));
+    }
+
     public string GetEquipped(string characterId)
     {
         characterId = SaveDataSanitizer.SanitizeIdentifier(characterId);

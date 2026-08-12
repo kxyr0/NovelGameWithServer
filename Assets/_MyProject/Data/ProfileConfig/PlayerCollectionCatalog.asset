@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80afbae9f34bf79469ee90018b9fd1dd, type: 3}
+  m_Name: PlayerCollectionCatalog
+  m_EditorClassIdentifier: 
+  _items:
+  - _kind: 0
+    _itemId: 
+    _storyId: only_the_heart_sees_clearly
+    _sourceNodeId: zls1_image_001
+    _image: {fileID: 21300000, guid: ad2a0092b5f688d4bb2db4c20541f151, type: 3}
+    _imageVariants: []
+    _title: "Иван едет на коне"
+    _storyTitle: "Зорко лишь сердце"
+  - _kind: 0
+    _itemId: 
+    _storyId: only_the_heart_sees_clearly
+    _sourceNodeId: zls1_image_003
+    _image: {fileID: 21300000, guid: cc8118634c3cdd04ba064ddd2a7e5ec5, type: 3}
+    _imageVariants: []
+    _title: "Телефон без сигнала"
+    _storyTitle: "Зорко лишь сердце"
+  - _kind: 0
+    _itemId: 
+    _storyId: only_the_heart_sees_clearly
+    _sourceNodeId: zls2_image_001_oksana
+    _image: {fileID: 21300000, guid: 01ff60f6cd8196b42b72dcca5d13548a, type: 3}
+    _imageVariants: []
+    _title: "Появление незнакомки"
+    _storyTitle: "Зорко лишь сердце"
+  - _kind: 0
+    _itemId: 
+    _storyId: privychka_pritvoryatsya
+    _sourceNodeId: pp_image_vlad_cutscene_001
+    _image: {fileID: 21300000, guid: 69fa5d0d3742fbb46bf70cf17f9a9b96, type: 3}
+    _imageVariants: []
+    _title: "Встреча с Владом"
+    _storyTitle: "Привычка притворяться"
+  - _kind: 0
+    _itemId: 
+    _storyId: privychka_pritvoryatsya
+    _sourceNodeId: pp_image_gabriel_cutscene_001
+    _image: {fileID: 21300000, guid: 7fa71ff911b597342b8e7a2b2b50e91e, type: 3}
+    _imageVariants: []
+    _title: "Встреча с Габриэлем"
+    _storyTitle: "Привычка притворяться"
+  - _kind: 0
+    _itemId: 
+    _storyId: privychka_pritvoryatsya
+    _sourceNodeId: pp2_image_vlad_training_cutscene_001
+    _image: {fileID: 21300000, guid: fb7dbf1542e48194bad10dd17b3971c6, type: 3}
+    _imageVariants:
+    - {fileID: 21300000, guid: 1501d11631410384fa2a598f0f5f331a, type: 3}
+    - {fileID: 21300000, guid: 60487ce7927eb964088e5bad66c2d431, type: 3}
+    - {fileID: 21300000, guid: 0e21042a8f112304b8d3847b40f64ea5, type: 3}
+    - {fileID: 21300000, guid: 8161eb0b0b73cd24ea2c2f000e964efb, type: 3}
+    - {fileID: 21300000, guid: 2ce708322ec6a8a4eab2beea4e9c67ce, type: 3}
+    - {fileID: 21300000, guid: 9eca5f539ae34eb47a4881cb4fd05c0c, type: 3}
+    - {fileID: 21300000, guid: 4e5f810c189f0984ab6f1f2e17841957, type: 3}
+    - {fileID: 21300000, guid: f84bc240ce702644ebaa45590f4b3c3a, type: 3}
+    _title: "Тренировка с Владом"
+    _storyTitle: "Привычка притворяться"

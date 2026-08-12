@@ -48,7 +48,7 @@ public sealed class StoryStartPreloadAssetCollector : IStoryStartPreloadAssetCol
         {
             assets.Add(data.GameIcon);
             assets.Add(data.GameIconVideo);
-            assets.Add(data.GameIconGif);
+            assets.AddGif(data.GameIconGif);
         }
 
         CollectWardrobeAssets(data.WardrobeSetup, assets);
@@ -96,7 +96,7 @@ public sealed class StoryStartPreloadAssetCollector : IStoryStartPreloadAssetCol
 
         assets.Add(loadingMedia.CoverSprite);
         assets.Add(loadingMedia.CoverVideo);
-        assets.Add(loadingMedia.CoverGif);
+        assets.AddGif(loadingMedia.CoverGif);
     }
 
     private static void CollectChapterAssets(ChapterData chapter, StoryStartPreloadAssetSet assets)
@@ -125,16 +125,18 @@ public sealed class StoryStartPreloadAssetCollector : IStoryStartPreloadAssetCol
 
         if (node is ImageNode imageNode)
         {
-            assets.Add(imageNode.image);
-            assets.Add(imageNode.video);
-            assets.Add(imageNode.gif);
+            assets.Add(imageNode.defaultImage);
+            assets.Add(imageNode.defaultVideo);
+            assets.AddGif(imageNode.defaultGif);
+            CollectHeroBuildCutsceneOverrides(imageNode.heroBuildCutsceneOverrides, assets);
         }
 
         if (node is CutsceneNode cutsceneNode)
         {
-            assets.Add(cutsceneNode.image);
-            assets.Add(cutsceneNode.video);
-            assets.Add(cutsceneNode.gif);
+            assets.Add(cutsceneNode.defaultImage);
+            assets.Add(cutsceneNode.defaultVideo);
+            assets.AddGif(cutsceneNode.defaultGif);
+            CollectHeroBuildCutsceneOverrides(cutsceneNode.heroBuildCutsceneOverrides, assets);
         }
 
         if (node is DialogueNode dialogueNode)
@@ -210,9 +212,28 @@ public sealed class StoryStartPreloadAssetCollector : IStoryStartPreloadAssetCol
         assets.Add(sceneData.background);
         assets.Add(sceneData.backgroundOverlay);
         assets.Add(sceneData.backgroundVideo);
-        assets.Add(sceneData.backgroundGif);
+        assets.AddGif(sceneData.backgroundGif);
         assets.Add(sceneData.music);
         assets.Add(sceneData.startSfx);
+    }
+
+    private static void CollectHeroBuildCutsceneOverrides(
+        IReadOnlyList<HeroBuildCutsceneOverride> overrides,
+        StoryStartPreloadAssetSet assets)
+    {
+        if (overrides == null || assets == null)
+            return;
+
+        for (int i = 0; i < overrides.Count; i++)
+        {
+            HeroBuildCutsceneOverride rule = overrides[i];
+            if (rule == null || !rule.Enabled)
+                continue;
+
+            assets.Add(rule.DefaultImage);
+            assets.Add(rule.DefaultVideo);
+            assets.AddGif(rule.DefaultGif);
+        }
     }
 
     private static void CollectJsonAssetLibrary(StoryJsonAssetLibrary library, StoryStartPreloadAssetSet assets)

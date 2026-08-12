@@ -4749,7 +4749,7 @@ MonoBehaviour:
   clothing: {fileID: 11400000, guid: 056a76bade5aed241b8742d2f291ceb8, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 52
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

@@ -240,27 +240,27 @@ public sealed class StoryEndScreenStatBinding
                 label = "Город",
                 statId = "city",
                 statAliases = new[] { "town", "gorod" },
-                valueMode = StoryEndScreenStatValueMode.CurrentTotal
+                valueMode = StoryEndScreenStatValueMode.EpisodeDelta
             },
             new StoryEndScreenStatBinding
             {
                 label = "Сказка",
                 statId = "fairytale",
                 statAliases = new[] { "story", "tale", "skazka" },
-                valueMode = StoryEndScreenStatValueMode.CurrentTotal
+                valueMode = StoryEndScreenStatValueMode.EpisodeDelta
             },
             new StoryEndScreenStatBinding
             {
                 label = "Репутация",
                 statId = "reputation",
                 statAliases = new[] { "respect", "rep" },
-                valueMode = StoryEndScreenStatValueMode.CurrentTotal
+                valueMode = StoryEndScreenStatValueMode.EpisodeDelta
             },
             new StoryEndScreenStatBinding
             {
                 label = "Искры",
                 statId = "hearts",
-                valueMode = StoryEndScreenStatValueMode.HeartBalance
+                valueMode = StoryEndScreenStatValueMode.HeartDelta
             }
         };
     }
@@ -428,6 +428,13 @@ public sealed class StoryEndScreenDataProvider : IStoryEndScreenDataProvider
             }
 
             int value = ResolveValue(binding, storyManager, previewSettings, preview);
+            if (!preview && (Debug.isDebugBuild || Application.isEditor))
+            {
+                Debug.Log(
+                    $"[END_STATS][BIND] storyId='{(storyManager != null ? storyManager.CurrentStoryId : "")}' " +
+                    $"label='{label}' statId='{binding.statId}' mode={binding.valueMode} value={value}.");
+            }
+
             if (binding.hideWhenZero && value == 0)
                 continue;
 
@@ -489,6 +496,13 @@ public sealed class StoryEndScreenDataProvider : IStoryEndScreenDataProvider
         if (preview && previewSettings != null && !previewSettings.useSavedValuesInEditor)
             return ResolvePreviewValue(binding, previewSettings);
 
+        // The standard completion rows have fixed semantics: they show what was
+        // earned during the completed chapter. Do not let a stale scene/style
+        // valueMode turn them back into CurrentTotal after StoryManager already
+        // calculated the correct chapter summary.
+        if (!preview && TryResolveCanonicalCompletionValue(binding, storyManager, out int canonicalValue))
+            return canonicalValue;
+
         switch (binding.valueMode)
         {
             case StoryEndScreenStatValueMode.EpisodeDelta:
@@ -507,6 +521,71 @@ public sealed class StoryEndScreenDataProvider : IStoryEndScreenDataProvider
             default:
                 return ResolveCurrentStat(binding, previewSettings);
         }
+    }
+
+    static bool TryResolveCanonicalCompletionValue(
+        StoryEndScreenStatBinding binding,
+        StoryManager storyManager,
+        out int value)
+    {
+        value = 0;
+        if (binding == null || storyManager == null)
+            return false;
+
+        if (BindingMatches(binding, "Город", "city", "town", "gorod"))
+        {
+            value = storyManager.GetLastCompletedEpisodeStatDelta("city", "town", "gorod");
+            return true;
+        }
+
+        if (BindingMatches(binding, "Сказка", "fairytale", "story", "tale", "skazka"))
+        {
+            value = storyManager.GetLastCompletedEpisodeStatDelta("fairytale", "story", "tale", "skazka");
+            return true;
+        }
+
+        if (BindingMatches(binding, "Репутация", "reputation", "respect", "rep"))
+        {
+            value = storyManager.GetLastCompletedEpisodeStatDelta("reputation", "respect", "rep");
+            return true;
+        }
+
+        if (BindingMatches(binding, "Искры", "hearts", "sparks"))
+        {
+            value = storyManager.LastCompletedEpisodeHeartDelta;
+            return true;
+        }
+
+        if (BindingMatches(binding, "Свечи", "candles"))
+        {
+            value = storyManager.LastCompletedEpisodeCandleDelta;
+            return true;
+        }
+
+        return false;
+    }
+
+    static bool BindingMatches(StoryEndScreenStatBinding binding, string label, params string[] statIds)
+    {
+        if (binding == null)
+            return false;
+
+        if (binding.MatchesLabel(label))
+            return true;
+
+        foreach (string candidate in binding.AllStatIds())
+        {
+            if (string.IsNullOrWhiteSpace(candidate))
+                continue;
+
+            for (int i = 0; i < statIds.Length; i++)
+            {
+                if (string.Equals(candidate, statIds[i], StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     int ResolveCurrentStat(StoryEndScreenStatBinding binding, StoryEndScreenPreviewSettings previewSettings)
@@ -614,7 +693,26 @@ public sealed class StoryEndScreenDataProvider : IStoryEndScreenDataProvider
                 "storyId", data != null ? data.StoryId : "",
                 "completedEpisodeId", data != null ? data.CompletedEpisodeId : "",
                 "statCount", data != null ? data.Stats.Count : 0,
+                "stats", BuildStatSummary(data),
                 "storyFinished", storyManager != null && storyManager.EndPanelStoryFinished));
+    }
+
+    static string BuildStatSummary(StoryEndScreenData data)
+    {
+        if (data == null || data.Stats == null || data.Stats.Count == 0)
+            return "";
+
+        var parts = new List<string>(data.Stats.Count);
+        for (int i = 0; i < data.Stats.Count; i++)
+        {
+            StoryEndScreenStatValue stat = data.Stats[i];
+            if (stat == null)
+                continue;
+
+            parts.Add((stat.StatId ?? stat.Label ?? "stat") + "=" + stat.Value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        return string.Join(",", parts);
     }
 }
 

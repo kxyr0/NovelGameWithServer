@@ -10,6 +10,10 @@ using XNode;
 
 public partial class StoryManager
 {
+    public string LastResolvedGraphSource { get; private set; } = "";
+    public string LastResolvedGraphEpisodeId { get; private set; } = "";
+    public string LastResolvedGraphContentVersion { get; private set; } = "";
+
     IEnumerator SyncRemoteGraphCacheIfNeeded(SaveData snapshot)
     {
         if (snapshot == null)
@@ -45,16 +49,49 @@ public partial class StoryManager
             response.rawPayloadJson);
     }
 
+    IEnumerator PrepareRemoteGraphCacheForEpisodeIfPossible(string episodeId)
+    {
+        if (!PrototypeFeatureFlags.RemoteEpisodeGraphsEnabled || string.IsNullOrEmpty(episodeId))
+            yield break;
+
+        bool hasCachedGraph = RemoteEpisodeGraphCache.TryLoad(episodeId, out _);
+        bool authenticated = NetworkManager.IsAuthenticated;
+        if (!authenticated && hasCachedGraph)
+            yield break;
+
+        if (!authenticated)
+            yield return WaitForAuthentication(ok => authenticated = ok);
+
+        if (!authenticated || NetworkManager.Instance == null)
+            yield break;
+
+        if (!NetworkManager.HasCatalogRemoteContent(episodeId))
+            yield return NetworkManager.Instance.SyncCatalog();
+
+        yield return SyncRemoteGraphCacheIfNeeded(episodeId);
+    }
+
     StoryGraph ResolveGraphForChapter(ChapterData chapter)
     {
         if (chapter == null)
+        {
+            Debug.LogError(
+                $"[STORY_GRAPH][FAILED] platform={Application.platform} storyId='{CurrentStoryId}' reason=ChapterData_is_null.",
+                this);
             return null;
+        }
 
         string episodeId = ResolveChapterEpisodeId(chapter);
-#if UNITY_EDITOR
-        if (TryResolveJsonGraphForChapter(chapter, episodeId, out var editorJsonGraph))
-            return editorJsonGraph;
-#endif
+
+        StoryRuntimeAssetRegistryResolver.SetActiveStory(CurrentStoryId);
+
+        // Local JSON has the same priority on every platform.
+        // UNITY_EDITOR / DEVELOPMENT_BUILD must not change story source ordering.
+        if (TryResolveJsonGraphForChapter(chapter, episodeId, out var localJsonGraph))
+        {
+            SetLastResolvedGraphSource("локальный JSON", episodeId, "");
+            return localJsonGraph;
+        }
 
         if (PrototypeFeatureFlags.RemoteEpisodeGraphsEnabled &&
             !string.IsNullOrEmpty(episodeId) &&
@@ -62,39 +99,94 @@ public partial class StoryManager
             RemoteEpisodeGraphCache.TryLoad(episodeId, out var cacheEntry))
         {
             if (RemoteStoryGraphImporter.TryBuildGraph(cacheEntry, out var remoteGraph, out var reason, CreateJsonAssetResolver(chapter)))
+            {
+                SetLastResolvedGraphSource("серверный JSON", episodeId, cacheEntry.contentVersion);
                 return remoteGraph;
+            }
 
             if (!string.IsNullOrWhiteSpace(reason) && reason != "remote graph has no nodes")
                 Debug.LogWarning("[StoryManager] Remote graph fallback to local for " + episodeId + ": " + reason);
         }
 
-#if !UNITY_EDITOR
-        if (TryResolveJsonGraphForChapter(chapter, episodeId, out var jsonGraph))
-            return jsonGraph;
-#endif
+        SetLastResolvedGraphSource("локальный StoryGraph", episodeId, "");
+
+        if (chapter.graph == null)
+        {
+            bool hasJsonAsset = chapter.jsonGraph != null;
+            int jsonLength = hasJsonAsset && chapter.jsonGraph.text != null ? chapter.jsonGraph.text.Length : 0;
+            Debug.LogError(
+                $"[STORY_GRAPH][FAILED] platform={Application.platform} storyId='{CurrentStoryId}' " +
+                $"chapterAsset='{chapter.name}' chapterId='{chapter.ChapterId}' episodeId='{episodeId}' " +
+                $"reason=No_usable_local_or_remote_graph hasJsonAsset={hasJsonAsset} jsonBytes={jsonLength} " +
+                $"hasStoryGraph={chapter.graph != null} remoteEnabled={PrototypeFeatureFlags.RemoteEpisodeGraphsEnabled} " +
+                $"catalogHasRemote={NetworkManager.HasCatalogRemoteContent(episodeId)}.",
+                this);
+        }
 
         return chapter.graph;
+    }
+
+    void SetLastResolvedGraphSource(string source, string episodeId, string contentVersion)
+    {
+        LastResolvedGraphSource = source ?? "";
+        LastResolvedGraphEpisodeId = episodeId ?? "";
+        LastResolvedGraphContentVersion = contentVersion ?? "";
+
+        Debug.Log(
+            $"[STORY_GRAPH][RESOLVED] platform={Application.platform} storyId='{CurrentStoryId}' " +
+            $"chapterId='{CurrentChapterId}' episodeId='{LastResolvedGraphEpisodeId}' " +
+            $"source='{LastResolvedGraphSource}' contentVersion='{LastResolvedGraphContentVersion}'.",
+            this);
     }
 
     bool TryResolveJsonGraphForChapter(ChapterData chapter, string episodeId, out StoryGraph graph)
     {
         graph = null;
-
-        if (chapter == null || chapter.jsonGraph == null || string.IsNullOrWhiteSpace(chapter.jsonGraph.text))
+        if (chapter == null)
             return false;
 
-        string cacheKey = BuildJsonGraphCacheKey(chapter, episodeId);
+        StoryRuntimeAssetRegistryResolver.SetActiveStory(CurrentStoryId);
+
+        TextAsset jsonAsset = chapter.jsonGraph;
+        if (jsonAsset == null || string.IsNullOrWhiteSpace(jsonAsset.text))
+        {
+            jsonAsset = StoryRuntimeAssetRegistryResolver.Resolve<TextAsset>(episodeId);
+            if (jsonAsset == null)
+                jsonAsset = StoryRuntimeAssetRegistryResolver.Resolve<TextAsset>(chapter.ChapterId);
+            if (jsonAsset == null)
+                jsonAsset = StoryRuntimeAssetRegistryResolver.Resolve<TextAsset>(chapter.name);
+
+            if (jsonAsset != null && !string.IsNullOrWhiteSpace(jsonAsset.text))
+            {
+                Debug.Log(
+                    $"[STORY_GRAPH][JSON_REGISTRY_FALLBACK] platform={Application.platform} storyId='{CurrentStoryId}' " +
+                    $"chapterId='{chapter.ChapterId}' episodeId='{episodeId}' jsonAsset='{jsonAsset.name}'.",
+                    this);
+            }
+        }
+
+        if (jsonAsset == null || string.IsNullOrWhiteSpace(jsonAsset.text))
+            return false;
+
+        string cacheKey = BuildJsonGraphCacheKey(chapter, episodeId, jsonAsset);
         if (JsonGraphCache.TryGetValue(cacheKey, out graph) && graph != null)
             return true;
 
-        if (StoryJsonConverter.TryBuildGraph(chapter.jsonGraph.text, episodeId, out graph, out var reason, CreateJsonAssetResolver(chapter)))
+        if (StoryJsonConverter.TryBuildGraph(jsonAsset.text, episodeId, out graph, out var reason, CreateJsonAssetResolver(chapter)))
         {
             JsonGraphCache[cacheKey] = graph;
             return true;
         }
 
         if (!string.IsNullOrWhiteSpace(reason))
-            Debug.LogError("[StoryManager] JSON graph fallback to local StoryGraph for " + ResolveChapterEpisodeId(chapter) + ": " + reason);
+        {
+            Debug.LogError(
+                "[STORY_GRAPH][JSON_FAILED] storyId='" + CurrentStoryId +
+                "' episodeId='" + episodeId + "' json='" + jsonAsset.name +
+                "' registry=" + StoryRuntimeAssetRegistryResolver.DescribeActiveRegistry() +
+                " reason=" + reason,
+                this);
+        }
 
         graph = null;
         return false;
@@ -102,25 +194,37 @@ public partial class StoryManager
 
     StoryJsonAssetResolver CreateJsonAssetResolver(ChapterData chapter)
     {
-        return chapter != null && chapter.jsonAssetLibrary != null
-            ? new StoryJsonAssetLibraryResolver(chapter.jsonAssetLibrary)
-            : new StoryJsonAssetResolver();
+        StoryRuntimeAssetRegistryResolver.SetActiveStory(CurrentStoryId);
+
+        // One chapter-scoped resolver keeps runtime JSON and the generated graph
+        // in the same asset universe. The generated graph is only a fallback
+        // for asset references; story flow still comes from the local JSON.
+        return new StoryChapterJsonAssetResolver(
+            chapter != null ? chapter.jsonAssetLibrary : null,
+            chapter != null ? chapter.graph : null);
     }
 
-    static string BuildJsonGraphCacheKey(ChapterData chapter, string episodeId)
+    static string BuildJsonGraphCacheKey(ChapterData chapter, string episodeId, TextAsset jsonAsset)
     {
-        if (chapter == null || chapter.jsonGraph == null)
+        if (chapter == null || jsonAsset == null)
             return "";
 
         string libraryKey = chapter.jsonAssetLibrary != null
             ? chapter.jsonAssetLibrary.GetInstanceID().ToString()
             : "no-library";
+        string generatedGraphKey = chapter.graph != null
+            ? chapter.graph.GetInstanceID().ToString()
+            : "no-generated-graph";
+        string registryKey = StoryRuntimeAssetRegistryResolver.ActiveStoryId + ":" +
+                             StoryRuntimeAssetRegistryResolver.ActiveEntryCount;
 
-        string jsonText = chapter.jsonGraph.text ?? "";
-        return chapter.jsonGraph.GetInstanceID() +
+        string jsonText = jsonAsset.text ?? "";
+        return jsonAsset.GetInstanceID() +
                "::" + ComputeStableHash(jsonText) +
                "::" + jsonText.Length +
                "::" + libraryKey +
+               "::" + generatedGraphKey +
+               "::" + registryKey +
                "::" + (episodeId ?? "");
     }
 

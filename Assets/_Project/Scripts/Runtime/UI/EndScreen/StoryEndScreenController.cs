@@ -191,6 +191,8 @@ public sealed class StoryEndScreenController : MonoBehaviour
 
     bool _registeredButtons;
     bool _useUnifiedContinueButton;
+    bool _runtimeRenderInProgress;
+    StoryEndScreenActivationRelay _activationRelay;
     StoryEndScreenReferences _serializedReferencesSnapshot;
     StoryEndScreenLayoutSettings _serializedLayoutSettingsSnapshot;
     StoryEndScreenPreviewSettings _serializedPreviewSettingsSnapshot;
@@ -221,11 +223,23 @@ public sealed class StoryEndScreenController : MonoBehaviour
         EnsureState();
         EnsureReferences();
         RegisterButtons();
+        AutoFillEndScreenReferencesFromHierarchy();
 
         if (Application.isPlaying)
-            ShowRuntime(nameof(OnEnable));
+        {
+            EnsureActivationRelay();
+
+            // This controller is usually attached to UIRoot while the actual EndScreen
+            // is a child GameObject. UIRoot.OnEnable fires only once at scene startup,
+            // so it must NOT be treated as the lifecycle event for every chapter end.
+            GameObject root = _references != null ? _references.ResolveRoot(this) : null;
+            if (root != null && root.activeInHierarchy)
+                ShowRuntime(nameof(OnEnable));
+        }
         else
+        {
             Refresh();
+        }
     }
 
     void OnDisable()
@@ -282,17 +296,82 @@ public sealed class StoryEndScreenController : MonoBehaviour
 
     public bool ShowRuntime(string reason = "Runtime")
     {
-        EnsureState();
-        EnsureReferences();
-        AutoFillEndScreenReferencesFromHierarchy();
-
-        StoryEndScreenValidationResult validation = ValidateEndScreen(requireRuntime: true);
-        LogValidation(validation, reason);
-        if (validation.HasErrors)
+        if (_runtimeRenderInProgress)
             return false;
 
-        StoryEndScreenData data = _dataProvider.Build(_storyManager, _statBindings, _previewSettings, preview: false);
-        return _runtimePresenter.Show(this, data, reason);
+        _runtimeRenderInProgress = true;
+        try
+        {
+            EnsureState();
+            EnsureReferences();
+            AutoFillEndScreenReferencesFromHierarchy();
+            EnsureActivationRelay();
+
+            StoryEndScreenValidationResult validation = ValidateEndScreen(requireRuntime: true);
+            LogValidation(validation, reason);
+            if (validation.HasErrors)
+                return false;
+
+            // EndScreen must prepare its own data instead of relying on a hidden
+            // chapter-completion call ordering somewhere else in StoryManager.
+            _storyManager?.PrepareEpisodeSummaryForEndScreen();
+
+            StoryEndScreenData data = _dataProvider.Build(_storyManager, _statBindings, _previewSettings, preview: false);
+            bool rendered = _runtimePresenter.Show(this, data, reason);
+
+            if (Debug.isDebugBuild || Application.isEditor)
+            {
+                Debug.Log(
+                    $"[END_STATS][CONTROLLER_RENDER] reason='{reason ?? ""}' rendered={rendered} " +
+                    $"controllerObject='{name}' root='{(_references != null && _references.ResolveRoot(this) != null ? _references.ResolveRoot(this).name : "<null>")}' " +
+                    $"statCount={(data != null ? data.Stats.Count : 0)}.",
+                    this);
+            }
+
+            return rendered;
+        }
+        finally
+        {
+            _runtimeRenderInProgress = false;
+        }
+    }
+
+    internal void NotifyEndScreenRootEnabled(GameObject activatedRoot)
+    {
+        if (!Application.isPlaying || !isActiveAndEnabled || _runtimeRenderInProgress)
+            return;
+
+        GameObject expectedRoot = _references != null ? _references.ResolveRoot(this) : null;
+        if (expectedRoot == null || activatedRoot != expectedRoot)
+            return;
+
+        if (Debug.isDebugBuild || Application.isEditor)
+        {
+            Debug.Log(
+                $"[END_STATS][ACTIVATION] EndScreen root enabled. controllerObject='{name}' root='{activatedRoot.name}'.",
+                this);
+        }
+
+        ShowRuntime("EndScreenRoot.OnEnable");
+    }
+
+    void EnsureActivationRelay()
+    {
+        if (!Application.isPlaying || _references == null)
+            return;
+
+        GameObject root = _references.ResolveRoot(this);
+        if (root == null || root == gameObject)
+            return;
+
+        if (_activationRelay == null || _activationRelay.gameObject != root)
+        {
+            _activationRelay = root.GetComponent<StoryEndScreenActivationRelay>();
+            if (_activationRelay == null)
+                _activationRelay = root.AddComponent<StoryEndScreenActivationRelay>();
+        }
+
+        _activationRelay.Bind(this);
     }
 
     public void CaptureCurrentStatBackplateSprites(bool overwriteExisting = true)
@@ -396,6 +475,14 @@ public sealed class StoryEndScreenController : MonoBehaviour
         ApplyContinueButtonVisual();
         RenderStats(data);
         RefreshExtraTexts(data);
+
+        // Extra text bindings are intentionally rendered after the stat rows, but a
+        // legacy scene can still have one of those bindings pointing at the same TMP
+        // object as a completion stat. In that case the binding used to overwrite the
+        // freshly rendered chapter delta with its stale/current-total value (usually 0).
+        // Re-apply completion stats as the final text pass so EndScreen owns those rows.
+        ReapplyCompletionStatTexts(data, reason);
+
         RefreshButtonAvailability();
         StoryEndScreenBackgroundController.Apply(this, data);
         StoryEndScreenLayoutController.Recalculate(this, reason);
@@ -729,12 +816,106 @@ public sealed class StoryEndScreenController : MonoBehaviour
             _previewSettings = new StoryEndScreenPreviewSettings();
         if (_statBindings == null || _statBindings.Length == 0)
             _statBindings = StoryEndScreenStatBinding.CreateDefaults();
+        MigrateLegacyCompletionStatModes();
         if (_extraButtons == null)
             _extraButtons = Array.Empty<ButtonBinding>();
         if (_extraTexts == null)
             _extraTexts = Array.Empty<TextBinding>();
         if (string.IsNullOrWhiteSpace(_completionTitle))
             _completionTitle = DefaultCompletionTitle;
+    }
+
+
+    void MigrateLegacyCompletionStatModes()
+    {
+        if (_statBindings == null)
+            return;
+
+        bool changed = false;
+        for (int i = 0; i < _statBindings.Length; i++)
+        {
+            StoryEndScreenStatBinding binding = _statBindings[i];
+            if (binding == null)
+                continue;
+
+            if (BindingContainsAnyStatId(binding, "city", "town", "gorod") || binding.MatchesLabel("Город"))
+            {
+                if (string.IsNullOrWhiteSpace(binding.statId))
+                    binding.statId = "city";
+                if (binding.valueMode != StoryEndScreenStatValueMode.EpisodeDelta)
+                {
+                    binding.valueMode = StoryEndScreenStatValueMode.EpisodeDelta;
+                    changed = true;
+                }
+                continue;
+            }
+
+            if (BindingContainsAnyStatId(binding, "fairytale", "story", "tale", "skazka") || binding.MatchesLabel("Сказка"))
+            {
+                if (string.IsNullOrWhiteSpace(binding.statId))
+                    binding.statId = "fairytale";
+                if (binding.valueMode != StoryEndScreenStatValueMode.EpisodeDelta)
+                {
+                    binding.valueMode = StoryEndScreenStatValueMode.EpisodeDelta;
+                    changed = true;
+                }
+                continue;
+            }
+
+            if (BindingContainsAnyStatId(binding, "reputation", "respect", "rep") || binding.MatchesLabel("Репутация"))
+            {
+                if (string.IsNullOrWhiteSpace(binding.statId))
+                    binding.statId = "reputation";
+                if (binding.valueMode != StoryEndScreenStatValueMode.EpisodeDelta)
+                {
+                    binding.valueMode = StoryEndScreenStatValueMode.EpisodeDelta;
+                    changed = true;
+                }
+                continue;
+            }
+
+            if (BindingContainsAnyStatId(binding, "hearts", "sparks") || binding.MatchesLabel("Искры"))
+            {
+                if (string.IsNullOrWhiteSpace(binding.statId))
+                    binding.statId = "hearts";
+                if (binding.valueMode != StoryEndScreenStatValueMode.HeartDelta)
+                {
+                    binding.valueMode = StoryEndScreenStatValueMode.HeartDelta;
+                    changed = true;
+                }
+            }
+        }
+
+        if (changed && Application.isPlaying)
+        {
+            Debug.Log(
+                $"[END_STATS][BINDINGS_MIGRATED] object='{name}' standard completion rows forced to chapter delta modes.",
+                this);
+
+            AppLogger.Info(
+                AppLogCategory.EndScreen,
+                nameof(StoryEndScreenController),
+                nameof(MigrateLegacyCompletionStatModes),
+                "[END_STATS][BINDINGS_MIGRATED] Standard end-screen stat bindings were forced to chapter delta modes.",
+                LogMetadata.Of("object", name));
+        }
+    }
+
+    static bool BindingContainsAnyStatId(StoryEndScreenStatBinding binding, params string[] ids)
+    {
+        if (binding == null || ids == null)
+            return false;
+
+        foreach (string candidate in binding.AllStatIds())
+        {
+            for (int i = 0; i < ids.Length; i++)
+            {
+                if (string.Equals(candidate, ids[i], StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     void EnsureReferences()
@@ -1732,6 +1913,48 @@ public sealed class StoryEndScreenController : MonoBehaviour
         ApplyLegacyStatSprites(data);
     }
 
+    void ReapplyCompletionStatTexts(StoryEndScreenData data, string reason)
+    {
+        if (data == null)
+            return;
+
+        // Explicit bindings and legacy references can coexist in old scenes. Apply both
+        // after all generic text bindings so neither path can be the accidental last writer.
+        UpdateExplicitStatBindings(data);
+        UpdateLegacyStatTexts(data);
+
+        if (!Debug.isDebugBuild && !Application.isEditor)
+            return;
+
+        TMP_Text cityText = FirstNonNull(_references.legacyCityText, _storyManager != null ? _storyManager.townText : null);
+        TMP_Text fairytaleText = FirstNonNull(_references.legacyFairytaleText, _storyManager != null ? _storyManager.storyText : null);
+        TMP_Text reputationText = FirstNonNull(_references.legacyReputationText, _storyManager != null ? _storyManager.reputationText : null);
+        TMP_Text heartsText = FirstNonNull(_references.legacySparksText, _storyManager != null ? _storyManager.heartsText : null);
+
+        StoryEndScreenStatValue city = FindStat(data, "city");
+        StoryEndScreenStatValue fairytale = FindStat(data, "fairytale");
+        StoryEndScreenStatValue reputation = FindStat(data, "reputation");
+        StoryEndScreenStatValue hearts = FindStat(data, "hearts");
+
+        Debug.Log(
+            $"[END_STATS][FINAL_UI] reason='{reason ?? ""}' " +
+            $"cityData={ValueOrZero(city)} cityText='{TextOrNull(cityText)}' " +
+            $"fairytaleData={ValueOrZero(fairytale)} fairytaleText='{TextOrNull(fairytaleText)}' " +
+            $"reputationData={ValueOrZero(reputation)} reputationText='{TextOrNull(reputationText)}' " +
+            $"heartsData={ValueOrZero(hearts)} heartsText='{TextOrNull(heartsText)}'.",
+            this);
+    }
+
+    static int ValueOrZero(StoryEndScreenStatValue stat)
+    {
+        return stat != null ? stat.Value : 0;
+    }
+
+    static string TextOrNull(TMP_Text text)
+    {
+        return text != null ? text.text : "<null>";
+    }
+
     void ApplyLegacyStatSprites(StoryEndScreenData data)
     {
         ApplyLegacyStatVisual(_references.legacyCityRow, _references.legacyCityImage, _references.legacyCityIconImage, data, "city");
@@ -2448,6 +2671,24 @@ public sealed class StoryEndScreenController : MonoBehaviour
             return true;
         if (_references == null)
             return false;
+
+        // Old EndScreen scenes often assign only the TMP_Text reference and leave the
+        // legacy row RectTransform empty. The previous check looked only at row ancestry,
+        // so an _extraTexts binding targeting the exact same TMP slipped through and
+        // overwrote "Город: 4" back to "Город: 0" after RenderStats().
+        if (text == _references.legacyCityText ||
+            text == _references.legacyFairytaleText ||
+            text == _references.legacyReputationText ||
+            text == _references.legacySparksText ||
+            text == _references.legacyCandlesText ||
+            (_storyManager != null && (
+                text == _storyManager.townText ||
+                text == _storyManager.storyText ||
+                text == _storyManager.reputationText ||
+                text == _storyManager.heartsText)))
+        {
+            return true;
+        }
 
         return IsDescendantOf(text.transform, _references.legacyCityRow) ||
             IsDescendantOf(text.transform, _references.legacyFairytaleRow) ||

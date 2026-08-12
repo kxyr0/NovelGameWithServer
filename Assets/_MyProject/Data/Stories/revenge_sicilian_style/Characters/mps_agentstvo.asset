@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c2391e99375d14881b7a68ed23ea38, type: 3}
+  m_Name: mps_agentstvo
+  m_EditorClassIdentifier: 
+  characterName: "\u0410\u0433\u0435\u043D\u0442\u0441\u0442\u0432\u043E"
+  defaultSprite: {fileID: 0}
+  hairSprite: {fileID: 0}
+  emotions: []
+  useLayeredEmotions: 0
+  bodySprite: {fileID: 0}
+  emotionLayers: []
+  inheritAppearanceFromPlayer: 0
+  appearanceVariants: []
+  storyLayerLayout:
+    body:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    emotion:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    outfit:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    hair:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  storyPositionLayout:
+    all:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    left:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    center:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+    right:
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1, z: 1}
+  keepStorySlotPositionOnSpeakerFocus: 0
+  wardrobeLayerLayout:
+    body:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    outfit:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    hair:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
+  permanentOutfit: {fileID: 0}
+  permanentHair: {fileID: 0}
+  permanentAccessory: {fileID: 0}
+  storyEquipmentLayouts: []
+  wardrobeEquipmentLayouts: []

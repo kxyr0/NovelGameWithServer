@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8bc569a14d47eb916a976b024f3705, type: 3}
+  m_Name: AdsConfig
+  m_EditorClassIdentifier: 
+  _adsEnabled: 1
+  _autoCreateRuntimeService: 1
+  _initializeOnStart: 1
+  _debugLogging: 1
+  _androidAppKey: YOUR_LEVELPLAY_ANDROID_APP_KEY
+  _iosAppKey: YOUR_LEVELPLAY_IOS_APP_KEY
+  _testMode: 0
+  _enableIntegrationTestSuite: 0
+  _validateIntegrationOnInitialize: 0
+  _rewardedPlacements:
+  - _placementId: rewarded_bonus
+    _androidAdUnitId: ANDROID_REWARDED_AD_UNIT_ID
+    _iosAdUnitId: IOS_REWARDED_AD_UNIT_ID
+    _placementName: rewarded_bonus
+  _interstitialPlacements:
+  - _placementId: interstitial_transition
+    _androidAdUnitId: ANDROID_INTERSTITIAL_AD_UNIT_ID
+    _iosAdUnitId: IOS_INTERSTITIAL_AD_UNIT_ID
+    _placementName: interstitial_transition
+  _interstitialCooldownSeconds: 90
+  _minimumGameplaySecondsBeforeFirstInterstitial: 60
+  _interstitialDelayAfterRewardedSeconds: 30
+  _bannerPlacements:
+  - _placementId: banner_menu
+    _androidAdUnitId: ANDROID_BANNER_AD_UNIT_ID
+    _iosAdUnitId: IOS_BANNER_AD_UNIT_ID
+    _placementName: banner_menu
+    _size: 0
+    _position: 7
+    _displayOnLoad: 1
+    _respectSafeArea: 1
+  _reloadDelaySeconds: 10
+  _rewardedCloseGraceSeconds: 1
+  _editorMockAdsStartReady: 0
+  _editorMockRewardedSucceeds: 0
+  _editorMockDelaySeconds: 0.35
+  _editorMockRewardName: soft_currency
+  _editorMockRewardAmount: 10

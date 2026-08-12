@@ -101,6 +101,7 @@ public class GameObjectToggle : Selectable, IPointerClickHandler, ISubmitHandler
 			ApplyState();
 	}
 
+	#if UNITY_EDITOR
 	protected override void OnValidate()
 	{
 		base.OnValidate();
@@ -109,6 +110,7 @@ public class GameObjectToggle : Selectable, IPointerClickHandler, ISubmitHandler
 		if (!Application.isPlaying)
 			ApplyState();
 	}
+	#endif
 
 	public void OnPointerClick(PointerEventData eventData)
 	{

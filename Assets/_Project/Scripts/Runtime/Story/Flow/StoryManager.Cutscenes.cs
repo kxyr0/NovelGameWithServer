@@ -142,18 +142,26 @@ public partial class StoryManager
 
         if (node.video != null)
         {
+            CutsceneImageDownloadState.Hide();
             backgroundView.SetBackgroundVideo(node.video);
             return;
         }
 
         if (node.gif != null)
         {
+            CutsceneImageDownloadState.Hide();
             backgroundView.SetBackgroundGif(node.gif);
             return;
         }
 
         if (node.image != null)
+        {
+            CutsceneImageDownloadState.Show(node.image, BuildCutsceneDownloadFileName(node, node.image));
             backgroundView.SetBackground(node.image);
+            return;
+        }
+
+        CutsceneImageDownloadState.Hide();
     }
 
     void ApplyCutsceneMedia(ImageNode node)
@@ -172,18 +180,38 @@ public partial class StoryManager
 
         if (node.video != null)
         {
+            CutsceneImageDownloadState.Hide();
             backgroundView.SetBackgroundVideo(node.video);
             return;
         }
 
         if (node.gif != null)
         {
+            CutsceneImageDownloadState.Hide();
             backgroundView.SetBackgroundGif(node.gif);
             return;
         }
 
         if (node.image != null)
+        {
+            CutsceneImageDownloadState.Show(node.image, BuildCutsceneDownloadFileName(node, node.image));
             backgroundView.SetBackground(node.image);
+            return;
+        }
+
+        CutsceneImageDownloadState.Hide();
+    }
+
+    string BuildCutsceneDownloadFileName(BaseStoryNode node, Sprite sprite)
+    {
+        string story = string.IsNullOrWhiteSpace(CurrentStoryId) ? "story" : CurrentStoryId;
+        string episode = string.IsNullOrWhiteSpace(CurrentEpisodeId) ? CurrentChapterId : CurrentEpisodeId;
+        string media = sprite != null && !string.IsNullOrWhiteSpace(sprite.name) ? sprite.name : node?.guid;
+
+        if (string.IsNullOrWhiteSpace(media))
+            media = "cutscene";
+
+        return $"nocturne_{story}_{episode}_{media}_{DateTime.UtcNow:yyyyMMdd_HHmmss}";
     }
 
     DialogueLine BuildCutsceneImageLine(ImageNode node)
@@ -429,6 +457,7 @@ public partial class StoryManager
         activeCutsceneImageNode = null;
         activeCutsceneImageLine = null;
         activeCutsceneImageEnterFrame = -1;
+        CutsceneImageDownloadState.Hide();
     }
 
 }

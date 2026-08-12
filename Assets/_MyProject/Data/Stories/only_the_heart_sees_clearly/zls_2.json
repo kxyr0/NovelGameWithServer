@@ -1912,33 +1912,48 @@
     },
     {
       "id": "zls2_choice_004_jewelry",
-      "type": "choice",
-      "title": "Экран гардероба: украшения",
-      "choicePrompt": "Что купить на ярмарке?",
-      "choices": [
+      "type": "wardrobeChoice",
+      "title": "Гардероб: украшения",
+      "characterId": "hero",
+      "clothes": [
+        "",
+        "earrings",
+        "necklace",
+        "bracelet"
+      ],
+      "premiumCosts": [
+        0,
+        5,
+        5,
+        5
+      ],
+      "optionRules": [
         {
-          "text": "Ничего",
-          "next": "zls2_dialogue_017_market_leave"
+          "label": "Ничего",
+          "clearSlot": "Accessory",
+          "premiumCost": 0,
+          "purchaseKey": "zls2_choice_004_jewelry.none"
         },
         {
-          "text": "Серёжки",
-          "isPremium": true,
           "premiumCost": 5,
-          "next": "zls2_dialogue_016_jewelry_bought"
+          "purchaseKey": "zls2_choice_004_jewelry.earrings"
         },
         {
-          "text": "Бусы",
-          "isPremium": true,
           "premiumCost": 5,
-          "next": "zls2_dialogue_016_jewelry_bought"
+          "purchaseKey": "zls2_choice_004_jewelry.necklace"
         },
         {
-          "text": "Браслет",
-          "isPremium": true,
           "premiumCost": 5,
-          "next": "zls2_dialogue_016_jewelry_bought"
+          "purchaseKey": "zls2_choice_004_jewelry.bracelet"
         }
-      ]
+      ],
+      "exits": [
+        "zls2_dialogue_017_market_leave",
+        "zls2_dialogue_016_jewelry_bought",
+        "zls2_dialogue_016_jewelry_bought",
+        "zls2_dialogue_016_jewelry_bought"
+      ],
+      "authorComment": "Украшения должны открываться на экране Wardrobe. Ничего очищает слот аксессуара; остальные варианты стоят 5♥."
     },
     {
       "id": "zls2_dialogue_016_jewelry_bought",

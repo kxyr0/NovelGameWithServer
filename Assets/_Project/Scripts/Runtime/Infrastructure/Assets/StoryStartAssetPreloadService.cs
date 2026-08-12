@@ -203,6 +203,13 @@ public sealed class StoryStartAssetPreloadService : IStoryStartAssetPreloadServi
             await YieldFrameIfNeededAsync();
         }
 
+        foreach (TextAsset gifAsset in request.Assets.GifAssets)
+        {
+            WarmUpGif(gifAsset);
+            ReportStep(StoryStartPreloadStage.Data, request.DataStatus);
+            await YieldFrameIfNeededAsync();
+        }
+
         for (int i = 0; i < request.ResourcePaths.Count; i++)
         {
             await LoadResourceAsync(request.ResourcePaths[i], request, progress, completedSteps, totalSteps, cancellationToken);
@@ -252,6 +259,20 @@ public sealed class StoryStartAssetPreloadService : IStoryStartAssetPreloadServi
             }
         }
 
+        if (texture is Texture2D gpuTexture)
+        {
+            try
+            {
+                // Force the native texture/upload while the loading screen is still visible.
+                // Otherwise the first UI draw can stall and briefly expose the grey fallback.
+                _ = gpuTexture.GetNativeTexturePtr();
+            }
+            catch (Exception)
+            {
+                // Some headless/editor graphics backends do not expose a native texture.
+            }
+        }
+
         await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
     }
 
@@ -290,6 +311,15 @@ public sealed class StoryStartAssetPreloadService : IStoryStartAssetPreloadServi
             return;
 
         _ = textAsset.bytes;
+    }
+
+    private static void WarmUpGif(TextAsset gifAsset)
+    {
+        if (gifAsset == null)
+            return;
+
+        _ = gifAsset.bytes;
+        AnimatedGifPlayer.Preload(gifAsset);
     }
 
     private static async UniTask LoadResourceAsync(

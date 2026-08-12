@@ -1,0 +1,26 @@
+{
+    "selectedEnvironmentId": "prod",
+    "environments": [
+        {
+            "id": "stage",
+            "displayName": "Staging",
+            "baseUrl": "https://stage.nocturnedc.ru",
+            "contentChannel": "stage",
+            "addressablesRemoteLoadPath": "https://cdn.nocturnedc.ru/stage/[BuildTarget]"
+        },
+        {
+            "id": "prod",
+            "displayName": "Production",
+            "baseUrl": "https://nocturnedc.ru",
+            "contentChannel": "prod",
+            "addressablesRemoteLoadPath": "https://cdn.nocturnedc.ru/prod/[BuildTarget]"
+        }
+    ],
+    "requestTimeoutSeconds": 15,
+    "maxRetries": 2,
+    "retryDelaySeconds": 1.5,
+    "retryServerErrors": true,
+    "showOfflineToasts": true,
+    "offlineMessage": "Нет соединения. Работаем с локальными данными.",
+    "onlineMessage": "Соединение восстановлено."
+}

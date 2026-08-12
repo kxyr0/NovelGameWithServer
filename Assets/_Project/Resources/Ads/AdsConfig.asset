@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8bc569a14d47eb916a976b024f3705, type: 3}
   m_Name: AdsConfig
   m_EditorClassIdentifier:
-  _adsEnabled: 1
-  _autoCreateRuntimeService: 1
-  _initializeOnStart: 1
+  _adsEnabled: 0
+  _autoCreateRuntimeService: 0
+  _initializeOnStart: 0
   _debugLogging: 1
   _androidAppKey: YOUR_LEVELPLAY_ANDROID_APP_KEY
   _iosAppKey: YOUR_LEVELPLAY_IOS_APP_KEY

@@ -136,6 +136,8 @@ public sealed class StoryJsonHeroBuildCutsceneOverride
 [Serializable]
 public sealed class StoryJsonWardrobeOptionRule
 {
+    public string label;
+    public string clearSlot;
     public int premiumCost;
     public string requiredVariable;
     public int requiredValue;
@@ -173,6 +175,7 @@ public sealed class StoryJsonChoice
     public int premiumCost;
     public string requiredVariable;
     public int requiredValue;
+    public bool hideWhenRequirementNotMet;
     public bool hideInRestrictedRegions;
     public List<string> hiddenRegionCodes = new List<string>();
 }

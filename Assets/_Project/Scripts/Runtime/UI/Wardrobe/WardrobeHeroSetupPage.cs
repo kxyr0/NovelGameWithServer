@@ -560,6 +560,8 @@ public sealed partial class WardrobeHeroSetupPage : MonoBehaviour
         public AppearanceType AppearanceType;
         public AppearanceVariant AppearanceVariant;
         public ClothingItem Clothing;
+        public bool ClearsClothingSlot;
+        public ClothingType ClearClothingType;
         public int PremiumCost;
         public int SourceIndex;
         public WardrobeHeroSetupStep Step;

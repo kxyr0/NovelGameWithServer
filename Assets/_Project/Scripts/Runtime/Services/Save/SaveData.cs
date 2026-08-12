@@ -31,6 +31,15 @@ public class SaveData
     public List<string> statKeys = new List<string>();
     public List<int> statValues = new List<int>();
 
+    // Baseline of the current chapter. It is persisted with the save so the
+    // completion screen can show values earned in this chapter even after
+    // loading a save in the middle of the chapter.
+    public bool hasEpisodeStartSnapshot;
+    public int episodeStartCandles;
+    public int episodeStartHearts;
+    public List<string> episodeStartStatKeys = new List<string>();
+    public List<int> episodeStartStatValues = new List<int>();
+
     public bool HasPosition =>
         !string.IsNullOrEmpty(currentNodeGuid) &&
         (!string.IsNullOrEmpty(storyId) || !string.IsNullOrEmpty(episodeId));
@@ -92,6 +101,9 @@ public static class SaveDataSanitizer
         data.wardrobe = SanitizeStringList(data.wardrobe, MaxWardrobeEntries, MaxIdChars, false, keepLast: false);
         data.equippedClothes = SanitizePairs(data.equippedClothes, MaxEquippedEntries);
         SanitizeStats(data);
+        data.episodeStartCandles = ClampCurrencyValue(data.episodeStartCandles);
+        data.episodeStartHearts = ClampCurrencyValue(data.episodeStartHearts);
+        SanitizeEpisodeStartStats(data);
 
         return data;
     }
@@ -125,7 +137,12 @@ public static class SaveDataSanitizer
             wardrobe = data.wardrobe != null ? new List<string>(data.wardrobe) : new List<string>(),
             equippedClothes = ClonePairs(data.equippedClothes),
             statKeys = data.statKeys != null ? new List<string>(data.statKeys) : new List<string>(),
-            statValues = data.statValues != null ? new List<int>(data.statValues) : new List<int>()
+            statValues = data.statValues != null ? new List<int>(data.statValues) : new List<int>(),
+            hasEpisodeStartSnapshot = data.hasEpisodeStartSnapshot,
+            episodeStartCandles = data.episodeStartCandles,
+            episodeStartHearts = data.episodeStartHearts,
+            episodeStartStatKeys = data.episodeStartStatKeys != null ? new List<string>(data.episodeStartStatKeys) : new List<string>(),
+            episodeStartStatValues = data.episodeStartStatValues != null ? new List<int>(data.episodeStartStatValues) : new List<int>()
         });
     }
 
@@ -202,27 +219,54 @@ public static class SaveDataSanitizer
 
     static void SanitizeStats(SaveData data)
     {
-        List<string> keys = new List<string>();
-        List<int> values = new List<int>();
-
-        if (data.statKeys != null && data.statValues != null)
-        {
-            int count = Math.Min(Math.Min(data.statKeys.Count, data.statValues.Count), MaxStatEntries);
-            HashSet<string> seen = new HashSet<string>();
-            for (int i = 0; i < count; i++)
-            {
-                string key = SanitizeStatKey(data.statKeys[i]);
-                if (string.IsNullOrEmpty(key) || seen.Contains(key))
-                    continue;
-
-                seen.Add(key);
-                keys.Add(key);
-                values.Add(ClampStatValue(data.statValues[i]));
-            }
-        }
-
+        SanitizeStatLists(data.statKeys, data.statValues, out List<string> keys, out List<int> values);
         data.statKeys = keys;
         data.statValues = values;
+    }
+
+    static void SanitizeEpisodeStartStats(SaveData data)
+    {
+        SanitizeStatLists(
+            data.episodeStartStatKeys,
+            data.episodeStartStatValues,
+            out List<string> keys,
+            out List<int> values);
+
+        data.episodeStartStatKeys = keys;
+        data.episodeStartStatValues = values;
+
+        if (!data.hasEpisodeStartSnapshot)
+        {
+            data.episodeStartStatKeys.Clear();
+            data.episodeStartStatValues.Clear();
+            data.episodeStartCandles = 0;
+            data.episodeStartHearts = 0;
+        }
+    }
+
+    static void SanitizeStatLists(
+        List<string> sourceKeys,
+        List<int> sourceValues,
+        out List<string> keys,
+        out List<int> values)
+    {
+        keys = new List<string>();
+        values = new List<int>();
+
+        if (sourceKeys == null || sourceValues == null)
+            return;
+
+        int count = Math.Min(Math.Min(sourceKeys.Count, sourceValues.Count), MaxStatEntries);
+        HashSet<string> seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        for (int i = 0; i < count; i++)
+        {
+            string key = SanitizeStatKey(sourceKeys[i]);
+            if (string.IsNullOrEmpty(key) || !seen.Add(key))
+                continue;
+
+            keys.Add(key);
+            values.Add(ClampStatValue(sourceValues[i]));
+        }
     }
 
     static List<string> SanitizeStringList(List<string> values, int maxEntries, int maxChars, bool allowNewLines, bool keepLast)

@@ -602,10 +602,10 @@ public partial class StoryManager
 
     bool ShouldAdvanceDialogueFromKeyboard()
     {
-        if (!advanceDialogueWithKeyboard)
+        if (!advanceDialogueWithKeyboard || !Input.anyKeyDown)
             return false;
 
-        if (IsShortcutModifierHeld() || AnyServiceKeyboardKeyDown())
+        if (IsShortcutModifierHeld())
             return false;
 
         if (ignoreDialogueKeyboardInputWhenTyping && IsTypingIntoSelectedInputField())
@@ -618,7 +618,10 @@ public partial class StoryManager
             return true;
         }
 
-        return advanceDialogueWithAnyKeyboardKey && AnyKeyboardKeyDown();
+        if (!advanceDialogueWithAnyKeyboardKey)
+            return false;
+
+        return !AnyServiceKeyboardKeyDown() && AnyKeyboardKeyDown();
     }
 
     static bool IsShortcutModifierHeld()
@@ -654,14 +657,17 @@ public partial class StoryManager
 
     static bool AnyServiceKeyboardKeyDown()
     {
-        for (int i = 0; i < KeyboardAdvanceKeys.Length; i++)
-        {
-            KeyCode key = KeyboardAdvanceKeys[i];
-            if (IsServiceKeyboardKey(key) && Input.GetKeyDown(key))
-                return true;
-        }
-
-        return false;
+        return Input.GetKeyDown(KeyCode.Print) ||
+               Input.GetKeyDown(KeyCode.SysReq) ||
+               Input.GetKeyDown(KeyCode.Pause) ||
+               Input.GetKeyDown(KeyCode.Break) ||
+               Input.GetKeyDown(KeyCode.CapsLock) ||
+               Input.GetKeyDown(KeyCode.Numlock) ||
+               Input.GetKeyDown(KeyCode.ScrollLock) ||
+               Input.GetKeyDown(KeyCode.Menu) ||
+               Input.GetKeyDown(KeyCode.LeftWindows) ||
+               Input.GetKeyDown(KeyCode.RightWindows) ||
+               Input.GetKeyDown(KeyCode.Help);
     }
 
     static bool IsTypingIntoSelectedInputField()

@@ -4,6 +4,24 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Video;
 
+public enum StoryJsonAssetResolutionMode
+{
+    EditorFallback = 0,
+    StrictLibrary = 1
+}
+
+public enum StoryJsonAssetKindHint
+{
+    None = 0,
+    Character = 1,
+    Clothing = 2,
+    Sprite = 3,
+    Video = 4,
+    TextAsset = 5,
+    Audio = 6,
+    DialogueStyle = 7
+}
+
 [CreateAssetMenu(menuName = "VN/Story JSON Asset Library")]
 public sealed class StoryJsonAssetLibrary : ScriptableObject
 {
@@ -26,10 +44,16 @@ public sealed class StoryJsonAssetLibrary : ScriptableObject
     [Tooltip("Быстрая замена Source Image у фона плашки катсцен.")]
     [SerializeField] private Sprite _cutsceneDialogueBackgroundSprite;
 
+    [Header("Resolution")]
+    [Tooltip("Editor Fallback сохраняет старое поведение: отсутствующий ID может искаться по всему проекту. Strict Library делает эту библиотеку единственным source of truth.")]
+    [SerializeField] private StoryJsonAssetResolutionMode _resolutionMode = StoryJsonAssetResolutionMode.EditorFallback;
+
     [SerializeField]
     private List<StoryJsonAssetReference> _assets = new List<StoryJsonAssetReference>();
 
     public IReadOnlyList<StoryJsonAssetReference> Assets => _assets;
+    public StoryJsonAssetResolutionMode ResolutionMode => _resolutionMode;
+    public bool AllowEditorFallback => _resolutionMode != StoryJsonAssetResolutionMode.StrictLibrary;
 
     public bool TryGetStoryUiStyle(out StoryUiStyle style, out Sprite backgroundSprite)
     {
@@ -106,6 +130,13 @@ public sealed class StoryJsonAssetLibrary : ScriptableObject
             : new List<StoryJsonAssetReference>();
     }
 
+    public void ConfigureResolverPolicy(bool allowEditorFallback)
+    {
+        _resolutionMode = allowEditorFallback
+            ? StoryJsonAssetResolutionMode.EditorFallback
+            : StoryJsonAssetResolutionMode.StrictLibrary;
+    }
+
     private StoryJsonAssetReference Find(string id)
     {
         if (string.IsNullOrWhiteSpace(id) || _assets == null)
@@ -126,6 +157,10 @@ public sealed class StoryJsonAssetReference
 {
     [SerializeField]
     private string _id;
+
+    [SerializeField]
+    [Tooltip("Expected binding type. Used by editor/import reports when the actual asset is still missing.")]
+    private StoryJsonAssetKindHint _kindHint;
 
     [SerializeField]
     private CharacterData _character;
@@ -149,6 +184,7 @@ public sealed class StoryJsonAssetReference
     private DialogueStyle _dialogueStyle;
 
     public string Id => _id;
+    public StoryJsonAssetKindHint KindHint => _kindHint;
     public CharacterData Character => _character;
     public ClothingItem Clothing => _clothing;
     public Sprite Sprite => _sprite;
@@ -175,38 +211,43 @@ public sealed class StoryJsonAssetReference
                 asset == _dialogueStyle);
     }
 
+    public static StoryJsonAssetReference CreateEmpty(string id, StoryJsonAssetKindHint kindHint)
+    {
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = kindHint };
+    }
+
     public static StoryJsonAssetReference CreateCharacter(string id, CharacterData asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _character = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.Character, _character = asset };
     }
 
     public static StoryJsonAssetReference CreateClothing(string id, ClothingItem asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _clothing = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.Clothing, _clothing = asset };
     }
 
     public static StoryJsonAssetReference CreateSprite(string id, Sprite asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _sprite = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.Sprite, _sprite = asset };
     }
 
     public static StoryJsonAssetReference CreateVideo(string id, VideoClip asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _video = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.Video, _video = asset };
     }
 
     public static StoryJsonAssetReference CreateText(string id, TextAsset asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _textAsset = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.TextAsset, _textAsset = asset };
     }
 
     public static StoryJsonAssetReference CreateAudio(string id, AudioClip asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _audio = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.Audio, _audio = asset };
     }
 
     public static StoryJsonAssetReference CreateStyle(string id, DialogueStyle asset)
     {
-        return new StoryJsonAssetReference { _id = id ?? "", _dialogueStyle = asset };
+        return new StoryJsonAssetReference { _id = id ?? "", _kindHint = StoryJsonAssetKindHint.DialogueStyle, _dialogueStyle = asset };
     }
 }

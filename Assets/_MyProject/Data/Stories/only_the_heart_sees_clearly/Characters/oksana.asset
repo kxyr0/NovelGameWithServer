@@ -130,6 +130,12 @@ MonoBehaviour:
       height: 0
       scale: {x: 1, y: 1, z: 1}
       preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
   storyPositionLayout:
     all:
       offset: {x: 0, y: 0}
@@ -141,7 +147,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       scale: {x: 1, y: 1, z: 1}
     right:
-      offset: {x: 0, y: 0}
+      offset: {x: -522.81, y: 0}
       scale: {x: 1, y: 1, z: 1}
   keepStorySlotPositionOnSpeakerFocus: 0
   wardrobeLayerLayout:
@@ -163,7 +169,14 @@ MonoBehaviour:
       height: 0
       scale: {x: 1, y: 1, z: 1}
       preserveAspect: 1
+    accessory:
+      offset: {x: 0, y: 0}
+      width: 0
+      height: 0
+      scale: {x: 1, y: 1, z: 1}
+      preserveAspect: 1
   permanentOutfit: {fileID: 0}
   permanentHair: {fileID: 0}
+  permanentAccessory: {fileID: 0}
   storyEquipmentLayouts: []
   wardrobeEquipmentLayouts: []

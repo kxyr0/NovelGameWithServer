@@ -40,6 +40,22 @@ public class WardrobeChoiceNode : BaseStoryNode
         return optionRules[index];
     }
 
+    public string GetOptionLabel(int index, string fallback = "")
+    {
+        WardrobeChoiceOptionRule rule = GetOptionRule(index);
+        return rule != null ? rule.GetLabel(fallback) : fallback;
+    }
+
+    public bool TryGetClearSlotType(int index, out ClothingType type)
+    {
+        WardrobeChoiceOptionRule rule = GetOptionRule(index);
+        if (rule != null && rule.TryGetClearSlotType(out type))
+            return true;
+
+        type = ClothingType.Outfit;
+        return false;
+    }
+
     public bool IsOptionVisible(int index)
     {
         WardrobeChoiceOptionRule rule = GetOptionRule(index);

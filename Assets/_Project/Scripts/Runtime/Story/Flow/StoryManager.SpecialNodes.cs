@@ -123,6 +123,7 @@ public partial class StoryManager
         RestoreHeroSetupStoryUiForNode(node);
 
         GameState.Instance.currentNode = node;
+        PlayerCollectionState.TryUnlockStoryNode(CurrentStoryId, node);
 
         AppLogger.Info(
             AppLogCategory.StoryFlow,
@@ -223,7 +224,8 @@ public partial class StoryManager
         if (GameState.Instance == null)
             return;
 
-        if (!IsClothingAvailableForWardrobeNode(node, item))
+        bool clearsSlot = node.TryGetClearSlotType(index, out _);
+        if (!clearsSlot && !IsClothingAvailableForWardrobeNode(node, item))
         {
             AppLogger.Warn(
                 AppLogCategory.Wardrobe,
@@ -247,6 +249,25 @@ public partial class StoryManager
                 AddWardrobeMessageMetadata(BuildWardrobeChoiceMetadata(node, index, item, cost), restrictionMessage),
                 recoverable: true);
             ShowWardrobeOptionDenied(restrictionMessage);
+            return;
+        }
+
+        if (clearsSlot)
+        {
+            if (cost > 0)
+            {
+                AppLogger.Warn(
+                    AppLogCategory.Wardrobe,
+                    nameof(StoryManager),
+                    nameof(SelectClothing),
+                    "[WARDROBE][SELECT_DENIED] Clear-slot option cannot have a premium cost.",
+                    BuildWardrobeChoiceMetadata(node, index, item, cost),
+                    recoverable: true);
+                ShowWardrobeOptionDenied("Некорректная настройка варианта гардероба");
+                return;
+            }
+
+            DoSelectClothing(node, index, null);
             return;
         }
 
@@ -400,7 +421,19 @@ public partial class StoryManager
         if (GameState.Instance == null)
             return;
 
-        if (item != null && !string.IsNullOrEmpty(item.id))
+        if (node != null && node.TryGetClearSlotType(index, out ClothingType clearSlotType))
+        {
+            string equipKey = GetWardrobeEquipKey(node, clearSlotType);
+            GameState.Instance.UnequipClothing(equipKey);
+            PlayerAppearance.SetEquippedClothing(clearSlotType, "", null, null);
+            AppLogger.Info(
+                AppLogCategory.Wardrobe,
+                nameof(StoryManager),
+                nameof(DoSelectClothing),
+                "[WARDROBE][UNEQUIP] Wardrobe slot cleared by story choice.",
+                BuildWardrobeChoiceMetadata(node, index, null, 0));
+        }
+        else if (item != null && !string.IsNullOrEmpty(item.id))
         {
             GameState.Instance.AddClothing(item.id);
             GameState.Instance.EquipClothing(GetWardrobeEquipKey(node, item), item.id);
@@ -787,8 +820,13 @@ public partial class StoryManager
 
         for (int i = 0; i < node.availableClothes.Count; i++)
         {
+            if (!node.IsOptionVisible(i))
+                continue;
+
+            if (node.TryGetClearSlotType(i, out _))
+                return true;
+
             if (node.availableClothes[i] != null &&
-                node.IsOptionVisible(i) &&
                 IsClothingAvailableForWardrobeNode(node, node.availableClothes[i]))
                 return true;
         }
@@ -797,6 +835,11 @@ public partial class StoryManager
     }
 
     string GetWardrobeEquipKey(WardrobeChoiceNode node, ClothingItem item)
+    {
+        return GetWardrobeEquipKey(node, item != null ? item.type : ClothingType.Outfit);
+    }
+
+    string GetWardrobeEquipKey(WardrobeChoiceNode node, ClothingType type)
     {
         string characterId = "";
         if (node != null)
@@ -809,10 +852,10 @@ public partial class StoryManager
         if (string.IsNullOrWhiteSpace(characterId))
             characterId = "hero";
 
-        if (item != null && item.type == ClothingType.Hair)
+        if (type == ClothingType.Hair)
             return characterId + ":hair";
 
-        if (item != null && item.type == ClothingType.Accessory)
+        if (type == ClothingType.Accessory)
             return characterId + ":accessory";
 
         return characterId + ":outfit";
@@ -883,15 +926,29 @@ public partial class StoryManager
             return;
         }
 
-        StartCoroutine(ProcessWardrobeChoiceRoutine(node, openWardrobeScreen));
-    }
-
-    IEnumerator ProcessWardrobeChoiceRoutine(WardrobeChoiceNode node, bool openWardrobeScreen)
-    {
         if (!EnsureDialogueUI("showing wardrobe choice"))
-            yield break;
+            return;
 
-        yield return SyncWardrobeOwnershipForStory("wardrobe_choice", node);
+        // Story flow must never wait for a network ownership refresh before opening the wardrobe.
+        // The authenticated session already performs wardrobe sync in NetworkManager.SyncAll(); this
+        // extra refresh is only a best-effort background update. Waiting here used to leave the
+        // player on an empty dialogue frame for up to ~48 seconds (15 s timeout * 3 attempts +
+        // retry delays) whenever the wardrobe endpoint was slow or unavailable.
+        StartWardrobeOwnershipSyncForStoryNonBlocking("wardrobe_choice", node);
+
+        AppLogger.Info(
+            AppLogCategory.Wardrobe,
+            nameof(StoryManager),
+            nameof(ProcessWardrobeChoice),
+            "[WARDROBE][TRANSITION] Opening wardrobe choice immediately from local state.",
+            LogMetadata.Of(
+                "storyId", CurrentStoryId,
+                "chapterId", CurrentChapterId,
+                "episodeId", CurrentEpisodeId,
+                "nodeGuid", node.guid,
+                "nodeName", node.name,
+                "openWardrobeScreen", openWardrobeScreen,
+                "networkAuthenticated", NetworkManager.IsAuthenticated));
 
         if (!dialogueUI.OpenWardrobeChoice(node, ResolveWardrobeContextData()))
         {
@@ -901,7 +958,7 @@ public partial class StoryManager
                 AppLogger.Warn(
                     AppLogCategory.Wardrobe,
                     nameof(StoryManager),
-                    nameof(ProcessWardrobeChoiceRoutine),
+                    nameof(ProcessWardrobeChoice),
                     "[WARDROBE][UI_FAILED] Wardrobe UI failed, auto-selecting first visible option.",
                     BuildWardrobeChoiceMetadata(node, fallbackIndex, node.availableClothes[fallbackIndex], node.GetPremiumCost(fallbackIndex)),
                     recoverable: true);
@@ -913,7 +970,7 @@ public partial class StoryManager
                 AppLogger.Warn(
                     AppLogCategory.Wardrobe,
                     nameof(StoryManager),
-                    nameof(ProcessWardrobeChoiceRoutine),
+                    nameof(ProcessWardrobeChoice),
                     "[WARDROBE][UI_FAILED] Wardrobe UI failed and no visible options were found.",
                     BuildWardrobeChoiceMetadata(node, -1, null, 0),
                     recoverable: true);
@@ -930,8 +987,13 @@ public partial class StoryManager
 
         for (int i = 0; i < node.availableClothes.Count; i++)
         {
+            if (!node.IsOptionVisible(i))
+                continue;
+
+            if (node.TryGetClearSlotType(i, out _))
+                return i;
+
             if (node.availableClothes[i] != null &&
-                node.IsOptionVisible(i) &&
                 IsClothingAvailableForWardrobeNode(node, node.availableClothes[i]))
                 return i;
         }
@@ -1040,43 +1102,100 @@ public partial class StoryManager
 
     void ProcessWardrobeCheck(WardrobeCheckNode node)
     {
-        StartCoroutine(ProcessWardrobeCheckRoutine(node));
-    }
-
-    IEnumerator ProcessWardrobeCheckRoutine(WardrobeCheckNode node)
-    {
         if (node == null || !EnsureGameState("checking wardrobe item"))
-            yield break;
+            return;
 
-        yield return SyncWardrobeOwnershipForStory("wardrobe_check", node);
+        // A story branch must not freeze while waiting for the wardrobe API. Use the already
+        // synchronized/local ownership cache and refresh it opportunistically in the background.
+        StartWardrobeOwnershipSyncForStoryNonBlocking("wardrobe_check", node);
 
         bool hasItem = !string.IsNullOrEmpty(node.itemId) && GameState.Instance.HasClothing(node.itemId);
         GoNext(node, hasItem ? "hasItem" : "noItem");
     }
 
-    IEnumerator SyncWardrobeOwnershipForStory(string reason, BaseStoryNode node)
+    const float WardrobeOwnershipStorySyncCooldownSeconds = 30f;
+    bool wardrobeOwnershipStorySyncInFlight;
+    float wardrobeOwnershipStorySyncLastStartedAt = -1000f;
+
+    void StartWardrobeOwnershipSyncForStoryNonBlocking(string reason, BaseStoryNode node)
     {
         if (NetworkManager.Instance == null || !NetworkManager.IsAuthenticated)
-            yield break;
+            return;
 
+        if (wardrobeOwnershipStorySyncInFlight)
+        {
+            AppLogger.DebugLog(
+                AppLogCategory.Wardrobe,
+                nameof(StoryManager),
+                nameof(StartWardrobeOwnershipSyncForStoryNonBlocking),
+                "[WARDROBE][SYNC_ASYNC] Reusing wardrobe ownership sync already in flight.",
+                BuildWardrobeOwnershipSyncMetadata(reason, node));
+            return;
+        }
+
+        float now = Time.realtimeSinceStartup;
+        if (now - wardrobeOwnershipStorySyncLastStartedAt < WardrobeOwnershipStorySyncCooldownSeconds)
+        {
+            AppLogger.DebugLog(
+                AppLogCategory.Wardrobe,
+                nameof(StoryManager),
+                nameof(StartWardrobeOwnershipSyncForStoryNonBlocking),
+                "[WARDROBE][SYNC_ASYNC] Recent wardrobe ownership sync is fresh enough; skipping duplicate request.",
+                BuildWardrobeOwnershipSyncMetadata(reason, node));
+            return;
+        }
+
+        wardrobeOwnershipStorySyncInFlight = true;
+        wardrobeOwnershipStorySyncLastStartedAt = now;
+        StartCoroutine(SyncWardrobeOwnershipForStoryBackground(reason, node));
+    }
+
+    IEnumerator SyncWardrobeOwnershipForStoryBackground(string reason, BaseStoryNode node)
+    {
         bool synced = false;
+        string safeReason = SaveDataSanitizer.SanitizeIdentifier(reason);
+
+        AppLogger.DebugLog(
+            AppLogCategory.Wardrobe,
+            nameof(StoryManager),
+            nameof(SyncWardrobeOwnershipForStoryBackground),
+            "[WARDROBE][SYNC_ASYNC] Background wardrobe ownership sync started without blocking story UI.",
+            BuildWardrobeOwnershipSyncMetadata(safeReason, node));
+
         yield return NetworkManager.Instance.SyncWardrobeOwnership(result => synced = result);
+        wardrobeOwnershipStorySyncInFlight = false;
+
         if (synced)
+        {
+            AppLogger.DebugLog(
+                AppLogCategory.Wardrobe,
+                nameof(StoryManager),
+                nameof(SyncWardrobeOwnershipForStoryBackground),
+                "[WARDROBE][SYNC_ASYNC] Background wardrobe ownership sync completed.",
+                BuildWardrobeOwnershipSyncMetadata(safeReason, node));
             yield break;
+        }
 
         AppLogger.Warn(
             AppLogCategory.Wardrobe,
             nameof(StoryManager),
-            nameof(SyncWardrobeOwnershipForStory),
-            "[WARDROBE][SYNC] Server wardrobe ownership sync failed; continuing with local cache.",
-            LogMetadata.Of(
-                "reason", SaveDataSanitizer.SanitizeIdentifier(reason),
-                "storyId", CurrentStoryId,
-                "chapterId", CurrentChapterId,
-                "episodeId", CurrentEpisodeId,
-                "nodeGuid", node != null ? node.guid : "",
-                "nodeName", node != null ? node.name : ""),
+            nameof(SyncWardrobeOwnershipForStoryBackground),
+            "[WARDROBE][SYNC_ASYNC] Server wardrobe ownership sync failed; story continued with local cache.",
+            BuildWardrobeOwnershipSyncMetadata(safeReason, node),
             recoverable: true);
+    }
+
+    IDictionary<string, object> BuildWardrobeOwnershipSyncMetadata(string reason, BaseStoryNode node)
+    {
+        return LogMetadata.Of(
+            "reason", SaveDataSanitizer.SanitizeIdentifier(reason),
+            "storyId", CurrentStoryId,
+            "chapterId", CurrentChapterId,
+            "episodeId", CurrentEpisodeId,
+            "nodeGuid", node != null ? node.guid : "",
+            "nodeName", node != null ? node.name : "",
+            "inFlight", wardrobeOwnershipStorySyncInFlight,
+            "cooldownSeconds", WardrobeOwnershipStorySyncCooldownSeconds);
     }
 
     void ProcessOpenWardrobe(OpenWardrobeNode node)
@@ -1110,7 +1229,9 @@ public partial class StoryManager
             ReturnFromOpenWardrobe(node);
         };
 
-        yield return SyncWardrobeOwnershipForStory("open_wardrobe", node);
+        // Open the wardrobe immediately. Server ownership refresh is best-effort and must never
+        // hold the story screen hostage on a slow mobile connection.
+        StartWardrobeOwnershipSyncForStoryNonBlocking("open_wardrobe", node);
 
         if (EnsureDialogueUI("opening wardrobe setup") &&
             dialogueUI.OpenHeroWardrobeSetup(
@@ -1179,7 +1300,15 @@ public partial class StoryManager
 
     IDictionary<string, object> BuildWardrobeChoiceMetadata(WardrobeChoiceNode node, int index, ClothingItem item, int cost)
     {
-        string equipKey = item != null ? GetWardrobeEquipKey(node, item) : "";
+        ClothingType clearSlotType = ClothingType.Outfit;
+        bool clearsSlot = node != null && node.TryGetClearSlotType(index, out clearSlotType);
+        string equipKey = clearsSlot
+            ? GetWardrobeEquipKey(node, clearSlotType)
+            : item != null ? GetWardrobeEquipKey(node, item) : "";
+        string itemType = clearsSlot
+            ? clearSlotType.ToString()
+            : item != null ? item.type.ToString() : "";
+
         return LogMetadata.Of(
             "storyId", CurrentStoryId,
             "chapterId", CurrentChapterId,
@@ -1188,14 +1317,16 @@ public partial class StoryManager
             "nodeName", node != null ? node.name : "",
             "index", index,
             "itemId", item != null ? item.id : "",
+            "purchaseKey", node != null && index >= 0 ? node.GetServerPurchaseKey(index) : "",
             "itemName", item != null ? item.name : "",
-            "itemType", item != null ? item.type.ToString() : "",
+            "itemType", itemType,
+            "clearsSlot", clearsSlot,
             "equipKey", equipKey,
             "cost", SaveDataSanitizer.ClampCurrencyValue(cost),
             "owned", IsWardrobeItemUnlocked(item),
             "hearts", PlayerData.Hearts,
             "candles", PlayerData.Candles,
-            "availableForContext", IsClothingAvailableForWardrobeNode(node, item),
+            "availableForContext", clearsSlot || IsClothingAvailableForWardrobeNode(node, item),
             "currentNodeGuid", GameState.Instance != null && GameState.Instance.currentNode != null ? GameState.Instance.currentNode.guid : "");
     }
 
@@ -1227,7 +1358,10 @@ public partial class StoryManager
         int count = 0;
         for (int i = 0; i < node.availableClothes.Count; i++)
         {
-            if (node.availableClothes[i] != null && node.IsOptionVisible(i))
+            if (!node.IsOptionVisible(i))
+                continue;
+
+            if (node.TryGetClearSlotType(i, out _) || node.availableClothes[i] != null)
                 count++;
         }
 
@@ -1311,7 +1445,7 @@ public partial class StoryManager
         if (useCutsceneBackgroundLayout)
             BeginCutsceneBackgroundFraming();
 
-        ApplySceneAudio(data, SettingsScreenController.SoundsDisabled);
+        ApplySceneAudio(data);
 
         tapHandler?.ResetCooldown();
 

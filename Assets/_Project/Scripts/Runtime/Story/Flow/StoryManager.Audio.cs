@@ -56,13 +56,16 @@ public partial class StoryManager
     }
 #endif
 
-    void ApplySceneAudio(SceneSetupData data, bool soundsDisabled)
+    void ApplySceneAudio(SceneSetupData data)
     {
         if (data == null)
             return;
 
+        bool musicDisabled = !AppSettingsState.IsEnabled(AppSettingType.Music);
+        bool soundsDisabled = !AppSettingsState.IsEnabled(AppSettingType.SoundEffects);
+
         if (musicSource != null)
-            musicSource.mute = soundsDisabled;
+            musicSource.mute = musicDisabled;
 
         if (sfxSource != null)
             sfxSource.mute = soundsDisabled;
