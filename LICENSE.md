@@ -53,3 +53,9 @@ Any unauthorized use, copying, publication, distribution, transfer, modification
 Запрещается использовать, копировать, публиковать, распространять, передавать, продавать, изменять, перерабатывать, извлекать материалы или применять проект где-либо еще и кому-либо еще без прямого письменного разрешения **daria_ds**.
 
 Программист проекта выполняет только техническую реализацию и не получает прав собственности, исключительных прав или самостоятельной лицензии на использование проекта, если иное не закреплено отдельным письменным соглашением с **daria_ds**.
+
+## 8. Public Portfolio Permission
+
+**daria_ds** gives written permission to keep this repository publicly visible and to present it in the developer portfolio of its programmer, kxyr0, as an example of their work. Anyone may view the repository for evaluation purposes.
+
+This section applies despite Sections 2, 3, and 5. It grants no other rights: all other use, copying, modification, distribution, and reuse remain prohibited without separate written permission. Ownership stays with **daria_ds**.
